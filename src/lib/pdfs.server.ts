@@ -6,7 +6,16 @@ import {PDF_XOR_KEY} from "./pdfConfig.ts";
 export const PDF_CHUNK_SIZE = 64 * 1024; // 64 KB per .bin file
 
 export const DOCS: Record<string, string> = {
-    "research-manual": "BSCS-research-manual.pdf"
+    "research-manual": "BSCS-research-manual.pdf",
+
+    // For Planning and QA
+    "curriculum-design": "curriculum-design.pdf",
+    "syllabi-preparation": "syllabi-preparation.pdf",
+    "instructional-materials": "instructional-materials.pdf",
+    "test-administration": "test-administration.pdf",
+    "classroom-management": "classroom-management.pdf",
+    "internship-ojt": "internship-ojt.pdf",
+
     /*
     Put PDFs in /src/assets/pdfs!
 
