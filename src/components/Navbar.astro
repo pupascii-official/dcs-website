@@ -211,7 +211,7 @@ const links = [
         font-weight: 600;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1350px) {
         .navbar-container {
             flex-wrap: wrap;
             justify-content: space-between;
@@ -224,11 +224,13 @@ const links = [
         .navbar-college {
             flex: 1;
             min-width: 0;
-            gap: 0.2rem;
+            gap: 3.3rem;
         }
 
         .colleges-logos {
             gap: 0.2rem;
+            height: clamp(22px, 6vw, 36px);
+            width: clamp(22px, 6vw, 36px);
         }
 
         .college-identity {
@@ -239,11 +241,11 @@ const links = [
 
         .university,
         .college {
-            font-size: 0.4rem;
+            font-size: clamp(0.38rem, 1.8vw, 0.55rem);
         }
 
         .department {
-            font-size: 0.55rem;
+            font-size: clamp(0.52rem, 2.5vw, 0.78rem);
         }
 
         .hamburger-btn {
