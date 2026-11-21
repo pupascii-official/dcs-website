@@ -1,22 +1,22 @@
 ---
 interface Props {
-    kicker?: string,
-    headline: string
+    kicker?: string;
+    headline: string;
 }
 
-const { kicker, headline } = Astro.props;
+const {kicker, headline} = Astro.props;
 ---
 
-<section class="headline-component">
+<div class="headline-component">
     <div class="headline-content">
-        <small class="headline-kicker">{kicker}</small>
-        <h1 class="headline-text">{headline}</h1>
+        {kicker && <small class="headline-kicker">{kicker}</small>}
+        <h3 class="headline-text">{headline}</h3>
 
         <div class="headline-description">
-            <slot />
+            <slot/>
         </div>
     </div>
-</section>
+</div>
 
 <style>
     .headline-content {
@@ -27,14 +27,14 @@ const { kicker, headline } = Astro.props;
 
     .headline-kicker {
         font-size: large;
-        color: var(--color-text-body)
+        color: var(--color-text-body);
     }
 
     .headline-text {
+        font-size: clamp(2rem, 4vw, 3rem);
         background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
         background-clip: text;
         color: transparent;
-
         margin-bottom: 0;
     }
 </style>
