@@ -4,22 +4,14 @@ interface Props {
     subtitle: string
 }
 
-const { titleL, titleR, subtitle } = Astro.props;
+const { title, subtitle } = Astro.props;
 ---
 
 <section class="scroll-section hero">
     <div class="hero-content">
-        <div class="eyebrow">
-            <slot  name="eyebrow"/>
-        </div>
-        
-        <h1>{titleL}<span class="titleR"> {titleR}</span></h1>
+        <h1>{title}</h1>
         <h2 class="subtitle">{subtitle}</h2>
-
-        <div class="actions">
-            <slot name="actions"/>
-        </div>
-        
+        <slot />
     </div>
 </section>
 
@@ -36,19 +28,13 @@ const { titleL, titleR, subtitle } = Astro.props;
         text-align: center;
     }
 
-    .eyebrow {
-        color: var(--color-gold);
-        margin-block-end: 1em;
-        opacity: 0.8;
-    }
-
-    .titleR {
-        color: var(--color-gold);
+    .title {
+        font-size: clamp(3rem, 8vw, 6rem);
+        margin: 1.5rem;
     }
 
     .subtitle {
-        color: var(--color-white);
-        opacity: 0.8;
+        color: var(--color-dark-gold);
         font-size: medium;
         font-family: var(--font-inter), system-ui, sans-serif;
         font-weight: 600;
@@ -56,6 +42,14 @@ const { titleL, titleR, subtitle } = Astro.props;
     }
 
     .hero-content {
+        max-width: 1100px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-slot-content {
         max-width: 800px;
     }
 </style>
