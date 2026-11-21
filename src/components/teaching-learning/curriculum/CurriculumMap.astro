@@ -1,0 +1,45 @@
+---
+import CurriculumCard from "./CurriculumCard.astro";
+
+const categories = [
+    {
+        category: "General Education",
+        units: 42,
+        description: "Develop strong communication, critical thinking, ethical reasoning, cultural awareness, and social responsibility."
+    },
+    {
+        category: "Common Courses",
+        units: 18,
+        description: "Provides fundamental concepts in computing, information technology, mathematics, and related disciplines for CS students."
+    },
+    {
+        category: "Professional Courses",
+        units: 78,
+        description: "Develop the core knowledge, technical expertise, and practical competencies essential to computer science aligned with program outcomes."
+    },
+    {
+        category: "Professional Electives",
+        units: 12,
+        description: "Provide opportunities for students to explore specialized and emerging areas of computer science based on their interests and career goals."
+    }
+];
+---
+
+<div class="mx-auto w-full mb-3">
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {categories.map((item) => (
+            <CurriculumCard {...item} />
+        ))}
+    </div>
+
+    <!-- Total Units Banner -->
+    <div class="mt-4 flex flex-wrap items-center justify-center gap-4 rounded-2xl bg-red-900 px-5 py-4 text-white">
+        <span class="rounded-lg bg-yellow-400 px-4 py-2 text-base font-extrabold text-red-950">
+            167 UNITS
+        </span>
+
+        <span class="text-sm font-bold uppercase">
+            (Including PATHFIT & NSTP)
+        </span>
+    </div>
+</div>

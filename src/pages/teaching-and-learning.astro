@@ -5,20 +5,24 @@ import SectionContent from "../components/teaching-learning/SectionContent.astro
 import { teachingEvidence } from "../data/teaching-learning/evidence";
 import HistoryTimeline from "../components/teaching-learning/HistoryTimeline.astro";
 import MaroonSection from "../components/teaching-learning/MaroonSection.astro";
+import Navbar from "../components/Navbar.astro"
 
 import EvidenceShowcase from "../components/teaching-learning/EvidenceShowcase.astro";
 import ElectiveTracks from "../components/teaching-learning/ElectiveTracks.astro";
+import CurriculumMap from "../components/teaching-learning/curriculum/CurriculumMap.astro";
+import CurriculumExplorer from "../components/teaching-learning/curriculum/CurriculumExplorer.astro";
 
 ---
 
-<ScrollSnapLayout title="Teaching & Learning">
+<ScrollSnapLayout title="Teaching & Learning" description="">
+    <Navbar></Navbar>
     <!-- HERO -->
-    <HeroSection titleL="Teaching &" titleR="Learning" subtitle="Implemented AY 2022‐2023 (CMO No. 25 s. 2015 & CMO No. 20 s. 2013 aligned) to build deep expertise in AI and data-driven computing.">
+    <HeroSection title="Teaching & Learning" subtitle="Implemented AY 2022‐2023 (CMO No. 25 s. 2015 & CMO No. 20 s. 2013 aligned) to build deep expertise in AI and data-driven computing.">
         <span slot="eyebrow">SECTION 02 • CURRICULUM & ELECTIVE TRACKS</span>
     </HeroSection>
 
     <!-- Outcomes-Based Computing Education -->
-    <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 md:pt-16 gap-8 mx-3 scroll-section scrollbar-none">
+    <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 pt-20 md:pt-24 lg:pt-28 gap-8 mx-6 scroll-section scrollbar-none">
 
         <!-- RIGHT CONTENT -->
         <div class="flex-1">
@@ -59,7 +63,7 @@ import ElectiveTracks from "../components/teaching-learning/ElectiveTracks.astro
     </section>
 
     <!-- EVOLUTION -->
-    <section class="scroll-section scrollbar-none mx-3 md:pt-16" >
+    <section class="scroll-section scrollbar-none mx-6 pt-20 md:pt-24 lg:pt-28" >
         <SectionContent
             sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
             title="Evolution of PUP’s Computer Science Program">
@@ -84,19 +88,22 @@ import ElectiveTracks from "../components/teaching-learning/ElectiveTracks.astro
     </section>
 
     <!-- CURRICULUM MAP -->
-    <section class="scroll-section scrollbar-none">
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
         <SectionContent
             title="2022 BSCS Curriculum Map"
             sectionLabel="CURRICULUM STRUCTURE • 167 UNITS">
 
             <p>Enriched by co-curricular technical seminars, workshops, training programs, 
                 research presentations, programming competitions, and hackathons.</p>
+
+            <CurriculumMap></CurriculumMap>
+            <CurriculumExplorer></CurriculumExplorer>
         </SectionContent>
     </section>
 </ScrollSnapLayout>
 
 <style>
     section {
-        max-height: 100vh;
+        
     }
 </style>
