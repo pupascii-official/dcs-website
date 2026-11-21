@@ -17,7 +17,7 @@ export default defineConfig({
             provider: fontProviders.google(),
             name: 'Montserrat',
             cssVariable: '--font-montserrat',
-            weights: [800],
+            weights: [400, 600, 800],
         },
         {
             provider: fontProviders.google(),
