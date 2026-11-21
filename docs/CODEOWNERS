@@ -1,4 +1,8 @@
-* @pup-ascii @T-codes-CS @ppgabe
+docs/**  @pup-ascii @T-codes-CS @ppgabe
+/AGENTS.md @pup-ascii @T-codes-CS @ppgabe
+/astro.config.mjs @pup-ascii @T-codes-CS @ppgabe
+/svelte.config.js @pup-ascii @T-codes-CS @ppgabe
+/.gitignore @pup-ascii @T-codes-CS @ppgabe
 
 public/** @pup-ascii @T-codes-CS @ppgabe @keithkatcat @jhonroyilao
 
