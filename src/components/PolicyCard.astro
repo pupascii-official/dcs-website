@@ -23,21 +23,21 @@ const {
 ---
 
 <article
-  class={`rounded-2xl border border-[#780000]/20 bg-white p-5 sm:p-6 shadow-[0_8px_24px_-12px_rgba(120,0,0,0.12)] flex flex-col justify-between transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
+  class={`rounded-2xl border border-[#800000]/22 bg-gradient-to-b from-white via-[#FDFCFC] to-[#FAF4F3] p-5 sm:p-6 shadow-[0_12px_28px_-14px_rgba(128,0,0,0.14)] flex flex-col justify-between transition-transform duration-200 hover:-translate-y-0.5 ${className}`}
 >
   <div class="flex items-center justify-between gap-3 mb-4">
     <StatusBadge label={badgeLabel} variant={badgeVariant} />
 
     {
       codeTag ? (
-        <span class="font-mono text-[11px] font-semibold tracking-wider text-neutral-400">
+        <span class="font-mono text-[11px] font-bold tracking-wider text-[#800000]">
           {codeTag}
         </span>
       ) : (
         showDot && (
           <span
             aria-hidden="true"
-            class="h-2.5 w-2.5 rounded-full bg-[#E5B82E] shrink-0"
+            class="h-2.5 w-2.5 rounded-full bg-[#DAA520] shadow-[0_0_8px_2px_rgba(218,165,32,0.45)] shrink-0"
           />
         )
       )
