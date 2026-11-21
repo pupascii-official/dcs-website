@@ -21,6 +21,7 @@ export interface Props {
   deckBadge?: string;
   manualLabel?: string;
   manualUrl?: string;
+  openInNewTab?: boolean;
   sourceNote?: string;
   class?: string;
 }
@@ -99,6 +100,7 @@ const {
   deckBadge = "BSCS AREA 1 • RESEARCH EVIDENCE",
   manualLabel = "BSCS AREA 1 — RESEARCH NARRATIVE",
   manualUrl = "#narrative",
+  openInNewTab = true,
   sourceNote = "SOURCE: BSCS AREA 1 — RESEARCH • UPDATED NOVEMBER 20",
   class: className = "",
 } = Astro.props;
@@ -166,6 +168,8 @@ const {
     <ActionButton
       label={manualLabel}
       href={manualUrl}
+      target={openInNewTab ? "_blank" : undefined}
+      rel={openInNewTab ? "noopener noreferrer" : undefined}
       variant="research-manual"
       class="min-w-[300px] sm:min-w-[380px]"
     />

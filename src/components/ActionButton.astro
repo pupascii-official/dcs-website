@@ -9,6 +9,8 @@ export type ButtonVariant =
 export interface Props {
   label?: string;
   href?: string;
+  target?: string;
+  rel?: string;
   variant?: ButtonVariant;
   active?: boolean;
   iconDirection?: "prev" | "next";
@@ -19,6 +21,8 @@ export interface Props {
 const {
   label = "",
   href,
+  target,
+  rel,
   variant = "publications",
   active = false,
   iconDirection = "next",
@@ -26,6 +30,7 @@ const {
   class: className = "",
 } = Astro.props;
 
+const resolvedRel = rel ?? (target === "_blank" ? "noopener noreferrer" : undefined);
 const Tag = href ? "a" : "button";
 
 const styles: Record<ButtonVariant, string> = {
@@ -45,6 +50,8 @@ const styles: Record<ButtonVariant, string> = {
 
 <Tag
   href={href}
+  target={href ? target : undefined}
+  rel={href ? resolvedRel : undefined}
   type={!href ? "button" : undefined}
   aria-label={ariaLabel || label}
   class={`${styles[variant]} ${className}`}
