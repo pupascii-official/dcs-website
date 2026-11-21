@@ -1,5 +1,5 @@
 ---
-import  Navbar from "./Navbar.astro";
+import DepartmentPill from "./DepartmentPill.astro";
 
 export interface Props {
   departmentCode?: string;
@@ -37,7 +37,7 @@ const {
   ></div>
 
   <div class="relative z-10 mx-auto max-w-4xl flex flex-col items-center">
-    <Navbar
+    <DepartmentPill
       code={departmentCode}
       department={departmentName}
       tag={departmentTag}

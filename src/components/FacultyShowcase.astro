@@ -1,7 +1,7 @@
 ---
-import SectionHeading from "./SectionHeading.astro";
+import HeadlineComponent from "./HeadlineComponent.astro";
 import StatusBadge from "./StatusBadge.astro";
-import FacultyFolderCard from "./FacultyFolderCard.astro";
+import FacultyFolderCard, { type PublicationEntry } from "./FacultyFolderCard.astro";
 import FacultyProfileModal from "./FacultyProfileModal.astro";
 
 export interface FacultyMember {
@@ -11,12 +11,14 @@ export interface FacultyMember {
   status?: string;
   ctaLabel?: string;
   folderSlug: string;
-  imageSrc: string;
+  imageSrc?: string;
+  publications?: PublicationEntry[];
 }
 
 export interface Props {
   eyebrow?: string;
   heading?: string;
+  showHeading?: boolean;
   guidanceLabel?: string;
   faculty?: FacultyMember[];
   modalId?: string;
@@ -26,6 +28,7 @@ export interface Props {
 const {
   eyebrow = "SECTION 04 // TEAM & SCHOLARS",
   heading = "Faculty Involved in Research",
+  showHeading = true,
   guidanceLabel = "FACULTY PUBLICATION CONTRIBUTIONS • 2021–2025",
   modalId = "faculty-profile-modal",
   faculty = [
@@ -36,7 +39,87 @@ const {
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "13 refereed publications",
       folderSlug: "sagum-research.folder",
-      imageSrc: "/src/assets/images/faculty_maria_santos_1795256249826.jpg",
+      imageSrc: "/public/research-asset/faculty/sagumria.png",
+      publications: [
+        {
+          authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
+          title: "Parallel Ensemble Approach for Named Entity Recognition in Filipino Text",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "July 9, 2025",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Automated Translation between Bicolano and Tagalog using Transfer-Based Model",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "July 9, 2025",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Filipino Genz Slang Sentiment Analyzer using BERT",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Palayan: Forecasting Rice Crop Loss on Typhoons using PSO-SVR",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Artificial Intelligence as Support in Knowledge Management for Human Resource Management",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Sentiment Analysis on Product Review using Sarcasm, Emoticon, and Internet Slang Detection",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Antonym and Meronym Identification as an Aid for Filipino Corpus Builder",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+        },
+        {
+          authors: "Acasomoso Jr, Dominador M.; Sagum, Ria A.",
+          title: "SEAMS: A Smart and Efficient Attendance Management System with Attendance Prediction and Forecasting",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "December 14, 2023",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Spider Plus: A Text Classifier for Research Article Components",
+          journal: "Procedia Computer Science",
+          datePublished: "November 25, 2023",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Philippine Supreme Court Case Summarizer using Latent Semantic Analysis",
+          journal: "Procedia Computer Science",
+          datePublished: "November 25, 2023",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "High-Performance Work Practices, Employee Engagement, and Employee Performance: The Case of a Philippine State University",
+          journal: "Modern Perspectives and Current Trends in Asian Education, Psychology, and Sociology",
+          datePublished: "October 24, 2023",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Application of Associative Classifier for Data Sparsity in Predictive Analysis Recommendation",
+          journal: "2021 IEEE 13th International Conference on Humanoid, Nanotechnology, Information Technology, Communication and Control, Environment, and Management (HNICEM)",
+          datePublished: "November 2021",
+        },
+      ],
     },
     {
       id: "carlo-inovero",
@@ -45,25 +128,137 @@ const {
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "6 refereed publications",
       folderSlug: "inovero-research.folder",
-      imageSrc: "/src/assets/images/faculty_juan_delacruz_1795256249949.jpg",
+      imageSrc: "/public/research-asset/faculty/inovero.png",
+      publications: [
+        {
+          authors: "Inovero, Carlo G.",
+          title: "Risk Statement Classifier using BERT and DistilBERT",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+        },
+        {
+          authors: "Inovero, Carlo G.; Porteria, Leonard M.; Carreon, Kurt Andrei C.",
+          title: "Object Detection in Computer Laboratory Setting Utilizing YOLO Model",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+        },
+        {
+          authors: "Inovero, Carlo G.",
+          title: "Intelligent Credit Scoring: A Smart City Setting for Small and Medium Financial Institution",
+          journal: "2023 The 11th International Conference on Information Technology: IoT and Smart City",
+          datePublished: "March 11, 2024",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+        },
+        {
+          authors: "Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Emotion Recognition through Accelerometer and Gyroscope Sensors: A Pilot Study",
+          journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
+          datePublished: "September 23, 2023",
+        },
+        {
+          authors: "Inovero, Carlo G.",
+          title: "A Sentiment Analysis Classification of Product Reviews through Convolutional Neural Network",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "December 23, 2022",
+        },
+      ],
     },
     {
       id: "aleta-fabregas",
-      name: "Aleta Fabregas",
+      name: "Aleta C. Fabregas",
       researchArea: "MACHINE LEARNING",
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "5 refereed publications",
       folderSlug: "fabregas-research.folder",
-      imageSrc: "/src/assets/images/faculty_grace_hopper_1795256249744.jpg",
+      imageSrc: "/public/research-asset/faculty/fabregas.png",
+      publications: [
+        {
+          authors: "Fabregas, Aleta C.; Amata, Maria Leonila G.",
+          title: "Predicting Student Performance in Higher Education: A Naïve Bayesian Algorithm Approach for Mapping Students Academic Path Using a Rule Based Classifier",
+          journal: "Digital Journal Philippines",
+          datePublished: "June 2024",
+        },
+        {
+          authors: "Fabregas, Aleta C.",
+          title: "Habagatplus: Providing Recommendations for Localized Class Suspension in Schools During Inclement Weather Conditions Using Naive Bayes Classifier",
+          journal: "IEEE Xplore",
+          datePublished: "April 1, 2024",
+        },
+        {
+          authors: "Fabregas, Aleta C.; Andres, Christopher",
+          title: "Traffic Incident Prediction and Classification System using Naïve Bayes Algorithm",
+          journal: "Procedia Computer Science",
+          datePublished: "November 2023",
+        },
+        {
+          authors: "Fabregas, Aleta C.",
+          title: "Online News Monitoring and Sentiment Analysis using BERT Approach",
+          journal: "International Journal of Advanced Research in Technology and Innovation",
+          datePublished: "December 2022",
+        },
+        {
+          authors: "Fabregas, Aleta C.",
+          title: "Detecting Urinary Tract Infection (UTI) thru Analytes level using Convolutional Neural Network and Support Vector Machine",
+          journal: "ICIT 2021: 2021 The 9th International Conference on Information Technology: IoT and Smart City",
+          datePublished: "April 11, 2022",
+        },
+      ],
     },
     {
       id: "mb-dela-fuente",
-      name: "M. B. Dela Fuente",
+      name: "Michael B. Dela Fuente",
       researchArea: "DEEP LEARNING",
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "3 refereed publications",
       folderSlug: "dela-fuente-research.folder",
-      imageSrc: "/src/assets/images/faculty_alan_turing_1795256249746.jpg",
+      imageSrc: "/public/research-asset/faculty/delafuente.png",
+      publications: [
+        {
+          authors: "Dela Fuente, Michael B.",
+          title: "Job Tier Classification in Applicant Tracking Systems Utilizing One-Dimensional CNN",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+        },
+        {
+          authors: "Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Emotion Recognition through Accelerometer and Gyroscope Sensors: A Pilot Study",
+          journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
+          datePublished: "September 23, 2023",
+        },
+      ],
+    },
+    {
+      id: "janelle-sagum",
+      name: "Janelle Kyra A. Sagum",
+      researchArea: "NATURAL LANGUAGE PROCESSING",
+      status: "INVOLVED IN RESEARCH",
+      ctaLabel: "2 refereed publications",
+      folderSlug: "jk-sagum-research.folder",
+      publications: [
+        {
+          authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
+          title: "Parallel Ensemble Approach for Named Entity Recognition in Filipino Text",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "July 9, 2025",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+        },
+      ],
     },
   ],
   class: className = "",
@@ -71,11 +266,26 @@ const {
 ---
 
 <section class={`w-full ${className}`}>
-  <SectionHeading eyebrow={eyebrow} heading={heading}>
-    <StatusBadge slot="action" label={guidanceLabel} variant="faculty-guidance" />
-  </SectionHeading>
+  {
+    showHeading ? (
+      <HeadlineComponent
+        variant="section"
+        kicker={eyebrow}
+        headline={heading}
+        class="mb-5 sm:mb-6"
+      >
+        <StatusBadge slot="action" label={guidanceLabel} variant="faculty-guidance" />
+      </HeadlineComponent>
+    ) : (
+      Boolean(guidanceLabel) && (
+        <div class="mb-6 flex justify-end">
+          <StatusBadge label={guidanceLabel} variant="faculty-guidance" />
+        </div>
+      )
+    )
+  }
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
     {
       faculty.map((member) => (
         <FacultyFolderCard
@@ -86,6 +296,7 @@ const {
           ctaLabel={member.ctaLabel}
           folderSlug={member.folderSlug}
           imageSrc={member.imageSrc}
+          publications={member.publications}
           modalId={modalId}
         />
       ))

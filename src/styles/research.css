@@ -1,0 +1,39 @@
+@import "tailwindcss" important;
+
+@theme {
+	--font-display: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+	--font-heading: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+	--font-sans: var(--font-inter), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Scoped element resets for pages opting into .research-page.
+ * Leaves the team's unlayered src/styles/global.css 100% untouched while
+ * neutralizing its bare element rules (p margin, h1-h6 color/size, img radius).
+ * Tailwind utilities still win everywhere thanks to `@import "tailwindcss" important;`.
+ */
+.research-page p {
+	margin-bottom: 0;
+}
+
+.research-page h1:not(.headline-text),
+.research-page h2:not(.headline-text),
+.research-page h3:not(.headline-text),
+.research-page h4:not(.headline-text),
+.research-page h5:not(.headline-text),
+.research-page h6:not(.headline-text) {
+	margin: 0;
+	color: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.research-page small:not(.headline-kicker) {
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+.research-page img {
+	border-radius: 0;
+}

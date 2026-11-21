@@ -16,16 +16,54 @@ const {
 } = Astro.props;
 ---
 
-<section class="scroll-section hero">
-    <div class="hero-content">
-        <h1 class="title">{title}</h1>
-        <h2 class="subtitle">{subtitle}</h2>
+{
+	variant === "research" ? (
+		<section
+			id="top"
+			class={`scroll-section relative w-full overflow-x-hidden flex flex-col bg-gradient-to-b from-[#4C0000] via-[#360000] to-[#230000] px-6 sm:px-10 py-12 text-center text-white ${className}`}
+		>
+			<div
+				aria-hidden="true"
+				class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(217,164,29,0.14),transparent_60%)]"
+			></div>
 
-        <div class="hero-slot-content">
-            <slot />
-        </div>
-    </div>
-</section>
+			<div class="relative z-10 my-auto mx-auto max-w-4xl flex flex-col items-center">
+				<slot name="top" />
+
+				<div class="mt-9">
+					<span
+						class="inline-flex items-center rounded-full border border-[#D9A41D]/55 bg-[#780000]/65 px-4 py-1.5 font-heading text-[10px] font-bold tracking-[0.06em] text-[#FFD94A]"
+					>
+						{subtitle}
+					</span>
+				</div>
+
+				<h1
+					class="mt-6 font-display text-[40px] sm:text-[58px] font-black tracking-[-0.03em] leading-[1.03] text-white text-balance"
+				>
+					<span class="block">{title}</span>
+					{accentTitle && <span class="block text-[#FFE600]">{accentTitle}</span>}
+				</h1>
+
+				<slot />
+			</div>
+		</section>
+	) : (
+		<section class={`scroll-section hero ${className}`}>
+			<div class="hero-content">
+				{Astro.slots.has("top") && <slot name="top" />}
+				<h1 class="title">
+					{title}
+					{accentTitle && <span class="text-[#FFE600]"> {accentTitle}</span>}
+				</h1>
+				<h2 class="subtitle">{subtitle}</h2>
+				<div class="hero-slot-content">
+					<slot />
+				</div>
+			</div>
+		</section>
+	)
+}
 
 <style>
 	.hero {
@@ -34,11 +72,11 @@ const {
 		color: white;
 		padding: 2rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
 
 	.subtitle {
 		color: var(--color-dark-gold);
@@ -48,7 +86,7 @@ const {
 		margin: 0;
 	}
 
-    .hero-content {
-        max-width: 800px;
-    }
+	.hero-content {
+		max-width: 800px;
+	}
 </style>

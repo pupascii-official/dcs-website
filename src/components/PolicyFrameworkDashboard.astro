@@ -106,13 +106,13 @@ const {
 } = Astro.props;
 ---
 
-<div class={`space-y-7 ${className}`} data-policy-dashboard>
+<div class={`space-y-4 ${className}`} data-policy-dashboard>
   <!-- Main Outer Maroon-Bordered Card -->
   <div
-    class="rounded-3xl border-[1.5px] border-[#800000] bg-gradient-to-b from-white via-[#FCFBFB] to-[#F7F1F0] p-6 sm:p-8 shadow-[0_24px_56px_-14px_rgba(128,0,0,0.16)] space-y-6"
+    class="policy-dashboard-shell rounded-3xl border-[1.5px] border-[#800000] p-4 sm:p-5 shadow-[0_24px_56px_-14px_rgba(128,0,0,0.16)] space-y-4"
   >
     <!-- Top 3 Policy Summary Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
       {
         cards.map((card) => (
           <PolicyCard
@@ -128,8 +128,8 @@ const {
     </div>
 
     <!-- BSCS AREA 1 • RESEARCH EVIDENCE Stacked Folder Container -->
-    <div class="rounded-2xl border border-[#800000]/20 bg-gradient-to-b from-[#FDFCFC] via-[#FAF7F7] to-[#F6F0EF] p-5 sm:p-7 shadow-[0_12px_28px_-16px_rgba(128,0,0,0.1)]">
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+    <div class="policy-deck-well rounded-2xl border border-[#800000]/20 p-3.5 sm:p-5 shadow-[0_12px_28px_-16px_rgba(128,0,0,0.1)]">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div
           class="flex items-center gap-2 font-heading text-[10px] font-extrabold tracking-[0.12em] uppercase text-[#800000]"
         >
@@ -143,12 +143,12 @@ const {
         </span>
       </div>
 
-      <!-- Staggered 4-Layer Folder Stage (matches global.css .folder-* rules) -->
+      <!-- Staggered 4-Layer Folder Stage -->
       <div
         role="tablist"
         aria-label="BSCS Area 1 research evidence"
         data-folder-stack
-        class="relative flex flex-col gap-4 lg:block lg:h-[490px] lg:overflow-hidden lg:rounded-2xl"
+        class="relative flex flex-col gap-4 lg:block lg:h-[400px] lg:overflow-hidden lg:rounded-2xl"
       >
         {
           folders.map((folder, idx) => (
@@ -164,7 +164,7 @@ const {
   </div>
 
   <!-- Centered Research Narrative CTA -->
-  <div class="flex flex-col items-center gap-2.5 pt-1">
+  <div class="flex flex-col items-center gap-1.5 pt-0.5">
     <ActionButton
       label={manualLabel}
       href={manualUrl}
@@ -182,6 +182,16 @@ const {
     }
   </div>
 </div>
+
+<style>
+  .policy-dashboard-shell {
+    background-image: linear-gradient(180deg, #ffffff 0%, #fcf9f8 58%, #f4ecea 100%);
+  }
+
+  .policy-deck-well {
+    background-image: linear-gradient(180deg, #fdfcfc 0%, #faf6f5 58%, #f4ecea 100%);
+  }
+</style>
 
 <script is:inline>
   (() => {

@@ -22,7 +22,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   "research-pillar":
     "bg-[#780000]/90 border border-[#D9A41D]/70 text-[#FFD94A] px-4 py-1.5",
   "faculty-dev":
-    "bg-gradient-to-r from-[#F9ECC3] to-[#F4E1A2] border border-[#D4A017]/55 text-[#800000] px-3.5 py-1",
+    "badge-faculty-dev border border-[#D4A017]/55 text-[#800000] px-3.5 py-1",
   "academic-rigor":
     "bg-[#F3E6E6] border border-[#800000]/10 text-[#800000] px-3.5 py-1",
   "core-domains":
@@ -36,7 +36,7 @@ const variantClasses: Record<BadgeVariant, string> = {
   "active-repository":
     "bg-[#FFE600] border border-[#FFE600] text-[#3B0000] px-3 py-1",
   "faculty-guidance":
-    "bg-[#E5B82E]/90 border border-[#C89416]/60 text-[#3B0000] px-4 py-1.5",
+    "badge-faculty-guidance border border-[#D9A41D]/45 text-[#800000] px-4 py-1.5",
 };
 ---
 
@@ -45,3 +45,13 @@ const variantClasses: Record<BadgeVariant, string> = {
 >
   {label}
 </span>
+
+<style>
+  .badge-faculty-dev {
+    background-image: linear-gradient(90deg, #f9ecc3 0%, #f4e1a2 100%);
+  }
+
+  .badge-faculty-guidance {
+    background-image: linear-gradient(90deg, #fdf3ca 0%, #fae89e 100%);
+  }
+</style>

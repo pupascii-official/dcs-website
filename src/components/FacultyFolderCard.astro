@@ -1,12 +1,20 @@
 ---
+export interface PublicationEntry {
+  authors: string;
+  title: string;
+  journal: string;
+  datePublished: string;
+}
+
 export interface Props {
   id: string;
   name: string;
   researchArea: string;
   status?: string;
-  folderSlug: string;
-  imageSrc: string;
+  folderSlug?: string;
+  imageSrc?: string;
   ctaLabel?: string;
+  publications?: PublicationEntry[];
   modalId?: string;
   class?: string;
 }
@@ -16,12 +24,22 @@ const {
   name,
   researchArea,
   status = "INVOLVED IN RESEARCH",
-  folderSlug,
-  imageSrc,
+  folderSlug = "",
+  imageSrc = "",
   ctaLabel = "13 refereed publications",
+  publications = [],
   modalId,
   class: className = "",
 } = Astro.props;
+
+const initials = name
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((part) => part[0]?.toUpperCase() ?? "")
+  .join("");
+
+const gradientId = `folder-pocket-grad-${id}`;
 ---
 
 <div class={`flex flex-col items-center ${className}`}>
@@ -34,67 +52,104 @@ const {
     data-faculty-status={status}
     data-faculty-folder={folderSlug}
     data-faculty-image={imageSrc}
+    data-faculty-publications={JSON.stringify(publications)}
     class="group relative w-full text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#780000]"
   >
-    <!-- Top-right folder tab -->
-    <div class="flex justify-end pr-3">
-      <span
-        class="inline-flex items-center rounded-t-xl bg-[#FFE600] px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[9px] font-extrabold tracking-[0.06em] uppercase text-[#3B0000] shadow-sm"
-      >
-        {status}
-      </span>
-    </div>
-
-    <!-- Offset gold & maroon folder back-plate -->
-    <div class="relative">
-      <div
-        aria-hidden="true"
-        class="absolute inset-0 translate-x-1.5 translate-y-2 rounded-2xl bg-[#D9A41D] transition-transform duration-200 group-hover:translate-x-2 group-hover:translate-y-2.5"
-      ></div>
-
-      <!-- Main maroon folder body -->
-      <div
-        class="relative z-10 rounded-2xl rounded-tr-none border border-[#D9A41D]/60 bg-gradient-to-b from-[#8A0000] via-[#6B0000] to-[#470000] p-4 shadow-[0_18px_36px_-12px_rgba(70,0,0,0.45)] transition-transform duration-200 group-hover:-translate-y-1"
-      >
-        <!-- Portrait frame -->
+    <!-- Outer Dark Maroon Frame -->
+    <div
+      class="rounded-[24px] bg-[#5B0000] p-[8px] shadow-[0_18px_36px_-12px_rgba(70,0,0,0.42)] transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_26px_46px_-12px_rgba(70,0,0,0.52)]"
+    >
+      <!-- Inner Full-Bleed Image Sheet + Curved Maroon Pocket -->
+      <div class="relative overflow-hidden rounded-[17px] bg-[#3B0000]">
+        <!-- Sliding Full-Bleed Photo Sheet (peeks upward slightly on hover) -->
         <div
-          class="relative aspect-[4/3.6] w-full overflow-hidden rounded-xl border border-white/15 bg-[#360000]"
+          class="relative overflow-hidden rounded-t-[17px] border-[1.5px] border-b-0 border-white/95 bg-[#EFEAEA] transition-transform duration-300 ease-out group-hover:-translate-y-1.5"
         >
-          <img
-            src={imageSrc}
-            alt={`Portrait of ${name}`}
-            loading="lazy"
-            referrerpolicy="no-referrer"
-            class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-          />
+          <!-- Top-left overlaid status pill -->
+          <div class="absolute top-2.5 left-2.5 z-10">
+            <span
+              class="inline-flex items-center rounded-full bg-[#FFE600] px-2.5 py-1 font-['Montserrat',sans-serif] text-[7.5px] font-extrabold tracking-[0.04em] uppercase text-[#4A0000] shadow-sm"
+            >
+              {status}
+            </span>
+          </div>
+
+          <!-- Full-Bleed Portrait / Photo -->
+          <div class="relative aspect-[10/9] w-full overflow-hidden bg-[#EFEAEA]">
+            {
+              imageSrc ? (
+                <img
+                  src={imageSrc}
+                  alt={`Portrait of ${name}`}
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
+                  class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              ) : (
+                <div class="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgba(128,0,0,0.12),rgba(243,234,234,0.95)_75%)] pt-4 text-center">
+                  <span class="font-['Montserrat',sans-serif] text-[28px] font-black tracking-tight text-[#780000]">
+                    {initials}
+                  </span>
+                  <span class="mt-0.5 font-['Montserrat',sans-serif] text-[8px] font-bold tracking-[0.14em] uppercase text-[#800000]/70">
+                    PUP-CCIS FACULTY
+                  </span>
+                </div>
+              )
+            }
+          </div>
         </div>
 
-        <!-- Text & contribution pill inside folder -->
-        <div class="mt-4 text-center">
-          <h3
-            class="font-['Montserrat',sans-serif] text-[14px] font-extrabold text-white leading-snug"
+        <!-- Curved Gold-Rimmed Maroon Front Folder Pocket -->
+        <div class="relative z-10 -mt-7">
+          <svg
+            viewBox="0 0 300 32"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            class="block h-6 w-full"
           >
-            {name}
-          </h3>
-          <p
-            class="mt-1 font-['Montserrat',sans-serif] text-[9.5px] font-bold tracking-[0.08em] uppercase text-[#FFE600]"
-          >
-            {researchArea}
-          </p>
+            <defs>
+              <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8A0000" />
+                <stop offset="100%" stop-color="#7A0000" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M 0 32 L 0 25 C 2 14, 18 13, 45 12 C 115 10, 210 6, 300 1 L 300 32 Z"
+              fill={`url(#${gradientId})`}
+            />
+            <path
+              d="M 0.75 25 C 2.75 14, 18 13, 45 12 C 115 10, 210 6, 299.25 1"
+              fill="none"
+              stroke="#C89416"
+              stroke-width="1.5"
+              vector-effect="non-scaling-stroke"
+            />
+          </svg>
 
-          <div class="mt-3.5 flex justify-center">
-            <span
-              class="inline-flex items-center justify-center rounded-full border border-white/15 bg-[#380000]/90 px-4 py-1.5 text-[10px] font-semibold text-white group-hover:bg-[#260000] transition-colors whitespace-nowrap"
+          <div
+            class="-mt-px rounded-b-[17px] border-x border-b border-[#C89416]/75 bg-gradient-to-b from-[#7A0000] via-[#680000] to-[#560000] px-3 pt-1 pb-4 text-center"
+          >
+            <h3
+              class="font-['Montserrat',sans-serif] text-[13.5px] font-extrabold text-white leading-tight truncate"
             >
-              {ctaLabel}
-            </span>
+              {name}
+            </h3>
+            <p
+              class="mt-1 font-['Montserrat',sans-serif] text-[9.5px] font-bold italic tracking-[0.04em] uppercase text-[#FFE600] truncate"
+            >
+              {researchArea}
+            </p>
+
+            <div class="mt-3 flex justify-center">
+              <span
+                class="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/12 px-3.5 py-1 text-[9.5px] font-semibold text-white group-hover:bg-white/22 transition-colors whitespace-nowrap"
+              >
+                {ctaLabel}
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </button>
-
-  <p class="mt-4 font-mono text-[10.5px] text-neutral-500 tracking-tight">
-    {folderSlug}
-  </p>
 </div>

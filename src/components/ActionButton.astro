@@ -1,4 +1,6 @@
 ---
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+
 export type ButtonVariant =
   | "research-manual"
   | "publications"
@@ -35,7 +37,7 @@ const Tag = href ? "a" : "button";
 
 const styles: Record<ButtonVariant, string> = {
   "research-manual":
-    "inline-flex items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-[#780000] via-[#8F2A08] to-[#C89416] px-6 py-3.5 font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.08em] uppercase text-white shadow-[0_10px_24px_-6px_rgba(120,0,0,0.4)] hover:brightness-110 transition-all duration-200 cursor-pointer whitespace-nowrap",
+    "btn-research-manual inline-flex items-center justify-between gap-4 rounded-xl px-6 py-3 font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.08em] uppercase text-white shadow-[0_10px_24px_-6px_rgba(120,0,0,0.4)] hover:brightness-110 transition-all duration-200 cursor-pointer whitespace-nowrap",
   publications:
     "inline-flex items-center justify-center gap-1.5 rounded-lg border border-neutral-300 bg-neutral-100/90 px-4 py-2 text-[11px] font-semibold text-neutral-800 hover:bg-neutral-200/80 hover:border-neutral-400 transition-colors duration-150 cursor-pointer whitespace-nowrap",
   "publications-dark":
@@ -58,33 +60,26 @@ const styles: Record<ButtonVariant, string> = {
 >
   {
     variant === "icon-nav" ? (
-      <svg
-        class="h-4 w-4"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        aria-hidden="true"
-      >
-        {iconDirection === "prev" ? (
-          <path d="M19 12H5M12 19l-7-7 7-7" />
-        ) : (
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        )}
-      </svg>
+      iconDirection === "prev" ? (
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+      ) : (
+        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+      )
     ) : (
       <>
         <span>{label}</span>
         {(variant === "research-manual" ||
           variant === "publications" ||
           variant === "publications-dark") && (
-          <span aria-hidden="true" class="text-[11px] leading-none">
-            ↗
-          </span>
+          <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
         )}
       </>
     )
   }
 </Tag>
+
+<style>
+  .btn-research-manual {
+    background-image: linear-gradient(90deg, #780000 0%, #9c3b0b 52%, #d49e1a 100%);
+  }
+</style>

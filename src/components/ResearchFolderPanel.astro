@@ -1,4 +1,6 @@
 ---
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 export interface Props {
   theme: 'darkred' | 'white' | 'gold' | 'red';
   tabLabel: string;
@@ -83,7 +85,7 @@ const vars = [
   `--c:${t.bg}`,
   `--tab-text:${t.tabText}`,
   `--arrow:${t.arrow}`,
-  `--top:${index * 38}px`,
+  `--top:${index * 32}px`,
   `--tab-left:${g.left}px`,
   `--tab-w:${g.width}px`,
   `--z:${(index + 1) * 10}`,
@@ -109,11 +111,15 @@ const badgeClass = {
     tabindex="0"
     aria-selected={active ? 'true' : 'false'}
   >
-    <span class="folder-tab-arrow">◀</span>
+    <span class="folder-tab-arrow" aria-hidden="true">
+      <ChevronLeft className="h-3 w-3 stroke-[2.75]" />
+    </span>
     <span class="font-heading text-[14px] font-[800] tracking-[0.35px]" style={`color:${t.tabText}`}>
       {tabLabel}
     </span>
-    <span class="folder-tab-arrow">▶</span>
+    <span class="folder-tab-arrow" aria-hidden="true">
+      <ChevronRight className="h-3 w-3 stroke-[2.75]" />
+    </span>
   </div>
 
   <!-- Body -->
@@ -130,20 +136,167 @@ const badgeClass = {
     </div>
 
     <h3
-      class="mt-3 whitespace-pre-line font-heading text-[32px] font-[900] leading-[1.1] tracking-[-1.2px] lg:text-[48px] lg:leading-[48px]"
+      class="mt-2.5 whitespace-pre-line font-heading text-[28px] font-[900] leading-[1.08] tracking-[-1px] lg:text-[42px] lg:leading-[44px]"
       style={`color:${t.title}`}
     >
       {title}
     </h3>
 
-    <p class="mt-4 whitespace-pre-line text-[14px] leading-[24px] lg:text-[16px]" style={`color:${t.body}`}>
+    <p class="mt-3 whitespace-pre-line text-[13.5px] leading-[22px] lg:text-[15px]" style={`color:${t.body}`}>
       {body}
     </p>
 
-    <div class="mt-5 h-[1px] w-full lg:w-[576px]" style={`background:${t.divider}`}></div>
+    <div class="mt-4 h-[1px] w-full lg:w-[576px]" style={`background:${t.divider}`}></div>
 
-    <p class="mt-4 text-[12px] font-[700] leading-[20px] tracking-[0.35px] lg:max-w-[576px] lg:text-[14px]" style={`color:${t.footer}`}>
+    <p class="mt-3 text-[12px] font-[700] leading-[18px] tracking-[0.35px] lg:max-w-[576px] lg:text-[13.5px]" style={`color:${t.footer}`}>
       {footer}
     </p>
   </div>
 </div>
+
+<style is:global>
+  /* ---------- FOLDER TABS ---------- */
+  .folder-wrapper {
+    width: 100%;
+  }
+  .folder-strip {
+    display: none;
+  }
+
+  .folder-tab {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: var(--c);
+    cursor: pointer;
+    border-radius: 12px 12px 0 0;
+  }
+  .folder-tab-arrow {
+    font-size: 8px;
+    font-weight: 800;
+    color: var(--arrow);
+  }
+  .folder-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: var(--c);
+    padding: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --tab-h: 40px;
+      --body-top: 136px;
+      --flare: 22px;
+    }
+
+    .folder-wrapper {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .folder-strip {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(var(--top) + var(--tab-h) - 1px);
+      height: calc(var(--body-top) - var(--top) - var(--tab-h) + 2px);
+      background: var(--c);
+      z-index: var(--z);
+      pointer-events: none;
+    }
+
+    .folder-tab {
+      position: absolute;
+      top: var(--top);
+      left: min(var(--tab-left), calc(100% - var(--tab-w) - 16px));
+      width: min(var(--tab-w), calc(100% - 32px));
+      height: var(--tab-h);
+      border-radius: 18px 18px 0 0;
+      z-index: calc(60 + var(--z) / 10);
+      pointer-events: auto;
+      box-shadow: 0 -8px 24px #1e000030;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease, box-shadow 0.2s ease;
+    }
+    .folder-tab:hover {
+      filter: brightness(1.08);
+      transform: translateY(-3px);
+    }
+    .folder-wrapper.active .folder-tab {
+      transform: translateY(-2px);
+    }
+    .folder-tab:focus-visible {
+      outline: none;
+      filter: brightness(1.15);
+      transform: translateY(-3px);
+    }
+
+    .folder-tab::before,
+    .folder-tab::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: var(--flare);
+      height: var(--flare);
+      pointer-events: none;
+    }
+    .folder-tab::before {
+      left: calc(var(--flare) * -1);
+      background: radial-gradient(
+        circle at 0 0,
+        transparent calc(var(--flare) - 0.5px),
+        var(--c) var(--flare)
+      );
+    }
+    .folder-tab::after {
+      right: calc(var(--flare) * -1);
+      background: radial-gradient(
+        circle at 100% 0,
+        transparent calc(var(--flare) - 0.5px),
+        var(--c) var(--flare)
+      );
+    }
+
+    .folder-body {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: var(--body-top);
+      bottom: 0;
+      padding: 20px 44px 0;
+      z-index: var(--z);
+      pointer-events: auto;
+    }
+
+    .folder-wrapper.active .folder-body {
+      display: flex;
+      z-index: 50;
+      animation: folderPanelReveal 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes folderPanelReveal {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .folder-tab,
+      .folder-wrapper.active .folder-body {
+        transition: none;
+        animation: none;
+      }
+    }
+  }
+</style>

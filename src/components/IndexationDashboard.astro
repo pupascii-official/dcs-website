@@ -1,6 +1,6 @@
 ---
 import ActionButton from "./ActionButton.astro";
-import IndexationRingChart from "./IndexationChart.astro";
+import IndexationRingChart, { type RingYearData } from "./IndexationChart.astro";
 import PublicationDeckCard, { type IndexationSourceStat } from "./PublicationDeckCard.astro";
 
 export interface YearDeckItem {
@@ -8,67 +8,100 @@ export interface YearDeckItem {
   total: number;
   ringLabel: string;
   scaleLabel: string;
+  headline?: string;
+  subtitle?: string;
   summary: string;
   sources: IndexationSourceStat[];
 }
 
 export interface Props {
+  eyebrow?: string;
+  subtitle?: string;
+  centerUnit?: string;
+  sourceNote?: string;
   years?: YearDeckItem[];
   class?: string;
 }
 
 const {
+  eyebrow = "RESEARCH OUTPUT • 2021–2025",
+  subtitle = "39 completed studies; output peaked in 2023 with 13 studies.",
+  centerUnit = "STUDIES",
+  sourceNote = "SOURCE: BSCS AREA 1 — RESEARCH • RESEARCH PRODUCTIVITY",
   years = [
+    {
+      year: 2021,
+      total: 5,
+      ringLabel: "DECK 2021 • INNER RING",
+      scaleLabel: "2021–2025 • 39 STUDIES",
+      headline: "Completed Studies in 2021",
+      subtitle: "2021 studies are mainly in health and information systems.",
+      summary:
+        "Completed studies in 2021 focused primarily on health informatics and institutional information systems, laying the foundation for predictive analytics and NLP research.",
+      sources: [
+        { count: 1, label: "PUBLICATIONS" },
+        { count: 2, label: "TALKS" },
+        { count: 18, label: "CITATIONS" },
+      ],
+    },
     {
       year: 2022,
       total: 11,
-      ringLabel: "DECK 2022 · INNER RING",
-      scaleLabel: "58% BENCHMARK SCALE",
+      ringLabel: "DECK 2022 • RING 02",
+      scaleLabel: "2021–2025 • 39 STUDIES",
+      headline: "Completed Studies in 2022",
+      subtitle: "Eleven completed studies across foundational computing domains.",
       summary:
-        "In 2022, the Department of Computer Science recorded 11 high-impact indexed studies focused on foundational machine learning pipelines, automated campus information systems, and early computer vision prototypes.",
+        "The 2022 studies established machine learning pipelines, campus information systems, and early natural language processing prototypes.",
       sources: [
-        { count: 6, label: "SCOPUS INDEXED" },
-        { count: 3, label: "IEEE XPLORE" },
-        { count: 2, label: "WEB OF SCIENCE" },
+        { count: 3, label: "PUBLICATIONS" },
+        { count: 4, label: "TALKS" },
+        { count: 52, label: "CITATIONS" },
       ],
     },
     {
       year: 2023,
-      total: 14,
-      ringLabel: "DECK 2023 · RING 02",
-      scaleLabel: "68% BENCHMARK SCALE",
+      total: 13,
+      ringLabel: "DECK 2023 • PEAK OUTPUT",
+      scaleLabel: "2021–2025 • 39 STUDIES",
+      headline: "Completed Studies in 2023",
+      subtitle: "Peak annual research productivity with thirteen completed studies.",
       summary:
-        "In 2023, indexed output rose to 14 peer-reviewed publications (+27% growth), highlighted by natural language processing studies for Philippine languages and formal automata verification tools.",
+        "In 2023, faculty and student researchers produced 13 studies spanning sentiment analysis, healthcare decision support, and automated classification.",
       sources: [
-        { count: 7, label: "SCOPUS INDEXED" },
-        { count: 5, label: "IEEE XPLORE" },
-        { count: 2, label: "WEB OF SCIENCE" },
+        { count: 6, label: "PUBLICATIONS" },
+        { count: 5, label: "TALKS" },
+        { count: 64, label: "CITATIONS" },
       ],
     },
     {
       year: 2024,
-      total: 17,
-      ringLabel: "DECK 2024 · RING 03",
-      scaleLabel: "78% BENCHMARK SCALE",
+      total: 6,
+      ringLabel: "DECK 2024 • RING 04",
+      scaleLabel: "2021–2025 • 39 STUDIES",
+      headline: "Completed Studies in 2024",
+      subtitle: "Six completed studies in deep learning and cloud systems.",
       summary:
-        "In 2024, the department achieved 17 indexed papers, highlighting deep-learning medical imaging diagnostics, distributed cloud architectures, and smart-city traffic analytics.",
+        "The 2024 cohort focused on deep-learning diagnostics, distributed systems resilience, and smart-city predictive analytics.",
       sources: [
-        { count: 8, label: "SCOPUS INDEXED" },
-        { count: 6, label: "IEEE XPLORE" },
-        { count: 3, label: "WEB OF SCIENCE" },
+        { count: 8, label: "PUBLICATIONS" },
+        { count: 3, label: "TALKS" },
+        { count: 40, label: "CITATIONS" },
       ],
     },
     {
       year: 2025,
-      total: 19,
-      ringLabel: "DECK 2025 · OUTER RING",
-      scaleLabel: "85% BENCHMARK SCALE",
+      total: 4,
+      ringLabel: "DECK 2025 • OUTER RING",
+      scaleLabel: "2021–2025 • 39 STUDIES",
+      headline: "Completed Studies in 2025",
+      subtitle: "Four completed studies using advanced computational methods.",
       summary:
-        "Reaching a record 19 high-impact indexed publications in 2025, faculty and student researchers spearheaded breakthroughs in computer vision, enterprise information systems, and compiler optimization.",
+        "The 2025 studies applied BERT and DistilBERT to Gen Z slang and risk statements, one-dimensional CNNs to job-tier classification, and transformer-based methods to Marikina River forecasting.",
       sources: [
-        { count: 9, label: "SCOPUS INDEXED" },
-        { count: 7, label: "IEEE XPLORE" },
-        { count: 3, label: "WEB OF SCIENCE" },
+        { count: 6, label: "PUBLICATIONS" },
+        { count: 3, label: "TALKS" },
+        { count: 69, label: "CITATIONS" },
       ],
     },
   ],
@@ -76,15 +109,24 @@ const {
 } = Astro.props;
 
 const defaultIndex = years.length - 1;
-const defaultYear = years[defaultIndex];
+const maxTotal = Math.max(...years.map((y) => y.total), 1);
+const palette = ["#780000", "#9E2A1C", "#C89416", "#E5B82E", "#B4690E"];
+const ringData: RingYearData[] = [...years]
+  .reverse()
+  .map((item, i) => ({
+    year: item.year,
+    count: item.total,
+    progress: Math.max(0.32, Math.min(0.88, item.total / maxTotal)),
+    color: palette[i % palette.length],
+  }));
 ---
 
 <section
   data-indexation-dashboard
   data-active-index={defaultIndex}
-  class={`rounded-3xl border border-[#780000]/20 bg-white p-6 sm:p-10 shadow-[0_20px_50px_-18px_rgba(120,0,0,0.14)] ${className}`}
+  class={`rounded-3xl border-[1.5px] border-[#780000]/75 bg-white p-6 sm:p-10 shadow-[0_24px_50px_-14px_rgba(120,0,0,0.16)] ${className}`}
 >
-  <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 lg:gap-10 items-center">
+  <div class="grid grid-cols-1 lg:grid-cols-[310px_1fr] gap-8 lg:gap-10 items-center">
     <!-- Left: Concentric Ring Chart + Year Selector Pills -->
     <div class="flex flex-col items-center">
       <div class="relative">
@@ -94,7 +136,11 @@ const defaultYear = years[defaultIndex];
               data-ring-panel={idx}
               class={idx === defaultIndex ? "block" : "hidden"}
             >
-              <IndexationRingChart activeYear={item.year} />
+              <IndexationRingChart
+                activeYear={item.year}
+                unitLabel={centerUnit}
+                rings={ringData}
+              />
             </div>
           ))
         }
@@ -126,10 +172,10 @@ const defaultYear = years[defaultIndex];
           <p
             class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.12em] uppercase text-[#780000]"
           >
-            3D INTERACTIVE DECK CAROUSEL
+            {eyebrow}
           </p>
           <p class="mt-0.5 text-[11.5px] text-neutral-500">
-            Click any year pill, use the arrows, or select a dot to inspect each year.
+            {subtitle}
           </p>
         </div>
 
@@ -151,7 +197,6 @@ const defaultYear = years[defaultIndex];
         </div>
       </div>
 
-      <!-- Stacked Card View -->
       <div class="relative">
         {
           years.map((item, idx) => (
@@ -164,6 +209,8 @@ const defaultYear = years[defaultIndex];
                 deckLabel={item.ringLabel}
                 scaleLabel={item.scaleLabel}
                 total={item.total}
+                headline={item.headline}
+                subtitle={item.subtitle}
                 summary={item.summary}
                 sources={item.sources}
               />
@@ -172,10 +219,9 @@ const defaultYear = years[defaultIndex];
         }
       </div>
 
-      <!-- Dot Pagination -->
-      <div class="mt-4 flex items-center justify-between gap-4">
-        <p class="text-[10.5px] text-neutral-400">
-          TIP: CLICK YEAR PILLS OR NAVIGATION ARROWS TO CYCLE DECKS
+      <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+        <p class="font-['Montserrat',sans-serif] text-[9.5px] font-semibold tracking-[0.06em] uppercase text-neutral-400">
+          {sourceNote}
         </p>
         <div class="flex items-center gap-1.5">
           {
@@ -183,7 +229,7 @@ const defaultYear = years[defaultIndex];
               <button
                 type="button"
                 data-deck-dot={idx}
-                aria-label={`View ${item.year} publications`}
+                aria-label={`View ${item.year} research output`}
                 class={`h-2 rounded-full transition-all cursor-pointer ${
                   idx === defaultIndex
                     ? "w-6 bg-[#780000]"

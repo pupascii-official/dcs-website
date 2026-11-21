@@ -1,0 +1,101 @@
+---
+import "../styles/research.css";
+import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ContentSection from "../components/ContentSection.astro";
+import { SITE_TITLE } from "../consts";
+
+import DepartmentPill from "../components/DepartmentPill.astro";
+import PolicyFrameworkDashboard from "../components/PolicyFrameworkDashboard.astro";
+import ResearchMetrics from "../components/ResearchMetrics.astro";
+import IndexationDashboard from "../components/IndexationDashboard.astro";
+import FacultyShowcase from "../components/FacultyShowcase.astro";
+import StatusBadge from "../components/StatusBadge.astro";
+import ResearchFooter from "../components/ResearchFooter.astro";
+---
+
+<ScrollSnapLayout
+  title={`Research & Innovation — ${SITE_TITLE}`}
+  description="39 completed studies, 24 refereed publications, and 225 citations. PUP Department of Computer Science Area 1: Research."
+  bodyClass="research-page bg-white text-neutral-900 antialiased font-sans"
+>
+  <!-- SNAP 1 // Hero -->
+  <HeroSection
+    variant="research"
+    title="Research &"
+    accentTitle="Innovation"
+    subtitle="Pillar 01 / Research • Department of Computer Science"
+  >
+    <DepartmentPill
+      slot="top"
+      code="CS"
+      department="Department of Computer Science"
+      tag="[Research]"
+    />
+
+    <p class="mt-6 mb-0 max-w-xl text-[13px] sm:text-[14px] font-medium leading-[1.6] text-white/90">
+      39 completed studies, 24 refereed publications, and 225 citations. Research
+      that is published, presented, cited, recognized, and used.
+    </p>
+
+    <p class="mt-3.5 mb-0 max-w-xl text-[11.5px] sm:text-[12px] leading-[1.65] text-white/60">
+      The University envisions itself as a premier center of research in social
+      capital and innovation towards inclusive growth for national development.
+      Five active projects have target completion dates from July 2026 to
+      January 2028.
+    </p>
+  </HeroSection>
+
+  <!-- SNAP 2 // Section 01: Research Agenda & Quality Assurance -->
+  <ContentSection
+    surface="white"
+    sectionLabel="SECTION 01 // GOVERNANCE & STANDARDS"
+    category="Research Agenda & Quality Assurance"
+  >
+    <PolicyFrameworkDashboard
+      manualLabel="BSCS AREA 1 — RESEARCH NARRATIVE"
+      manualUrl="/narrative-report"
+      openInNewTab={true}
+      sourceNote="SOURCE: BSCS AREA 1 — RESEARCH • UPDATED NOVEMBER 20"
+    />
+  </ContentSection>
+
+  <!-- SNAP 3 // Section 02: Research Metrics -->
+  <ContentSection
+    surface="white"
+    sectionLabel="SECTION 02 // KEY PERFORMANCE INDICATORS"
+    category="Research Metrics"
+  >
+    <ResearchMetrics showHeader={false} class="!py-0" />
+  </ContentSection>
+
+  <!-- SNAP 4 // Section 03: Research Productivity by Calendar Year -->
+  <ContentSection
+    surface="white"
+    sectionLabel="SECTION 03 // DATA PRESENTATION"
+    category="Research Productivity by Calendar Year"
+  >
+    <IndexationDashboard />
+  </ContentSection>
+
+  <!-- SNAP 5 // Section 04: Faculty Involved in Research + Institutional Footer -->
+  <section class="scroll-section w-full bg-white flex flex-col">
+    <div class="my-auto w-full py-10 sm:py-12">
+      <ContentSection
+        surface="white"
+        snap={false}
+        sectionLabel="SECTION 04 // TEAM & SCHOLARS"
+        category="Faculty Involved in Research"
+      >
+        <StatusBadge
+          slot="action"
+          label="FACULTY PUBLICATION CONTRIBUTIONS • 2021–2025"
+          variant="faculty-guidance"
+        />
+        <FacultyShowcase showHeading={false} guidanceLabel="" />
+      </ContentSection>
+    </div>
+
+    <ResearchFooter class="mt-auto" />
+  </section>
+</ScrollSnapLayout>
