@@ -1,0 +1,102 @@
+---
+import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import SectionContent from "../components/teaching-learning/SectionContent.astro";
+import { teachingEvidence } from "../data/teaching-learning/evidence";
+import HistoryTimeline from "../components/teaching-learning/HistoryTimeline.astro";
+import MaroonSection from "../components/teaching-learning/MaroonSection.astro";
+
+import EvidenceShowcase from "../components/teaching-learning/EvidenceShowcase.astro";
+import ElectiveTracks from "../components/teaching-learning/ElectiveTracks.astro";
+
+---
+
+<ScrollSnapLayout title="Teaching & Learning">
+    <!-- HERO -->
+    <HeroSection titleL="Teaching &" titleR="Learning" subtitle="Implemented AY 2022‐2023 (CMO No. 25 s. 2015 & CMO No. 20 s. 2013 aligned) to build deep expertise in AI and data-driven computing.">
+        <span slot="eyebrow">SECTION 02 • CURRICULUM & ELECTIVE TRACKS</span>
+    </HeroSection>
+
+    <!-- Outcomes-Based Computing Education -->
+    <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 md:pt-16 gap-8 mx-3 scroll-section scrollbar-none">
+
+        <!-- RIGHT CONTENT -->
+        <div class="flex-1">
+            <SectionContent
+                sectionLabel="SECTION 01 • CMO, OVERVIEW & FRAMEWORK"
+                title="Outcomes-Based Computing Education">
+                <p>PUP CCIS delivers a learner-centered, outcomes-based BSCS program built on strong computing theory, analytical problem-solving, and ethical practice.</p>
+                <p>Anchored on <strong>CHED CMO No. 25, s. 2015</strong> and the <strong>2022 Revised Curriculum</strong> (BOR Res. No. 2825 s. 2022), courses balance lectures, coding labs, research, and capstone projects.</p>
+
+                <div class="rounded-2xl border border-(--border-light-maroon) bg-(--bg-light-maroon) p-4">
+                    <div class="flex items-center justify-between gap-3 mb-2">
+                        <h3 class="text-sm font-bold text-[--color-light-maroon]">
+                            CHED MEMORANDUM ORDER (CMO)
+                        </h3>
+
+                        <span class="text-sm shrink-0 rounded-full bg-(--color-gold-muted) px-3 py-1 font-bold text-(--color-darker-gold)">
+                            CMO WILL BE PROVIDED
+                        </span>
+                    </div>
+
+                    <p class="leading-relaxed">
+                        Official CHED CMO No. 25, s. 2015 and supporting institutional
+                        curriculum policy documents will be provided and linked here.
+                    </p>
+                </div>
+            </SectionContent>
+        </div>
+        
+        <!-- LEFT CONTENT -->
+        <div class="flex-1 md:my-6">
+            <EvidenceShowcase
+                area="AREA 2"
+                category="DOCUMENTARY EVIDENCE"
+                footer="BSCS TEACHING & LEARNING"
+                items={teachingEvidence}
+            />
+        </div>
+    </section>
+
+    <!-- EVOLUTION -->
+    <section class="scroll-section scrollbar-none mx-3 md:pt-16" >
+        <SectionContent
+            sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
+            title="Evolution of PUP’s Computer Science Program">
+            <p>From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree.</p>
+
+            <div class="md:mb-8">
+                <HistoryTimeline></HistoryTimeline>
+            </div>
+        </SectionContent>
+    </section>
+
+    <!-- ELECTIVES  -->
+    <section class="scroll-section scrollbar-none">
+        <MaroonSection
+            eyebrow="SECTION 02 • CURRICULUM & ELECTIVE TRACKS"
+            title="Four Specialized Elective Tracks"
+            description="Implemented AY 2022–2023 (CMO No. 25 s. 2015 & CMO No. 20 s. 2013 aligned) to build deep expertise in AI and data-driven computing."
+            >
+
+            <ElectiveTracks></ElectiveTracks>
+        </MaroonSection>
+    </section>
+
+    <!-- CURRICULUM MAP -->
+    <section class="scroll-section scrollbar-none">
+        <SectionContent
+            title="2022 BSCS Curriculum Map"
+            sectionLabel="CURRICULUM STRUCTURE • 167 UNITS">
+
+            <p>Enriched by co-curricular technical seminars, workshops, training programs, 
+                research presentations, programming competitions, and hackathons.</p>
+        </SectionContent>
+    </section>
+</ScrollSnapLayout>
+
+<style>
+    section {
+        max-height: 100vh;
+    }
+</style>

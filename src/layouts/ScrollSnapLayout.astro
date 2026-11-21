@@ -15,10 +15,10 @@ const {title, description} = Astro.props;
 </head>
 
 <body>
-<main class="scroll-container">
-    <!-- Everything inside <ScrollSnapLayout> should appear here -->
-    <slot/>
-</main>
+    <main class="scroll-container">
+        <!-- Everything inside <ScrollSnapLayout> should appear inside the slot -->
+        <slot/>
+    </main>
 </body>
 
 </html>

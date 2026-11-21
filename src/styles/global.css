@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 * {
 	box-sizing: border-box;
 }
@@ -8,11 +10,16 @@
 	--color-maroon: #800000;
 	--color-gold: #FFDE00;
 	--color-dark-gold: #DAA520;
+	--color-darker-gold: rgba(138, 101, 8, 1);
 
 	--color-dark-maroon: #420000;
 	--color-bg-canvas: #F7F7F7;
 	--color-text-body: #1A1414;
 	--color-border: #E2E2E2;
+
+	--bg-light-maroon: rgba(128, 0, 0, 0.04);
+	--border-light-maroon: rgba(128, 0, 0, 0.35);
+	--color-gold-muted: rgba(218, 165, 32, 0.16);
 }
 
 body {
