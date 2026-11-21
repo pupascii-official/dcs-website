@@ -1,126 +1,76 @@
-@import "tailwindcss";
-
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+* {
+	box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+:root {
+	/* From Figma */
+	--color-white: #FFFFFF;
+	--color-maroon: #800000;
+	--color-gold: #FFDE00;
+	--color-dark-gold: #DAA520;
+
+	--color-dark-maroon: #420000;
+	--color-bg-canvas: #F7F7F7;
+	--color-text-body: #1A1414;
+	--color-border: #E2E2E2;
+}
 
 body {
-  margin: 0;
-  font-family: var(--font-sans);
-  background: #f5f5f4;
-  color: #171717;
-  font-size: 16px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-size: medium;
+	font-family: var(--font-inter), system-ui, sans-serif;
+	font-weight: 400;
+	background-color: var(--color-bg-canvas);
+	color: var(--color-text-body);
+	line-height: 1.6;
 }
 
-/* ---------- FOLDER TABS ---------- */
-
-/* Mobile: simple stack, every folder fully visible */
-.folder-wrapper { width: 100%; }
-.folder-strip { display: none; }
-
-.folder-tab {
-  display: flex;
-  height: 46px;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: var(--c);
-  cursor: pointer;
-  border-radius: 12px 12px 0 0;
-}
-.folder-tab-arrow {
-  font-size: 8px;
-  font-weight: 800;
-  color: var(--arrow);
-}
-.folder-body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background: var(--c);
-  padding: 24px;
+strong,
+b {
+	font-weight: 600;
 }
 
-/* Desktop: staggered tabs, one visible body */
-@media (min-width: 1024px) {
-  :root {
-    --tab-h: 46px;
-    --body-top: 160px;   /* = 3 * 38px stagger + tab height */
-    --flare: 24px;
-  }
+small {
+	color: var(--color-dark-gold);
+	font-size: small;
+	font-family: var(--font-inter), system-ui, sans-serif;
+	font-weight: 600;
+	margin: 0;
+}
 
-  /* No z-index here on purpose: children share the stage's stacking context */
-  .folder-wrapper {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--font-montserrat), system-ui, sans-serif;
+	margin-top: 0;
+	line-height: 1.15;
+	color: var(--color-maroon);
+}
 
-  /* Coloured band from the bottom of this tab down to where bodies start */
-  .folder-strip {
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(var(--top) + var(--tab-h) - 1px);
-    height: calc(var(--body-top) - var(--top) - var(--tab-h) + 2px);
-    background: var(--c);
-    z-index: var(--z);
-    pointer-events: none;
-  }
+.hero h1 {
+	color: var(--color-white);
+}
 
-  .folder-tab {
-    position: absolute;
-    top: var(--top);
-    left: var(--tab-left);
-    width: var(--tab-w);
-    height: var(--tab-h);
-    border-radius: 18px 18px 0 0;
-    z-index: calc(60 + var(--z) / 10);
-    pointer-events: auto;
-    box-shadow: 0 -8px 24px #1e000030;
-    transition: filter .15s ease;
-  }
-  .folder-tab:hover { filter: brightness(1.08); }
-  .folder-tab:focus-visible { outline: none; filter: brightness(1.15); }
+h1 {
+	font-size: xxx-large;
+}
+h2 {
+	font-size: xx-large;
+}
 
-  /* Concave "flares" on both bottom corners of the tab */
-  .folder-tab::before,
-  .folder-tab::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: var(--flare);
-    height: var(--flare);
-    pointer-events: none;
-  }
-  .folder-tab::before {
-    left: calc(var(--flare) * -1);
-    background: radial-gradient(circle at 0 0, transparent calc(var(--flare) - 0.5px), var(--c) var(--flare));
-  }
-  .folder-tab::after {
-    right: calc(var(--flare) * -1);
-    background: radial-gradient(circle at 100% 0, transparent calc(var(--flare) - 0.5px), var(--c) var(--flare));
-  }
 
-  .folder-body {
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: var(--body-top);
-    bottom: 0;
-    padding: 37px 56px 0;
-    z-index: var(--z);
-    pointer-events: auto;
-  }
+p {
+	margin-bottom: 1em;
+}
+.prose p {
+	margin-bottom: 2em;
+}
 
-  /* Only the BODY changes when a folder is selected; the bands keep their fixed colours/order */
-  .folder-wrapper.active .folder-body { display: flex; z-index: 50; }
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
 }
