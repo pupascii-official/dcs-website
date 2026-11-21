@@ -11,7 +11,7 @@ import svelte from '@astrojs/svelte';
 // https://astro.build/config
 export default defineConfig({
     site: 'https://example.com',
-    integrations: [mdx(), sitemap(), react(), svelte()],
+    integrations: [mdx(), sitemap(), react({ compiler: true }), svelte()],
     fonts: [
         {
             provider: fontProviders.local(),
