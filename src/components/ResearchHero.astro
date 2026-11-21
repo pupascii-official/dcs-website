@@ -1,48 +1,72 @@
 ---
-import StatusBadge from "./StatusBadge.astro";
+import  Navbar from "./Navbar.astro";
 
 export interface Props {
+  departmentCode?: string;
+  departmentName?: string;
+  departmentTag?: string;
   badgeLabel?: string;
   heading?: string;
+  accentHeading?: string;
   subheading?: string;
   description?: string;
   class?: string;
 }
 
 const {
-  badgeLabel = "PILLAR 01 // RESEARCH · DEPARTMENT OF COMPUTER SCIENCE",
-  heading = "Research & Innovation",
-  subheading = "Completed research, disseminated publications, high-impact indexation rates, and faculty research involvement shaping the future of information systems and computer vision.",
-  description = "Advancing foundational computing research, ethical AI systems, and collaborative academic innovation across local and international scholarly communities.",
+  departmentCode = "CS",
+  departmentName = "Department of Computer Science",
+  departmentTag = "[Research]",
+  badgeLabel = "Pillar 01 / Research • Department of Computer Science",
+  heading = "Research &",
+  accentHeading = "Innovation",
+  subheading = "39 completed studies, 24 refereed publications, and 225 citations. Research that is published, presented, cited, recognized, and used.",
+  description = "The University envisions itself as a premier center of research in social capital and innovation towards inclusive growth for national development. Five active projects have target completion dates from July 2026 to January 2028.",
   class: className = "",
 } = Astro.props;
 ---
 
 <section
-  class={`relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#6A0000] via-[#4A0000] to-[#260000] px-6 sm:px-14 py-16 sm:py-24 text-center text-white shadow-[0_28px_60px_-20px_rgba(50,0,0,0.55)] ${className}`}
+  id="top"
+  class={`relative w-full overflow-hidden bg-gradient-to-b from-[#4C0000] via-[#360000] to-[#230000] px-6 sm:px-10 pt-7 pb-16 sm:pb-20 text-center text-white ${className}`}
 >
-  <!-- Subtle warm radial ambient glow -->
+  <!-- Ambient radial maroon/gold glow -->
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(217,164,29,0.2),transparent_60%)]"
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(217,164,29,0.14),transparent_60%)]"
   ></div>
 
-  <div
-    class="relative z-10 mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/[0.04] px-6 sm:px-12 py-10 sm:py-12 backdrop-blur-sm shadow-2xl"
-  >
-    <StatusBadge label={badgeLabel} variant="research-pillar" />
+  <div class="relative z-10 mx-auto max-w-4xl flex flex-col items-center">
+    <Navbar
+      code={departmentCode}
+      department={departmentName}
+      tag={departmentTag}
+    />
+
+    <div class="mt-9">
+      <span
+        class="inline-flex items-center rounded-full border border-[#D9A41D]/55 bg-[#780000]/65 px-4 py-1.5 font-['Montserrat',sans-serif] text-[10px] font-bold tracking-[0.06em] text-[#FFD94A]"
+      >
+        {badgeLabel}
+      </span>
+    </div>
 
     <h1
-      class="mt-6 font-['Montserrat',sans-serif] text-[34px] sm:text-[52px] font-black tracking-[-0.03em] leading-[1.06] text-white text-balance"
+      class="mt-6 font-['Montserrat',sans-serif] text-[40px] sm:text-[58px] font-black tracking-[-0.03em] leading-[1.03] text-white text-balance"
     >
-      {heading}
+      <span class="block">{heading}</span>
+      {accentHeading && <span class="block text-[#FFE600]">{accentHeading}</span>}
     </h1>
 
-    <p class="mt-4 text-[14px] sm:text-[15.5px] font-medium leading-[1.6] text-white/90">
+    <p
+      class="mt-6 max-w-xl text-[13px] sm:text-[14px] font-medium leading-[1.6] text-white/90"
+    >
       {subheading}
     </p>
 
-    <p class="mt-4 text-[12px] sm:text-[13px] leading-[1.65] text-white/65 max-w-xl mx-auto">
+    <p
+      class="mt-3.5 max-w-xl text-[11.5px] sm:text-[12px] leading-[1.65] text-white/60"
+    >
       {description}
     </p>
   </div>
