@@ -1,0 +1,82 @@
+---
+interface Props {
+    kicker?: string;
+    display?: string;
+}
+
+const {kicker, display} = Astro.props;
+const hasKicker = Astro.slots.has("kicker");
+const hasMedia = Astro.slots.has("media");
+---
+
+<div class:list={["content-card", {"split-layout": hasMedia}]}>
+    <div class="card-text">
+        {kicker ? <small class="kicker">{kicker}</small> :
+            hasKicker && <slot name="kicker"/> }
+        {display && <h3 class="display">{display}</h3>}
+        <slot name="content"/>
+    </div>
+
+    {hasMedia && (
+            <div class="card-media">
+                <slot name="media"/>
+            </div>
+    )}
+</div>
+
+<style>
+    .content-card {
+        background-color: var(--color-maroon);
+        color: var(--color-white);
+        border-radius: 1.25rem;
+        padding: 2rem;
+        box-shadow: 0 8px 24px color-mix(in srgb, var(--color-drop-shadow) 25%, transparent);
+    }
+
+    .split-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    @media (min-width: 900px) {
+        .split-layout {
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3.5rem;
+        }
+    }
+
+    .card-media :global(img) {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px color-mix(in srgb, var(--color-drop-shadow) 30%, transparent);
+    }
+
+    .card-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .kicker {
+        color: var(--color-white);
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    .display {
+        font-size: clamp(1.75rem, 3vw, 3rem);
+        background: linear-gradient(to right, var(--color-gold), var(--color-white));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin: 0;
+    }
+
+    .card-text :global(p) {
+        margin: 0;
+    }
+</style>
