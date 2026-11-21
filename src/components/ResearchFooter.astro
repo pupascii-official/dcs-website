@@ -1,0 +1,87 @@
+---
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export interface Props {
+  brandTitle?: string;
+  brandSubtitle?: string;
+  portfolioLinks?: FooterLink[];
+  pillarLinks?: FooterLink[];
+  class?: string;
+}
+
+const {
+  brandTitle = "PUP DEPARTMENT OF COMPUTER SCIENCE",
+  brandSubtitle = "College of Computer and Information Sciences · Polytechnic University of the Philippines. Built with CCIS visual coherence and Computer Science motifs.",
+  portfolioLinks = [
+    { label: "Compliance Report", href: "#compliance" },
+    { label: "Narrative Report", href: "#narrative" },
+    { label: "Curriculum", href: "#curriculum" },
+    { label: "Faculty Directory", href: "#faculty" },
+  ],
+  pillarLinks = [
+    { label: "Research", href: "#research" },
+    { label: "Teaching & Learning", href: "#teaching" },
+    { label: "Community", href: "#community" },
+    { label: "Internationalization", href: "#internationalization" },
+  ],
+  class: className = "",
+} = Astro.props;
+---
+
+<footer
+  class={`w-full rounded-2xl bg-[#2A0000] px-8 sm:px-12 py-12 text-white ${className}`}
+>
+  <div class="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-10">
+    <div>
+      <h2
+        class="font-['Montserrat',sans-serif] text-[13px] font-extrabold tracking-[0.06em] uppercase text-[#FFE600]"
+      >
+        {brandTitle}
+      </h2>
+      <p class="mt-3 max-w-sm text-[12px] leading-[1.65] text-white/65">
+        {brandSubtitle}
+      </p>
+    </div>
+
+    <div>
+      <h3
+        class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.12em] uppercase text-[#D9A41D]"
+      >
+        PORTFOLIO
+      </h3>
+      <ul class="mt-3.5 space-y-2 text-[12px] text-white/75">
+        {
+          portfolioLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h3
+        class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.12em] uppercase text-[#D9A41D]"
+      >
+        PILLARS
+      </h3>
+      <ul class="mt-3.5 space-y-2 text-[12px] text-white/75">
+        {
+          pillarLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

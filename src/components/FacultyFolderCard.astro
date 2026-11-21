@@ -1,0 +1,100 @@
+---
+export interface Props {
+  id: string;
+  name: string;
+  researchArea: string;
+  status?: string;
+  folderSlug: string;
+  imageSrc: string;
+  ctaLabel?: string;
+  modalId?: string;
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  researchArea,
+  status = "INVOLVED IN RESEARCH",
+  folderSlug,
+  imageSrc,
+  ctaLabel = "13 refereed publications",
+  modalId,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`flex flex-col items-center ${className}`}>
+  <button
+    type="button"
+    data-faculty-open={modalId}
+    data-faculty-id={id}
+    data-faculty-name={name}
+    data-faculty-area={researchArea}
+    data-faculty-status={status}
+    data-faculty-folder={folderSlug}
+    data-faculty-image={imageSrc}
+    class="group relative w-full text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#780000]"
+  >
+    <!-- Top-right folder tab -->
+    <div class="flex justify-end pr-3">
+      <span
+        class="inline-flex items-center rounded-t-xl bg-[#FFE600] px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[9px] font-extrabold tracking-[0.06em] uppercase text-[#3B0000] shadow-sm"
+      >
+        {status}
+      </span>
+    </div>
+
+    <!-- Offset gold & maroon folder back-plate -->
+    <div class="relative">
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 translate-x-1.5 translate-y-2 rounded-2xl bg-[#D9A41D] transition-transform duration-200 group-hover:translate-x-2 group-hover:translate-y-2.5"
+      ></div>
+
+      <!-- Main maroon folder body -->
+      <div
+        class="relative z-10 rounded-2xl rounded-tr-none border border-[#D9A41D]/60 bg-gradient-to-b from-[#8A0000] via-[#6B0000] to-[#470000] p-4 shadow-[0_18px_36px_-12px_rgba(70,0,0,0.45)] transition-transform duration-200 group-hover:-translate-y-1"
+      >
+        <!-- Portrait frame -->
+        <div
+          class="relative aspect-[4/3.6] w-full overflow-hidden rounded-xl border border-white/15 bg-[#360000]"
+        >
+          <img
+            src={imageSrc}
+            alt={`Portrait of ${name}`}
+            loading="lazy"
+            referrerpolicy="no-referrer"
+            class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        </div>
+
+        <!-- Text & contribution pill inside folder -->
+        <div class="mt-4 text-center">
+          <h3
+            class="font-['Montserrat',sans-serif] text-[14px] font-extrabold text-white leading-snug"
+          >
+            {name}
+          </h3>
+          <p
+            class="mt-1 font-['Montserrat',sans-serif] text-[9.5px] font-bold tracking-[0.08em] uppercase text-[#FFE600]"
+          >
+            {researchArea}
+          </p>
+
+          <div class="mt-3.5 flex justify-center">
+            <span
+              class="inline-flex items-center justify-center rounded-full border border-white/15 bg-[#380000]/90 px-4 py-1.5 text-[10px] font-semibold text-white group-hover:bg-[#260000] transition-colors whitespace-nowrap"
+            >
+              {ctaLabel}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </button>
+
+  <p class="mt-4 font-mono text-[10.5px] text-neutral-500 tracking-tight">
+    {folderSlug}
+  </p>
+</div>

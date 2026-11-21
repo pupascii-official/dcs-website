@@ -1,0 +1,96 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import StatusBadge from "./StatusBadge.astro";
+import FacultyFolderCard from "./FacultyFolderCard.astro";
+import FacultyProfileModal from "./FacultyProfileModal.astro";
+
+export interface FacultyMember {
+  id: string;
+  name: string;
+  researchArea: string;
+  status?: string;
+  ctaLabel?: string;
+  folderSlug: string;
+  imageSrc: string;
+}
+
+export interface Props {
+  eyebrow?: string;
+  heading?: string;
+  guidanceLabel?: string;
+  faculty?: FacultyMember[];
+  modalId?: string;
+  class?: string;
+}
+
+const {
+  eyebrow = "SECTION 04 // TEAM & SCHOLARS",
+  heading = "Faculty Involved in Research",
+  guidanceLabel = "FACULTY PUBLICATION CONTRIBUTIONS • 2021–2025",
+  modalId = "faculty-profile-modal",
+  faculty = [
+    {
+      id: "ria-sagum",
+      name: "Ria A. Sagum",
+      researchArea: "NLP",
+      status: "INVOLVED IN RESEARCH",
+      ctaLabel: "13 refereed publications",
+      folderSlug: "sagum-research.folder",
+      imageSrc: "/src/assets/images/faculty_maria_santos_1795256249826.jpg",
+    },
+    {
+      id: "carlo-inovero",
+      name: "Carlo G. Inovero",
+      researchArea: "TEXT CLASSIFICATION",
+      status: "INVOLVED IN RESEARCH",
+      ctaLabel: "6 refereed publications",
+      folderSlug: "inovero-research.folder",
+      imageSrc: "/src/assets/images/faculty_juan_delacruz_1795256249949.jpg",
+    },
+    {
+      id: "aleta-fabregas",
+      name: "Aleta Fabregas",
+      researchArea: "MACHINE LEARNING",
+      status: "INVOLVED IN RESEARCH",
+      ctaLabel: "5 refereed publications",
+      folderSlug: "fabregas-research.folder",
+      imageSrc: "/src/assets/images/faculty_grace_hopper_1795256249744.jpg",
+    },
+    {
+      id: "mb-dela-fuente",
+      name: "M. B. Dela Fuente",
+      researchArea: "DEEP LEARNING",
+      status: "INVOLVED IN RESEARCH",
+      ctaLabel: "3 refereed publications",
+      folderSlug: "dela-fuente-research.folder",
+      imageSrc: "/src/assets/images/faculty_alan_turing_1795256249746.jpg",
+    },
+  ],
+  class: className = "",
+} = Astro.props;
+---
+
+<section class={`w-full ${className}`}>
+  <SectionHeading eyebrow={eyebrow} heading={heading}>
+    <StatusBadge slot="action" label={guidanceLabel} variant="faculty-guidance" />
+  </SectionHeading>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+    {
+      faculty.map((member) => (
+        <FacultyFolderCard
+          id={member.id}
+          name={member.name}
+          researchArea={member.researchArea}
+          status={member.status}
+          ctaLabel={member.ctaLabel}
+          folderSlug={member.folderSlug}
+          imageSrc={member.imageSrc}
+          modalId={modalId}
+        />
+      ))
+    }
+  </div>
+
+  <FacultyProfileModal modalId={modalId} />
+</section>

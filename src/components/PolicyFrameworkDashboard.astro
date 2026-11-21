@@ -1,0 +1,222 @@
+---
+import PolicyCard from "./PolicyCard.astro";
+import ActionButton from "./ActionButton.astro";
+import ResearchFolderPanel, { type Props as FolderPanelProps } from "./ResearchFolderPanel.astro";
+import type { BadgeVariant } from "./StatusBadge.astro";
+
+export interface PolicySummaryItem {
+  badgeLabel: string;
+  badgeVariant: BadgeVariant;
+  codeTag?: string;
+  showDot?: boolean;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  cards?: PolicySummaryItem[];
+  folders?: Omit<FolderPanelProps, "index" | "active">[];
+  defaultActiveIndex?: number;
+  deckLabel?: string;
+  deckBadge?: string;
+  manualLabel?: string;
+  manualUrl?: string;
+  sourceNote?: string;
+  class?: string;
+}
+
+const {
+  cards = [
+    {
+      badgeLabel: "RESEARCH AGENDA",
+      badgeVariant: "faculty-dev",
+      showDot: true,
+      title: "University Research Agenda",
+      description:
+        "Research priorities aligned with the PDP 2023–2028, DOST HNRDA, and CHED SDG-based framework.",
+    },
+    {
+      badgeLabel: "ACADEMIC RIGOR",
+      badgeVariant: "academic-rigor",
+      codeTag: "[CS-01]",
+      title: "Research Quality Assurance",
+      description:
+        "Ethics review protects participants; similarity checking supports originality and academic integrity.",
+    },
+    {
+      badgeLabel: "CORE DOMAINS",
+      badgeVariant: "core-domains",
+      codeTag: "[CS-02]",
+      title: "Program Research Agenda",
+      description:
+        "Educational technology, soft infrastructure, business processing, communication, and green technology.",
+    },
+  ],
+  folders = [
+    {
+      theme: "darkred",
+      tabLabel: "Research Support",
+      badge: "INDEXATION SUPPORT",
+      badgeVariant: "index",
+      eyebrow: "// International Dissemination Pipeline",
+      title: "Publication &\nIndexation Support",
+      body: "Provides dedicated faculty co-authorship clinics, conference registration grants, and target venue vetting for Scopus, IEEE Xplore, and Web of Science.",
+      footer: "BSCS Area 1 — Research • Dissemination & Grant Guidelines",
+    },
+    {
+      theme: "white",
+      tabLabel: "CCIS Agenda",
+      badge: "EVALUATION RUBRIC",
+      badgeVariant: "eval",
+      eyebrow: "// Undergraduate Thesis & Capstone Standards",
+      title: "CCIS Research &\nInnovation Agenda",
+      body: "Defines technical complexity criteria, algorithmic originality benchmarks, and IEEE/ACM manuscript formatting standards required across tracks.",
+      footer: "BSCS Area 1 — Research • Programmatic Alignment Matrix",
+    },
+    {
+      theme: "gold",
+      tabLabel: "Ethics & Integrity",
+      badge: "ETHICS PROTOCOL",
+      badgeVariant: "ethics",
+      eyebrow: "// Institutional Research Integrity",
+      title: "Ethics & Internal\nPeer Review Protocol",
+      body: "Ensures all student and faculty studies involving datasets, human participants, or institutional systems undergo rigorous privacy impact assessments.",
+      footer: "BSCS Area 1 — Research • RA 10173 Data Privacy & Review Checklist",
+    },
+    {
+      theme: "red",
+      tabLabel: "Policy & Evidence",
+      badge: "ACTIVE REPOSITORY",
+      badgeVariant: "active",
+      eyebrow: "// Department of Computer Science",
+      title: "Research Agenda\n& Priorities",
+      body: "A research agenda aligned with national and University priorities, formulated with faculty, students, administrators, and external stakeholders.",
+      footer: "BSCS Area 1 — Research • Narrative and documentary evidence",
+    },
+  ],
+  defaultActiveIndex = 3,
+  deckLabel = "RESEARCH AGENDA // SUPPORT & QUALITY ASSURANCE",
+  deckBadge = "BSCS AREA 1 • RESEARCH EVIDENCE",
+  manualLabel = "BSCS AREA 1 — RESEARCH NARRATIVE",
+  manualUrl = "#narrative",
+  sourceNote = "SOURCE: BSCS AREA 1 — RESEARCH • UPDATED NOVEMBER 20",
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`space-y-7 ${className}`} data-policy-dashboard>
+  <!-- Main Outer Maroon-Bordered Card -->
+  <div
+    class="rounded-3xl border-[1.5px] border-[#780000]/75 bg-white p-6 sm:p-8 shadow-[0_24px_50px_-14px_rgba(120,0,0,0.16)] space-y-6"
+  >
+    <!-- Top 3 Policy Summary Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {
+        cards.map((card) => (
+          <PolicyCard
+            badgeLabel={card.badgeLabel}
+            badgeVariant={card.badgeVariant}
+            codeTag={card.codeTag}
+            showDot={card.showDot}
+            title={card.title}
+            description={card.description}
+          />
+        ))
+      }
+    </div>
+
+    <!-- BSCS AREA 1 • RESEARCH EVIDENCE Stacked Folder Container -->
+    <div class="rounded-2xl border border-neutral-200 bg-neutral-50/75 p-5 sm:p-7">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+        <div
+          class="flex items-center gap-2 font-heading text-[10px] font-extrabold tracking-[0.12em] uppercase text-[#780000]"
+        >
+          <span aria-hidden="true" class="h-2 w-2 rounded-full bg-[#780000]"></span>
+          <span>{deckLabel}</span>
+        </div>
+        <span
+          class="inline-flex items-center rounded-full border border-neutral-200 bg-white px-3 py-1 font-heading text-[9.5px] font-bold tracking-[0.08em] uppercase text-neutral-600"
+        >
+          {deckBadge}
+        </span>
+      </div>
+
+      <!-- Staggered 4-Layer Folder Stage (matches global.css .folder-* rules) -->
+      <div
+        role="tablist"
+        aria-label="BSCS Area 1 research evidence"
+        data-folder-stack
+        class="relative flex flex-col gap-4 lg:block lg:h-[490px] lg:overflow-hidden lg:rounded-2xl"
+      >
+        {
+          folders.map((folder, idx) => (
+            <ResearchFolderPanel
+              {...folder}
+              index={idx}
+              active={idx === defaultActiveIndex}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Centered Research Narrative CTA -->
+  <div class="flex flex-col items-center gap-2.5 pt-1">
+    <ActionButton
+      label={manualLabel}
+      href={manualUrl}
+      variant="research-manual"
+      class="min-w-[300px] sm:min-w-[380px]"
+    />
+    {
+      sourceNote && (
+        <p class="font-heading text-[9.5px] font-semibold tracking-[0.08em] uppercase text-neutral-400">
+          {sourceNote}
+        </p>
+      )
+    }
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll("[data-policy-dashboard]").forEach((root) => {
+      const stack = root.querySelector("[data-folder-stack]");
+      if (!stack) return;
+
+      const wrappers = Array.from(stack.querySelectorAll(".folder-wrapper"));
+      const total = wrappers.length;
+
+      const activateFolder = (targetIndex) => {
+        wrappers.forEach((wrapper, idx) => {
+          const tab = wrapper.querySelector(".folder-tab");
+          const isActive = idx === targetIndex;
+          wrapper.classList.toggle("active", isActive);
+          if (tab) {
+            tab.setAttribute("aria-selected", String(isActive));
+          }
+        });
+      };
+
+      wrappers.forEach((wrapper, idx) => {
+        const tab = wrapper.querySelector(".folder-tab");
+        if (!tab) return;
+
+        tab.addEventListener("click", () => activateFolder(idx));
+        tab.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            activateFolder(idx);
+          } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            e.preventDefault();
+            activateFolder((idx + 1) % total);
+          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            e.preventDefault();
+            activateFolder((idx - 1 + total) % total);
+          }
+        });
+      });
+    });
+  })();
+</script>

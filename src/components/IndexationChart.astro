@@ -1,0 +1,94 @@
+---
+export interface RingYearData {
+  year: number;
+  count: number;
+  progress: number; // 0 to 1
+  color: string;
+}
+
+export interface Props {
+  activeYear?: number;
+  rings?: RingYearData[];
+  class?: string;
+}
+
+const {
+  activeYear = 2025,
+  rings = [
+    { year: 2025, count: 19, progress: 0.78, color: "#780000" },
+    { year: 2024, count: 17, progress: 0.72, color: "#9E2A1C" },
+    { year: 2023, count: 14, progress: 0.65, color: "#C89416" },
+    { year: 2022, count: 11, progress: 0.58, color: "#E5B82E" },
+  ],
+  class: className = "",
+} = Astro.props;
+
+const activeRing = rings.find((r) => r.year === activeYear) ?? rings[0];
+const size = 260;
+const center = size / 2;
+const radii = [108, 88, 68, 48];
+---
+
+<div
+  class={`relative inline-flex items-center justify-center select-none ${className}`}
+  role="img"
+  aria-label={`Indexation rings showing ${activeRing.count} indexed publications for year ${activeRing.year}`}
+>
+  <svg
+    width={size}
+    height={size}
+    viewBox={`0 0 ${size} ${size}`}
+    class="-rotate-90"
+  >
+    {
+      rings.map((ring, idx) => {
+        const r = radii[idx] ?? 48;
+        const circumference = 2 * Math.PI * r;
+        const dashOffset = circumference * (1 - ring.progress);
+        const isActive = ring.year === activeRing.year;
+        return (
+          <g>
+            <circle
+              cx={center}
+              cy={center}
+              r={r}
+              fill="none"
+              stroke="#E5E5E5"
+              stroke-width="11"
+            />
+            <circle
+              cx={center}
+              cy={center}
+              r={r}
+              fill="none"
+              stroke={ring.color}
+              stroke-width={isActive ? "13" : "11"}
+              stroke-linecap="round"
+              stroke-dasharray={circumference}
+              stroke-dashoffset={dashOffset}
+              opacity={isActive ? "1" : "0.6"}
+            />
+          </g>
+        );
+      })
+    }
+  </svg>
+
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+    <span
+      class="font-['Montserrat',sans-serif] text-[9.5px] font-bold tracking-[0.12em] uppercase text-neutral-400"
+    >
+      YEAR {activeRing.year}
+    </span>
+    <span
+      class="font-['Montserrat',sans-serif] text-[30px] font-black leading-none text-[#780000] tabular-nums mt-0.5"
+    >
+      {activeRing.count}
+    </span>
+    <span
+      class="font-['Montserrat',sans-serif] text-[8.5px] font-bold tracking-[0.12em] uppercase text-[#C89416] mt-1"
+    >
+      INDEXED
+    </span>
+  </div>
+</div>

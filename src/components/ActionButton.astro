@@ -1,0 +1,83 @@
+---
+export type ButtonVariant =
+  | "research-manual"
+  | "publications"
+  | "publications-dark"
+  | "year-pill"
+  | "icon-nav";
+
+export interface Props {
+  label?: string;
+  href?: string;
+  variant?: ButtonVariant;
+  active?: boolean;
+  iconDirection?: "prev" | "next";
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  label = "",
+  href,
+  variant = "publications",
+  active = false,
+  iconDirection = "next",
+  ariaLabel,
+  class: className = "",
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+
+const styles: Record<ButtonVariant, string> = {
+  "research-manual":
+    "inline-flex items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-[#780000] via-[#8F2A08] to-[#C89416] px-6 py-3.5 font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.08em] uppercase text-white shadow-[0_10px_24px_-6px_rgba(120,0,0,0.4)] hover:brightness-110 transition-all duration-200 cursor-pointer whitespace-nowrap",
+  publications:
+    "inline-flex items-center justify-center gap-1.5 rounded-lg border border-neutral-300 bg-neutral-100/90 px-4 py-2 text-[11px] font-semibold text-neutral-800 hover:bg-neutral-200/80 hover:border-neutral-400 transition-colors duration-150 cursor-pointer whitespace-nowrap",
+  "publications-dark":
+    "inline-flex items-center justify-center gap-1.5 rounded-md border border-white/15 bg-[#460000] px-3.5 py-1.5 text-[10.5px] font-semibold text-white hover:bg-[#5E0000] transition-colors duration-150 cursor-pointer whitespace-nowrap",
+  "year-pill": active
+    ? "inline-flex items-center justify-center rounded-full bg-[#780000] px-4 py-1.5 font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.04em] text-[#FFE600] shadow-sm transition-colors duration-150 cursor-pointer whitespace-nowrap tabular-nums"
+    : "inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-4 py-1.5 font-['Montserrat',sans-serif] text-[11px] font-bold tracking-[0.04em] text-neutral-700 hover:border-[#780000]/50 hover:text-[#780000] transition-colors duration-150 cursor-pointer whitespace-nowrap tabular-nums",
+  "icon-nav":
+    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#780000]/30 bg-white text-[#780000] hover:bg-[#780000] hover:text-white hover:border-[#780000] transition-colors duration-150 cursor-pointer shrink-0",
+};
+---
+
+<Tag
+  href={href}
+  type={!href ? "button" : undefined}
+  aria-label={ariaLabel || label}
+  class={`${styles[variant]} ${className}`}
+>
+  {
+    variant === "icon-nav" ? (
+      <svg
+        class="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        {iconDirection === "prev" ? (
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        ) : (
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        )}
+      </svg>
+    ) : (
+      <>
+        <span>{label}</span>
+        {(variant === "research-manual" ||
+          variant === "publications" ||
+          variant === "publications-dark") && (
+          <span aria-hidden="true" class="text-[11px] leading-none">
+            ↗
+          </span>
+        )}
+      </>
+    )
+  }
+</Tag>

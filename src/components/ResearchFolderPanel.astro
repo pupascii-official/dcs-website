@@ -1,0 +1,149 @@
+---
+export interface Props {
+  theme: 'darkred' | 'white' | 'gold' | 'red';
+  tabLabel: string;
+  badge: string;
+  badgeVariant: 'index' | 'eval' | 'ethics' | 'active';
+  eyebrow: string;
+  title: string;
+  body: string;
+  footer: string;
+  index?: number;
+  active?: boolean;
+}
+
+const {
+  theme,
+  tabLabel,
+  badge,
+  badgeVariant,
+  eyebrow,
+  title,
+  body,
+  footer,
+  index = 0,
+  active = false,
+} = Astro.props;
+
+const themes = {
+  darkred: {
+    bg: '#420000',
+    tabText: '#ffffff',
+    arrow: '#ffdf00',
+    eyebrow: '#ffffffcc',
+    title: '#ffffff',
+    body: '#ffffffe5',
+    divider: '#ffffff4d',
+    footer: '#ffdf00',
+  },
+  white: {
+    bg: '#ffffff',
+    tabText: '#800000',
+    arrow: '#daa520',
+    eyebrow: '#78716c',
+    title: '#800000',
+    body: '#44403c',
+    divider: '#80000033',
+    footer: '#800000',
+  },
+  gold: {
+    bg: '#8b6508',
+    tabText: '#ffdf00',
+    arrow: '#ffdf00',
+    eyebrow: '#ffffffd9',
+    title: '#ffffff',
+    body: '#fffffff2',
+    divider: '#ffffff4d',
+    footer: '#ffdf00',
+  },
+  red: {
+    bg: '#800000',
+    tabText: '#ffdf00',
+    arrow: '#ffdf00',
+    eyebrow: '#ffffffcc',
+    title: '#ffffff',
+    body: '#ffffffe5',
+    divider: '#ffffff4d',
+    footer: '#ffdf00',
+  },
+} as const;
+
+const t = themes[theme];
+
+// Horizontal position / width of each tab (desktop), staggered like the design
+const tabGeometry = [
+  { left: 490, width: 365 },
+  { left: 109, width: 350 },
+  { left: 434, width: 375 },
+  { left: 59, width: 355 },
+];
+const g = tabGeometry[index] ?? tabGeometry[0];
+
+const vars = [
+  `--c:${t.bg}`,
+  `--tab-text:${t.tabText}`,
+  `--arrow:${t.arrow}`,
+  `--top:${index * 38}px`,
+  `--tab-left:${g.left}px`,
+  `--tab-w:${g.width}px`,
+  `--z:${(index + 1) * 10}`,
+].join(';');
+
+const badgeClass = {
+  index: 'bg-[#ffdf00] text-[#420000] text-[9.5px]',
+  eval: 'bg-[#800000] text-[#ffdf00] text-[9.7px]',
+  ethics: 'bg-[#ffdf00] text-[#800000] text-[9.4px]',
+  active: 'bg-[#ffdf00] text-[#800000] text-[9.7px]',
+}[badgeVariant];
+---
+
+<div class:list={['folder-wrapper', active && 'active']} style={vars}>
+  <!-- Full-width coloured band that sits behind the tabs in front of it (desktop only) -->
+  <div class="folder-strip" aria-hidden="true"></div>
+
+  <!-- Tab -->
+  <div
+    class="folder-tab"
+    data-tab={index}
+    role="tab"
+    tabindex="0"
+    aria-selected={active ? 'true' : 'false'}
+  >
+    <span class="folder-tab-arrow">◀</span>
+    <span class="font-heading text-[14px] font-[800] tracking-[0.35px]" style={`color:${t.tabText}`}>
+      {tabLabel}
+    </span>
+    <span class="folder-tab-arrow">▶</span>
+  </div>
+
+  <!-- Body -->
+  <div class="folder-body" role="tabpanel">
+    <div class="flex flex-wrap items-center gap-3">
+      <div
+        class={`flex h-[23px] items-center justify-center whitespace-nowrap rounded-full px-4 font-[700] leading-[15px] tracking-[0.5px] uppercase ${badgeClass}`}
+      >
+        {badge}
+      </div>
+      <div class="text-[12px] leading-[16px] lg:text-[14px]" style={`color:${t.eyebrow}`}>
+        {eyebrow}
+      </div>
+    </div>
+
+    <h3
+      class="mt-3 whitespace-pre-line font-heading text-[32px] font-[900] leading-[1.1] tracking-[-1.2px] lg:text-[48px] lg:leading-[48px]"
+      style={`color:${t.title}`}
+    >
+      {title}
+    </h3>
+
+    <p class="mt-4 whitespace-pre-line text-[14px] leading-[24px] lg:text-[16px]" style={`color:${t.body}`}>
+      {body}
+    </p>
+
+    <div class="mt-5 h-[1px] w-full lg:w-[576px]" style={`background:${t.divider}`}></div>
+
+    <p class="mt-4 text-[12px] font-[700] leading-[20px] tracking-[0.35px] lg:max-w-[576px] lg:text-[14px]" style={`color:${t.footer}`}>
+      {footer}
+    </p>
+  </div>
+</div>

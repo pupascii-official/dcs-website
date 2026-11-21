@@ -1,0 +1,169 @@
+---
+export interface Props {
+  modalId?: string;
+  headerTitle?: string;
+  defaultName?: string;
+  defaultArea?: string;
+  defaultStatus?: string;
+  defaultFolder?: string;
+  defaultImage?: string;
+}
+
+const {
+  modalId = "faculty-profile-modal",
+  headerTitle = "FACULTY PROFILE",
+  defaultName = "Dr. Juan Dela Cruz",
+  defaultArea = "Computer Vision & AI",
+  defaultStatus = "Involved in Research",
+  defaultFolder = "juan-delacruz-cv.folder",
+  defaultImage = "/src/assets/images/faculty_juan_delacruz_1795256249949.jpg",
+} = Astro.props;
+---
+
+<dialog
+  id={modalId}
+  aria-labelledby={`${modalId}-name`}
+  class="m-auto w-[min(92vw,540px)] rounded-2xl border-[1.5px] border-[#780000] bg-white p-0 shadow-[0_28px_60px_-15px_rgba(60,0,0,0.4)] backdrop:bg-black/55 backdrop:backdrop-blur-[2px] overflow-hidden"
+>
+  <!-- Maroon Dialog Header -->
+  <div
+    class="flex items-center justify-between bg-[#780000] px-5 py-3 text-white"
+  >
+    <span
+      class="font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.12em] uppercase"
+    >
+      {headerTitle}
+    </span>
+    <button
+      type="button"
+      data-modal-close
+      aria-label="Close faculty profile"
+      class="inline-flex h-7 w-7 items-center justify-center rounded-md text-white/85 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
+    >
+      <svg
+        class="h-4 w-4"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Dialog Body -->
+  <div class="grid grid-cols-1 sm:grid-cols-[155px_1fr] gap-6 p-6 items-center">
+    <div
+      class="aspect-[4/4.6] w-full max-w-[170px] mx-auto overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-sm"
+    >
+      <img
+        data-modal-image
+        src={defaultImage}
+        alt={`Portrait of ${defaultName}`}
+        referrerpolicy="no-referrer"
+        class="h-full w-full object-cover object-top"
+      />
+    </div>
+
+    <div class="space-y-3.5">
+      <h3
+        id={`${modalId}-name`}
+        data-modal-name
+        class="font-['Montserrat',sans-serif] text-[22px] font-black tracking-tight text-neutral-950 leading-tight"
+      >
+        {defaultName}
+      </h3>
+
+      <dl class="space-y-2.5">
+        <div>
+          <dt
+            class="font-['Montserrat',sans-serif] text-[9.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]"
+          >
+            RESEARCH AREA
+          </dt>
+          <dd data-modal-area class="mt-0.5 text-[13px] font-medium text-neutral-700">
+            {defaultArea}
+          </dd>
+        </div>
+
+        <div>
+          <dt
+            class="font-['Montserrat',sans-serif] text-[9.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]"
+          >
+            RESEARCH STATUS
+          </dt>
+          <dd data-modal-status class="mt-0.5 text-[13px] font-medium text-neutral-700">
+            {defaultStatus}
+          </dd>
+        </div>
+
+        <div>
+          <dt
+            class="font-['Montserrat',sans-serif] text-[9.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]"
+          >
+            RESEARCH FOLDER
+          </dt>
+          <dd
+            data-modal-folder
+            class="mt-0.5 font-mono text-[12px] text-neutral-500"
+          >
+            {defaultFolder}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</dialog>
+
+<script is:inline define:vars={{ modalId }}>
+  (() => {
+    const dialog = document.getElementById(modalId);
+    if (!dialog) return;
+
+    const imgEl = dialog.querySelector("[data-modal-image]");
+    const nameEl = dialog.querySelector("[data-modal-name]");
+    const areaEl = dialog.querySelector("[data-modal-area]");
+    const statusEl = dialog.querySelector("[data-modal-status]");
+    const folderEl = dialog.querySelector("[data-modal-folder]");
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const trigger = target.closest(`[data-faculty-open="${modalId}"]`);
+      if (trigger) {
+        const name = trigger.getAttribute("data-faculty-name") || "";
+        const area = trigger.getAttribute("data-faculty-area") || "";
+        const status = trigger.getAttribute("data-faculty-status") || "Involved in Research";
+        const folder = trigger.getAttribute("data-faculty-folder") || "";
+        const image = trigger.getAttribute("data-faculty-image") || "";
+
+        if (nameEl) nameEl.textContent = name;
+        if (areaEl) areaEl.textContent = area;
+        if (statusEl) {
+          statusEl.textContent =
+            status.toUpperCase() === status ? "Involved in Research" : status;
+        }
+        if (folderEl) folderEl.textContent = folder;
+        if (imgEl && image) {
+          imgEl.setAttribute("src", image);
+          imgEl.setAttribute("alt", `Portrait of ${name}`);
+        }
+
+        if (typeof dialog.showModal === "function") {
+          dialog.showModal();
+        }
+        return;
+      }
+
+      if (target.closest("[data-modal-close]") || target === dialog) {
+        if (typeof dialog.close === "function") {
+          dialog.close();
+        }
+      }
+    });
+  })();
+</script>

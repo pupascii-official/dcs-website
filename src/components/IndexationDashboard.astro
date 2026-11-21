@@ -1,0 +1,245 @@
+---
+import ActionButton from "./ActionButton.astro";
+import IndexationRingChart from "./IndexationChart.astro";
+import PublicationDeckCard, { type IndexationSourceStat } from "./PublicationDeckCard.astro";
+
+export interface YearDeckItem {
+  year: number;
+  total: number;
+  ringLabel: string;
+  scaleLabel: string;
+  summary: string;
+  sources: IndexationSourceStat[];
+}
+
+export interface Props {
+  years?: YearDeckItem[];
+  class?: string;
+}
+
+const {
+  years = [
+    {
+      year: 2022,
+      total: 11,
+      ringLabel: "DECK 2022 · INNER RING",
+      scaleLabel: "58% BENCHMARK SCALE",
+      summary:
+        "In 2022, the Department of Computer Science recorded 11 high-impact indexed studies focused on foundational machine learning pipelines, automated campus information systems, and early computer vision prototypes.",
+      sources: [
+        { count: 6, label: "SCOPUS INDEXED" },
+        { count: 3, label: "IEEE XPLORE" },
+        { count: 2, label: "WEB OF SCIENCE" },
+      ],
+    },
+    {
+      year: 2023,
+      total: 14,
+      ringLabel: "DECK 2023 · RING 02",
+      scaleLabel: "68% BENCHMARK SCALE",
+      summary:
+        "In 2023, indexed output rose to 14 peer-reviewed publications (+27% growth), highlighted by natural language processing studies for Philippine languages and formal automata verification tools.",
+      sources: [
+        { count: 7, label: "SCOPUS INDEXED" },
+        { count: 5, label: "IEEE XPLORE" },
+        { count: 2, label: "WEB OF SCIENCE" },
+      ],
+    },
+    {
+      year: 2024,
+      total: 17,
+      ringLabel: "DECK 2024 · RING 03",
+      scaleLabel: "78% BENCHMARK SCALE",
+      summary:
+        "In 2024, the department achieved 17 indexed papers, highlighting deep-learning medical imaging diagnostics, distributed cloud architectures, and smart-city traffic analytics.",
+      sources: [
+        { count: 8, label: "SCOPUS INDEXED" },
+        { count: 6, label: "IEEE XPLORE" },
+        { count: 3, label: "WEB OF SCIENCE" },
+      ],
+    },
+    {
+      year: 2025,
+      total: 19,
+      ringLabel: "DECK 2025 · OUTER RING",
+      scaleLabel: "85% BENCHMARK SCALE",
+      summary:
+        "Reaching a record 19 high-impact indexed publications in 2025, faculty and student researchers spearheaded breakthroughs in computer vision, enterprise information systems, and compiler optimization.",
+      sources: [
+        { count: 9, label: "SCOPUS INDEXED" },
+        { count: 7, label: "IEEE XPLORE" },
+        { count: 3, label: "WEB OF SCIENCE" },
+      ],
+    },
+  ],
+  class: className = "",
+} = Astro.props;
+
+const defaultIndex = years.length - 1;
+const defaultYear = years[defaultIndex];
+---
+
+<section
+  data-indexation-dashboard
+  data-active-index={defaultIndex}
+  class={`rounded-3xl border border-[#780000]/20 bg-white p-6 sm:p-10 shadow-[0_20px_50px_-18px_rgba(120,0,0,0.14)] ${className}`}
+>
+  <div class="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 lg:gap-10 items-center">
+    <!-- Left: Concentric Ring Chart + Year Selector Pills -->
+    <div class="flex flex-col items-center">
+      <div class="relative">
+        {
+          years.map((item, idx) => (
+            <div
+              data-ring-panel={idx}
+              class={idx === defaultIndex ? "block" : "hidden"}
+            >
+              <IndexationRingChart activeYear={item.year} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-2">
+        {
+          years.map((item, idx) => (
+            <button
+              type="button"
+              data-year-select={idx}
+              class={`rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-colors cursor-pointer ${
+                idx === defaultIndex
+                  ? "bg-[#780000] text-[#FFE600] shadow-sm"
+                  : "border border-neutral-300 bg-white text-neutral-700 hover:border-[#780000]/50 hover:text-[#780000]"
+              }`}
+            >
+              {item.year} • {item.total}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Right: 3D Deck Carousel -->
+    <div>
+      <div class="flex items-center justify-between gap-4 mb-5">
+        <div>
+          <p
+            class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.12em] uppercase text-[#780000]"
+          >
+            3D INTERACTIVE DECK CAROUSEL
+          </p>
+          <p class="mt-0.5 text-[11.5px] text-neutral-500">
+            Click any year pill, use the arrows, or select a dot to inspect each year.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <div data-deck-prev>
+            <ActionButton
+              variant="icon-nav"
+              iconDirection="prev"
+              ariaLabel="Previous year"
+            />
+          </div>
+          <div data-deck-next>
+            <ActionButton
+              variant="icon-nav"
+              iconDirection="next"
+              ariaLabel="Next year"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Stacked Card View -->
+      <div class="relative">
+        {
+          years.map((item, idx) => (
+            <div
+              data-deck-card={idx}
+              class={idx === defaultIndex ? "block" : "hidden"}
+            >
+              <PublicationDeckCard
+                year={item.year}
+                deckLabel={item.ringLabel}
+                scaleLabel={item.scaleLabel}
+                total={item.total}
+                summary={item.summary}
+                sources={item.sources}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Dot Pagination -->
+      <div class="mt-4 flex items-center justify-between gap-4">
+        <p class="text-[10.5px] text-neutral-400">
+          TIP: CLICK YEAR PILLS OR NAVIGATION ARROWS TO CYCLE DECKS
+        </p>
+        <div class="flex items-center gap-1.5">
+          {
+            years.map((item, idx) => (
+              <button
+                type="button"
+                data-deck-dot={idx}
+                aria-label={`View ${item.year} publications`}
+                class={`h-2 rounded-full transition-all cursor-pointer ${
+                  idx === defaultIndex
+                    ? "w-6 bg-[#780000]"
+                    : "w-2 bg-neutral-300 hover:bg-neutral-400"
+                }`}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll("[data-indexation-dashboard]").forEach((root) => {
+      const rings = root.querySelectorAll("[data-ring-panel]");
+      const cards = root.querySelectorAll("[data-deck-card]");
+      const pills = root.querySelectorAll("[data-year-select]");
+      const dots = root.querySelectorAll("[data-deck-dot]");
+      const total = cards.length;
+      let active = Number(root.getAttribute("data-active-index") || total - 1);
+
+      const update = (nextIndex) => {
+        active = (nextIndex + total) % total;
+        rings.forEach((el, i) => {
+          el.classList.toggle("hidden", i !== active);
+          el.classList.toggle("block", i === active);
+        });
+        cards.forEach((el, i) => {
+          el.classList.toggle("hidden", i !== active);
+          el.classList.toggle("block", i === active);
+        });
+        pills.forEach((el, i) => {
+          el.className =
+            i === active
+              ? "rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-colors cursor-pointer bg-[#780000] text-[#FFE600] shadow-sm"
+              : "rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-colors cursor-pointer border border-neutral-300 bg-white text-neutral-700 hover:border-[#780000]/50 hover:text-[#780000]";
+        });
+        dots.forEach((el, i) => {
+          el.className =
+            i === active
+              ? "h-2 rounded-full transition-all cursor-pointer w-6 bg-[#780000]"
+              : "h-2 rounded-full transition-all cursor-pointer w-2 bg-neutral-300 hover:bg-neutral-400";
+        });
+      };
+
+      pills.forEach((p, i) => p.addEventListener("click", () => update(i)));
+      dots.forEach((d, i) => d.addEventListener("click", () => update(i)));
+      root
+        .querySelector("[data-deck-prev]")
+        ?.addEventListener("click", () => update(active - 1));
+      root
+        .querySelector("[data-deck-next]")
+        ?.addEventListener("click", () => update(active + 1));
+    });
+  })();
+</script>
