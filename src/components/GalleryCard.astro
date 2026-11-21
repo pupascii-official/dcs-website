@@ -1,0 +1,67 @@
+---
+interface Props {
+    caption: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<div class="gallery-card">
+    <div class="gallery-media">
+        <slot name="media"/>
+    </div>
+    <p class="gallery-caption">{caption}</p>
+</div>
+
+<style>
+    .gallery-card {
+        border-radius: 1rem;
+        border: 1.5px solid var(--color-maroon);
+        overflow: hidden;
+        position: relative;
+        display: grid;
+        min-height: 260px;
+        background-color: var(--color-white);
+        box-shadow: 0 4px 16px color-mix(in srgb, var(--color-drop-shadow) 15%, transparent);
+    }
+
+    .gallery-media,
+    .gallery-caption,
+    .gallery-card::after {
+        grid-area: 1 / 1;
+    }
+
+    .gallery-media :global(img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: 0;
+    }
+
+    .gallery-card::after {
+        content: "";
+        background: linear-gradient(
+                to top,
+                rgba(128, 0, 0, 0.95) 0%,
+                rgba(128, 0, 0, 0.45) 12%,
+                transparent 35%
+        );
+        pointer-events: none;
+    }
+
+    .gallery-caption {
+        align-self: end;
+        z-index: 2;
+        padding: 1.25rem 1.5rem;
+        margin: 0;
+        background: linear-gradient(to right, var(--color-gold), var(--color-white));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-family: var(--font-montserrat), system-ui, sans-serif;
+        font-weight: 800;
+        font-size: clamp(1rem, 3vw, 4rem);
+        line-height: 1.25;
+    }
+</style>
