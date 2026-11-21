@@ -1,0 +1,42 @@
+---
+interface Props {
+    title: string
+    subtitle: string
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="scroll-section hero">
+    <div class="hero-content">
+        <h1>{title}</h1>
+        <h2 class="subtitle">{subtitle}</h2>
+        <slot />
+    </div>
+</section>
+
+<style>
+    .hero {
+        background: linear-gradient(to bottom, var(--color-dark-maroon), var(--color-maroon));
+        /* I adapted this linear-gradient code from Elijah */
+        color: white;
+        padding: 2rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .subtitle {
+        color: var(--color-dark-gold);
+        font-size: medium;
+        font-family: var(--font-inter), system-ui, sans-serif;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+</style>
