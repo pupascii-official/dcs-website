@@ -1,17 +1,31 @@
+@import "./global.css";
 @import "tailwindcss" important;
 
-@theme {
+@theme inline {
 	--font-display: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
 	--font-heading: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
 	--font-sans: var(--font-inter), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+	--color-white: var(--color-white);
+	--color-maroon: var(--color-maroon);
+	--color-dark-maroon: var(--color-dark-maroon);
+	--color-gold: var(--color-gold);
+	--color-dark-gold: var(--color-dark-gold);
+	--color-bg-canvas: var(--color-bg-canvas);
+	--color-text-body: var(--color-text-body);
+	--color-border: var(--color-border);
 }
 
 /*
- * Scoped element resets for pages opting into .research-page.
- * Leaves the team's unlayered src/styles/global.css 100% untouched while
- * neutralizing its bare element rules (p margin, h1-h6 color/size, img radius).
- * Tailwind utilities still win everywhere thanks to `@import "tailwindcss" important;`.
+ * Builds on src/styles/global.css tokens and defaults while keeping
+ * Tailwind utilities authoritative on .research-page via `important`.
  */
+.research-page {
+	font-family: var(--font-sans);
+	color: var(--color-text-body);
+	background-color: var(--color-white);
+}
+
 .research-page p {
 	margin-bottom: 0;
 }
