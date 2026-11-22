@@ -1,0 +1,159 @@
+<svg
+    class="absolute inset-0 hidden h-full w-full md:block"
+    viewBox="0 0 900 850"
+    preserveAspectRatio="none"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <!-- Road outer border -->
+    <path
+        d="M 450 -30
+           C 380 90, 380 160, 450 270
+           S 520 400, 450 535
+           S 380 680, 450 880"
+        stroke="#cbd5d8"
+        stroke-width="64"
+    />
+
+    <!-- Asphalt -->
+    <path
+        d="M 450 -30
+           C 380 90, 380 160, 450 270
+           S 520 400, 450 535
+           S 380 680, 450 880"
+        stroke="#24282d"
+        stroke-width="56"
+    />
+
+    <!-- Road center line -->
+    <path
+        d="M 450 -30
+           C 380 90, 380 160, 450 270
+           S 520 400, 450 535
+           S 380 680, 450 880"
+        stroke="white"
+        stroke-width="4"
+        stroke-dasharray="14 12"
+    />
+
+    <!-- MILESTONE 1 -->
+    <g class="timeline-indicator" data-milestone="milestone-1">
+        <!-- Connector -->
+        <path d="M 300 100 H 399" class="timeline-connector"/>
+
+        <!-- Marker -->
+        <circle
+            cx="399"
+            cy="100"
+            r="9"
+            class="timeline-marker"
+        />
+
+        <!-- Number -->
+        <text
+            x="365"
+            y="95"
+            text-anchor="end"
+            class="timeline-number"
+        >
+            01
+        </text>
+    </g>
+
+    <!-- MILESTONE 2 -->
+     <g class="timeline-indicator" data-milestone="milestone-2">
+        <!-- Connector -->
+        <path d="M 480 300 H 580" class="timeline-connector"/>
+
+        <!-- Marker -->
+        <circle
+            cx="480" cy="300" r="9"
+            class="timeline-marker"
+        />
+
+        <!-- Number -->
+        <text
+            x="530" y="295"
+            class="timeline-number"
+        >
+            02
+        </text>
+    </g>
+
+    <!-- MILESTONE 3 -->
+    <g class="timeline-indicator" data-milestone="milestone-3">
+        <!-- Connector -->
+        <path d="M 300 500 H 448" class="timeline-connector"/>
+
+        <!-- Marker -->
+        <circle
+            cx="448" cy="500" r="9"
+            class="timeline-marker"
+        />
+
+        <!-- Number -->
+        <text
+            x="365" y="495" text-anchor="end"
+            class="timeline-number"
+        >
+            03
+        </text>
+    </g>
+
+    <!-- MILESTONE 4 -->
+     <g class="timeline-indicator" data-milestone="milestone-4">
+        <!-- Connector -->
+        <path d="M 410 700 H 580" class="timeline-connector"/>
+
+        <!-- Marker -->
+        <circle
+            cx="410" cy="700" r="9"
+            class="timeline-marker"
+        />
+
+        <!-- Number -->
+        <text
+            x="530"
+            y="695"
+            class="timeline-number"
+        >
+            04
+        </text>
+    </g>
+</svg>
+
+<style>
+    .timeline-connector {
+        stroke: #800000;
+        stroke-width: 3;
+        transition: stroke 200ms ease;
+    }
+
+    .timeline-marker {
+        fill: #24282d;
+        stroke: #800000;
+        stroke-width: 4;
+        transition: stroke 200ms ease;
+    }
+
+    .timeline-number {
+        fill: #800000;
+        font-size: 24px;
+        font-weight: bold;
+        transition: fill 200ms ease;
+    }
+
+    /* Active milestone */
+    .timeline-indicator.is-active .timeline-connector {
+        stroke: #d9a000;
+    }
+
+    .timeline-indicator.is-active .timeline-marker {
+        stroke: #d9a000;
+    }
+
+    .timeline-indicator.is-active .timeline-number {
+        fill: #d9a000;
+    }
+</style>
+
