@@ -5,6 +5,7 @@ import react from "@astrojs/react";
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
 
+// https://astro.build/config
 export default defineConfig({
     site: 'https://example.com',
     integrations: [mdx(), sitemap(), react({ compiler: true }), svelte()],
@@ -23,6 +24,6 @@ export default defineConfig({
         },
     ],
     vite: {
-    plugins: [tailwindcss()],
-  },
+      plugins: [tailwindcss()],
+    },
 });
