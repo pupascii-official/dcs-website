@@ -210,6 +210,9 @@ const badgeClass = {
       z-index: var(--z);
       pointer-events: none;
     }
+    .folder-wrapper:last-child .folder-strip {
+      display: none;
+    }
 
     .folder-tab {
       position: absolute;
@@ -217,23 +220,47 @@ const badgeClass = {
       left: min(var(--tab-left), calc(100% - var(--tab-w) - 16px));
       width: min(var(--tab-w), calc(100% - 32px));
       height: var(--tab-h);
+      padding-bottom: 0;
       border-radius: 18px 18px 0 0;
       z-index: calc(60 + var(--z) / 10);
       pointer-events: auto;
       box-shadow: 0 -8px 24px #1e000030;
-      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease, box-shadow 0.2s ease;
+      transition:
+        top 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+        height 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+        padding-bottom 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.2s ease;
     }
     .folder-tab:hover {
-      filter: brightness(1.08);
-      transform: translateY(-3px);
+      top: calc(var(--top) - 4px);
+      height: calc(var(--tab-h) + 4px);
+      padding-bottom: 4px;
+      box-shadow: 0 -10px 26px #1e000045;
     }
     .folder-wrapper.active .folder-tab {
-      transform: translateY(-2px);
+      top: calc(var(--top) - 2px);
+      height: calc(var(--tab-h) + 2px);
+      padding-bottom: 2px;
+    }
+    .folder-wrapper:last-child.active .folder-tab {
+      height: calc(var(--tab-h) + 3px);
+      padding-bottom: 3px;
+    }
+    .folder-wrapper.active .folder-tab:hover {
+      top: calc(var(--top) - 4px);
+      height: calc(var(--tab-h) + 4px);
+      padding-bottom: 4px;
+    }
+    .folder-wrapper:last-child.active .folder-tab:hover {
+      height: calc(var(--tab-h) + 5px);
+      padding-bottom: 5px;
     }
     .folder-tab:focus-visible {
-      outline: none;
-      filter: brightness(1.15);
-      transform: translateY(-3px);
+      outline: 2px solid #ffdf00;
+      outline-offset: -2px;
+      top: calc(var(--top) - 4px);
+      height: calc(var(--tab-h) + 4px);
+      padding-bottom: 4px;
     }
 
     .folder-tab::before,

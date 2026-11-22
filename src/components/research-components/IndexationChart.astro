@@ -33,6 +33,7 @@ const radii = [108, 91, 74, 57, 40];
 ---
 
 <div
+  data-ring-chart
   class={`relative inline-flex items-center justify-center select-none ${className}`}
   role="img"
   aria-label={`Research productivity rings showing ${activeRing.count} ${unitLabel.toLowerCase()} for year ${activeRing.year}`}
@@ -41,7 +42,7 @@ const radii = [108, 91, 74, 57, 40];
     width={size}
     height={size}
     viewBox={`0 0 ${size} ${size}`}
-    class="-rotate-90"
+    class="-rotate-90 overflow-visible"
   >
     {
       rings.map((ring, idx) => {
@@ -50,7 +51,12 @@ const radii = [108, 91, 74, 57, 40];
         const dashOffset = circumference * (1 - ring.progress);
         const isActive = ring.year === activeRing.year;
         return (
-          <g>
+          <g
+            data-ring-group
+            data-ring-year={ring.year}
+            data-ring-count={ring.count}
+            class="cursor-pointer group"
+          >
             <circle
               cx={center}
               cy={center}
@@ -58,8 +64,13 @@ const radii = [108, 91, 74, 57, 40];
               fill="none"
               stroke="#ECECEC"
               stroke-width="10"
+              class="transition-colors duration-300 group-hover:stroke-[#E3D8D8]"
             />
             <circle
+              data-ring-arc
+              data-ring-year={ring.year}
+              data-target-offset={dashOffset}
+              data-circumference={circumference}
               cx={center}
               cy={center}
               r={r}
@@ -69,7 +80,8 @@ const radii = [108, 91, 74, 57, 40];
               stroke-linecap="round"
               stroke-dasharray={circumference}
               stroke-dashoffset={dashOffset}
-              opacity={isActive ? "1" : "0.55"}
+              opacity={isActive ? "1" : "0.52"}
+              class="ring-arc-circle"
             />
           </g>
         );
@@ -77,14 +89,19 @@ const radii = [108, 91, 74, 57, 40];
     }
   </svg>
 
-  <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+  <div
+    data-ring-center
+    class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center transition-transform duration-300"
+  >
     <span
+      data-ring-center-year
       class="font-['Montserrat',sans-serif] text-[8px] font-bold tracking-[0.12em] uppercase text-neutral-400"
     >
       YEAR {activeRing.year}
     </span>
     <span
-      class="font-['Montserrat',sans-serif] text-[24px] font-black leading-none text-[#780000] tabular-nums mt-0.5"
+      data-ring-center-count
+      class="font-['Montserrat',sans-serif] text-[24px] font-black leading-none text-[#780000] tabular-nums mt-0.5 transition-all duration-300"
     >
       {activeRing.count}
     </span>
@@ -95,3 +112,35 @@ const radii = [108, 91, 74, 57, 40];
     </span>
   </div>
 </div>
+
+<style>
+  .ring-arc-circle {
+    transition:
+      stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      stroke-width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.28s ease;
+  }
+
+  .ring-center-pop {
+    animation: ringCenterPop 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes ringCenterPop {
+    from {
+      opacity: 0.35;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring-arc-circle,
+    .ring-center-pop {
+      transition: none;
+      animation: none;
+    }
+  }
+</style>

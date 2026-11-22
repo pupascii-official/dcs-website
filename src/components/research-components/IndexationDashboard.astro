@@ -27,7 +27,7 @@ const {
   eyebrow = "RESEARCH OUTPUT • 2021–2025",
   subtitle = "39 completed studies; output peaked in 2023 with 13 studies.",
   centerUnit = "STUDIES",
-  sourceNote = "SOURCE: BSCS AREA 1 — RESEARCH • RESEARCH PRODUCTIVITY",
+  sourceNote = "BSCS AREA 1 — RESEARCH",
   years = [
     {
       year: 2021,
@@ -109,6 +109,7 @@ const {
 } = Astro.props;
 
 const defaultIndex = years.length - 1;
+const defaultYear = years[defaultIndex]?.year ?? 2025;
 const maxTotal = Math.max(...years.map((y) => y.total), 1);
 const palette = ["#780000", "#9E2A1C", "#C89416", "#E5B82E", "#B4690E"];
 const ringData: RingYearData[] = [...years]
@@ -127,23 +128,14 @@ const ringData: RingYearData[] = [...years]
   class={`rounded-3xl border-[1.5px] border-[#780000]/75 bg-white p-6 sm:p-10 shadow-[0_24px_50px_-14px_rgba(120,0,0,0.16)] ${className}`}
 >
   <div class="grid grid-cols-1 lg:grid-cols-[310px_1fr] gap-8 lg:gap-10 items-center">
-    <!-- Left: Concentric Ring Chart + Year Selector Pills -->
+    <!-- Left: Animated Concentric Ring Chart + Year Selector Pills -->
     <div class="flex flex-col items-center">
       <div class="relative">
-        {
-          years.map((item, idx) => (
-            <div
-              data-ring-panel={idx}
-              class={idx === defaultIndex ? "block" : "hidden"}
-            >
-              <IndexationRingChart
-                activeYear={item.year}
-                unitLabel={centerUnit}
-                rings={ringData}
-              />
-            </div>
-          ))
-        }
+        <IndexationRingChart
+          activeYear={defaultYear}
+          unitLabel={centerUnit}
+          rings={ringData}
+        />
       </div>
 
       <div class="mt-6 flex flex-wrap items-center justify-center gap-2">
@@ -152,9 +144,10 @@ const ringData: RingYearData[] = [...years]
             <button
               type="button"
               data-year-select={idx}
-              class={`rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-colors cursor-pointer ${
+              data-year-value={item.year}
+              class={`rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-all duration-200 cursor-pointer ${
                 idx === defaultIndex
-                  ? "bg-[#780000] text-[#FFE600] shadow-sm"
+                  ? "bg-[#780000] text-[#FFE600] shadow-sm scale-[1.03]"
                   : "border border-neutral-300 bg-white text-neutral-700 hover:border-[#780000]/50 hover:text-[#780000]"
               }`}
             >
@@ -202,7 +195,9 @@ const ringData: RingYearData[] = [...years]
           years.map((item, idx) => (
             <div
               data-deck-card={idx}
-              class={idx === defaultIndex ? "block" : "hidden"}
+              data-deck-year={item.year}
+              data-deck-total={item.total}
+              class={idx === defaultIndex ? "block deck-card-enter" : "hidden"}
             >
               <PublicationDeckCard
                 year={item.year}
@@ -230,7 +225,7 @@ const ringData: RingYearData[] = [...years]
                 type="button"
                 data-deck-dot={idx}
                 aria-label={`View ${item.year} research output`}
-                class={`h-2 rounded-full transition-all cursor-pointer ${
+                class={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                   idx === defaultIndex
                     ? "w-6 bg-[#780000]"
                     : "w-2 bg-neutral-300 hover:bg-neutral-400"
@@ -244,48 +239,145 @@ const ringData: RingYearData[] = [...years]
   </div>
 </section>
 
+<style>
+  @keyframes deckCardEnter {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .deck-card-enter {
+    animation: deckCardEnter 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deck-card-enter {
+      animation: none;
+    }
+  }
+</style>
+
 <script is:inline>
   (() => {
     document.querySelectorAll("[data-indexation-dashboard]").forEach((root) => {
-      const rings = root.querySelectorAll("[data-ring-panel]");
-      const cards = root.querySelectorAll("[data-deck-card]");
-      const pills = root.querySelectorAll("[data-year-select]");
-      const dots = root.querySelectorAll("[data-deck-dot]");
+      const cards = Array.from(root.querySelectorAll("[data-deck-card]"));
+      const pills = Array.from(root.querySelectorAll("[data-year-select]"));
+      const dots = Array.from(root.querySelectorAll("[data-deck-dot]"));
+      const ringArcs = Array.from(root.querySelectorAll("[data-ring-arc]"));
+      const ringGroups = Array.from(root.querySelectorAll("[data-ring-group]"));
+      const centerWrap = root.querySelector("[data-ring-center]");
+      const centerYear = root.querySelector("[data-ring-center-year]");
+      const centerCount = root.querySelector("[data-ring-center-count]");
       const total = cards.length;
       let active = Number(root.getAttribute("data-active-index") || total - 1);
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const update = (nextIndex) => {
+      const triggerRingSweep = () => {
+        if (reducedMotion) return;
+        ringArcs.forEach((arc) => {
+          const circumference = arc.getAttribute("data-circumference");
+          if (circumference) {
+            arc.setAttribute("stroke-dashoffset", circumference);
+          }
+        });
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            ringArcs.forEach((arc) => {
+              const target = arc.getAttribute("data-target-offset");
+              if (target) {
+                arc.setAttribute("stroke-dashoffset", target);
+              }
+            });
+          });
+        });
+      };
+
+      const update = (nextIndex, animateCenter = true) => {
         active = (nextIndex + total) % total;
-        rings.forEach((el, i) => {
-          el.classList.toggle("hidden", i !== active);
-          el.classList.toggle("block", i === active);
-        });
+        const activeCard = cards[active];
+        const activeYear = activeCard?.getAttribute("data-deck-year") || "";
+        const activeTotal = activeCard?.getAttribute("data-deck-total") || "";
+
         cards.forEach((el, i) => {
-          el.classList.toggle("hidden", i !== active);
-          el.classList.toggle("block", i === active);
+          const isMatch = i === active;
+          el.classList.toggle("hidden", !isMatch);
+          el.classList.toggle("block", isMatch);
+          if (isMatch) {
+            el.classList.remove("deck-card-enter");
+            void el.offsetWidth;
+            el.classList.add("deck-card-enter");
+          }
         });
+
+        ringArcs.forEach((arc) => {
+          const isMatch = arc.getAttribute("data-ring-year") === activeYear;
+          arc.setAttribute("stroke-width", isMatch ? "11.5" : "10");
+          arc.setAttribute("opacity", isMatch ? "1" : "0.52");
+        });
+
+        if (centerYear) centerYear.textContent = `YEAR ${activeYear}`;
+        if (centerCount) centerCount.textContent = activeTotal;
+        if (animateCenter && centerWrap && !reducedMotion) {
+          centerWrap.classList.remove("ring-center-pop");
+          void centerWrap.offsetWidth;
+          centerWrap.classList.add("ring-center-pop");
+        }
+
         pills.forEach((el, i) => {
           el.className =
             i === active
-              ? "rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-colors cursor-pointer bg-[#780000] text-[#FFE600] shadow-sm"
-              : "rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-colors cursor-pointer border border-neutral-300 bg-white text-neutral-700 hover:border-[#780000]/50 hover:text-[#780000]";
+              ? "rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-all duration-200 cursor-pointer bg-[#780000] text-[#FFE600] shadow-sm scale-[1.03]"
+              : "rounded-full px-3.5 py-1.5 font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.04em] tabular-nums transition-all duration-200 cursor-pointer border border-neutral-300 bg-white text-neutral-700 hover:border-[#780000]/50 hover:text-[#780000]";
         });
+
         dots.forEach((el, i) => {
           el.className =
             i === active
-              ? "h-2 rounded-full transition-all cursor-pointer w-6 bg-[#780000]"
-              : "h-2 rounded-full transition-all cursor-pointer w-2 bg-neutral-300 hover:bg-neutral-400";
+              ? "h-2 rounded-full transition-all duration-300 cursor-pointer w-6 bg-[#780000]"
+              : "h-2 rounded-full transition-all duration-300 cursor-pointer w-2 bg-neutral-300 hover:bg-neutral-400";
         });
       };
 
       pills.forEach((p, i) => p.addEventListener("click", () => update(i)));
       dots.forEach((d, i) => d.addEventListener("click", () => update(i)));
+      ringGroups.forEach((g) => {
+        g.addEventListener("click", () => {
+          const y = g.getAttribute("data-ring-year");
+          const matchIdx = cards.findIndex((c) => c.getAttribute("data-deck-year") === y);
+          if (matchIdx !== -1) update(matchIdx);
+        });
+      });
+
       root
         .querySelector("[data-deck-prev]")
         ?.addEventListener("click", () => update(active - 1));
       root
         .querySelector("[data-deck-next]")
         ?.addEventListener("click", () => update(active + 1));
+
+      if ("IntersectionObserver" in window) {
+        let hasAnimated = false;
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                triggerRingSweep();
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.25 }
+        );
+        observer.observe(root);
+      } else {
+        triggerRingSweep();
+      }
     });
   })();
 </script>
