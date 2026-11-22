@@ -1,6 +1,5 @@
 ---
 import { X } from "lucide-react";
-import HeadlineComponent from "../HeadlineComponent.astro";
 
 export interface PublicationEntry {
   authors: string;
@@ -44,7 +43,7 @@ const {
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "13 refereed publications",
       folderSlug: "sagum-research.folder",
-      imageSrc: "/research-asset/sagumria.png",
+      imageSrc: "research-asset/sagumria.png",
       publications: [
         {
           authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
@@ -133,7 +132,7 @@ const {
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "6 refereed publications",
       folderSlug: "inovero-research.folder",
-      imageSrc: "/research-asset/inovero.png",
+      imageSrc: "research-asset/inovero.png",
       publications: [
         {
           authors: "Inovero, Carlo G.",
@@ -180,7 +179,7 @@ const {
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "5 refereed publications",
       folderSlug: "fabregas-research.folder",
-      imageSrc: "/research-asset/fabregas.png",
+      imageSrc: "research-asset/fabregas.png",
       publications: [
         {
           authors: "Fabregas, Aleta C.; Amata, Maria Leonila G.",
@@ -221,7 +220,7 @@ const {
       status: "INVOLVED IN RESEARCH",
       ctaLabel: "3 refereed publications",
       folderSlug: "dela-fuente-research.folder",
-      imageSrc: "/research-asset/delafuente.png",
+      imageSrc: "research-asset/delafuente.png",
       publications: [
         {
           authors: "Dela Fuente, Michael B.",
@@ -255,18 +254,28 @@ const guidancePillClass =
 <section class={`w-full ${className}`}>
   {
     showHeading ? (
-      <HeadlineComponent
-        variant="section"
-        kicker={eyebrow}
-        headline={heading}
-        class="mb-5 sm:mb-6"
-      >
+      <header class="flex flex-wrap items-center justify-between gap-4 mb-5 sm:mb-6">
+        <div class="flex items-stretch gap-3.5 sm:gap-4">
+          <span
+            aria-hidden="true"
+            class="w-[3.5px] shrink-0 rounded-full bg-[#780000]"
+          ></span>
+          <div class="flex flex-col justify-center">
+            <p class="mb-0 font-heading text-[10.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase text-[#C89416] leading-tight">
+              {eyebrow}
+            </p>
+            <h2 class="mt-1 mb-0 font-display text-[26px] sm:text-[32px] font-black tracking-[-0.02em] leading-[1.1] text-[#141414]">
+              {heading}
+            </h2>
+          </div>
+        </div>
+
         {guidanceLabel && (
-          <span slot="action" class={guidancePillClass}>
-            {guidanceLabel}
-          </span>
+          <div class="shrink-0">
+            <span class={guidancePillClass}>{guidanceLabel}</span>
+          </div>
         )}
-      </HeadlineComponent>
+      </header>
     ) : (
       Boolean(guidanceLabel) && (
         <div class="mb-6 flex justify-end">

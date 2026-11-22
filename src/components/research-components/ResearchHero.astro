@@ -1,0 +1,91 @@
+---
+export interface Props {
+	title?: string;
+	accentTitle?: string;
+	subtitle?: string;
+	class?: string;
+}
+
+const {
+	title = "Research & Innovation",
+	accentTitle,
+	subtitle = "Pillar 01 / Research • Department of Computer Science",
+	class: className = "",
+} = Astro.props;
+---
+
+<section
+	id="top"
+	class={`scroll-section hero-research-canvas relative w-full overflow-x-hidden flex flex-col px-5 sm:px-10 pt-24 pb-10 sm:pt-28 sm:pb-12 text-center text-white ${className}`}
+>
+	<!-- Ambient blurred maroon/gold mesh orbs (isolated behind content with no stacking trap) -->
+	<div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
+		<div
+			class="absolute -top-24 left-[55%] h-[384px] w-[384px] rounded-full bg-[#FFDF00]/15 blur-[96px]"
+		></div>
+		<div
+			class="absolute -bottom-32 left-[32%] h-[448px] w-[448px] rounded-full bg-[#DAA520]/20 blur-[96px]"
+		></div>
+		<div
+			class="absolute top-[28%] -left-16 h-[288px] w-[288px] rounded-full bg-[#800000]/60 blur-[88px]"
+		></div>
+	</div>
+
+	<slot name="top" />
+
+	<!-- Centered Frosted Glass Card Wrapper (kept free of z-index/backdrop-filter so any fixed Navbar inside slot renders in viewport Top Context) -->
+	<div
+		class="relative my-auto mx-auto w-full max-w-[1024px] rounded-[24px] px-6 py-11 sm:px-14 sm:py-14"
+	>
+		<div
+			aria-hidden="true"
+			class="hero-glass-surface pointer-events-none absolute inset-0 rounded-[24px]"
+		></div>
+
+		<div class="relative flex flex-col items-center">
+			<div>
+				<span
+					class="inline-flex items-center justify-center rounded-full border border-[#FFDF00]/40 bg-[#800000]/60 backdrop-blur-xs px-4 sm:px-5 py-1.5 font-heading text-[9.5px] sm:text-[10.5px] font-bold tracking-[0.08em] uppercase text-[#FFDF00] shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+				>
+					{subtitle}
+				</span>
+			</div>
+
+			<h1
+				class="mt-6 font-display text-[36px] sm:text-[52px] md:text-[58px] font-black tracking-[-0.03em] leading-[1.06] text-white text-balance"
+			>
+				<span>{title}</span>{accentTitle && <span> {accentTitle}</span>}
+			</h1>
+
+			<div class="flex flex-col items-center w-full">
+				<slot />
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero-research-canvas {
+		background-color: #4a0000;
+		background-image:
+			radial-gradient(ellipse 68% 66% at 50% 48%, rgba(128, 0, 0, 0.75) 0%, rgba(128, 0, 0, 0) 60%),
+			radial-gradient(ellipse 85% 95% at 24% 85%, rgba(90, 0, 0, 0.9) 0%, rgba(90, 0, 0, 0) 50%),
+			radial-gradient(ellipse 85% 90% at 75% 80%, rgba(255, 223, 0, 0.22) 0%, rgba(255, 223, 0, 0) 55%),
+			radial-gradient(ellipse 95% 85% at 85% 25%, rgba(218, 165, 32, 0.35) 0%, rgba(218, 165, 32, 0) 50%),
+			radial-gradient(ellipse 95% 90% at 15% 20%, rgba(128, 0, 0, 0.95) 0%, rgba(128, 0, 0, 0) 55%);
+	}
+
+	.hero-glass-surface {
+		background-color: rgba(255, 255, 255, 0.1);
+		background-image: linear-gradient(
+			155deg,
+			rgba(255, 255, 255, 0.15) 0%,
+			rgba(128, 0, 0, 0.3) 50%,
+			rgba(74, 0, 0, 0.5) 100%
+		);
+		border: 1px solid rgba(255, 255, 255, 0.25);
+		backdrop-filter: blur(24px);
+		-webkit-backdrop-filter: blur(24px);
+		box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.65);
+	}
+</style>

@@ -1,89 +1,77 @@
 ---
 import "../styles/research.css";
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
-import HeroSection from "../components/HeroSection.astro";
+import ResearchHero from "../components/research-components/ResearchHero.astro";
 import ContentSection from "../components/ContentSection.astro";
 import { SITE_TITLE } from "../consts";
-import Navbar from "../components/Navbar.astro"
+import Navbar from "../components/Navbar.astro";
 import PolicyFrameworkDashboard from "../components/research-components/PolicyFrameworkDashboard.astro";
 import ResearchMetrics from "../components/research-components/ResearchMetrics.astro";
 import IndexationDashboard from "../components/research-components/IndexationDashboard.astro";
 import FacultyShowcase from "../components/research-components/FacultyShowcase.astro";
-import Footer from "../components/Footer.astro";
+import Footer from "../components/Footer.astro"
 ---
 
 <ScrollSnapLayout
   title={`Research & Innovation — ${SITE_TITLE}`}
   description="39 completed studies, 24 refereed publications, and 225 citations. PUP Department of Computer Science Area 1: Research."
 >
-  <!-- SNAP 1 // Hero -->
-  <HeroSection
-    variant="research"
-    title="Research & Innovation"
-    subtitle="Pillar 01 / Research • Department of Computer Science"
-  >
-    <Navbar
-    />
+  <div class="research-page bg-white text-neutral-900 antialiased font-sans">
+    <!-- SNAP 1 // Hero -->
+    <ResearchHero
+      title="Research & Innovation"
+      subtitle="Pillar 01 / Research • Department of Computer Science"
+    >
+      <Navbar />
 
-    <p class="mt-6 mb-0 max-w-xl text-[13px] sm:text-[14px] font-medium leading-[1.6] text-white/90">
-      Completed research, disseminated publications, high-impact indexation rates, and faculty
-      research involvement shaping the future of information systems and computer vision.
-      with 39 completed studies, 24 refereed publications, and 225 citations.
-    </p>
+      <p class="mt-6 mb-0 max-w-2xl text-[14px] sm:text-[16px] font-normal leading-[1.6] text-white/90">
+        39 completed studies, 24 refereed publications, and 225 citations. Research
+        that is published, presented, cited, recognized, and used.
+      </p>
 
-    <p class="mt-3.5 mb-0 max-w-xl text-[11.5px] sm:text-[12px] leading-[1.65] text-white/60">
-      The College of Computer and Information Sciences translate the University's general research themes
-      into program research areas that reflect the role of computing, information technology, and digital Innovation
-      in addressing contemporary challenges.
-      
-    </p>
-  </HeroSection>
+      <p class="mt-4 mb-0 max-w-xl text-[12px] sm:text-[13px] font-normal leading-[1.65] text-white/75">
+        The University envisions itself as a premier center of research in social
+        capital and innovation towards inclusive growth for national development.
+        Five active projects have target completion dates from July 2026 to
+        January 2028.
+      </p>
+    </ResearchHero>
 
-  <!-- SNAP 2 // Section 01: Research Agenda & Quality Assurance -->
-  <ContentSection
-    surface="white"
-    sectionLabel="SECTION 01 // GOVERNANCE & STANDARDS"
-    category="Research Agenda & Quality Assurance"
-  >
-    <PolicyFrameworkDashboard
-      manualLabel="ACCESS FULL PUP RESEARCH & DEVELOPMENT MANUAL"
-      manualUrl="https://tinyurl.com/DCSArea1Research"
-      openInNewTab={true}
-      sourceNote="SOURCE: BSCS AREA 1 — RESEARCH"
-    />
-  </ContentSection>
+    <!-- SNAP 2 // Section 01: Research Agenda & Quality Assurance -->
+    <ContentSection
+      sectionLabel="SECTION 01 // GOVERNANCE & STANDARDS"
+      category="Research Agenda & Quality Assurance"
+    >
+      <PolicyFrameworkDashboard
+        manualLabel="ACCESS FULL PUP RESEARCH & DEVELOPMENT MANUAL"
+        manualUrl="https://tinyurl.com/DCSArea1Research"
+        sourceNote="BSCS AREA 1 — RESEARCH"
+      />
+    </ContentSection>
 
-  <!-- SNAP 3 // Section 02: Research Metrics -->
-  <ContentSection
-    surface="white"
-    sectionLabel="SECTION 02 // KEY PERFORMANCE INDICATORS"
-    category="Research Metrics"
-  >
-    <ResearchMetrics showHeader={false} class="!py-0" />
-  </ContentSection>
+    <!-- SNAP 3 // Section 02: Research Metrics -->
+    <ContentSection
+      sectionLabel="SECTION 02 // KEY PERFORMANCE INDICATORS"
+      category="Research Metrics"
+    >
+      <ResearchMetrics showHeader={false} class="!py-0" />
+    </ContentSection>
 
-  <!-- SNAP 4 // Section 03: Research Productivity by Calendar Year -->
-  <ContentSection
-    surface="white"
-    sectionLabel="SECTION 03 // DATA PRESENTATION"
-    category="Research Productivity by Calendar Year"
-  >
-    <IndexationDashboard />
-  </ContentSection>
+    <!-- SNAP 4 // Section 03: Research Productivity by Calendar Year -->
+    <ContentSection
+      sectionLabel="SECTION 03 // DATA PRESENTATION"
+      category="Research Productivity by Calendar Year"
+    >
+      <IndexationDashboard />
+    </ContentSection>
 
-  <!-- SNAP 5 // Section 04: Faculty Involved in Research + Institutional Footer -->
-  <section class="scroll-section w-full bg-white flex flex-col">
-    <div class="my-auto w-full py-10 sm:py-12">
-      <ContentSection
-        surface="white"
-        snap={false}
-        sectionLabel="SECTION 04 // TEAM & SCHOLARS"
-        category="Faculty Involved in Research"
-      >
-        <FacultyShowcase showHeading={false} guidanceLabel="" />
-      </ContentSection>
-    </div>
+    <!-- SNAP 5 // Section 04: Faculty Involved in Research + Institutional Footer -->
+    <section class="scroll-section w-full bg-white flex flex-col">
+      <div class="my-auto mx-auto w-full max-w-6xl px-6 sm:px-10 pt-24 pb-10 sm:pt-24 sm:pb-12">
+        <FacultyShowcase />
+      </div>
 
     <Footer/>
   </section>
+  </div>
 </ScrollSnapLayout>

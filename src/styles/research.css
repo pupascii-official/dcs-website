@@ -51,3 +51,62 @@
 .research-page img {
 	border-radius: 0;
 }
+
+/* Adapt shared ContentSection.astro seamlessly for the Research page (centered vertically + Navbar-safe top clearance) */
+.research-page .scroll-section.content-section {
+	background-color: var(--color-white);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+}
+
+.research-page .scroll-section.content-section .section-inner {
+	margin: auto;
+	width: 100%;
+	max-width: 72rem;
+	padding: 5.5rem 1.5rem 2.5rem;
+}
+
+.research-page .scroll-section.content-section .header-top {
+	border-left: 3.5px solid #780000;
+	padding-left: 1rem;
+	margin-bottom: 1.25rem;
+}
+
+.research-page .scroll-section.content-section .header-top small {
+	display: block;
+	font-family: var(--font-heading);
+	font-size: 10.5px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #c89416;
+	line-height: 1.25;
+}
+
+.research-page .scroll-section.content-section .header-top .category {
+	margin-top: 0.25rem;
+	margin-bottom: 0;
+	font-family: var(--font-display);
+	font-size: clamp(26px, 3vw, 32px);
+	font-weight: 900;
+	letter-spacing: -0.02em;
+	line-height: 1.1;
+	color: #141414;
+}
+
+@media (min-width: 640px) {
+	.research-page .scroll-section.content-section .section-inner {
+		padding: 5.5rem 2.5rem 2.5rem;
+	}
+
+	.research-page .scroll-section.content-section .header-top {
+		margin-bottom: 1.5rem;
+	}
+
+	.research-page .scroll-section.content-section .header-top small {
+		font-size: 11px;
+	}
+}
