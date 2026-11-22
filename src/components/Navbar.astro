@@ -1,38 +1,282 @@
 ---
-export interface Props {
-  code?: string;
-  department?: string;
-  tag?: string;
-  href?: string;
-  class?: string;
-}
+const currentPath = Astro.url.pathname;
 
-const {
-  code = "CS",
-  department = "Department of Computer Science",
-  tag = "[Research]",
-  href = "#top",
-  class: className = "",
-} = Astro.props;
+const links = [
+    {
+        label: "Home",
+        href: "/",
+    },
+    {
+        label: "Research",
+        href: "/research",
+    },
+    {
+        label: "Teaching & Learning",
+        href: "/teaching-and-learning",
+    },
+    {
+        label: "Community",
+        href: "/community",
+    },
+    {
+        label: "Internationalization",
+        href: "/internationalization",
+    },
+    {
+        label: "Planning & QA",
+        href: "/planning-and-qa",
+    },
+    {
+        label: "Compliance",
+        href: "/compliance",
+    },
+];
 ---
 
-<a
-  href={href}
-  class={`inline-flex items-center gap-3 rounded-full border border-neutral-200 bg-white pl-1.5 pr-4 py-1.5 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.28)] hover:border-[#780000]/40 transition-colors duration-150 whitespace-nowrap ${className}`}
->
-  <span
-    class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#780000] font-['Montserrat',sans-serif] text-[10px] font-black text-white"
-  >
-    {code}
-  </span>
-  <span class="text-[12px] font-semibold text-neutral-900">
-    {department}
-  </span>
-  {
-    tag && (
-      <span class="font-['Montserrat',sans-serif] text-[11px] font-extrabold text-[#780000]">
-        {tag}
-      </span>
-    )
-  }
-</a>
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-college">
+            <div class="colleges-logos">
+                <img src="/pup-logo.png" alt="PUP Logo" />
+                <img src="/ccis-logo.png" alt="CCIS Logo" />
+                <img src="/dcs-logo.png" alt="DCS Logo" />
+            </div>
+
+            <div class="college-identity">
+                <span class="university">
+                    POLYTECHNIC UNIVERSITY OF THE PHILIPPINES
+                </span>
+                <span class="department">Department of Computer Science</span>
+                <span class="college">
+                    College of Computer and Information Sciences
+                </span>
+            </div>
+        </div>
+
+        <button class="hamburger-btn" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="navbar-menu">
+            <ul class="nav-list">
+                {links.map((link) => {
+                    const isActive = currentPath === link.href;
+                    return (
+                        <li>
+                            <a
+                                href={link.href}
+                                class:list={["nav-link", { active: isActive }]}
+                            >
+                                {link.label}
+                            </a>
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .navbar {
+        position: fixed;
+        top: 1rem;
+
+        z-index: 67;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0 1rem;
+        pointer-events: none;
+    }
+
+    .navbar-container {
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        width: fit-content;
+        max-width: 95vw;
+        font-family: var(--font-montserrat), system-ui, sans-serif;
+        background-color: white;
+        border-radius: 100px;
+        padding: 0.6rem 2.25rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-college {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .colleges-logos {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        flex-shrink: 0;
+    }
+
+    .colleges-logos img {
+        height: 50px;
+        width: 50px;
+        object-fit: contain;
+    }
+
+    .college-identity {
+        display: flex;
+        flex-direction: column;
+        color: var(--color-text-body);
+        line-height: 1.3;
+    }
+
+    .university,
+    .department,
+    .college {
+        white-space: nowrap;
+    }
+
+    .university {
+        font-size: 0.67rem;
+    }
+
+    .department {
+        font-weight: 700;
+        font-size: 0.95rem;
+        background: linear-gradient(
+            90deg,
+            var(--color-blue-1),
+            var(--color-blue-2),
+            var(--color-blue-3),
+            var(--color-blue-3)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .college {
+        font-size: 0.67rem;
+        font-style: italic;
+    }
+
+    .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .hamburger-btn span {
+        display: block;
+        width: 24px;
+        height: 2.5px;
+        background-color: var(--color-text-body);
+        border-radius: 2px;
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+    .nav-list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 1.25rem;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: var(--color-text-body);
+        font-size: 0.825rem;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--color-blue-2);
+        font-weight: 600;
+    }
+
+    @media (max-width: 1350px) {
+        .navbar-container {
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 20px;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .navbar-college {
+            flex: 1;
+            min-width: 0;
+            gap: 3.3rem;
+        }
+
+        .colleges-logos {
+            gap: 0.2rem;
+            height: clamp(22px, 6vw, 36px);
+            width: clamp(22px, 6vw, 36px);
+        }
+
+        .college-identity {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+        }
+
+        .university,
+        .college {
+            font-size: clamp(0.38rem, 1.8vw, 0.55rem);
+        }
+
+        .department {
+            font-size: clamp(0.52rem, 2.5vw, 0.78rem);
+        }
+
+        .hamburger-btn {
+            display: flex;
+        }
+
+        .navbar-menu {
+            display: none;
+            width: 100%;
+        }
+
+        .navbar-menu.open {
+            display: block;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .nav-list {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+    }
+</style>
+
+<script>
+    const btn = document.querySelector(".hamburger-btn");
+    const menu = document.querySelector(".navbar-menu");
+
+    btn?.addEventListener("click", () => {
+        const isOpen = menu?.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(Boolean(isOpen)));
+    });
+</script>

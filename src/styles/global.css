@@ -13,6 +13,10 @@
 	--color-bg-canvas: #F7F7F7;
 	--color-text-body: #1A1414;
 	--color-border: #E2E2E2;
+
+	--color-blue-1: #7EB2FF;
+	--color-blue-2: #0066FF;
+	--color-blue-3: #003E9A;
 }
 
 body {
