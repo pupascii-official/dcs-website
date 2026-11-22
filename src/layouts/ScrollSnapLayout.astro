@@ -22,11 +22,11 @@ const {
 	<BaseHead title={title} description={description} />
 </head>
 
-<body class={bodyClass}>
-	<main class={snap ? "scroll-container" : "min-h-screen"}>
-		<!-- Everything inside <ScrollSnapLayout> should appear here -->
-		<slot />
-	</main>
+<body>
+    <main class="scroll-container">
+        <!-- Everything inside <ScrollSnapLayout> should appear inside the slot -->
+        <slot/>
+    </main>
 </body>
 
 </html>
