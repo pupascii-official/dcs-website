@@ -238,29 +238,6 @@ const {
         },
       ],
     },
-    {
-      id: "janelle-sagum",
-      name: "Janelle Kyra A. Sagum",
-      researchArea: "NATURAL LANGUAGE PROCESSING",
-      status: "INVOLVED IN RESEARCH",
-      ctaLabel: "2 refereed publications",
-      folderSlug: "jk-sagum-research.folder",
-      imageSrc: "/public/dcs-logo.png",
-      publications: [
-        {
-          authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
-          title: "Parallel Ensemble Approach for Named Entity Recognition in Filipino Text",
-          journal: "Association for Computing Machinery (ACM)",
-          datePublished: "July 9, 2025",
-        },
-        {
-          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
-          title: "Automated Filipino Language Treebank Generator",
-          journal: "Association for Computing Machinery",
-          datePublished: "March 5, 2024",
-        },
-      ],
-    },
   ],
   class: className = "",
 } = Astro.props;
@@ -285,8 +262,8 @@ const {
       )
     )
   }
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+ <!-- Increment this when adding a new faculty member -->
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
     {
       faculty.map((member) => (
         <FacultyFolderCard

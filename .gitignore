@@ -42,3 +42,5 @@ next-env.d.ts
 
 .astro/
 .idea/
+# build output
+/dist/
