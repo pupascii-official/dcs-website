@@ -1,0 +1,17 @@
+---
+interface Props {
+    topic: string;
+    quote: string;
+    source?: string;
+}
+
+const { topic, quote, source = "Community monitoring feedback" } = Astro.props;
+---
+
+<div class="flex flex-col justify-between gap-6 rounded-lg bg-[#FFDF00]/15 p-7">
+    <span class="text-xs font-bold tracking-wider text-(--color-maroon) uppercase">{topic}</span>
+    <p class="font-(family-name:--font-montserrat) text-[22px] font-bold leading-7 text-(--color-maroon)">
+        {quote}
+    </p>
+    <span class="text-xs text-(--color-text-body)/75">{source}</span>
+</div>

@@ -1,0 +1,54 @@
+---
+interface Props {
+    status: string;
+    title: string;
+    description: string;
+    partner: string;
+    beneficiaries: string;
+    imageLabel: string;
+    imageSrc?: string;
+    href: string;
+}
+
+const { status, title, description, partner, beneficiaries, imageLabel, imageSrc, href } =
+    Astro.props;
+---
+
+<a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="initiative-card group flex flex-col rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-200 hover:-translate-y-1.5 hover:shadow-lg cursor-pointer"
+>
+    {imageSrc ? (
+        <img src={imageSrc} alt={imageLabel} class="aspect-[16/9] w-full object-cover" />
+    ) : (
+        <div class="h-[170px] w-full bg-[#E6DFDF] flex items-center justify-center text-xs text-(--color-text-body)/75">
+            {imageLabel}
+        </div>
+    )}
+    <div class="flex flex-col gap-3 p-6 flex-1">
+        <span class="text-xs font-bold tracking-wider text-(--color-maroon) uppercase">
+            {status}
+        </span>
+        <h3 class="font-(family-name:--font-montserrat) text-[22px] font-bold leading-7 text-(--color-maroon)">
+            {title}
+        </h3>
+        <p class="text-sm leading-relaxed text-(--color-text-body)">{description}</p>
+        <div class="mt-1 flex flex-col gap-2">
+            <div class="text-xs font-bold text-(--color-text-body)/75 uppercase">
+                PARTNER
+            </div>
+            <div class="text-sm text-(--color-text-body)">{partner}</div>
+        </div>
+        <div class="mt-2 flex flex-col gap-2">
+            <div class="text-xs font-bold text-(--color-text-body)/75 uppercase">
+                BENEFICIARIES
+            </div>
+            <div class="text-sm text-(--color-text-body)">{beneficiaries}</div>
+        </div>
+        <span class="mt-auto pt-2 text-sm font-bold text-(--color-maroon) group-hover:underline">
+            Supporting documents ↗
+        </span>
+    </div>
+</a>
