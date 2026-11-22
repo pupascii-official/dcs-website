@@ -16,7 +16,7 @@ const {
 
 <section
 	id="top"
-	class={`scroll-section hero-research-canvas relative w-full overflow-x-hidden flex flex-col px-5 sm:px-10 pt-24 pb-10 sm:pt-28 sm:pb-12 text-center text-white ${className}`}
+	class={`scroll-section hero-research-canvas relative w-full overflow-x-hidden flex flex-col px-4 sm:px-10 pt-28 pb-10 sm:pt-32 sm:pb-14 text-center text-white ${className}`}
 >
 	<!-- Ambient blurred maroon/gold mesh orbs (isolated behind content with no stacking trap) -->
 	<div aria-hidden="true" class="pointer-events-none absolute inset-0 overflow-hidden">
@@ -33,9 +33,9 @@ const {
 
 	<slot name="top" />
 
-	<!-- Centered Frosted Glass Card Wrapper (kept free of z-index/backdrop-filter so any fixed Navbar inside slot renders in viewport Top Context) -->
+	<!-- Centered Frosted Glass Card Wrapper -->
 	<div
-		class="relative my-auto mx-auto w-full max-w-[1024px] rounded-[24px] px-6 py-11 sm:px-14 sm:py-14"
+		class="relative my-auto mx-auto w-full max-w-[1024px] rounded-[24px] px-5 py-7 sm:px-14 sm:py-14"
 	>
 		<div
 			aria-hidden="true"
@@ -43,16 +43,16 @@ const {
 		></div>
 
 		<div class="relative flex flex-col items-center">
-			<div>
+			<div class="max-w-full">
 				<span
-					class="inline-flex items-center justify-center rounded-full border border-[#FFDF00]/40 bg-[#800000]/60 backdrop-blur-xs px-4 sm:px-5 py-1.5 font-heading text-[9.5px] sm:text-[10.5px] font-bold tracking-[0.08em] uppercase text-[#FFDF00] shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+					class="inline-flex items-center justify-center rounded-full border border-[#FFDF00]/40 bg-[#800000]/60 backdrop-blur-xs px-3.5 sm:px-5 py-1.5 font-heading text-[8.5px] sm:text-[10.5px] font-bold tracking-[0.06em] sm:tracking-[0.08em] uppercase leading-snug text-[#FFDF00] shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
 				>
 					{subtitle}
 				</span>
 			</div>
 
 			<h1
-				class="mt-6 font-display text-[36px] sm:text-[52px] md:text-[58px] font-black tracking-[-0.03em] leading-[1.06] text-white text-balance"
+				class="mt-4 sm:mt-6 font-display text-[32px] sm:text-[52px] md:text-[58px] font-black tracking-[-0.03em] leading-[1.06] text-white text-balance"
 			>
 				<span>{title}</span>{accentTitle && <span> {accentTitle}</span>}
 			</h1>

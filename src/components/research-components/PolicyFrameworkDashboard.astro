@@ -184,7 +184,7 @@ const folderBadgeClasses = {
 <div class={`space-y-4 ${className}`} data-policy-dashboard>
   <!-- Main Outer Maroon-Bordered Card -->
   <div
-    class="policy-dashboard-shell rounded-3xl border-[1.5px] border-[#800000] p-4 sm:p-5 shadow-[0_24px_56px_-14px_rgba(128,0,0,0.16)] space-y-4"
+    class="policy-dashboard-shell rounded-2xl sm:rounded-3xl border-[1.5px] border-[#800000] p-3 sm:p-5 shadow-[0_24px_56px_-14px_rgba(128,0,0,0.16)] space-y-4"
   >
     <!-- Top 3 Policy Summary Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
@@ -230,7 +230,7 @@ const folderBadgeClasses = {
     </div>
 
     <!-- BSCS AREA 1 • RESEARCH EVIDENCE Stacked Folder Container -->
-    <div class="policy-deck-well rounded-2xl border border-[#800000]/20 p-3.5 sm:p-5 shadow-[0_12px_28px_-16px_rgba(128,0,0,0.1)]">
+    <div class="policy-deck-well rounded-xl sm:rounded-2xl border border-[#800000]/20 p-2.5 sm:p-5 shadow-[0_12px_28px_-16px_rgba(128,0,0,0.1)]">
       <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div
           class="flex items-center gap-2 font-heading text-[10px] font-extrabold tracking-[0.12em] uppercase text-[#800000]"
@@ -462,6 +462,9 @@ const folderBadgeClasses = {
   /* ---------- FOLDER TABS ---------- */
   .folder-wrapper {
     width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px -8px rgba(40, 0, 0, 0.28);
   }
   .folder-strip {
     display: none;
@@ -475,7 +478,7 @@ const folderBadgeClasses = {
     gap: 12px;
     background: var(--c);
     cursor: pointer;
-    border-radius: 12px 12px 0 0;
+    border-radius: 14px 14px 0 0;
   }
   .folder-tab-arrow {
     font-size: 8px;
@@ -487,7 +490,7 @@ const folderBadgeClasses = {
     flex-direction: column;
     align-items: flex-start;
     background: var(--c);
-    padding: 20px;
+    padding: 16px 16px 20px;
   }
 
   @media (min-width: 1024px) {
@@ -501,6 +504,9 @@ const folderBadgeClasses = {
       position: absolute;
       inset: 0;
       pointer-events: none;
+      border-radius: 0;
+      overflow: visible;
+      box-shadow: none;
     }
 
     .folder-strip {
