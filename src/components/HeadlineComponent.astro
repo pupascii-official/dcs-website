@@ -1,0 +1,40 @@
+---
+interface Props {
+    kicker?: string,
+    headline: string
+}
+
+const { kicker, headline } = Astro.props;
+---
+
+<section class="headline-component">
+    <div class="headline-content">
+        <small class="headline-kicker">{kicker}</small>
+        <h1 class="headline-text">{headline}</h1>
+
+        <div class="headline-description">
+            <slot />
+        </div>
+    </div>
+</section>
+
+<style>
+    .headline-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .headline-kicker {
+        font-size: large;
+        color: var(--color-text-body)
+    }
+
+    .headline-text {
+        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
+        background-clip: text;
+        color: transparent;
+
+        margin-bottom: 0;
+    }
+</style>

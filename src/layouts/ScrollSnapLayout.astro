@@ -1,0 +1,39 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+interface Props {
+    title: string
+    description: string
+}
+
+const {title, description} = Astro.props;
+---
+
+<html lang="en">
+
+<head>
+    <BaseHead title={title} description={description}/>
+</head>
+
+<body>
+<main class="scroll-container">
+    <!-- Everything inside <ScrollSnapLayout> should appear here -->
+    <slot/>
+</main>
+</body>
+
+</html>
+
+<style>
+    .scroll-container {
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
+
+    :global(.scroll-section) {
+        height: 100vh;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        overflow-y: auto;
+    }
+</style>

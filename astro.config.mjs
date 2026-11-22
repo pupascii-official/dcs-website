@@ -3,7 +3,7 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
-
+import tailwindcss from "@tailwindcss/vite";
 import react from '@astrojs/react';
 
 import svelte from '@astrojs/svelte';
@@ -14,26 +14,19 @@ export default defineConfig({
     integrations: [mdx(), sitemap(), react({ compiler: true }), svelte()],
     fonts: [
         {
-            provider: fontProviders.local(),
-            name: 'Atkinson',
-            cssVariable: '--font-atkinson',
-            fallbacks: ['sans-serif'],
-            options: {
-                variants: [
-                    {
-                        src: ['./src/assets/fonts/atkinson-regular.woff'],
-                        weight: 400,
-                        style: 'normal',
-                        display: 'swap',
-                    },
-                    {
-                        src: ['./src/assets/fonts/atkinson-bold.woff'],
-                        weight: 700,
-                        style: 'normal',
-                        display: 'swap',
-                    },
-                ],
-            },
+            provider: fontProviders.google(),
+            name: 'Montserrat',
+            cssVariable: '--font-montserrat',
+            weights: [400, 600, 800],
+        },
+        {
+            provider: fontProviders.google(),
+            name: 'Inter',
+            cssVariable: '--font-inter',
+            weights: [400, 600],
         },
     ],
+    vite: {
+      plugins: [tailwindcss()],
+    },
 });
