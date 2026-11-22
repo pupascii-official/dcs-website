@@ -1,6 +1,4 @@
 ---
-import DepartmentPill from "./DepartmentPill.astro";
-
 export interface Props {
   departmentCode?: string;
   departmentName?: string;
@@ -36,13 +34,6 @@ const {
     class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(217,164,29,0.14),transparent_60%)]"
   ></div>
 
-  <div class="relative z-10 mx-auto max-w-4xl flex flex-col items-center">
-    <DepartmentPill
-      code={departmentCode}
-      department={departmentName}
-      tag={departmentTag}
-    />
-
     <div class="mt-9">
       <span
         class="inline-flex items-center rounded-full border border-[#D9A41D]/55 bg-[#780000]/65 px-4 py-1.5 font-['Montserrat',sans-serif] text-[10px] font-bold tracking-[0.06em] text-[#FFD94A]"
@@ -69,5 +60,4 @@ const {
     >
       {description}
     </p>
-  </div>
 </section>

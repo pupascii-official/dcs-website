@@ -5,13 +5,12 @@ import HeroSection from "../components/HeroSection.astro";
 import ContentSection from "../components/ContentSection.astro";
 import { SITE_TITLE } from "../consts";
 import Navbar from "../components/Navbar.astro"
-import DepartmentPill from "../components/DepartmentPill.astro";
-import PolicyFrameworkDashboard from "../components/PolicyFrameworkDashboard.astro";
-import ResearchMetrics from "../components/ResearchMetrics.astro";
-import IndexationDashboard from "../components/IndexationDashboard.astro";
-import FacultyShowcase from "../components/FacultyShowcase.astro";
-import StatusBadge from "../components/StatusBadge.astro";
-import ResearchFooter from "../components/ResearchFooter.astro";
+import PolicyFrameworkDashboard from "../components/research-components/PolicyFrameworkDashboard.astro";
+import ResearchMetrics from "../components/research-components/ResearchMetrics.astro";
+import IndexationDashboard from "../components/research-components/IndexationDashboard.astro";
+import FacultyShowcase from "../components/research-components/FacultyShowcase.astro";
+import StatusBadge from "../components/research-components/StatusBadge.astro";
+import ResearchFooter from "../components/research-components/ResearchFooter.astro";
 ---
 
 <ScrollSnapLayout
@@ -22,23 +21,23 @@ import ResearchFooter from "../components/ResearchFooter.astro";
   <!-- SNAP 1 // Hero -->
   <HeroSection
     variant="research"
-    title="Research &"
-    accentTitle="Innovation"
+    title="Research & Innovation"
     subtitle="Pillar 01 / Research • Department of Computer Science"
   >
     <Navbar
     />
 
     <p class="mt-6 mb-0 max-w-xl text-[13px] sm:text-[14px] font-medium leading-[1.6] text-white/90">
-      39 completed studies, 24 refereed publications, and 225 citations. Research
-      that is published, presented, cited, recognized, and used.
+      Completed research, disseminated publications, high-impact indexation rates, and faculty
+      research involvement shaping the future of information systems and computer vision.
+      with 39 completed studies, 24 refereed publications, and 225 citations.
     </p>
 
     <p class="mt-3.5 mb-0 max-w-xl text-[11.5px] sm:text-[12px] leading-[1.65] text-white/60">
-      The University envisions itself as a premier center of research in social
-      capital and innovation towards inclusive growth for national development.
-      Five active projects have target completion dates from July 2026 to
-      January 2028.
+      The College of Computer and Information Sciences translate the University's general research themes
+      into program research areas that reflect the role of computing, information technology, and digital Innovation
+      in addressing contemporary challenges.
+      
     </p>
   </HeroSection>
 
@@ -49,10 +48,10 @@ import ResearchFooter from "../components/ResearchFooter.astro";
     category="Research Agenda & Quality Assurance"
   >
     <PolicyFrameworkDashboard
-      manualLabel="BSCS AREA 1 — RESEARCH NARRATIVE"
+      manualLabel="ACCESS FULL PUP RESEARCH & DEVELOPMENT MANUAL"
       manualUrl="https://tinyurl.com/DCSArea1Research"
       openInNewTab={true}
-      sourceNote="SOURCE: BSCS AREA 1 — RESEARCH • UPDATED NOVEMBER 20"
+      sourceNote="SOURCE: BSCS AREA 1 — RESEARCH"
     />
   </ContentSection>
 
