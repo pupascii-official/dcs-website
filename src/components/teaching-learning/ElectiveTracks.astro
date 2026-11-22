@@ -1,0 +1,59 @@
+---
+import ElectiveCard from "./ElectiveCard.astro";
+// import {
+//     ChartLine,
+//     Search,
+//     Brain,
+//     MessageSquare
+// } from "lucide-react";
+---
+
+<section class="p-4 md:p-6">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2">
+
+        <ElectiveCard
+            track="TRACK 01"
+            category="Analytics & Visualization"
+            title="Data Science"
+            description="Collecting, cleaning, analyzing, and visualizing structured/unstructured data using statistical methods and programming tools."
+            image="/images/tracks/data-science.jpg"
+            tags={["Statistical Modeling", "Data Wrangling", "Visual Analytics"]}
+        >
+            <!-- <ChartLine slot="icon" size={20} /> -->
+        </ElectiveCard>
+
+        <ElectiveCard
+            track="TRACK 02"
+            category="Pattern Discovery"
+            title="Data Mining"
+            description="Discovering patterns, correlations, and anomalies in massive datasets via clustering, classification, and association rules."
+            image="/images/tracks/data-mining.jpg"
+            tags={["Clustering", "Classification", "Association Rules"]}
+        >
+            <!-- <Search slot="icon" size={20} /> -->
+        </ElectiveCard>
+
+        <ElectiveCard
+            track="TRACK 03"
+            category="Neural & Predictive AI"
+            title="Machine Learning"
+            description="Designing and training supervised/unsupervised algorithms, neural networks, and predictive models from data."
+            image="/images/tracks/machine-learning.jpg"
+            tags={["Supervised & Unsupervised", "Neural Networks", "Predictive Models"]}
+        >
+            <!-- <Brain slot="icon" size={20} /> -->
+        </ElectiveCard>
+
+        <ElectiveCard
+            track="TRACK 04"
+            category="Language & Speech AI"
+            title="Natural Language Processing (NLP)"
+            description="Enabling computers to process and generate human language—chatbots, sentiment analysis, translation, and speech."
+            image="/images/tracks/nlp.jpg"
+            tags={["Sentiment Analysis", "Chatbots & LLMs", "Speech & Translation"]}
+        >
+            <!-- <MessageSquare slot="icon" size={20} /> -->
+        </ElectiveCard>
+
+    </div>
+</section>

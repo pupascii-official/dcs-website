@@ -1,0 +1,40 @@
+---
+interface Props {
+    sectionLabel: string;
+    title: string;
+}
+
+const { sectionLabel, title } = Astro.props;
+---
+
+<section class="content-section">
+    <div class="section-inner">
+        <header class="section-header">
+            <div class="header-top">
+                <small>{sectionLabel}</small>
+            </div>                
+            <h2 class="my-5">{title}</h2>
+        </header>
+
+        <div class="section-body">
+            <slot/>
+        </div>
+    </div>
+</section>
+
+<style>
+    .content-section {
+        background-color: var(--color-bg-canvas);
+    }
+
+    .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .header-top {
+        border-left: 3px solid var(--color-maroon);
+        padding-left: 1rem;
+        margin-block-end: 1rem;
+    }
+</style>
