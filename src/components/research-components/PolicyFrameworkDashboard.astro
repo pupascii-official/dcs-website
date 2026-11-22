@@ -101,9 +101,10 @@ const {
   manualLabel = "ACCESS FULL PUP RESEARCH & DEVELOPMENT MANUAL",
   manualUrl = "https://tinyurl.com/DCSArea1Research",
   openInNewTab = true,
-  sourceNote = "SOURCE: BSCS AREA 1 — RESEARCH",
+  sourceNote = "BSCS AREA 1 — RESEARCH",
   class: className = "",
 } = Astro.props;
+const manualDialogId = "pup-research-manual-modal";
 ---
 
 <div class={`space-y-4 ${className}`} data-policy-dashboard>
@@ -163,13 +164,14 @@ const {
     </div>
   </div>
 
-   <!-- Centered Research Narrative CTA -->
+  <!-- Centered Research Narrative CTA -->
   <div class="flex flex-col items-center gap-1.5 pt-0.5 w-full">
     <ActionButton
       label={manualLabel}
-      href={manualUrl}
-      target={openInNewTab ? "_blank" : undefined}
-      rel={openInNewTab ? "noopener noreferrer" : undefined}
+      href={manualUrl || undefined}
+      target={manualUrl && openInNewTab ? "_blank" : undefined}
+      rel={manualUrl && openInNewTab ? "noopener noreferrer" : undefined}
+      modalTarget={!manualUrl ? manualDialogId : undefined}
       variant="research-manual"
       class="w-full max-w-[460px] sm:w-auto sm:max-w-none sm:min-w-[380px]"
     />
@@ -182,6 +184,79 @@ const {
     }
   </div>
 </div>
+
+{
+  !manualUrl && (
+    <dialog
+      id={manualDialogId}
+      aria-labelledby={`${manualDialogId}-title`}
+      class="m-auto w-[min(94vw,680px)] rounded-2xl border-[1.5px] border-[#780000] bg-white p-0 shadow-[0_28px_60px_-15px_rgba(60,0,0,0.4)] backdrop:bg-black/55 backdrop:backdrop-blur-[2px] overflow-hidden"
+    >
+      <div class="flex items-center justify-between bg-[#780000] px-5 py-3 text-white">
+        <span
+          id={`${manualDialogId}-title`}
+          class="font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.12em] uppercase"
+        >
+          PUP RESEARCH &amp; DEVELOPMENT MANUAL
+        </span>
+        <button
+          type="button"
+          data-manual-close
+          aria-label="Close research manual"
+          class="inline-flex h-7 w-7 items-center justify-center rounded-md text-white/85 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 max-h-[82vh] overflow-y-auto text-neutral-700 text-[13px] leading-relaxed">
+        <div>
+          <p class="font-['Montserrat',sans-serif] text-[10px] font-extrabold tracking-[0.12em] uppercase text-[#C89416]">
+            BSCS AREA 1 — RESEARCH • POLICY &amp; GOVERNANCE
+          </p>
+          <h3 class="mt-1 font-['Montserrat',sans-serif] text-[20px] font-black text-neutral-950">
+            Research Agenda, Ethics &amp; Dissemination Framework
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="rounded-xl border border-[#800000]/15 bg-[#FCF9F8] p-3.5">
+            <p class="font-['Montserrat',sans-serif] text-[10px] font-extrabold uppercase tracking-wider text-[#800000]">
+              01 // University Agenda
+            </p>
+            <p class="mt-1 text-[12px] text-neutral-600">
+              Aligned with PDP 2023–2028, DOST HNRDA, and CHED SDG-based research priorities.
+            </p>
+          </div>
+          <div class="rounded-xl border border-[#800000]/15 bg-[#FCF9F8] p-3.5">
+            <p class="font-['Montserrat',sans-serif] text-[10px] font-extrabold uppercase tracking-wider text-[#800000]">
+              02 // Quality Assurance
+            </p>
+            <p class="mt-1 text-[12px] text-neutral-600">
+              Internal ethics review, RA 10173 data privacy compliance, and similarity checking.
+            </p>
+          </div>
+          <div class="rounded-xl border border-[#800000]/15 bg-[#FCF9F8] p-3.5">
+            <p class="font-['Montserrat',sans-serif] text-[10px] font-extrabold uppercase tracking-wider text-[#800000]">
+              03 // Core CCIS Domains
+            </p>
+            <p class="mt-1 text-[12px] text-neutral-600">
+              Educational technology, soft infrastructure, business processing, communication, and green tech.
+            </p>
+          </div>
+          <div class="rounded-xl border border-[#800000]/15 bg-[#FCF9F8] p-3.5">
+            <p class="font-['Montserrat',sans-serif] text-[10px] font-extrabold uppercase tracking-wider text-[#800000]">
+              04 // Dissemination Support
+            </p>
+            <p class="mt-1 text-[12px] text-neutral-600">
+              Faculty co-authorship clinics, conference grants, and Scopus/IEEE/WoS venue vetting.
+            </p>
+          </div>
+        </div>
+      </div>
+    </dialog>
+  )
+}
 
 <style>
   .policy-dashboard-shell {
@@ -231,6 +306,25 @@ const {
           }
         });
       });
+
+      const manualBtn = root.querySelector("[data-modal-open]");
+      const manualDialogId = manualBtn?.getAttribute("data-modal-open");
+      const manualDialog = manualDialogId ? document.getElementById(manualDialogId) : null;
+      if (manualBtn && manualDialog) {
+        manualBtn.addEventListener("click", () => {
+          if (typeof manualDialog.showModal === "function") {
+            manualDialog.showModal();
+          }
+        });
+        manualDialog.addEventListener("click", (e) => {
+          const t = e.target;
+          if (t === manualDialog || (t instanceof Element && t.closest("[data-manual-close]"))) {
+            if (typeof manualDialog.close === "function") {
+              manualDialog.close();
+            }
+          }
+        });
+      }
     });
   })();
 </script>

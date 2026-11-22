@@ -17,6 +17,7 @@ export interface Props {
   active?: boolean;
   iconDirection?: "prev" | "next";
   ariaLabel?: string;
+  modalTarget?: string;
   class?: string;
 }
 
@@ -29,6 +30,7 @@ const {
   active = false,
   iconDirection = "next",
   ariaLabel,
+  modalTarget,
   class: className = "",
 } = Astro.props;
 
@@ -51,10 +53,11 @@ const styles: Record<ButtonVariant, string> = {
 ---
 
 <Tag
-  href={href}
+  href={href || undefined}
   target={href ? target : undefined}
   rel={href ? resolvedRel : undefined}
   type={!href ? "button" : undefined}
+  data-modal-open={modalTarget}
   aria-label={ariaLabel || label}
   class={`${styles[variant]} ${className}`}
 >
