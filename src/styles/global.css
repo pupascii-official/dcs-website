@@ -1,82 +1,85 @@
 @import "tailwindcss";
 
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 :root {
-	/* From Figma */
-	--color-white: #FFFFFF;
-	--color-maroon: #800000;
-	--color-gold: #FFDE00;
-	--color-dark-gold: #DAA520;
+    /* From Figma */
+    --color-white: #FFFFFF;
+    --color-maroon: #800000;
+    --color-gold: #FFDE00;
+    --color-dark-gold: #DAA520;
 
-	--color-dark-maroon: #420000;
-	--color-bg-canvas: #F7F7F7;
-	--color-text-body: #1A1414;
-	--color-border: #E2E2E2;
-	
-	--color-blue-1: #7EB2FF;
-	--color-blue-2: #0066FF;
-	--color-blue-3: #003E9A;
+    --color-dark-maroon: #420000;
+    --color-bg-canvas: #FAFAFA;
+    --color-text-body: #1A1414;
+    --color-border: #E2E2E2;
+
+    --color-blue-1: #7EB2FF;
+    --color-blue-2: #0066FF;
+    --color-blue-3: #003E9A;
 }
 
 body {
-	margin: 0;
-	font-size: medium;
-	font-family: var(--font-inter), system-ui, sans-serif;
-	font-weight: 400;
-	background-color: var(--color-bg-canvas);
-	color: var(--color-text-body);
-	line-height: 1.6;
+    margin: 0;
+    font-size: medium;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 400;
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-body);
+    line-height: 1.6;
 }
 
 strong,
 b {
-	font-weight: 600;
+    font-weight: 600;
 }
 
 small {
-	color: var(--color-dark-gold);
-	font-size: small;
-	font-family: var(--font-inter), system-ui, sans-serif;
-	font-weight: 600;
-	margin: 0;
+    color: var(--color-dark-gold);
+    font-size: small;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 600;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: var(--font-montserrat), system-ui, sans-serif;
-	margin-top: 0;
-	line-height: 1.15;
-	color: var(--color-maroon);
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    margin-top: 0;
+    line-height: 1.15;
+    color: var(--color-maroon);
+    font-weight: 800;
 }
 
 .hero h1 {
-	color: var(--color-white);
+    color: var(--color-white);
 }
 
 h1 {
-	font-size: xxx-large;
+    font-size: xxx-large;
 }
+
 h2 {
-	font-size: xx-large;
+    font-size: xx-large;
 }
 
 
 p {
-	margin-bottom: 1em;
+    margin-bottom: 1em;
 }
+
 .prose p {
-	margin-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 textarea {
-	width: 100%;
-	font-size: 16px;
+    width: 100%;
+    font-size: 16px;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
