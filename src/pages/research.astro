@@ -9,7 +9,6 @@ import PolicyFrameworkDashboard from "../components/research-components/PolicyFr
 import ResearchMetrics from "../components/research-components/ResearchMetrics.astro";
 import IndexationDashboard from "../components/research-components/IndexationDashboard.astro";
 import FacultyShowcase from "../components/research-components/FacultyShowcase.astro";
-import StatusBadge from "../components/research-components/StatusBadge.astro";
 import Footer from "../components/Footer.astro";
 ---
 
@@ -82,11 +81,6 @@ import Footer from "../components/Footer.astro";
         sectionLabel="SECTION 04 // TEAM & SCHOLARS"
         category="Faculty Involved in Research"
       >
-        <StatusBadge
-          slot="action"
-          label="FACULTY PUBLICATION CONTRIBUTIONS • 2021–2025"
-          variant="faculty-guidance"
-        />
         <FacultyShowcase showHeading={false} guidanceLabel="" />
       </ContentSection>
     </div>
