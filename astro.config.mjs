@@ -1,9 +1,14 @@
-import { defineConfig, fontProviders } from "astro/config";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import react from "@astrojs/react";
-import svelte from "@astrojs/svelte";
+// @ts-check
+
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
+import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
+import react from '@astrojs/react';
+
+import svelte from '@astrojs/svelte';
+
+
 
 // https://astro.build/config
 export default defineConfig({
