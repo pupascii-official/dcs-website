@@ -1,0 +1,44 @@
+---
+interface Props {
+    category: string;
+    units: number;
+    description: string;
+}
+
+const {
+    category,
+    units,
+    description
+
+} = Astro.props;
+---
+
+<article class="overflow-hidden rounded-2xl border border-red-200 bg-white">
+    <!-- Category Header -->
+    <div class="bg-(--color-maroon) px-3 py-2 text-center">
+        <h3 class="category text-sm font-bold uppercase">
+            {category}
+        </h3>
+    </div>
+
+    <!-- Card Content -->
+    <div class="flex flex-col items-center px-4 py-3 text-center">
+        <span class="text-3xl font-bold leading-none text-(--color-maroon)">
+            {units}
+        </span>
+
+        <span class="mt-1 text-xs font-bold uppercase text-(--color-dark-gold)">
+            Units
+        </span>
+
+        <p class="mt-2 text-xs leading-relaxed text-(--color-text-body)">
+            {description}
+        </p>
+    </div>
+</article>
+
+<style>
+    .category {
+        color: var(--color-gold);
+    }
+</style>
