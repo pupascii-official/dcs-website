@@ -1,121 +1,46 @@
 ---
-import HeadlineComponent from "./HeadlineComponent.astro";
-
 interface Props {
-	sectionLabel: string;
-	category: string;
-	title?: string;
-	description?: string;
-	surface?: "canvas" | "white";
-	snap?: boolean;
-	class?: string;
+    sectionLabel: string;
+    category: string;
+    description?: string;
 }
 
-const {
-	sectionLabel,
-	category,
-	title,
-	description,
-	surface = "canvas",
-	snap = true,
-	class: className = "",
-} = Astro.props;
+const {sectionLabel, category, description} = Astro.props;
 ---
 
-{
-	surface === "white" ? (
-		<section
-			class={
-				snap
-					? `scroll-section w-full bg-white flex flex-col ${className}`
-					: `w-full bg-white ${className}`
-			}
-		>
-			<div
-				class={
-					snap
-						? "my-auto mx-auto w-full max-w-6xl px-6 sm:px-10 py-6 sm:py-8"
-						: "mx-auto w-full max-w-6xl px-6 sm:px-10"
-				}
-			>
-				<HeadlineComponent
-					variant="section"
-					kicker={sectionLabel}
-					headline={category}
-					class="mb-5 sm:mb-6"
-				>
-					{
-						Astro.slots.has("action") && (
-							<Fragment slot="action">
-								<slot name="action" />
-							</Fragment>
-						)
-					}
-				</HeadlineComponent>
+<section class="scroll-section content-section">
+    <div class="section-inner">
+        <header class="section-header">
+            <div class="header-top">
+                <small>{sectionLabel}</small>
+                <h2 class="category">{category}</h2>
+            </div>
+            {description && <p class="description">{description}</p>}
+        </header>
 
-				{title && (
-					<h3 class="mb-2 font-display text-lg font-extrabold text-neutral-900">
-						{title}
-					</h3>
-				)}
-				{description && (
-					<p class="mb-6 text-sm text-neutral-600">{description}</p>
-				)}
-
-				<div class="section-body">
-					<slot />
-				</div>
-			</div>
-		</section>
-	) : (
-		<section class={`${snap ? "scroll-section " : ""}content-section ${className}`}>
-			<div class="section-inner">
-				<header
-					class={
-						Astro.slots.has("action")
-							? "section-header flex flex-wrap items-center justify-between gap-4"
-							: "section-header"
-					}
-				>
-					<div>
-						<div class="header-top">
-							<small>{sectionLabel}</small>
-							<h2 class="category">{category}</h2>
-						</div>
-						{title && <h3 class="main-title">{title}</h3>}
-						{description && <p class="description">{description}</p>}
-					</div>
-
-					{
-						Astro.slots.has("action") && (
-							<div class="shrink-0">
-								<slot name="action" />
-							</div>
-						)
-					}
-				</header>
-
-				<div class="section-body">
-					<slot />
-				</div>
-			</div>
-		</section>
-	)
-}
+        <div class="section-body">
+            <slot/>
+        </div>
+    </div>
+</section>
 
 <style>
-.content-section {
-	  background-color: var(--color-bg-canvas);
-	  padding: 3rem 2rem;
-}
+    .content-section {
+        background-color: var(--color-bg-canvas);
+        padding: 3rem 2rem;
+    }
 
-.section-inner {
-	  max-width: 1100px;
-	  margin: 0 auto;
-}
+    .category {
+        margin-bottom: 1.5rem;
+    }
 
-.header-top {
-	   border-left: 3px solid var(--color-maroon);
-	   padding-left: 1rem;
-}
+    .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .header-top {
+        border-left: 3px solid var(--color-maroon);
+        padding-left: 1rem;
+    }
 </style>

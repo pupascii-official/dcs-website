@@ -1,87 +1,36 @@
 ---
 interface Props {
-	kicker?: string;
-	headline: string;
-	variant?: "default" | "section";
-	id?: string;
-	class?: string;
+    kicker?: string;
+    headline: string;
 }
 
-const {
-	kicker,
-	headline,
-	variant = "default",
-	id,
-	class: className = "",
-} = Astro.props;
+const {kicker, headline} = Astro.props;
 ---
 
-{
-	variant === "section" ? (
-		<header class={`flex flex-wrap items-center justify-between gap-4 ${className}`}>
-			<div class="flex items-stretch gap-3.5 sm:gap-4">
-				<span
-					aria-hidden="true"
-					class="w-[3.5px] shrink-0 rounded-full bg-[#780000]"
-				></span>
-				<div class="flex flex-col justify-center">
-					{kicker && (
-						<p class="mb-0 font-heading text-[10.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase text-[#C89416] leading-tight">
-							{kicker}
-						</p>
-					)}
-					<h2
-						id={id}
-						class="mt-1 mb-0 font-display text-[26px] sm:text-[32px] font-black tracking-[-0.02em] leading-[1.1] text-[#141414]"
-					>
-						{headline}
-					</h2>
-				</div>
-			</div>
+<div class="headline-component">
+    <div class="headline-content">
+        {kicker && <small class="headline-kicker">{kicker}</small>}
+        <h3 class="headline-text">{headline}</h3>
 
-			{Astro.slots.has("action") && (
-				<div class="shrink-0">
-					<slot name="action" />
-				</div>
-			)}
-
-			{Astro.slots.has("default") && (
-				<div class="w-full text-sm text-neutral-600">
-					<slot />
-				</div>
-			)}
-		</header>
-	) : (
-		<section class={`headline-component ${className}`}>
-			<div class="headline-content">
-				{kicker && <small class="headline-kicker">{kicker}</small>}
-				<h1 id={id} class="headline-text">{headline}</h1>
-
-				<div class="headline-description">
-					<slot />
-				</div>
-			</div>
-		</section>
-	)
-}
+        <div class="headline-description">
+            <slot/>
+        </div>
+    </div>
+</div>
 
 <style>
-	.headline-content {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-	}
+    .headline-content {
 
-	.headline-kicker {
-		font-size: large;
-		color: var(--color-text-body);
-	}
+    .headline-kicker {
+        font-size: large;
+        color: var(--color-text-body);
+    }
 
-	.headline-text {
-		background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-		background-clip: text;
-		color: transparent;
-
-		margin-bottom: 0;
-	}
+    .headline-text {
+        font-size: clamp(2rem, 4vw, 3rem);
+        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 0;
+    }
 </style>
