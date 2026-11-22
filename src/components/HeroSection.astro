@@ -1,19 +1,19 @@
 ---
 interface Props {
-    title: string
-    subtitle: string
+    title: string;
+    subtitle: string;
 }
 
-const { title, subtitle } = Astro.props;
+const {title, subtitle} = Astro.props;
 ---
 
 <section class="scroll-section hero">
     <div class="hero-content">
         <h1 class="title">{title}</h1>
-        <h2 class="subtitle">{subtitle}</h2>
+        <p class="subtitle">{subtitle}</p>
 
         <div class="hero-slot-content">
-            <slot />
+            <slot/>
         </div>
     </div>
 </section>
@@ -21,8 +21,7 @@ const { title, subtitle } = Astro.props;
 <style>
     .hero {
         background: linear-gradient(to bottom, var(--color-dark-maroon), var(--color-maroon));
-        /* I adapted this linear-gradient code from Elijah */
-        color: white;
+        color: var(--color-white);
         padding: 2rem;
 
         display: flex;
@@ -33,7 +32,7 @@ const { title, subtitle } = Astro.props;
 
     .title {
         font-size: clamp(3rem, 8vw, 6rem);
-        margin: 1.5rem;
+        margin: 1rem 0;
     }
 
     .subtitle {
@@ -41,12 +40,11 @@ const { title, subtitle } = Astro.props;
         font-size: medium;
         font-family: var(--font-inter), system-ui, sans-serif;
         font-weight: 600;
-        margin: 0;
+        margin: 0 0 1rem;
     }
 
     .hero-content {
         max-width: 1100px;
-
         display: flex;
         flex-direction: column;
         align-items: center;
