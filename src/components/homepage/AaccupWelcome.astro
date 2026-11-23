@@ -1,0 +1,309 @@
+---
+import { ArrowUpRight } from 'lucide-react';
+import { getDocRef } from '../../lib/pdfs.server';
+import GradientASCII from '../react/GradientASCII';
+import ScrollReveal from '../react/ScrollReveal';
+import TextLoop from '../react/TextLoop';
+
+const documentRef = getDocRef('certificate-of-authenticity');
+const profiles = [
+	{
+		name: 'Dr. Myrna A. Coliat',
+		role: 'Team Leader',
+		institution: 'Batangas State University',
+		image: '/images/homepage/accreditors/Coliat.webp',
+	},
+	{
+		name: 'Dr. Annjeannette Alain D. Galang',
+		role: 'Accreditor',
+		institution: 'Mariano Marcos State University',
+		image: '/images/homepage/accreditors/Galang.webp',
+	},
+	{
+		name: 'Dr. Alberto D. Yazon',
+		role: 'Coordinator',
+		institution: 'Laguna State Polytechnic University',
+		image: '/images/homepage/accreditors/Yazon.webp',
+	},
+];
+---
+
+<section class="aaccup" aria-label="Welcome AACCUP Accreditors">
+	<div class="aaccup__effect" aria-hidden="true">
+		<GradientASCII
+			client:visible
+			colors={['#7d1019', '#fffdf7', '#ffde00', '#b78318']}
+			shape="horizon"
+			characters=" =+xX0S8#@"
+			cellSize={20}
+			density={0.36}
+			glyphOpacity={0.2}
+			gradientOpacity={0.32}
+			glow={0.06}
+			flicker={0.06}
+			softness={0.62}
+			flow={0.18}
+			speed={0.12}
+			grain={0.01}
+			mouseInteraction={false}
+			clickEffect="none"
+			lightMode={true}
+			dpr={1.25}
+		/>
+	</div>
+
+	<div class="aaccup__content">
+		<ScrollReveal
+			client:visible
+			containerClassName="aaccup__title"
+			textClassName="aaccup__title-text"
+			mode="enter"
+			splitBy="words"
+			effect="fade"
+			stagger={0.06}
+			duration={0.72}
+			baseOpacity={0.18}
+			baseRotation={0}
+			enableBlur={true}
+			blurStrength={2}
+		>
+			{'Welcome\nAACCUP Accreditors!'}
+		</ScrollReveal>
+
+		<p class="aaccup__date">Level IV Cycle II Accreditation Visit <span aria-hidden="true">·</span> November 2026</p>
+
+		{documentRef && (
+			<button
+				class="aaccup__document"
+				type="button"
+				data-doc-ref={documentRef}
+				data-pdf-title="Certificate of Authenticity"
+				aria-label="Open Certificate of Authenticity PDF"
+			>
+				<span class="aaccup__document-copy">
+					<span class="aaccup__document-meta">Quality Assurance Center · PDF</span>
+					<span class="aaccup__document-action">Open certificate <ArrowUpRight size={13} strokeWidth={1.8} aria-hidden="true" /></span>
+				</span>
+			</button>
+		)}
+
+		<div class="aaccup__profiles" aria-label="AACCUP accreditor profiles">
+			{profiles.map((profile) => (
+				<article class="aaccup__profile">
+					<img src={profile.image} alt="" width="96" height="96" loading="lazy" decoding="async" />
+					<div class="aaccup__profile-copy">
+						<span>{profile.role}</span>
+						<h2>{profile.name}</h2>
+						<p>{profile.institution}</p>
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
+
+	<div class="aaccup__divider" aria-hidden="true">
+		<TextLoop
+			client:visible
+			className="aaccup__loop"
+            text="ㅤㅤPolytechnic University of the Philippines ㅤㅤ|ㅤ ㅤCollege of Computer and Information Sciences ㅤㅤ|ㅤㅤ Department of Computer Scienceㅤㅤㅤ"
+			shape="line"
+			speed={36}
+			direction="forward"
+            separator=""
+            separatorImages={['/ccis-logo.png', '/dcs-logo.png', '/pup-logo.png']}
+            separatorImageSize={30}
+			fontSize={10}
+			fontWeight={600}
+			letterSpacing={0.7}
+			uppercase
+			ribbon
+			ribbonColor="#9d1e2c"
+			ribbonWidth={46}
+			edgeFade={0.08}
+			cross={false}
+			draggable={false}
+			scrollBoost={0}
+			outline={false}
+			pauseOnHover
+			color="#ffde00"
+		/>
+	</div>
+</section>
+
+<style>
+	.aaccup {
+		position: relative;
+		isolation: isolate;
+		display: grid;
+		min-height: 730px;
+		place-items: center;
+		overflow: hidden;
+		padding: clamp(4.5rem, 8vw, 7.5rem) var(--page-gutter, 1.5rem) 7rem;
+		background: #fff;
+		color: #201313;
+	}
+
+	.aaccup__effect {
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		pointer-events: none;
+		opacity: .62;
+	}
+
+	.aaccup__content {
+		width: min(100%, 1240px);
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.aaccup :global(.aaccup__title) {
+		position: relative;
+		width: max-content;
+		max-width: 100%;
+		margin: 0 auto;
+		padding-inline: 0;
+		background: transparent;
+		font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+		font-size: clamp(3rem, 6.4vw, 5.5rem);
+		font-weight: 700;
+		letter-spacing: -.075em;
+		line-height: .96;
+		text-wrap: balance;
+	}
+
+	.aaccup :global(.aaccup__title) { display: block; }
+	.aaccup :global(.aaccup__title-text) {
+		display: block;
+		background: linear-gradient(180deg, #8e1026 0%, #c63b35 100%);
+		background-clip: text;
+		color: transparent;
+		font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+		font-size: inherit;
+		font-weight: 700;
+		letter-spacing: inherit;
+		line-height: inherit;
+		white-space: pre-line;
+	}
+
+	.aaccup__date {
+		margin: clamp(.55rem, 1vw, .8rem) 0 0;
+		font-size: clamp(1rem, 1.45vw, 1.2rem);
+		letter-spacing: -.035em;
+		line-height: 1.4;
+		text-wrap: balance;
+	}
+
+	.aaccup__document {
+		display: inline-flex;
+		align-items: center;
+		gap: .45rem;
+		margin-top: clamp(.2rem, .5vw, .35rem);
+		padding: .15rem .1rem .2rem;
+		border: 0;
+		border-bottom: 1px solid #b7a354;
+		border-radius: 0;
+		background: transparent;
+		color: #801923;
+		cursor: pointer;
+		font: inherit;
+		text-align: left;
+		transition: border-color 180ms ease;
+	}
+
+	.aaccup__document:hover { border-color: #801923; }
+	.aaccup__document:focus-visible { outline: 2px solid #8b1721; outline-offset: 4px; }
+	.aaccup__document-copy { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .3rem; line-height: 1; }
+	.aaccup__document-meta, .aaccup__document-action { font-size: .7rem; }
+	.aaccup__document-meta { color: #625856; }
+	.aaccup__document-action { display: inline-flex; align-items: center; gap: .15rem; color: #801923; font-weight: 600; }
+
+	.aaccup__profiles {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		width: min(100%, 1160px);
+		margin: 1.6rem auto 0;
+	}
+
+	.aaccup__profile {
+		display: grid;
+		grid-template-columns: minmax(110px, .78fr) minmax(0, 1fr);
+		min-height: 260px;
+		min-width: 0;
+		overflow: hidden;
+		border-radius: 0 !important;
+		padding: 0;
+		border: 1px solid rgb(255 255 255 / 18%);
+		background: rgb(92 7 19 / 94%);
+		color: white;
+		text-align: left;
+		transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+	}
+
+	.aaccup__profile:hover { transform: translateY(-3px); border-color: rgb(228 195 110 / 72%); background: #640914; }
+
+	.aaccup__profile img {
+		width: 100%;
+		height: 100%;
+		min-height: 260px;
+		border-radius: 0 !important;
+		clip-path: none;
+		object-fit: cover;
+		object-position: center 24%;
+		filter: saturate(.82);
+		transition: transform 350ms ease;
+	}
+
+	.aaccup__profile:hover img { transform: scale(1.035); }
+	.aaccup__profile-copy { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; padding: 1.45rem 1.3rem; }
+	.aaccup__profile-copy > span { color: #ffde00; font-size: .66rem; font-weight: 700; letter-spacing: .07em; line-height: 1.5; text-transform: uppercase; }
+	.aaccup__profile-copy h2 { margin: auto 0 0; padding-top: 1.4rem; color: #fff; font-family: var(--font-montserrat), 'Montserrat', sans-serif; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.25; }
+	.aaccup__profile-copy p { margin: .25rem 0 0; color: rgb(255 255 255 / 65%); font-size: .74rem; }
+
+	.aaccup__divider {
+		position: absolute;
+		z-index: 1;
+		inset-inline: 0;
+		bottom: 0;
+		height: clamp(40px, 4vw, 50px);
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.aaccup__divider :global(.aaccup__loop) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: max(100%, 720px);
+		transform: translate(-50%, -50%);
+		font-family: var(--font-inter), Inter, sans-serif;
+	}
+
+	.aaccup__divider :global(.text-loop-svg) { display: block; width: 100%; height: auto; }
+
+	@media (max-width: 850px) {
+		.aaccup :global(.aaccup__title) { font-size: clamp(2.8rem, 6.5vw, 3.8rem); }
+	}
+
+	@media (max-width: 640px) {
+		.aaccup { min-height: 610px; padding-block: 4.5rem 5rem; }
+		.aaccup :global(.aaccup__title) { font-size: 2rem; letter-spacing: -.055em; line-height: .98; }
+		.aaccup__date { max-width: 38ch; margin: .7rem auto 0; }
+		.aaccup__document { max-width: 100%; gap: .4rem; margin-top: .2rem; padding-block: .1rem; }
+		.aaccup__document-copy { gap: .35rem; }
+		.aaccup__document-meta, .aaccup__document-action { font-size: .67rem; }
+		.aaccup__profiles { grid-template-columns: 1fr; gap: .85rem; margin-top: 1.25rem; }
+		.aaccup__profile { grid-template-columns: minmax(125px, .72fr) minmax(0, 1fr); min-height: 215px; }
+		.aaccup__profile img { min-height: 215px; }
+		.aaccup__profile-copy { padding: 1rem; }
+		.aaccup__profile-copy > span { font-size: .59rem; }
+		.aaccup__profile-copy h2 { padding-top: .8rem; font-size: 1.1rem; }
+		.aaccup__divider { height: 36px; }
+		.aaccup__divider :global(.aaccup__loop) { width: max(100%, 580px); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.aaccup__document, .aaccup__profile, .aaccup__profile img { transition: none; }
+	}
+</style>

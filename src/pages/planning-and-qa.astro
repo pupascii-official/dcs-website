@@ -13,7 +13,6 @@ import Timeline from '../components/Timeline.astro';
 import LinkCard from "../components/LinkCard.astro";
 import PillCard from '../components/PillCard.astro';
 import PDFModal from "../components/PDFModal.astro";
-import path from "node:path";
 
 const TIMELINE_ITEMS = [
     {
@@ -113,7 +112,10 @@ const PDCA_STEPS = [
 ---
 
 <ScrollSnapLayout title="Planning & QA" description="Test">
-    <HeroSection title="Planning & Quality Assurance" subtitle="Systematizing Plans for Excellence" }>
+    <HeroSection title="Planning &"
+    accentTitle="Quality Assurance">
+    <p>Systematizing Plans for Excellence</p>
+    
         <p>The College of Computer and Information Sciences, through its Bachelor of Science in Computer Science and
             Bachelor of Science in Information Technology programs, actively contributes to the University's
             institutional development through research, quality instruction, extension services, and continuous
@@ -556,7 +558,7 @@ const PDCA_STEPS = [
         gap: 0;
     }
 
-    @media (min-width: 800px) {
+    @media (min-width: 1000px) {
         .institutional-review-bar {
             grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
             align-items: center;
