@@ -109,7 +109,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- STUDENT ORGANIZATIONS -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="Presentation of Student Organizations"
             sectionLabel="SECTION 04C • STUDENTS OUTCOMES & ECO-SYSTEM">
@@ -123,7 +123,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- STUDENT ACHIEVEMENTS & AWARDS -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="Student Achievements & Awards"
             sectionLabel="SECTION 05 • STUDENT ACHIEVEMENTS & AWARDS">
@@ -137,7 +137,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- CS INTERNATIONAL STUDENTS -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="CS International Students"
             sectionLabel="SECTION 06 • INTERNATIONAL STUDENTS">
@@ -151,7 +151,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- ACCOMPLISHMENT REPORTS -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="Department & Program Accomplishment Reports"
             sectionLabel="SECTION 07 • ACCOMPLISHMENT REPORTS">
@@ -165,7 +165,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- NOTABLE ALUMNI -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="Notable BSCS Alumni"
             sectionLabel="SECTION 08 • NOTABLE ALUMNI • GRADUATE IMPACT">
@@ -179,7 +179,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- GRADUATE TRACER -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="BSCS Graduate Tracer"
             sectionLabel="SECTION 09 • GRADUATE TRACER">
@@ -193,7 +193,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- PEO ATTAINMENT SCORES -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="PEO Attainment Scores"
             sectionLabel="SECTION 10 • PEO ATTAINMENT SCORES">
@@ -207,7 +207,7 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
     </section>
 
     <!-- PICAB -->
-    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+    <section class="scroll-section scrollbar-none roomy-section mx-2">
         <SectionContent
             title="PICAB Accreditation"
             sectionLabel="SECTION 11 • PICAB ACCREDITATION">
@@ -224,7 +224,25 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
 </ScrollSnapLayout>
 
 <style>
-    section {
-        
+    :global(.scroll-section.roomy-section) {
+        height: auto;
+        overflow-y: visible;
+        padding-top: 2rem !important;
+    }
+
+    :global(.scroll-section.roomy-section .section-inner) {
+        max-width: 1400px;
+    }
+
+    @media (min-width: 768px) {
+        :global(.scroll-section.roomy-section) {
+            padding-top: 2.5rem !important;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        :global(.scroll-section.roomy-section) {
+            padding-top: 3rem !important;
+        }
     }
 </style>

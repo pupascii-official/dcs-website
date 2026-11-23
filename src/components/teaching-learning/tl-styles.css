@@ -1836,6 +1836,361 @@ button {
     align-items: flex-start;
   }
 }
+/* Notable Alumni page layout */
+#page-notable-alumni .ascii-container {
+  max-width: 960px;
+}
+
+.ascii-tint-sec {
+  background: #FAF7F7;
+  padding: 72px 24px;
+}
+
+.tl-faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 16px;
+}
+
+.tl-faculty-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1.5px solid rgba(128, 0, 0, 0.25);
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(61, 0, 0, 0.06);
+}
+
+.tl-faculty-card > div:last-child {
+  padding: 18px 20px 20px;
+}
+
+/* Alumni portrait and batch label */
+.tl-portrait-frame {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  padding: 12px 12px 44px;
+  overflow: hidden;
+  background: linear-gradient(155deg, #3D0000 0%, #800000 62%, #B8860B 100%);
+  border-bottom: 3px solid var(--color-gold);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.tl-portrait-img {
+  width: 188px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 222, 0, 0.72);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  display: block;
+}
+
+.tl-portrait-tag {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 222, 0, 0.45);
+  color: var(--color-gold);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Alumni card content */
+.tl-faculty-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.alumni-profile-card {
+  height: 100%;
+  align-items: stretch;
+}
+
+.alumni-profile-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.alumni-overview {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #374151;
+  margin: 0 0 10px;
+}
+
+.alumni-overview strong {
+  color: var(--color-maroon);
+}
+
+.alumni-card-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  width: 100%;
+}
+
+.btn-alumni-drive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #800000 0%, #5C0000 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid rgba(255, 222, 0, 0.45);
+  box-shadow: 0 4px 14px rgba(128, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-alumni-drive:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #990000 0%, #6D0000 100%);
+  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.28);
+  color: var(--color-gold);
+}
+
+/* Clickable portrait and keyboard focus */
+.alumni-profile-card .tl-portrait-frame {
+  cursor: pointer;
+}
+
+.alumni-profile-card .tl-portrait-frame .tl-portrait-img {
+  transition: transform 0.25s ease;
+}
+
+.alumni-profile-card .tl-portrait-frame:hover .tl-portrait-img,
+.alumni-profile-card .tl-portrait-frame:focus-visible .tl-portrait-img {
+  transform: scale(1.04);
+}
+
+.alumni-profile-card .tl-portrait-frame:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: -3px;
+}
+
+/* Modal */
+.roadmap-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(24, 8, 8, 0.56);
+  backdrop-filter: blur(4px);
+}
+
+.roadmap-modal-backdrop[hidden] {
+  display: none;
+}
+
+.roadmap-modal-dialog {
+  width: 100%;
+  max-width: 560px;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(128, 0, 0, 0.16);
+  border-top: 4px solid var(--color-maroon);
+  box-shadow: 0 24px 56px rgba(24, 0, 0, 0.28);
+  padding: 24px 26px;
+  animation: roadmapModalIn 0.18s ease-out;
+}
+
+@keyframes roadmapModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.roadmap-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.roadmap-modal-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tl-award-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: var(--radius-pill);
+  background: rgba(128, 0, 0, 0.07);
+  border: 1px solid rgba(128, 0, 0, 0.18);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+}
+
+.roadmap-modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.18);
+  background: #FBF0F0;
+  color: var(--color-maroon);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.roadmap-modal-close:hover {
+  background: #F5DADA;
+  transform: scale(1.05);
+}
+
+.roadmap-modal-body p {
+  color: #374151;
+  font-size: 0.96rem;
+  line-height: 1.68;
+  margin: 0 0 16px;
+}
+
+.roadmap-modal-body p strong {
+  color: var(--color-maroon);
+  font-weight: 700;
+}
+
+#alumniModalBody ul.tl-faculty-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.roadmap-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(128, 0, 0, 0.12);
+}
+
+.roadmap-modal-nav {
+  padding: 7px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.22);
+  background: #FFFFFF;
+  color: var(--color-maroon);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.roadmap-modal-nav:hover:not(:disabled) {
+  background: #FBF0F0;
+  border-color: var(--color-maroon);
+}
+
+.roadmap-modal-nav:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* Modal profile header */
+.intl-modal-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.intl-modal-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(128, 0, 0, 0.14);
+}
+
+.intl-modal-meta h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+}
+
+.intl-modal-univ {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+/* Responsive layout */
+@media (max-width: 620px) {
+  .tl-faculty-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .intl-modal-profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 /* FOR NOTABLE ALUMNI */
 
 
