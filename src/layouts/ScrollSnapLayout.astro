@@ -1,5 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import ScrollBar from "../components/ScrollBar.astro";
 interface Props {
     title: string
     description: string
@@ -19,6 +20,7 @@ const {title, description} = Astro.props;
         <!-- Everything inside <ScrollSnapLayout> should appear inside the slot -->
         <slot/>
     </main>
+    <ScrollBar/>
 </body>
 
 </html>
