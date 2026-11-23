@@ -67,6 +67,7 @@ const links = [
                         <li>
                             <a
                                 href={link.href}
+                                data-label={link.label}
                                 class:list={["nav-link", { active: isActive }]}
                             >
                                 {link.label}
@@ -197,12 +198,26 @@ const links = [
     }
 
     .nav-link {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
         text-decoration: none;
         color: var(--color-text-body);
         font-size: 0.825rem;
         font-weight: 500;
         white-space: nowrap;
         transition: color 0.2s ease;
+    }
+
+    .nav-link::after {
+        content: attr(data-label);
+        content: attr(data-label) / "";
+        height: 0;
+        font-weight: 600;
+        visibility: hidden;
+        overflow: hidden;
+        pointer-events: none;
+        user-select: none;
     }
 
     .nav-link:hover,
