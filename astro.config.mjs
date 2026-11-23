@@ -8,7 +8,7 @@ import react from '@astrojs/react';
 
 import svelte from '@astrojs/svelte';
 
-
+import JavaScriptObfuscator from 'javascript-obfuscator';
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,6 +29,50 @@ export default defineConfig({
         },
     ],
     vite: {
-      plugins: [tailwindcss()],
+        plugins: [
+            {
+                name: "obfuscate-pdf-decoder",
+                apply: "build",
+                enforce: "post",
+                generateBundle(_options, bundle) {
+                    for (const item of Object.values(bundle)) {
+                        if (item.type !== "chunk") continue;
+
+                        const isPdfDecoderChunk = item.moduleIds.some((id) => {
+                            const lower = id.toLowerCase();
+                            return (
+                                lower.includes("pdfmodal.astro") ||
+                                lower.includes("pdfconfig")
+                            );
+                        });
+
+                        if (!isPdfDecoderChunk) continue;
+
+                        const obfuscated = JavaScriptObfuscator.obfuscate(
+                            item.code,
+                            {
+                                compact: true,
+                                controlFlowFlattening: true,
+                                controlFlowFlatteningThreshold: 0.75,
+                                deadCodeInjection: true,
+                                deadCodeInjectionThreshold: 0.4,
+                                ignoreImports: true,
+                                numbersToExpressions: true,
+                                splitStrings: true,
+                                splitStringsChunkLength: 5,
+                                stringArray: true,
+                                stringArrayEncoding: ["base64"],
+                                stringArrayRotate: true,
+                                stringArrayShuffle: true,
+                                stringArrayThreshold: 1,
+                            }
+                        );
+
+                        item.code = obfuscated.getObfuscatedCode();
+                    }
+                },
+            },
+            tailwindcss()
+        ],
     },
 });
