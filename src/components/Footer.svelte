@@ -34,6 +34,29 @@
 <footer class="site_footer">
 	<div class="footer_body">
 		<div class="footer_lead">
+			<div class="footer_logos">
+				<img
+					class="footer_seal"
+					src="/pup-logo.png"
+					alt="PUP Seal"
+					width="64"
+					height="64"
+				/>
+				<img
+					class="footer_seal"
+					src="/ccis-logo.png"
+					alt="CCIS Seal"
+					width="64"
+					height="64"
+				/>
+				<img
+					class="footer_seal"
+					src="/dcs-logo.png"
+					alt="DCS Seal"
+					width="64"
+					height="64"
+				/>
+			</div>
 			<p class="footer_kicker">
 				Polytechnic University of the Philippines
 			</p>
@@ -134,6 +157,20 @@
 
 	.footer_lead {
 		align-self: center;
+	}
+
+	.footer_logos {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.footer_seal {
+		display: block;
+		width: 64px;
+		height: 64px;
+		object-fit: contain;
 	}
 
 	.footer_kicker,
