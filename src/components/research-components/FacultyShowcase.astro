@@ -6,6 +6,7 @@ export interface PublicationEntry {
   title: string;
   journal: string;
   datePublished: string;
+  doi?: string;
 }
 
 export interface FacultyMember {
@@ -52,78 +53,91 @@ const {
           title: "Parallel Ensemble Approach for Named Entity Recognition in Filipino Text",
           journal: "Association for Computing Machinery (ACM)",
           datePublished: "July 9, 2025",
+          doi: "https://doi.org/10.1145/3719384.3719444",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Automated Translation between Bicolano and Tagalog using Transfer-Based Model",
           journal: "Association for Computing Machinery (ACM)",
           datePublished: "July 9, 2025",
+          doi: "https://doi.org/10.1145/3719384.3719449",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Filipino Genz Slang Sentiment Analyzer using BERT",
           journal: "World Academy of Science, Engineering and Technology (WCSE)",
           datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.013",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Palayan: Forecasting Rice Crop Loss on Typhoons using PSO-SVR",
           journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
           datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-10",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Artificial Intelligence as Support in Knowledge Management for Human Resource Management",
           journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
           datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-11",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Sentiment Analysis on Product Review using Sarcasm, Emoticon, and Internet Slang Detection",
           journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
           datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-12",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Antonym and Meronym Identification as an Aid for Filipino Corpus Builder",
           journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
           datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-13",
         },
         {
           authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
           title: "Automated Filipino Language Treebank Generator",
           journal: "Association for Computing Machinery",
           datePublished: "March 5, 2024",
+          doi: "https://doi.org/10.1145/3639233.3639238",
         },
         {
           authors: "Acasomoso Jr, Dominador M.; Sagum, Ria A.",
           title: "SEAMS: A Smart and Efficient Attendance Management System with Attendance Prediction and Forecasting",
           journal: "Association for Computing Machinery (ACM)",
           datePublished: "December 14, 2023",
+          doi: "https://doi.org/10.1145/3638985.3639010",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Spider Plus: A Text Classifier for Research Article Components",
           journal: "Procedia Computer Science",
           datePublished: "November 25, 2023",
+          doi: "https://doi.org/10.1016/j.procs.2023.10.515",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Philippine Supreme Court Case Summarizer using Latent Semantic Analysis",
           journal: "Procedia Computer Science",
           datePublished: "November 25, 2023",
+          doi: "https://doi.org/10.1016/j.procs.2023.10.548",
         },
         {
           authors: "Sagum, Ria A.",
           title: "High-Performance Work Practices, Employee Engagement, and Employee Performance: The Case of a Philippine State University",
           journal: "Modern Perspectives and Current Trends in Asian Education, Psychology, and Sociology",
           datePublished: "October 24, 2023",
+          doi: "https://doi.org/10.4018/978-1-6684-7375-7.ch003",
         },
         {
           authors: "Sagum, Ria A.",
           title: "Application of Associative Classifier for Data Sparsity in Predictive Analysis Recommendation",
           journal: "2021 IEEE 13th International Conference on Humanoid, Nanotechnology, Information Technology, Communication and Control, Environment, and Management (HNICEM)",
           datePublished: "November 2021",
+          doi: "https://doi.org/10.1109/HNICEM54116.2021.9731908",
         },
       ],
     },
@@ -142,36 +156,42 @@ const {
           title: "Risk Statement Classifier using BERT and DistilBERT",
           journal: "World Academy of Science, Engineering and Technology (WCSE)",
           datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.009",
         },
         {
           authors: "Inovero, Carlo G.; Porteria, Leonard M.; Carreon, Kurt Andrei C.",
           title: "Object Detection in Computer Laboratory Setting Utilizing YOLO Model",
           journal: "World Academy of Science, Engineering and Technology (WCSE)",
           datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.027",
         },
         {
           authors: "Inovero, Carlo G.",
           title: "Intelligent Credit Scoring: A Smart City Setting for Small and Medium Financial Institution",
           journal: "2023 The 11th International Conference on Information Technology: IoT and Smart City",
           datePublished: "March 11, 2024",
+          doi: "https://doi.org/10.1145/3638985.3639016",
         },
         {
           authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
           title: "Automated Filipino Language Treebank Generator",
           journal: "Association for Computing Machinery",
           datePublished: "March 5, 2024",
+          doi: "https://doi.org/10.1145/3639233.3639238",
         },
         {
           authors: "Dela Fuente, Michael B.; Inovero, Carlo G.",
           title: "Emotion Recognition through Accelerometer and Gyroscope Sensors: A Pilot Study",
           journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
           datePublished: "September 23, 2023",
+          doi: "https://doi.org/10.1007/978-3-031-44097-7_34",
         },
         {
           authors: "Inovero, Carlo G.",
           title: "A Sentiment Analysis Classification of Product Reviews through Convolutional Neural Network",
           journal: "Association for Computing Machinery (ACM)",
           datePublished: "December 23, 2022",
+          doi: "https://doi.org/10.1145/3582197.3582199",
         },
       ],
     },
@@ -196,12 +216,14 @@ const {
           title: "Habagatplus: Providing Recommendations for Localized Class Suspension in Schools During Inclement Weather Conditions Using Naive Bayes Classifier",
           journal: "IEEE Xplore",
           datePublished: "April 1, 2024",
+          doi: "https://doi.org/10.1109/ICAIIC60209.2024.10463336",
         },
         {
           authors: "Fabregas, Aleta C.; Andres, Christopher",
           title: "Traffic Incident Prediction and Classification System using Naïve Bayes Algorithm",
           journal: "Procedia Computer Science",
           datePublished: "November 2023",
+          doi: "https://doi.org/10.1016/j.procs.2023.10.530",
         },
         {
           authors: "Fabregas, Aleta C.",
@@ -214,6 +236,7 @@ const {
           title: "Detecting Urinary Tract Infection (UTI) thru Analytes level using Convolutional Neural Network and Support Vector Machine",
           journal: "ICIT 2021: 2021 The 9th International Conference on Information Technology: IoT and Smart City",
           datePublished: "April 11, 2022",
+          doi: "https://doi.org/10.1145/3512576.3512591",
         },
       ],
     },
@@ -232,18 +255,21 @@ const {
           title: "Job Tier Classification in Applicant Tracking Systems Utilizing One-Dimensional CNN",
           journal: "World Academy of Science, Engineering and Technology (WCSE)",
           datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.065",
         },
         {
           authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
           title: "Automated Filipino Language Treebank Generator",
           journal: "Association for Computing Machinery",
           datePublished: "March 5, 2024",
+          doi: "https://doi.org/10.1145/3639233.3639238",
         },
         {
           authors: "Dela Fuente, Michael B.; Inovero, Carlo G.",
           title: "Emotion Recognition through Accelerometer and Gyroscope Sensors: A Pilot Study",
           journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
           datePublished: "September 23, 2023",
+          doi: "https://doi.org/10.1007/978-3-031-44097-7_34",
         },
       ],
     },
@@ -542,6 +568,23 @@ const guidancePillClass =
                       <p class="text-[11.5px] leading-[1.45] text-neutral-600">
                         <span class="font-semibold text-neutral-900">Date Published: </span>
                         {pub.datePublished}
+                      </p>
+                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                        <span class="font-semibold text-neutral-900">DOI: </span>
+                        {
+                          pub.doi ? (
+                            <a
+                              href={pub.doi}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="font-medium text-[#780000] underline decoration-[#780000]/45 underline-offset-2 hover:text-[#4e0000] hover:decoration-[#4e0000] break-all transition-colors"
+                            >
+                              {pub.doi}
+                            </a>
+                          ) : (
+                            <span class="italic text-neutral-400">No DOI available</span>
+                          )
+                        }
                       </p>
                     </article>
                   ))
