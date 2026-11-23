@@ -1,0 +1,227 @@
+---
+import { ArrowUpRight } from 'lucide-react';
+import { getDocRef } from '../../lib/pdfs.server';
+import GradientASCII from '../react/GradientASCII';
+import ScrollReveal from '../react/ScrollReveal';
+import TextLoop from '../react/TextLoop';
+
+const documentRef = getDocRef('certificate-of-authenticity');
+---
+
+<section class="aaccup" aria-label="Welcome AACCUP Accreditors">
+	<div class="aaccup__effect" aria-hidden="true">
+		<GradientASCII
+			client:visible
+			colors={['#7d1019', '#fffdf7', '#ffde00', '#b78318']}
+			shape="horizon"
+			characters=" =+xX0S8#@"
+			cellSize={20}
+			density={0.36}
+			glyphOpacity={0.2}
+			gradientOpacity={0.32}
+			glow={0.06}
+			flicker={0.06}
+			softness={0.62}
+			flow={0.18}
+			speed={0.12}
+			grain={0.01}
+			mouseInteraction={false}
+			clickEffect="none"
+			lightMode={true}
+			dpr={1.25}
+		/>
+	</div>
+
+	<div class="aaccup__content">
+		<ScrollReveal
+			client:visible
+			containerClassName="aaccup__title"
+			textClassName="aaccup__title-text"
+			mode="enter"
+			splitBy="words"
+			effect="fade"
+			stagger={0.06}
+			duration={0.72}
+			baseOpacity={0.18}
+			baseRotation={0}
+			enableBlur={true}
+			blurStrength={2}
+		>
+			{'Welcome\nAACCUP Accreditors!'}
+		</ScrollReveal>
+
+		<p class="aaccup__date">Level IV Cycle II Accreditation Visit <span aria-hidden="true">·</span> November 2026</p>
+
+		{documentRef && (
+			<button
+				class="aaccup__document"
+				type="button"
+				data-doc-ref={documentRef}
+				data-pdf-title="Certificate of Authenticity"
+				aria-label="Open Certificate of Authenticity PDF"
+			>
+				<span class="aaccup__document-copy">
+					<span class="aaccup__document-meta">Quality Assurance Center · PDF</span>
+					<span class="aaccup__document-action">Open certificate <ArrowUpRight size={13} strokeWidth={1.8} aria-hidden="true" /></span>
+				</span>
+			</button>
+		)}
+	</div>
+
+	<div class="aaccup__divider" aria-hidden="true">
+		<TextLoop
+			client:visible
+			className="aaccup__loop"
+            text="Welcome AACCUP Accreditors"
+			shape="line"
+			speed={36}
+			direction="forward"
+            separator=""
+            separatorImages={['/pup-logo.png', '/ccis-logo.png', '/dcs-logo.png']}
+            separatorImageSize={30}
+			fontSize={10}
+			fontWeight={600}
+			letterSpacing={0.7}
+			uppercase
+			ribbon
+			ribbonColor="#9d1e2c"
+			ribbonWidth={46}
+			edgeFade={0.08}
+			cross={false}
+			draggable={false}
+			scrollBoost={0}
+			outline={false}
+			pauseOnHover
+			color="#ffde00"
+		/>
+	</div>
+</section>
+
+<style>
+	.aaccup {
+		position: relative;
+		isolation: isolate;
+		display: grid;
+		min-height: 730px;
+		place-items: center;
+		overflow: hidden;
+		padding: clamp(4.5rem, 8vw, 7.5rem) var(--page-gutter, 1.5rem) 7rem;
+		background: #fff;
+		color: #201313;
+	}
+
+	.aaccup__effect {
+		position: absolute;
+		z-index: -1;
+		inset: 0;
+		pointer-events: none;
+		opacity: .62;
+	}
+
+	.aaccup__content {
+		width: min(100%, 1240px);
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.aaccup :global(.aaccup__title) {
+		position: relative;
+		width: max-content;
+		max-width: 100%;
+		margin: 0 auto;
+		padding-inline: 0;
+		background: transparent;
+		font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+		font-size: clamp(3rem, 6.4vw, 5.5rem);
+		font-weight: 700;
+		letter-spacing: -.075em;
+		line-height: .96;
+		text-wrap: balance;
+	}
+
+	.aaccup :global(.aaccup__title) { display: block; }
+	.aaccup :global(.aaccup__title-text) {
+		display: block;
+		background: linear-gradient(180deg, #8d101b 0%, #b5222d 55%, #d8463b 100%);
+		background-clip: text;
+		color: transparent;
+		font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+		font-size: inherit;
+		font-weight: 700;
+		letter-spacing: inherit;
+		line-height: inherit;
+		white-space: pre-line;
+	}
+
+	.aaccup__date {
+		margin: clamp(.55rem, 1vw, .8rem) 0 0;
+		font-size: clamp(1rem, 1.45vw, 1.2rem);
+		letter-spacing: -.035em;
+		line-height: 1.4;
+		text-wrap: balance;
+	}
+
+	.aaccup__document {
+		display: inline-flex;
+		align-items: center;
+		gap: .45rem;
+		margin-top: clamp(.2rem, .5vw, .35rem);
+		padding: .15rem .1rem .2rem;
+		border: 0;
+		border-bottom: 1px solid #b7a354;
+		border-radius: 0;
+		background: transparent;
+		color: #801923;
+		cursor: pointer;
+		font: inherit;
+		text-align: left;
+		transition: border-color 180ms ease;
+	}
+
+	.aaccup__document:hover { border-color: #801923; }
+	.aaccup__document:focus-visible { outline: 2px solid #8b1721; outline-offset: 4px; }
+	.aaccup__document-copy { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .3rem; line-height: 1; }
+	.aaccup__document-meta, .aaccup__document-action { font-size: .7rem; }
+	.aaccup__document-meta { color: #625856; }
+	.aaccup__document-action { display: inline-flex; align-items: center; gap: .15rem; color: #801923; font-weight: 600; }
+
+	.aaccup__divider {
+		position: absolute;
+		z-index: 1;
+		inset-inline: 0;
+		bottom: 0;
+		height: clamp(40px, 4vw, 50px);
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.aaccup__divider :global(.aaccup__loop) {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: max(100%, 720px);
+		transform: translate(-50%, -50%);
+		font-family: var(--font-inter), Inter, sans-serif;
+	}
+
+	.aaccup__divider :global(.text-loop-svg) { display: block; width: 100%; height: auto; }
+
+	@media (max-width: 850px) {
+		.aaccup :global(.aaccup__title) { font-size: clamp(2.8rem, 6.5vw, 3.8rem); }
+	}
+
+	@media (max-width: 640px) {
+		.aaccup { min-height: 610px; padding-block: 4.5rem 5rem; }
+		.aaccup :global(.aaccup__title) { font-size: 2rem; letter-spacing: -.055em; line-height: .98; }
+		.aaccup__date { max-width: 38ch; margin: .7rem auto 0; }
+		.aaccup__document { max-width: 100%; gap: .4rem; margin-top: .2rem; padding-block: .1rem; }
+		.aaccup__document-copy { gap: .35rem; }
+		.aaccup__document-meta, .aaccup__document-action { font-size: .67rem; }
+		.aaccup__divider { height: 36px; }
+		.aaccup__divider :global(.aaccup__loop) { width: max(100%, 580px); }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.aaccup__document { transition: none; }
+	}
+</style>

@@ -1,9 +1,9 @@
-﻿---
-import Footer from "../Footer.astro";
-import Navbar from "../Navbar.astro";
+---
 import PillarBadge from "../PillarBadge.astro";
 import BscsOverview from "./BscsOverview.astro";
+import AaccupWelcome from "./AaccupWelcome.astro";
 import LeaderDialog from "./LeaderDialog.astro";
+import PDFModal from "../PDFModal.astro";
 import LetterGlitch from "../react/LetterGlitch";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import {
@@ -13,10 +13,13 @@ import {
 	visionIntro,
 	visionItems,
 } from "../../data/homepage/homepage";
-
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.svelte";
 ---
+
 <div class="home-page">
 	<Navbar />
+
 	<main>
 		<section class="hero" id="home" aria-labelledby="hero-title">
 			<img class="hero-image" src="/images/homepage/hero/pup-pylon.webp" alt="" aria-hidden="true" fetchpriority="high" />
@@ -57,6 +60,8 @@ import {
 			</div>
 			<a class="hero-scroll" href="#snapshot"><span class="scroll-line"></span>Scroll to explore</a>
 		</section>
+
+		<AaccupWelcome />
 
 		<BscsOverview mission={missionItems} vision={visionItems} visionIntro={visionIntro} />
 
@@ -112,8 +117,8 @@ import {
 				))}
 			</div>
 		</section>
-
 	</main>
+
 	{leaders.map((leader) => (
 		<LeaderDialog
 			id={leader.id}
@@ -126,8 +131,10 @@ import {
 			closing={leader.closing}
 		/>
 	))}
-	<Footer />
+	<PDFModal />
+	<Footer client:load />
 </div>
+
 <style>
 	.home-page {
 		--page-width: 1160px;

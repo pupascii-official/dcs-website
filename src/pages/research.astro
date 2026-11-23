@@ -1,0 +1,156 @@
+---
+import "../styles/research.css";
+import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
+import ContentSection from "../components/ContentSection.astro";
+import { SITE_TITLE } from "../consts";
+import PolicyFrameworkDashboard from "../components/research-components/PolicyFrameworkDashboard.astro";
+import ResearchMetrics from "../components/research-components/ResearchMetrics.astro";
+import IndexationDashboard from "../components/research-components/IndexationDashboard.astro";
+import FacultyShowcase from "../components/research-components/FacultyShowcase.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PDFModal from "../components/PDFModal.astro";
+import LinkCard from "../components/LinkCard.astro";
+---
+
+
+<ScrollSnapLayout
+  title={`Research & Innovation — ${SITE_TITLE}`}
+  description="39 completed studies, 24 refereed publications, and 225 citations. PUP Department of Computer Science Area 1: Research."
+>
+  <div class="research-page bg-white text-neutral-900 antialiased font-sans">
+    <!-- SNAP 1 // Hero -->
+    <HeroSection title="Research & Innovation">
+      <p class="mx-auto mt-0 mb-0 max-w-2xl text-[13.5px] sm:text-[16px] font-normal leading-[1.6] text-white/90 text-center">
+        39 completed studies, 24 refereed publications, and 225 citations. Research
+        that is published, presented, cited, recognized, and used.
+      </p>
+
+      <p class="mx-auto mt-3 sm:mt-4 mb-0 max-w-xl text-[12px] sm:text-[13px] font-normal leading-[1.65] text-white/75 text-center">
+        The University envisions itself as a premier center of research in social
+        capital and innovation towards inclusive growth for national development.
+        Five active projects have target completion dates from July 2026 to
+        January 2028.
+      </p>
+    </HeroSection>
+
+    <!-- SNAP 2 // Section 01: Research Agenda & Quality Assurance -->
+    <ContentSection
+      sectionLabel="SECTION 01 // GOVERNANCE & STANDARDS"
+      category="Research Agenda & Quality Assurance"
+    >
+      <PolicyFrameworkDashboard />
+
+      <div class="manual-linkcard-cta mt-4 flex flex-col items-center gap-1.5 w-full">
+        <LinkCard
+          title="PUP Research & Development Manual"
+          description="Complete BSCS Area 1 governance framework, ethics review protocols, quality assurance standards, and dissemination guidelines."
+          pdfSlug="research-manual"
+          linkLabel="ACCESS FULL PUP RESEARCH & DEVELOPMENT MANUAL"
+        />
+        <p class="font-heading text-[9.5px] font-semibold tracking-[0.08em] uppercase text-neutral-400">
+          BSCS AREA 1 — RESEARCH
+        </p>
+      </div>
+    </ContentSection>
+
+    <!-- SNAP 3 // Section 02: Research Metrics -->
+    <ContentSection
+      sectionLabel="SECTION 02 // KEY PERFORMANCE INDICATORS"
+      category="Research Metrics"
+    >
+      <ResearchMetrics showHeader={false} class="!py-0" />
+    </ContentSection>
+
+    <!-- SNAP 4 // Section 03: Research Productivity by Calendar Year -->
+    <ContentSection
+      sectionLabel="SECTION 03 // DATA PRESENTATION"
+      category="Research Productivity by Calendar Year"
+    >
+      <IndexationDashboard />
+    </ContentSection>
+
+    <!-- SNAP 5 // Section 04: Faculty Involved in Research -->
+    <section class="scroll-section w-full bg-white flex flex-col">
+      <div class="my-auto mx-auto w-full max-w-6xl px-6 sm:px-10 pt-0 pb-10 sm:pt-2 sm:pb-10">
+        <FacultyShowcase />
+      </div>
+    </section>
+  </div>
+
+  <PDFModal />
+</ScrollSnapLayout>
+
+<style>
+  .manual-linkcard-cta :global(.link-card) {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    gap: 0;
+    height: auto;
+    width: 100%;
+    align-items: center;
+  }
+
+  .manual-linkcard-cta :global(.card-top) {
+    display: none;
+  }
+
+  .manual-linkcard-cta :global(button.card-link),
+  .manual-linkcard-cta :global(a.card-link),
+  .manual-linkcard-cta :global(span.card-link) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 460px;
+    border: 0;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(90deg, #780000 0%, #9c3b0b 52%, #d49e1a 100%);
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.375;
+    text-decoration: none;
+    box-shadow: 0 10px 24px -6px rgba(120, 0, 0, 0.4);
+    transition: filter 0.2s ease;
+    cursor: pointer;
+  }
+
+  .manual-linkcard-cta :global(button.card-link:hover),
+  .manual-linkcard-cta :global(a.card-link:hover) {
+    filter: brightness(1.1);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .manual-linkcard-cta :global(.card-link span) {
+    flex-shrink: 0;
+    font-size: 0.875rem;
+    line-height: 1;
+  }
+
+  @media (min-width: 640px) {
+    .manual-linkcard-cta :global(button.card-link),
+    .manual-linkcard-cta :global(a.card-link),
+    .manual-linkcard-cta :global(span.card-link) {
+      gap: 1rem;
+      width: auto;
+      max-width: none;
+      min-width: 380px;
+      padding: 0.75rem 1.5rem;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+  }
+</style>
