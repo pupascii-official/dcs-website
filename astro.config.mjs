@@ -3,7 +3,7 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
-
+import tailwindcss from "@tailwindcss/vite";
 import react from '@astrojs/react';
 
 import svelte from '@astrojs/svelte';
@@ -26,4 +26,7 @@ export default defineConfig({
             weights: [400, 600],
         },
     ],
+    vite: {
+      plugins: [tailwindcss()],
+    },
 });

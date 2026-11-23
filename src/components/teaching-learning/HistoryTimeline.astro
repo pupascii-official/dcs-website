@@ -1,0 +1,151 @@
+---
+import TimelineRoad from "./TimelineRoad.astro";
+import TimelineCard from "./TimelineCard.astro";
+import { historyItems } from "../../data/teaching-learning/history";
+
+---
+<section class="history-timeline relative mx-auto min-h-212 w-full overflow-hidden rounded-2xl border border-red-200 bg-white px-5 py-6 md:px-0">
+
+    <TimelineRoad />
+
+    <!-- DESKTOP TIMELINE -->
+    <div class="absolute inset-y-8 inset-x-0 hidden md:block">
+
+        {historyItems.map((item) => (
+            <div
+                class:list={[
+                    "timeline-observer-item timeline-item absolute top-0 w-[34%]",
+                    item.side === "left"
+                        ? "left-[2.3%]"
+                        : "right-[2.3%]",
+                    item.top,
+                ]}
+                data-milestone={item.id}
+            >
+                <TimelineCard {...item} />
+            </div>
+        ))}
+    </div>
+
+    <!-- MOBILE TIMELINE -->
+    <div class="relative z-10 flex flex-col gap-8 md:hidden">
+        {historyItems.map((item) => (
+            <div
+                class="timeline-observer-item timeline-item relative pl-8"
+                data-milestone={item.id}
+            >
+                <div class="timeline-marker absolute left-0 top-6 z-10 size-[18px] rounded-full border-[4px] bg-[#24282d]"></div>
+
+                <h3 class="timeline-number mb-1 text-lg font-bold">
+                    {item.number}
+                </h3>
+
+                <TimelineCard {...item} />
+            </div>
+        ))}
+    </div>
+
+</section>
+
+<script>
+    const timeline = document.querySelector(".history-timeline");
+    const scrollContainer = document.querySelector(".scroll-container");
+
+    if (timeline) {
+        const items = timeline.querySelectorAll(".timeline-observer-item");
+
+        const observer = new IntersectionObserver(
+            () => {
+                const rootRect = scrollContainer
+                    ? scrollContainer.getBoundingClientRect()
+                    : {
+                        top: 0,
+                        bottom: window.innerHeight,
+                        height: window.innerHeight,
+                    };
+
+                const center = rootRect.top + rootRect.height * 0.75;
+
+                const visibleItems = [...items].filter((item) => {
+                    const rect = item.getBoundingClientRect();
+
+                    return (
+                        item.getClientRects().length > 0 &&
+                        rect.top < rootRect.bottom &&
+                        rect.bottom > rootRect.top
+                    );
+                });
+
+                if (!visibleItems.length) return;
+
+                const activeItem = visibleItems.reduce((closest, item) => {
+                    const rect = item.getBoundingClientRect();
+                    const closestRect = closest.getBoundingClientRect();
+
+                    const distance = Math.abs(
+                        (rect.top + rect.bottom) / 2 - center
+                    );
+
+                    const closestDistance = Math.abs(
+                        (closestRect.top + closestRect.bottom) / 2 - center
+                    );
+
+                    return distance < closestDistance ? item : closest;
+                });
+
+                const activeId = activeItem.getAttribute("data-milestone");
+
+                // Update cards
+                items.forEach((item) => {
+                    item.classList.toggle(
+                        "is-active",
+                        item.getAttribute("data-milestone") === activeId
+                    );
+                });
+
+                // Update SVG indicators
+                timeline.querySelectorAll(".timeline-indicator").forEach((indicator) => {
+                    indicator.classList.toggle(
+                        "is-active",
+                        indicator.getAttribute("data-milestone") === activeId
+                    );
+                });
+            },
+            {
+                root: scrollContainer,
+                threshold: 0,
+                rootMargin: "-70% 0px -10% 0px",
+            }
+        );
+        items.forEach((item) => observer.observe(item));
+    }
+</script>
+
+<style>
+    .timeline-card {
+        border-color: #fecaca;
+        transition: border-color 200ms ease;
+    }
+
+    .timeline-item.is-active .timeline-card {
+        border-color: #d9a000;
+    }
+
+    .timeline-marker {
+        border-color: #800000;
+        transition: border-color 200ms ease;
+    }
+
+    .timeline-item.is-active .timeline-marker {
+        border-color: #d9a000;
+    }
+
+    .timeline-number {
+        color: #800000;
+        transition: color 200ms ease;
+    }
+
+    .timeline-item.is-active .timeline-number {
+        color: #d9a000;
+    }
+</style>

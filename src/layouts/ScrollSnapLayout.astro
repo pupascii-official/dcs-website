@@ -15,10 +15,10 @@ const {title, description} = Astro.props;
 </head>
 
 <body>
-<main class="scroll-container">
-    <!-- Everything inside <ScrollSnapLayout> should appear here -->
-    <slot/>
-</main>
+    <main class="scroll-container">
+        <!-- Everything inside <ScrollSnapLayout> should appear inside the slot -->
+        <slot/>
+    </main>
 </body>
 
 </html>
@@ -28,6 +28,12 @@ const {title, description} = Astro.props;
         height: 100vh;
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .scroll-container::-webkit-scrollbar {
+        display: none;
     }
 
     :global(.scroll-section) {
