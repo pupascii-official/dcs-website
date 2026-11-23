@@ -1,0 +1,88 @@
+---
+import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PillarBadge from "../components/PillarBadge.astro";
+import Footer from "../components/Footer.astro";
+
+import AccreditationSection from "../components/internationalization/AccreditationSection.astro";
+import RankingsSection from "../components/internationalization/RankingsSection.astro";
+import AcademicPartners from "../components/internationalization/AcademicPartners.astro";
+import FeaturedResearchProject from "../components/internationalization/FeaturedResearchProject.astro";
+import ResearchPublications from "../components/internationalization/ResearchPublications.astro";
+import StudentExperience from "../components/internationalization/StudentExperience.astro";
+import CompetitionExcellence from "../components/internationalization/CompetitionExcellence.astro";
+
+import { internationalData } from "../data/internationalization/content";
+---
+
+<ScrollSnapLayout
+  title="Internationalization | PUP Department of Computer Science"
+  description="Showcasing PUP BSCS's international recognition, academic partnerships, research innovation, and global engagement."
+>
+  <Navbar />
+
+  <HeroSection
+    title={internationalData.hero.title}
+    subtitle={internationalData.hero.lead}
+  >
+    <PillarBadge
+      slot="eyebrow"
+      label="Department of Computer Science • [Internationalization]"
+    />
+    <p class="max-w-2xl text-center text-xs sm:text-sm text-neutral-200 mt-2 mb-0! font-medium">
+      {internationalData.hero.subtext}
+    </p>
+  </HeroSection>
+
+  <section class="scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 pb-12 max-w-6xl mx-auto w-full">
+    <div class="my-auto w-full">
+      <AccreditationSection />
+    </div>
+  </section>
+
+  <section class="scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 pb-14 max-w-6xl mx-auto w-full">
+    <div class="w-full">
+      <div class="border-l-[3px] border-(--color-maroon) pl-4 mb-5">
+        <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
+          {internationalData.section2.label}
+        </small>
+        <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
+          {internationalData.section2.title}
+        </h2>
+      </div>
+      <RankingsSection />
+    </div>
+  </section>
+
+  <section class="scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 pb-12 max-w-6xl mx-auto w-full">
+    <div class="my-auto w-full">
+      <AcademicPartners />
+    </div>
+  </section>
+
+  <section class="scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 pb-12 max-w-6xl mx-auto w-full">
+    <div class="my-auto w-full">
+      <FeaturedResearchProject />
+    </div>
+  </section>
+
+  <section class="scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 pb-14 max-w-6xl mx-auto w-full">
+    <div class="w-full">
+      <ResearchPublications />
+    </div>
+  </section>
+
+  <section class="scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 pb-12 max-w-6xl mx-auto w-full">
+    <div class="my-auto w-full">
+      <StudentExperience />
+    </div>
+  </section>
+
+  <section class="scroll-section scrollbar-none flex flex-col justify-between pt-24 md:pt-28 w-full">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 w-full mb-12">
+      <CompetitionExcellence />
+    </div>
+    <Footer />
+  </section>
+</ScrollSnapLayout>

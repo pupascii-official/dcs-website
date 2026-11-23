@@ -1,0 +1,166 @@
+---
+import { internationalData } from "../../data/internationalization/content";
+import { internationalImages } from "../../data/internationalization/images";
+
+const { label, title, project } = internationalData.section4;
+---
+
+<div class="featured-research-root w-full" data-featured-research>
+  <div class="border-l-[3px] border-(--color-maroon) pl-4 mb-8">
+    <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
+      {label}
+    </small>
+    <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
+      {title}
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+    <div class="lg:col-span-5 flex flex-col space-y-3.5">
+      <span class="text-sm font-bold text-(--color-maroon)">
+        {project.tag}
+      </span>
+
+      <h3 class="iflood-gradient-title bg-gradient-to-r from-[#800000] via-[#C87D00] to-[#FFDE00] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-4xl sm:text-5xl font-black tracking-tight leading-none w-fit">
+        {project.name}
+      </h3>
+
+      <p class="text-sm text-neutral-600 leading-relaxed pt-1">{project.description}</p>
+
+      <div class="pt-1">
+        <h4 class="font-['Montserrat',sans-serif] text-xs font-extrabold text-(--color-maroon) mb-1.5">
+          Lead Researcher
+        </h4>
+        <p class="text-sm font-bold text-neutral-800 pl-5">{project.leadResearcher}</p>
+      </div>
+
+      <div class="pt-1">
+        <h4 class="font-['Montserrat',sans-serif] text-xs font-extrabold text-(--color-maroon) mb-1.5">
+          Student Researchers
+        </h4>
+        <ul class="text-sm font-bold text-neutral-800 space-y-1 pl-5">
+          {project.studentResearchers.map((student) => (
+            <li>{student}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="lg:col-span-7 relative pb-12 sm:pb-14">
+      <div
+        data-open-modal
+        class="w-full lg:w-[86%] ml-auto rounded-2xl overflow-hidden border border-neutral-800 shadow-lg bg-neutral-900 cursor-pointer group"
+      >
+        <img
+          src={internationalImages.ifloodMeeting}
+          alt="IFloodSense online research meeting"
+          class="iflood-collage-img transition-transform duration-300 group-hover:scale-[1.02]"
+          loading="lazy"
+        />
+      </div>
+
+      <div
+        data-open-modal
+        class="absolute bottom-0 left-0 sm:left-2 w-[48%] sm:w-[45%] rounded-2xl overflow-hidden border-2 border-[#D99B00] shadow-xl bg-neutral-900 cursor-pointer group transition-transform duration-300 hover:scale-[1.03]"
+      >
+        <img
+          src={internationalImages.ifloodMobile}
+          alt="IFloodSense mobile preview app"
+          class="iflood-collage-img"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+
+  <dialog
+    id="ifloodsense-modal"
+    class="backdrop:bg-black/60 backdrop:backdrop-blur-xs p-0 rounded-2xl border-0 shadow-2xl max-w-4xl w-[92vw] m-auto bg-transparent"
+  >
+    <div class="bg-white rounded-2xl p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="font-['Montserrat',sans-serif] text-lg font-bold text-(--color-maroon)">
+          IFloodSense Collaboration Preview
+        </h4>
+        <button
+          type="button"
+          data-close-modal
+          class="w-8 h-8 rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 flex items-center justify-center font-bold text-sm cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <img
+          src={internationalImages.ifloodMeeting}
+          alt="IFloodSense meeting"
+          class="w-full rounded-lg border border-neutral-200"
+        />
+        <img
+          src={internationalImages.ifloodMobile}
+          alt="IFloodSense mobile"
+          class="w-full rounded-lg border border-neutral-200"
+        />
+      </div>
+    </div>
+  </dialog>
+</div>
+
+<style>
+  .featured-research-root p {
+    margin-bottom: 0;
+  }
+
+  .iflood-gradient-title {
+    background-image: linear-gradient(to right, #800000 0%, #c87d00 55%, #ffde00 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+  }
+
+  .iflood-collage-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll("[data-featured-research]").forEach((root) => {
+      const modal = root.querySelector("#ifloodsense-modal");
+      const openTriggers = root.querySelectorAll("[data-open-modal]");
+      const closeBtn = root.querySelector("[data-close-modal]");
+
+      if (!modal) return;
+
+      openTriggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          if (typeof modal.showModal === "function") {
+            modal.showModal();
+          }
+        });
+      });
+
+      closeBtn?.addEventListener("click", () => {
+        if (typeof modal.close === "function") {
+          modal.close();
+        }
+      });
+
+      modal.addEventListener("click", (e) => {
+        const dialogDimensions = modal.getBoundingClientRect();
+        if (
+          e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom
+        ) {
+          modal.close();
+        }
+      });
+    });
+  })();
+</script>

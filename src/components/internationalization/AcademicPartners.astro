@@ -1,0 +1,86 @@
+---
+import { internationalData } from "../../data/internationalization/content";
+
+const { label, title, description, partners } = internationalData.section3;
+---
+
+<div class="partners-root w-full" data-academic-partners>
+  <div class="border-l-[3px] border-(--color-maroon) pl-4 mb-8">
+    <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
+      {label}
+    </small>
+    <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
+      {title}
+    </h2>
+    <p class="text-sm text-neutral-700 max-w-3xl mt-2">{description}</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+    {partners.map((partner) => (
+      <div
+        data-partner-card
+        class="h-full min-h-[340px] md:min-h-[380px] p-8 rounded-2xl border border-(--color-maroon)/40 hover:border-(--color-maroon) hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden bg-white shadow-sm flex flex-col justify-between items-center"
+      >
+        <div class="w-full flex-1 flex items-center justify-center py-4">
+          <img
+            src={partner.imagePath}
+            alt={partner.name}
+            class="partner-logo h-32 md:h-40 w-auto object-contain transition-transform duration-200 hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="w-full text-center pt-4">
+          <h3 class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-extrabold text-(--color-maroon) leading-snug">
+            {partner.name}
+          </h3>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-2 font-medium">{partner.location}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .partners-root p {
+    margin-bottom: 0;
+  }
+
+  .partner-logo {
+    height: 8rem;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 0;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .partner-logo {
+      height: 10rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll("[data-academic-partners]").forEach((container) => {
+      const cards = container.querySelectorAll("[data-partner-card]");
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const isAlreadyActive = card.classList.contains("ring-2");
+          cards.forEach((c) => {
+            c.classList.remove("ring-2", "ring-[#800000]/20", "shadow-md", "-translate-y-1", "border-[#800000]");
+            c.classList.add("border-(--color-maroon)/40");
+          });
+
+          if (!isAlreadyActive) {
+            card.classList.remove("border-(--color-maroon)/40");
+            card.classList.add("ring-2", "ring-[#800000]/20", "shadow-md", "-translate-y-1", "border-[#800000]");
+          }
+        });
+      });
+    });
+  })();
+</script>
