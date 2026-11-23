@@ -1,0 +1,147 @@
+<dialog id="pdf-modal" class="pdf-modal" aria-labelledby="pdf-modal-title">
+    <header class="modal-header">
+        <h3 id="pdf-modal-title" class="modal-title">Document Preview</h3>
+
+        <div class="modal-actions">
+            <button
+                    type="button"
+                    id="pdf-close-btn"
+                    class="close-btn"
+                    aria-label="Close document preview"
+            >
+                ×
+            </button>
+        </div>
+    </header>
+
+    <div id="pdf-viewer-container" class="pdf-viewer-container"></div>
+</dialog>
+
+<script>
+    const dialog = document.getElementById("pdf-modal") as HTMLDialogElement | null;
+    const container = document.getElementById("pdf-viewer-container");
+    const titleEl = document.getElementById("pdf-modal-title");
+    const externalLink = document.getElementById("pdf-external-link") as HTMLAnchorElement | null;
+    const closeBtn = document.getElementById("pdf-close-btn");
+
+    document.addEventListener("click", async (event) => {
+        const trigger = (event.target as HTMLElement)?.closest<HTMLElement>("[data-pdf-url]");
+        if (!trigger || !dialog || !container) return;
+
+        const pdfUrl = trigger.dataset.pdfUrl;
+        if (!pdfUrl) return;
+
+        if (titleEl) titleEl.textContent = trigger.dataset.pdfTitle || "Document Preview";
+        if (externalLink) externalLink.href = pdfUrl;
+
+        container.innerHTML = "";
+        dialog.showModal();
+
+        // Vite splits this into an on-demand chunk loaded only on first click
+        const {default: EmbedPDF} = await import("@embedpdf/viewer");
+
+        EmbedPDF.init({
+            target: container,
+            src: pdfUrl,
+            theme: { accent: "#800000" },
+            features: {
+            },
+            readOnly: true
+        });
+    });
+
+    closeBtn?.addEventListener("click", () => dialog?.close());
+
+    dialog?.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+    });
+
+    dialog?.addEventListener("close", () => {
+        if (container) container.innerHTML = "";
+    });
+</script>
+
+<style>
+    .pdf-modal {
+        margin: auto;
+        width: min(94vw, 1050px);
+        height: 88vh;
+        padding: 0;
+        border: 1.5px solid var(--color-maroon);
+        border-radius: 1.25rem;
+        background-color: var(--color-white);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .pdf-modal[open] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pdf-modal::backdrop {
+        background: rgba(26, 20, 20, 0.65);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1.5rem;
+        background-color: var(--color-maroon);
+        color: var(--color-white);
+    }
+
+    .modal-title {
+        margin: 0;
+        font-family: var(--font-montserrat), system-ui, sans-serif;
+        font-weight: 800;
+        font-size: clamp(1rem, 1.6vw, 1.25rem);
+        color: var(--color-white);
+    }
+
+    .modal-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-shrink: 0;
+    }
+
+    .external-link {
+        color: var(--color-gold);
+        font-family: var(--font-inter), system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-decoration: none;
+    }
+
+    .external-link:hover {
+        text-decoration: underline;
+    }
+
+    .close-btn {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: transparent;
+        color: var(--color-white);
+        font-size: 1.35rem;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .pdf-viewer-container {
+        flex: 1;
+        width: 100%;
+        min-height: 0;
+    }
+</style>

@@ -3,6 +3,7 @@ interface Props {
     number?: string;
     title: string;
     description: string;
+    pdfUrl?: string;
     href?: string;
     linkLabel: string;
 }
@@ -11,6 +12,7 @@ const {
     number,
     title,
     description,
+    pdfUrl,
     href,
     linkLabel,
 } = Astro.props;
@@ -20,12 +22,21 @@ const {
     <div class="card-top">
         <header class="card-header">
             <h3 class="card-title">{title}</h3>
-            { number && <span class="card-number">{number}</span> }
+            {number && <span class="card-number">{number}</span>}
         </header>
         <p class="card-description">{description}</p>
     </div>
 
-    {href ? (
+    {pdfUrl ? (
+            <button
+                    type="button"
+                    class="card-link"
+                    data-pdf-url={pdfUrl}
+                    data-pdf-title={title}
+            >
+                {linkLabel} <span aria-hidden="true">↗</span>
+            </button>
+    ) : href ? (
             <a href={href} class="card-link">
                 {linkLabel} <span aria-hidden="true">↗</span>
             </a>
@@ -69,6 +80,7 @@ const {
         font-weight: 800;
         font-size: clamp(1.1rem, 1.5vw, 1.3rem);
         background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
+        -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
     }
@@ -78,6 +90,7 @@ const {
         font-weight: 800;
         font-size: 1.05rem;
         background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
+        -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         flex-shrink: 0;
@@ -95,16 +108,25 @@ const {
         align-items: center;
         gap: 0.35rem;
         width: fit-content;
+        padding: 0;
+        border: none;
         font-family: var(--font-montserrat), system-ui, sans-serif;
         font-weight: 800;
         font-size: 0.95rem;
         background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
+        -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         text-decoration: none;
     }
 
-    a.card-link:hover {
+    a.card-link,
+    button.card-link {
+        cursor: pointer;
+    }
+
+    a.card-link:hover,
+    button.card-link:hover {
         color: var(--color-maroon);
         text-decoration: underline;
     }
