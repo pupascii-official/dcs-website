@@ -1,0 +1,121 @@
+
+---
+import type { EvidenceItem } from "../../../data/teaching-learning/evidence";
+
+interface Props extends EvidenceItem {}
+
+const {
+    title,
+    description,
+    image,
+    alt,
+    page,
+    position,
+} = Astro.props;
+---
+
+<button
+    type="button"
+    data-evidence-card
+    aria-label={`Center evidence card: ${title}`}
+    aria-pressed="false"
+    class={`group evidence-card relative mb-8 block w-full cursor-pointer appearance-none border-0 bg-transparent p-0 text-left md:absolute md:mb-0 md:w-[60%] ${position} hover:-translate-y-3`}
+>
+    <!-- Folder tab -->
+    <div class="absolute -top-5 left-2 z-10 flex items-center gap-2 rounded-t-xl border border-(--color-maroon) bg-red-50 px-4 py-2 text-xs font-bold text-(--color-maroon)">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+        EVIDENCE • PAGE {page}
+    </div>
+
+    <!-- Card body -->
+    <div class="rounded-2xl border border-(--color-maroon) bg-white p-3 shadow-lg">
+        <div class="overflow-hidden! h-40 rounded-xl m-2">
+            <img
+                src={image}
+                alt={alt}
+                class="w-full rounded-lg border border-slate-200 object-cover transition-transform group-hover:scale-105"
+            />
+        </div>
+        
+
+        <h3 class="mt-2 font-bold leading-tight">
+            {title}
+        </h3>
+
+        <p class="mt-1 text-xs leading-relaxed text-(--color-text-body)">
+            {description}
+        </p>
+    </div>
+</button>
+
+<style>
+    img {
+        width: 100%;
+        height: 12rem;
+        max-width: none;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    .evidence-card {
+        transition:
+            left 0.45s ease,
+            top 0.45s ease,
+            transform 0.5s ease-in-out,
+            opacity 0.35s ease,
+            filter 0.35s ease;
+    }
+
+    .evidence-card:not(.is-active):not(.is-dimmed) {
+        transition-duration: 0.2s;
+    }
+
+    .evidence-card:not(.is-active):not(.is-dimmed):hover {
+        transform: translateY(-12px);
+    }
+
+    @media (min-width: 768px) {
+        .evidence-card.is-active {
+            z-index: 100 !important;
+            left: 50% !important;
+            top: 50% !important;
+            width: min(72%, 34rem) !important;
+            transform: translate(-50%, -50%) rotate(0deg) scale(1.04) !important;
+        }
+    }
+
+    .evidence-card.is-dimmed {
+        opacity: 0.35;
+        filter: grayscale(0.5);
+    }
+</style>
+
+<script>
+    document.querySelectorAll("[data-evidence-gallery]").forEach((gallery) => {
+        const cards = gallery.querySelectorAll("[data-evidence-card]");
+
+        cards.forEach((card) => {
+            card.addEventListener("click", () => {
+                const isAlreadyActive = card.classList.contains("is-active");
+
+                cards.forEach((item) => {
+                    item.classList.remove("is-active", "is-dimmed");
+                    item.setAttribute("aria-pressed", "false");
+                });
+
+                if (isAlreadyActive) return;
+
+                card.classList.add("is-active");
+                card.setAttribute("aria-pressed", "true");
+
+                cards.forEach((item) => {
+                    if (item !== card) {
+                        item.classList.add("is-dimmed");
+                    }
+                });
+            });
+        });
+    });
+</script>

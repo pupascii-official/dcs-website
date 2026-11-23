@@ -1,0 +1,92 @@
+---
+export interface IndexationSourceStat {
+  count: number;
+  label: string;
+}
+
+export interface Props {
+  year: number;
+  deckLabel: string;
+  scaleLabel?: string;
+  total: number;
+  headline?: string;
+  subtitle?: string;
+  summary: string;
+  sources: IndexationSourceStat[];
+  class?: string;
+}
+
+const {
+  year,
+  deckLabel,
+  scaleLabel = "85% BENCHMARK SCALE",
+  total,
+  headline = `Indexed Publications in ${year}`,
+  subtitle = "Accredited international journal editions and conference venues.",
+  summary,
+  sources,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class={`relative pr-1.5 pb-1.5 ${className}`}>
+  <!-- Stacked 3D Deck Offset Plate -->
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 translate-x-1.5 translate-y-1.5 rounded-2xl border border-[#780000]/35 bg-[#FBF4F2] transition-transform duration-300"
+  ></div>
+
+  <article
+    class="relative z-10 rounded-2xl border border-[#780000]/40 bg-white p-6 sm:p-7 shadow-[0_18px_40px_-14px_rgba(120,0,0,0.16)] transition-shadow duration-300 hover:shadow-[0_22px_46px_-12px_rgba(120,0,0,0.22)]"
+  >
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <span
+        class="inline-flex items-center rounded-full bg-[#780000] px-3 py-1 font-['Montserrat',sans-serif] text-[9.5px] font-extrabold tracking-[0.08em] uppercase text-[#FFD94A]"
+      >
+        {deckLabel}
+      </span>
+      <span
+        class="font-['Montserrat',sans-serif] text-[9.5px] font-bold tracking-[0.08em] uppercase text-[#C89416]"
+      >
+        {scaleLabel}
+      </span>
+    </div>
+
+    <!-- Count + Title -->
+    <div class="mt-5 flex items-baseline gap-3.5">
+      <span
+        class="font-['Montserrat',sans-serif] text-[44px] sm:text-[48px] font-black leading-none tracking-tight text-[#780000] tabular-nums"
+      >
+        {total}
+      </span>
+      <div>
+        <h3
+          class="font-['Montserrat',sans-serif] text-[16px] sm:text-[18px] font-extrabold text-neutral-950 leading-tight"
+        >
+          {headline}
+        </h3>
+        <p class="mt-0.5 text-[11px] text-neutral-500">{subtitle}</p>
+      </div>
+    </div>
+
+    <!-- Narrative -->
+    <p class="mt-4 text-[12.5px] leading-[1.6] text-neutral-600">{summary}</p>
+
+    <!-- 3 Indexing Sources -->
+    <div class="mt-5 grid grid-cols-3 gap-2.5">
+      {
+        sources.map((src) => (
+          <div class="rounded-xl border border-neutral-200 bg-neutral-50/80 px-3 py-2.5 text-center transition-all duration-200 hover:-translate-y-0.5 hover:border-[#780000]/30 hover:bg-[#FDF9F8]">
+            <p class="font-['Montserrat',sans-serif] text-[15px] font-extrabold text-[#780000] tabular-nums">
+              {src.count}
+            </p>
+            <p class="mt-0.5 font-['Montserrat',sans-serif] text-[8.5px] font-bold tracking-[0.06em] uppercase text-neutral-500">
+              {src.label}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </article>
+</div>

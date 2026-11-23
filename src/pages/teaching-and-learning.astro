@@ -3,12 +3,10 @@ import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
 import SectionContent from "../components/teaching-learning/SectionContent.astro";
 import { teachingEvidence } from "../data/teaching-learning/evidence";
-import HistoryTimeline from "../components/teaching-learning/HistoryTimeline.astro";
 import MaroonSection from "../components/teaching-learning/MaroonSection.astro";
-import Navbar from "../components/Navbar.astro"
 
-import EvidenceShowcase from "../components/teaching-learning/EvidenceShowcase.astro";
-import ElectiveTracks from "../components/teaching-learning/ElectiveTracks.astro";
+import EvidenceShowcase from "../components/teaching-learning/evidence/EvidenceShowcase.astro";
+import ElectiveTracks from "../components/teaching-learning/elective/ElectiveTracks.astro";
 import CurriculumMap from "../components/teaching-learning/curriculum/CurriculumMap.astro";
 import CurriculumExplorer from "../components/teaching-learning/curriculum/CurriculumExplorer.astro";
 import StudentOrg from "../components/teaching-learning/StudentOrg.astro";
@@ -19,20 +17,44 @@ import NotableAlumni from "../components/teaching-learning/NotableAlumni.astro";
 import GraduateTracer from "../components/teaching-learning/GraduateTracer.astro"; 
 import PEOScores from "../components/teaching-learning/PEOScores.astro";
 import PICAB from "../components/teaching-learning/PICAB.astro";
+import ContentSection from "../components/ContentSection.astro";
+import FacultyDistribution from "../components/teaching-learning/faculty/FacultyDistribution.astro";
+import OutcomesOverview from "../components/teaching-learning/outcomes/OutcomesOverview.astro";
+import EvolutionTimeline from "../components/teaching-learning/evolution/EvolutionTimeline.astro";
+
+import CommonCard from "../components/teaching-learning/CommonCard.astro";
 ---
 
 <ScrollSnapLayout title="Teaching & Learning" description="">
-    <Navbar></Navbar>
     <!-- HERO -->
-    <HeroSection title="Teaching & Learning" subtitle="Implemented AY 2022‐2023 (CMO No. 25 s. 2015 & CMO No. 20 s. 2013 aligned) to build deep expertise in AI and data-driven computing.">
-        <span slot="eyebrow">SECTION 02 • CURRICULUM & ELECTIVE TRACKS</span>
+    <HeroSection 
+            title="Teaching & " 
+            subtitle="AREA 2 • TEACHING AND LEARNING • CODING IDEAS INTO SOLUTIONS"
+            accentTitle="Learning"
+        >
+        <span>PUP CCIS Bachelor of Science in Computer Science — outcomes-based education aligned with CHED CMO No. 25, s. 2015 and the 2022 Revised Curriculum (167 Units).</span>
+        <a href="#CurriculumMap" class=" inline-block bg-white shadow-md mt-9 py-4 px-6 rounded-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <span class="main-button font-bold text-center"> Explore 2022 Curriculum &ThinSpace;↗</span>
+        </a>
     </HeroSection>
-
+    
+    <!-- EVOLUTION -->
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
+            category="Evolution of PUP’s Computer Science Program"
+            description="From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree."
+            >
+            <EvolutionTimeline></EvolutionTimeline>
+        </ContentSection>
+    </section>
+    
     <!-- Outcomes-Based Computing Education -->
-    <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 pt-20 md:pt-24 lg:pt-28 gap-8 mx-6 scroll-section scrollbar-none">
+    <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 gap-8 mx-6 scroll-section scrollbar-none">
 
         <!-- RIGHT CONTENT -->
         <div class="flex-1">
+            <!-- Modified ContentSection to remove top-padding -->
             <SectionContent
                 sectionLabel="SECTION 01 • CMO, OVERVIEW & FRAMEWORK"
                 title="Outcomes-Based Computing Education">
@@ -69,21 +91,8 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
         </div>
     </section>
 
-    <!-- EVOLUTION -->
-    <section class="scroll-section scrollbar-none mx-6 pt-20 md:pt-24 lg:pt-28" >
-        <SectionContent
-            sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
-            title="Evolution of PUP’s Computer Science Program">
-            <p>From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree.</p>
-
-            <div class="md:mb-8">
-                <HistoryTimeline></HistoryTimeline>
-            </div>
-        </SectionContent>
-    </section>
-
     <!-- ELECTIVES  -->
-    <section class="scroll-section scrollbar-none">
+    <section class=" scrollbar-none">
         <MaroonSection
             eyebrow="SECTION 02 • CURRICULUM & ELECTIVE TRACKS"
             title="Four Specialized Elective Tracks"
@@ -94,8 +103,9 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
         </MaroonSection>
     </section>
 
+    
     <!-- CURRICULUM MAP -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+    <section id="CurriculumMap" class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
         <SectionContent
             title="2022 BSCS Curriculum Map"
             sectionLabel="CURRICULUM STRUCTURE • 167 UNITS">
@@ -106,6 +116,141 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
             <CurriculumMap></CurriculumMap>
             <CurriculumExplorer></CurriculumExplorer>
         </SectionContent>
+    </section>
+
+    <!-- BSCS Faculty Distribution & Profiles -->
+    <section class="mx-6">
+        <ContentSection
+            sectionLabel="SECTION 03 • FACULTY MEMBERS & PROFILE"
+            category="BSCS Faculty Distribution & Profiles"
+            description="24 faculty members — 10 Regular (plantilla, 40 hrs/week, 15-unit regular load) and 14 Part-Time (contractual, 3–12 units) — evaluated under the University's ITEES.">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <div class="min-w-0">
+                    <FacultyDistribution></FacultyDistribution>
+                </div>
+
+                <div class="min-w-0">
+                    <CommonCard
+                        label="DOCUMENTARY EVIDENCE • PAGE 12"
+                        image="../../public/teaching-learning-assets/images/evidence-page12-faculty-meeting.jpg"
+                        imageAlt="Faculty Meeting Group Picture"
+                        title="CCIS Faculty Meeting (1st Semester, AY 2425)"
+                        >
+                        <p>
+                            BSCS faculty members collaborating on curriculum implementation, syllabus
+                            enhancement, Student Outcomes assessment, thesis and capstone supervision,
+                            research initiatives, and academic mentoring.
+                        </p>
+                    </CommonCard>
+                </div>
+
+                <!-- Documentary Evidence --> 
+                <div class="lg:col-span-2">
+                    <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase text-(--color-maroon)">
+                                10 Regular • 8 Profiled Part-Time
+                            </p>
+                            <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
+                                BSCS Faculty Profiles & Qualifications
+                            </h3>
+                            <p class="mt-1 text-sm text-(--color-text-body)">
+                                View academic qualifications, specializations, and course
+                                assignments of the BSCS faculty on a dedicated page.
+                            </p>
+                        </div>
+
+                        <a
+                            href="/teaching-and-learning/faculty"
+                            class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-(--color-gold) px-5 py-3 text-sm font-bold text-(--color-maroon) transition hover:bg-(--color-dark-gold)"
+                        >
+                            View Faculty Profiles →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ContentSection>
+    </section>
+
+    <!-- Development, Awards & ITEES -->
+    <section class="scrollbar-none">
+        <MaroonSection
+            eyebrow="SECTION 06 • DEVELOPMENT, AWARDS & ITEES"
+            title="Faculty Development, Awards & ITEES"
+            description="Continuous upskilling in instruction, AI/SE research, and quality assurance, alongside PRAISE recognition and semesterly ITEES evaluation (AY 2022–2025)."
+        >
+            <OutcomesOverview></OutcomesOverview>
+        </MaroonSection>
+    </section>
+
+    <!-- Instructional Materials -->
+    <section class="mx-6">
+        <ContentSection
+            sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
+            category="Development of Instructional Materials & Faculty Authors"
+            description="Developed in accordance with OBE, CLOs, PLOs, and SOs, and reviewed/endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA).">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <div class="min-w-0">
+                    <CommonCard
+                        label="SAMPLE COURSE SYLLABUS • 2022 CURRICULUM"
+                        image="../../public/teaching-learning-assets/images/evidence-page13-syllabus.jpg"
+                        imageAlt="Course Syllabus for Automata and Language Theory"
+                        title="COSC 302 – Automata and Language Theory (3 Units)"
+                        >
+                        <p>
+                            <strong>Outcomes-Based Course Syllabus (OVPAA / CCIS):</strong> Covers formal models in Computer Science including finite automata, regular expressions, properties of regular sets, equivalence and minimization, context-free grammars, pushdown automata, and Turing machines—aligned with PUP Vision, Mission, and Quality Policy.
+                        </p>
+                    </CommonCard>
+                </div>
+                <div class="min-w-0">
+                    <CommonCard
+                        label="SAMPLE INSTRUCTIONAL MATERIAL • UTLDO"
+                        image="../../public/teaching-learning-assets/images/evidence-page13-im.jpg"
+                        imageAlt="Faculty Meeting Group Picture"
+                        title="Automata and Language Theory — Compiled by Ria A. Sagum"
+                        >
+                        <p>
+                            <strong>Published & Distributed by PUP CCIS:</strong> fficial UTLDO-endorsed learning module for COSC 302 (CCIS 5F South Wing, PUP Main Bldg., Sta. Mesa, Manila), providing structured theoretical discussions and exercises for BSCS students.
+                        </p>
+                    </CommonCard>
+                </div>
+
+                <!-- Documentary Evidence --> 
+                <div class="lg:col-span-2">
+                    <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase text-(--color-maroon)">
+                                25 COURSES &bull; UTLDO / CIMDA
+                            </p>
+                            <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
+                                List of Faculty Authors in BSCS Instructional Materials
+                            </h3>
+                            <p class="mt-1 text-sm text-(--color-text-body)">
+                                View the complete directory of faculty authors across 25 BSCS courses on a dedicated page.
+                            </p>
+                        </div>
+
+                        <a
+                            href="/teaching-and-learning/faculty-authors"
+                            class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-(--color-gold) px-5 py-3 text-sm font-bold text-(--color-maroon) transition hover:bg-(--color-dark-gold)"
+                        >
+                            View Faculty Authors List →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ContentSection>
+    </section>
+
+    <!-- Program Educational Objectives & Student Outcomes -->
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 04 • STUDENTS OUTCOMES & ECO-SYSTEM"
+            category="Program Educational Objectives & Student Outcomes"
+            description="Purposeful alignment among PEOs, SOs, curriculum, teaching-learning processes, assessment mechanisms, and graduate achievements."
+            >
+
+        </ContentSection>
     </section>
 
     <!-- STUDENT ORGANIZATIONS -->
@@ -244,5 +389,14 @@ import PICAB from "../components/teaching-learning/PICAB.astro";
         :global(.scroll-section.roomy-section) {
             padding-top: 3rem !important;
         }
+    <!--  -->
+</ScrollSnapLayout>
+
+<style>
+    .main-button {
+        background-color: white;
+        background: linear-gradient(90deg, #800000, #B8860B, #5C0000);
+        background-clip: text;
+        color: transparent;
     }
 </style>

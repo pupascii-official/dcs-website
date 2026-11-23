@@ -1,0 +1,634 @@
+---
+import { X } from "lucide-react";
+
+export interface PublicationEntry {
+  authors: string;
+  title: string;
+  journal: string;
+  datePublished: string;
+  doi?: string;
+}
+
+export interface FacultyMember {
+  id: string;
+  name: string;
+  researchArea: string;
+  status?: string;
+  modalStatus?: string;
+  ctaLabel?: string;
+  folderSlug: string;
+  imageSrc?: string;
+  publications?: PublicationEntry[];
+}
+
+export interface Props {
+  eyebrow?: string;
+  heading?: string;
+  showHeading?: boolean;
+  guidanceLabel?: string;
+  faculty?: FacultyMember[];
+  modalId?: string;
+  class?: string;
+}
+
+const {
+  eyebrow = "SECTION 04 // TEAM & SCHOLARS",
+  heading = "Faculty Involved in Research",
+  showHeading = true,
+  guidanceLabel = "FACULTY PUBLICATION CONTRIBUTIONS • 2021–2025",
+  modalId = "faculty-profile-modal",
+  faculty = [
+    {
+      id: "ria-sagum",
+      name: "Ria A. Sagum",
+      researchArea: "NLP",
+      status: "INVOLVED IN RESEARCH",
+      modalStatus: "Involved in Research",
+      ctaLabel: "13 refereed publications",
+      folderSlug: "sagum-research.folder",
+      imageSrc: "research-asset/sagumria.png",
+      publications: [
+        {
+          authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
+          title: "Parallel Ensemble Approach for Named Entity Recognition in Filipino Text",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "July 9, 2025",
+          doi: "https://doi.org/10.1145/3719384.3719444",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Automated Translation between Bicolano and Tagalog using Transfer-Based Model",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "July 9, 2025",
+          doi: "https://doi.org/10.1145/3719384.3719449",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Filipino Genz Slang Sentiment Analyzer using BERT",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.013",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Palayan: Forecasting Rice Crop Loss on Typhoons using PSO-SVR",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-10",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Artificial Intelligence as Support in Knowledge Management for Human Resource Management",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-11",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Sentiment Analysis on Product Review using Sarcasm, Emoticon, and Internet Slang Detection",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-12",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Antonym and Meronym Identification as an Aid for Filipino Corpus Builder",
+          journal: "Advancing Sustainable Science and Technology for a Resilient Future. CRC Press",
+          datePublished: "July 1, 2024",
+          doi: "https://doi.org/10.1201/9781003490210-13",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+          doi: "https://doi.org/10.1145/3639233.3639238",
+        },
+        {
+          authors: "Acasomoso Jr, Dominador M.; Sagum, Ria A.",
+          title: "SEAMS: A Smart and Efficient Attendance Management System with Attendance Prediction and Forecasting",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "December 14, 2023",
+          doi: "https://doi.org/10.1145/3638985.3639010",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Spider Plus: A Text Classifier for Research Article Components",
+          journal: "Procedia Computer Science",
+          datePublished: "November 25, 2023",
+          doi: "https://doi.org/10.1016/j.procs.2023.10.515",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Philippine Supreme Court Case Summarizer using Latent Semantic Analysis",
+          journal: "Procedia Computer Science",
+          datePublished: "November 25, 2023",
+          doi: "https://doi.org/10.1016/j.procs.2023.10.548",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "High-Performance Work Practices, Employee Engagement, and Employee Performance: The Case of a Philippine State University",
+          journal: "Modern Perspectives and Current Trends in Asian Education, Psychology, and Sociology",
+          datePublished: "October 24, 2023",
+          doi: "https://doi.org/10.4018/978-1-6684-7375-7.ch003",
+        },
+        {
+          authors: "Sagum, Ria A.",
+          title: "Application of Associative Classifier for Data Sparsity in Predictive Analysis Recommendation",
+          journal: "2021 IEEE 13th International Conference on Humanoid, Nanotechnology, Information Technology, Communication and Control, Environment, and Management (HNICEM)",
+          datePublished: "November 2021",
+          doi: "https://doi.org/10.1109/HNICEM54116.2021.9731908",
+        },
+      ],
+    },
+    {
+      id: "carlo-inovero",
+      name: "Carlo G. Inovero",
+      researchArea: "TEXT CLASSIFICATION",
+      status: "INVOLVED IN RESEARCH",
+      modalStatus: "Involved in Research",
+      ctaLabel: "6 refereed publications",
+      folderSlug: "inovero-research.folder",
+      imageSrc: "research-asset/inovero.png",
+      publications: [
+        {
+          authors: "Inovero, Carlo G.",
+          title: "Risk Statement Classifier using BERT and DistilBERT",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.009",
+        },
+        {
+          authors: "Inovero, Carlo G.; Porteria, Leonard M.; Carreon, Kurt Andrei C.",
+          title: "Object Detection in Computer Laboratory Setting Utilizing YOLO Model",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.027",
+        },
+        {
+          authors: "Inovero, Carlo G.",
+          title: "Intelligent Credit Scoring: A Smart City Setting for Small and Medium Financial Institution",
+          journal: "2023 The 11th International Conference on Information Technology: IoT and Smart City",
+          datePublished: "March 11, 2024",
+          doi: "https://doi.org/10.1145/3638985.3639016",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+          doi: "https://doi.org/10.1145/3639233.3639238",
+        },
+        {
+          authors: "Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Emotion Recognition through Accelerometer and Gyroscope Sensors: A Pilot Study",
+          journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
+          datePublished: "September 23, 2023",
+          doi: "https://doi.org/10.1007/978-3-031-44097-7_34",
+        },
+        {
+          authors: "Inovero, Carlo G.",
+          title: "A Sentiment Analysis Classification of Product Reviews through Convolutional Neural Network",
+          journal: "Association for Computing Machinery (ACM)",
+          datePublished: "December 23, 2022",
+          doi: "https://doi.org/10.1145/3582197.3582199",
+        },
+      ],
+    },
+    {
+      id: "aleta-fabregas",
+      name: "Aleta C. Fabregas",
+      researchArea: "MACHINE LEARNING",
+      status: "INVOLVED IN RESEARCH",
+      modalStatus: "Involved in Research",
+      ctaLabel: "5 refereed publications",
+      folderSlug: "fabregas-research.folder",
+      imageSrc: "research-asset/fabregas.png",
+      publications: [
+        {
+          authors: "Fabregas, Aleta C.; Amata, Maria Leonila G.",
+          title: "Predicting Student Performance in Higher Education: A Naïve Bayesian Algorithm Approach for Mapping Students Academic Path Using a Rule Based Classifier",
+          journal: "Digital Journal Philippines",
+          datePublished: "June 2024",
+        },
+        {
+          authors: "Fabregas, Aleta C.",
+          title: "Habagatplus: Providing Recommendations for Localized Class Suspension in Schools During Inclement Weather Conditions Using Naive Bayes Classifier",
+          journal: "IEEE Xplore",
+          datePublished: "April 1, 2024",
+          doi: "https://doi.org/10.1109/ICAIIC60209.2024.10463336",
+        },
+        {
+          authors: "Fabregas, Aleta C.; Andres, Christopher",
+          title: "Traffic Incident Prediction and Classification System using Naïve Bayes Algorithm",
+          journal: "Procedia Computer Science",
+          datePublished: "November 2023",
+          doi: "https://doi.org/10.1016/j.procs.2023.10.530",
+        },
+        {
+          authors: "Fabregas, Aleta C.",
+          title: "Online News Monitoring and Sentiment Analysis using BERT Approach",
+          journal: "International Journal of Advanced Research in Technology and Innovation",
+          datePublished: "December 2022",
+        },
+        {
+          authors: "Fabregas, Aleta C.",
+          title: "Detecting Urinary Tract Infection (UTI) thru Analytes level using Convolutional Neural Network and Support Vector Machine",
+          journal: "ICIT 2021: 2021 The 9th International Conference on Information Technology: IoT and Smart City",
+          datePublished: "April 11, 2022",
+          doi: "https://doi.org/10.1145/3512576.3512591",
+        },
+      ],
+    },
+    {
+      id: "mb-dela-fuente",
+      name: "Michael B. Dela Fuente",
+      researchArea: "DEEP LEARNING",
+      status: "INVOLVED IN RESEARCH UNTIL 2025",
+      modalStatus: "Involved in Research until 2025",
+      ctaLabel: "3 refereed publications",
+      folderSlug: "dela-fuente-research.folder",
+      imageSrc: "research-asset/delafuente.png",
+      publications: [
+        {
+          authors: "Dela Fuente, Michael B.",
+          title: "Job Tier Classification in Applicant Tracking Systems Utilizing One-Dimensional CNN",
+          journal: "World Academy of Science, Engineering and Technology (WCSE)",
+          datePublished: "June 29, 2025",
+          doi: "https://doi.org/10.18178/wcse.2025.06.065",
+        },
+        {
+          authors: "Sagum, Janelle Kyra A.; Sagum, Ria A.; Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Automated Filipino Language Treebank Generator",
+          journal: "Association for Computing Machinery",
+          datePublished: "March 5, 2024",
+          doi: "https://doi.org/10.1145/3639233.3639238",
+        },
+        {
+          authors: "Dela Fuente, Michael B.; Inovero, Carlo G.",
+          title: "Emotion Recognition through Accelerometer and Gyroscope Sensors: A Pilot Study",
+          journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
+          datePublished: "September 23, 2023",
+          doi: "https://doi.org/10.1007/978-3-031-44097-7_34",
+        },
+      ],
+    },
+  ],
+  class: className = "",
+} = Astro.props;
+
+const lowercaseWords = new Set(["in", "until", "for", "of", "and", "on", "to"]);
+const resolveModalStatus = (member: FacultyMember) => {
+  if (member.modalStatus) return member.modalStatus;
+  const raw = member.status ?? "Involved in Research";
+  if (raw !== raw.toUpperCase()) return raw;
+  return raw
+    .toLowerCase()
+    .split(/\s+/)
+    .map((word, index) =>
+      index > 0 && lowercaseWords.has(word)
+        ? word
+        : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join(" ");
+};
+
+const guidancePillClass =
+  "inline-flex items-center rounded-full border border-[#D9A41D]/45 badge-faculty-guidance px-4 py-1.5 font-['Montserrat',sans-serif] text-[10px] font-extrabold tracking-[0.07em] uppercase leading-none whitespace-nowrap text-[#800000]";
+---
+
+<section class={`w-full ${className}`} data-faculty-showcase={modalId}>
+  {
+    showHeading ? (
+      <header class="flex flex-wrap items-center justify-between gap-4 mb-5 sm:mb-6">
+        <div class="flex items-stretch gap-3.5 sm:gap-4">
+          <span
+            aria-hidden="true"
+            class="w-[3.5px] shrink-0 rounded-full bg-[#780000]"
+          ></span>
+          <div class="flex flex-col justify-center">
+            <p class="mb-0 font-heading text-[10.5px] sm:text-[11px] font-bold tracking-[0.14em] uppercase text-[#C89416] leading-tight">
+              {eyebrow}
+            </p>
+            <h2 class="mt-1 mb-0 font-display text-[26px] sm:text-[32px] font-black tracking-[-0.02em] leading-[1.1] text-[#141414]">
+              {heading}
+            </h2>
+          </div>
+        </div>
+
+        {guidanceLabel && (
+          <div class="shrink-0">
+            <span class={guidancePillClass}>{guidanceLabel}</span>
+          </div>
+        )}
+      </header>
+    ) : (
+      Boolean(guidanceLabel) && (
+        <div class="mb-6 flex justify-end">
+          <span class={guidancePillClass}>{guidanceLabel}</span>
+        </div>
+      )
+    )
+  }
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    {
+      faculty.map((member) => {
+        const initials = member.name
+          .split(/\s+/)
+          .filter(Boolean)
+          .slice(0, 2)
+          .map((part) => part[0]?.toUpperCase() ?? "")
+          .join("");
+        const gradientId = `folder-pocket-grad-${member.id}`;
+        const status = member.status ?? "INVOLVED IN RESEARCH";
+        const ctaLabel = member.ctaLabel ?? "Refereed publications";
+        const memberDialogId = `${modalId}-${member.id}`;
+
+        return (
+          <div class="flex flex-col items-center">
+            <button
+              type="button"
+              data-faculty-dialog={memberDialogId}
+              class="group relative w-full text-left cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#780000]"
+            >
+              <!-- Outer Dark Maroon Frame -->
+              <div
+                class="rounded-[24px] bg-[#5B0000] p-[8px] shadow-[0_18px_36px_-12px_rgba(70,0,0,0.42)] transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-[0_26px_46px_-12px_rgba(70,0,0,0.52)]"
+              >
+                <!-- Inner Full-Bleed Image Sheet + Curved Maroon Pocket -->
+                <div class="relative overflow-hidden rounded-[17px] bg-[#3B0000]">
+                  <div
+                    class="relative overflow-hidden rounded-t-[17px] border-[1.5px] border-b-0 border-white/95 bg-[#EFEAEA] transition-transform duration-300 ease-out group-hover:-translate-y-1.5"
+                  >
+                    <div class="absolute top-2.5 left-2.5 right-2.5 z-10">
+                      <span
+                        class="inline-flex max-w-full items-center rounded-full bg-[#FFE600] px-2.5 py-1 font-['Montserrat',sans-serif] text-[7.5px] font-extrabold tracking-[0.04em] uppercase leading-tight text-[#4A0000] shadow-sm"
+                      >
+                        {status}
+                      </span>
+                    </div>
+
+                    <div class="relative aspect-[10/9] w-full overflow-hidden bg-[#EFEAEA]">
+                      {
+                        member.imageSrc ? (
+                          <img
+                            src={member.imageSrc}
+                            alt={`Portrait of ${member.name}`}
+                            loading="lazy"
+                            referrerpolicy="no-referrer"
+                            class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                          />
+                        ) : (
+                          <div class="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgba(128,0,0,0.12),rgba(243,234,234,0.95)_75%)] pt-4 text-center">
+                            <span class="font-['Montserrat',sans-serif] text-[28px] font-black tracking-tight text-[#780000]">
+                              {initials}
+                            </span>
+                            <span class="mt-0.5 font-['Montserrat',sans-serif] text-[8px] font-bold tracking-[0.14em] uppercase text-[#800000]/70">
+                              PUP-CCIS FACULTY
+                            </span>
+                          </div>
+                        )
+                      }
+                    </div>
+                  </div>
+
+                  <!-- Curved Gold-Rimmed Maroon Front Folder Pocket -->
+                  <div class="relative z-10 -mt-7">
+                    <svg
+                      viewBox="0 0 300 32"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                      class="block h-6 w-full"
+                    >
+                      <defs>
+                        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#8A0000" />
+                          <stop offset="100%" stop-color="#7A0000" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M 0 32 L 0 25 C 2 14, 18 13, 45 12 C 115 10, 210 6, 300 1 L 300 32 Z"
+                        fill={`url(#${gradientId})`}
+                      />
+                      <path
+                        d="M 0.75 25 C 2.75 14, 18 13, 45 12 C 115 10, 210 6, 299.25 1"
+                        fill="none"
+                        stroke="#C89416"
+                        stroke-width="1.5"
+                        vector-effect="non-scaling-stroke"
+                      />
+                    </svg>
+
+                    <div
+                      class="-mt-px rounded-b-[17px] border-x border-b border-[#C89416]/75 bg-gradient-to-b from-[#7A0000] via-[#680000] to-[#560000] px-3 pt-1 pb-4 text-center"
+                    >
+                      <h3
+                        class="font-['Montserrat',sans-serif] text-[13.5px] font-extrabold text-white leading-tight truncate"
+                      >
+                        {member.name}
+                      </h3>
+                      <p
+                        class="mt-1 font-['Montserrat',sans-serif] text-[9.5px] font-bold italic tracking-[0.04em] uppercase text-[#FFE600] truncate"
+                      >
+                        {member.researchArea}
+                      </p>
+
+                      <div class="mt-3 flex justify-center">
+                        <span
+                          class="inline-flex items-center justify-center rounded-full border border-white/35 bg-white/12 px-3.5 py-1 text-[9.5px] font-semibold text-white group-hover:bg-white/22 transition-colors whitespace-nowrap"
+                        >
+                          {ctaLabel}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </button>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <!-- Per-Faculty Profile Modals -->
+  {
+    faculty.map((member) => {
+      const memberDialogId = `${modalId}-${member.id}`;
+      const publications = member.publications ?? [];
+      const resolvedStatus = resolveModalStatus(member);
+      const initials = member.name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() ?? "")
+        .join("");
+
+      return (
+        <dialog
+          id={memberDialogId}
+          data-faculty-modal={modalId}
+          aria-labelledby={`${memberDialogId}-name`}
+          class="m-auto w-[min(94vw,680px)] rounded-2xl border-[1.5px] border-[#780000] bg-white p-0 shadow-[0_28px_60px_-15px_rgba(60,0,0,0.4)] backdrop:bg-black/55 backdrop:backdrop-blur-[2px] overflow-hidden"
+        >
+          <div class="flex items-center justify-between bg-[#780000] px-5 py-3 text-white">
+            <span class="font-['Montserrat',sans-serif] text-[11px] font-extrabold tracking-[0.12em] uppercase">
+              FACULTY PROFILE
+            </span>
+            <button
+              type="button"
+              data-modal-close
+              aria-label={`Close profile for ${member.name}`}
+              class="inline-flex h-7 w-7 items-center justify-center rounded-md text-white/85 hover:bg-white/15 hover:text-white transition-colors cursor-pointer"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+
+          <div class="p-6 space-y-5 max-h-[82vh] overflow-y-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-5 items-center">
+              <div
+                class="aspect-[4/4.6] w-full max-w-[155px] mx-auto overflow-hidden rounded-xl border border-neutral-200 bg-[#360000] shadow-sm flex items-center justify-center"
+              >
+                {
+                  member.imageSrc ? (
+                    <img
+                      src={member.imageSrc}
+                      alt={`Portrait of ${member.name}`}
+                      referrerpolicy="no-referrer"
+                      class="h-full w-full object-cover object-top"
+                    />
+                  ) : (
+                    <span class="font-['Montserrat',sans-serif] text-[28px] font-black text-[#FFE600]">
+                      {initials}
+                    </span>
+                  )
+                }
+              </div>
+
+              <div class="space-y-3">
+                <h3
+                  id={`${memberDialogId}-name`}
+                  class="font-['Montserrat',sans-serif] text-[22px] font-black tracking-tight text-neutral-950 leading-tight"
+                >
+                  {member.name}
+                </h3>
+
+                <dl class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div>
+                    <dt class="font-['Montserrat',sans-serif] text-[9.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]">
+                      RESEARCH AREA
+                    </dt>
+                    <dd class="mt-0.5 text-[12.5px] font-medium text-neutral-700">
+                      {member.researchArea}
+                    </dd>
+                  </div>
+
+                  <div>
+                    <dt class="font-['Montserrat',sans-serif] text-[9.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]">
+                      RESEARCH STATUS
+                    </dt>
+                    <dd class="mt-0.5 text-[12.5px] font-medium text-neutral-700">
+                      {resolvedStatus}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            <div class="border-t border-neutral-200 pt-4">
+              <div class="flex items-center justify-between gap-3 mb-3">
+                <h4 class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]">
+                  REFEREED PUBLICATIONS
+                </h4>
+                <span
+                  class="rounded-full bg-[#F3E8E8] px-2.5 py-0.5 font-['Montserrat',sans-serif] text-[10px] font-bold text-[#780000]"
+                >
+                  {publications.length} {publications.length === 1 ? "publication" : "publications"}
+                </span>
+              </div>
+
+              <div class="space-y-3">
+                {
+                  publications.map((pub) => (
+                    <article class="rounded-xl border border-neutral-200 bg-neutral-50/75 p-3.5 space-y-1">
+                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                        <span class="font-semibold text-neutral-900">Author(s): </span>
+                        {pub.authors}
+                      </p>
+                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                        <span class="font-semibold text-neutral-900">Title of Research: </span>
+                        {pub.title}
+                      </p>
+                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                        <span class="font-semibold text-neutral-900">Refereed Journal: </span>
+                        {pub.journal}
+                      </p>
+                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                        <span class="font-semibold text-neutral-900">Date Published: </span>
+                        {pub.datePublished}
+                      </p>
+                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                        <span class="font-semibold text-neutral-900">DOI: </span>
+                        {
+                          pub.doi ? (
+                            <a
+                              href={pub.doi}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="font-medium text-[#780000] underline decoration-[#780000]/45 underline-offset-2 hover:text-[#4e0000] hover:decoration-[#4e0000] break-all transition-colors"
+                            >
+                              {pub.doi}
+                            </a>
+                          ) : (
+                            <span class="italic text-neutral-400">No DOI available</span>
+                          )
+                        }
+                      </p>
+                    </article>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </dialog>
+      );
+    })
+  }
+</section>
+
+<style>
+  .badge-faculty-guidance {
+    background-image: linear-gradient(90deg, #fdf3ca 0%, #fae89e 100%);
+  }
+</style>
+
+<script is:inline define:vars={{ modalId }}>
+  (() => {
+    const root = document.querySelector(`[data-faculty-showcase="${modalId}"]`);
+    if (!root) return;
+
+    root.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const trigger = target.closest("[data-faculty-dialog]");
+      if (trigger) {
+        const dialogId = trigger.getAttribute("data-faculty-dialog");
+        const dialog = dialogId ? document.getElementById(dialogId) : null;
+        if (dialog && typeof dialog.showModal === "function") {
+          dialog.showModal();
+        }
+        return;
+      }
+
+      const openDialog = target.closest(`dialog[data-faculty-modal="${modalId}"]`);
+      if (openDialog && (target.closest("[data-modal-close]") || target === openDialog)) {
+        if (typeof openDialog.close === "function") {
+          openDialog.close();
+        }
+      }
+    });
+  })();
+</script>

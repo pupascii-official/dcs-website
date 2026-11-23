@@ -1,0 +1,51 @@
+---
+const {
+    label,
+    image,
+    imageAlt,
+    title,
+    imageFit = "cover",
+} = Astro.props;
+---
+
+<article class="group rounded-3xl shadow-lg h-full border border-(--color-gold) bg-white p-5 sm:p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
+
+    <!-- LABEL -->
+    <p class="text-xs font-extrabold uppercase text-(--color-maroon)">
+        {label}
+    </p>
+
+    <!-- IMAGE -->
+    <div class="mt-4 mb-4 aspect-2.25/1 w-full overflow-hidden rounded-xl border border-(--color-maroon)">
+        <img
+            src={image}
+            alt={imageAlt}
+            class="h-full! w-full!"
+            class:list={[
+                "h-full w-full transition-transform duration-300 ease-in-out group-hover:scale-105",
+                imageFit === "contain" ? "w-auto! max-w-full! object-contain!" : "object-cover!"
+            ]}
+        />
+    </div>
+
+    <!-- TITLE -->
+    <h3 class="text-lg font-bold sm:text-xl">
+        {title}
+    </h3>
+
+    <!-- DESCRIPTION -->
+    <div class="mt-3 text-sm leading-relaxed text-(--color-text-body) sm:text-base">
+        <slot />
+    </div>
+
+</article>
+
+<style>
+    h3 {
+        color: black;
+    }
+
+    img {
+
+    }
+</style>
