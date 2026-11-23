@@ -1,0 +1,130 @@
+---
+const totalFaculty = 24;
+
+const facultyTypes = [
+  {
+    name: "Regular (Permanent)",
+    description: "Plantilla • 40 hrs/wk • 15 units",
+    count: 10,
+    percentage: 42,
+    color: "maroon",
+  },
+  {
+    name: "Part-Time (Contractual)",
+    description: "3–12 teaching units",
+    count: 14,
+    percentage: 58,
+    color: "gold",
+  },
+];
+---
+
+<div class="container h-full rounded-lg relative overflow-hidden scrollbar-none bg-white p-4 sm:p-5">
+  <!-- Heading -->
+  <div class="mb-6">
+    <p class="text-sm font-bold uppercase tracking-wide text-(--color-maroon)">
+      BSCS Faculty Distribution
+    </p>
+
+    <h3 class="mt-3 text-xl leading-tight text-slate-900">
+      {totalFaculty} Faculty Members &ThinSpace;
+      <span class="block sm:inline">
+        (42% Regular &bull; 58% Part-Time)
+      </span>
+    </h3>
+  </div>
+
+  <!-- Distribution panel -->
+  <div class="grid grid-cols-[0.7fr_1.3fr] items-center gap-3 sm:gap-4 rounded-2xl border border-(--color-dark-gold) bg-orange-50/40 p-3 sm:p-4 md:grid-cols-[0.8fr_1.7fr]">
+
+    <!-- Total faculty -->
+    <div class="flex justify-center">
+      <div class="flex aspect-square w-28 sm:w-32 items-center justify-center rounded-[2.5rem] border-4 border-white">
+        <div class="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-white">
+          <span class="text-4xl font-bold leading-none text-(--color-maroon)">
+            {totalFaculty}
+          </span>
+          <span class="mt-1 text-xs font-bold uppercase text-slate-500">
+            Faculty
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Faculty categories -->
+    <div class="flex flex-col gap-3">
+      {facultyTypes.map((type) => (
+        <div
+          class:list={[
+            "flex items-center justify-between gap-3 border border-slate-200 border-l-4 bg-white px-3 py-3 shadow-sm",
+            type.color === "maroon"
+              ? "border-l-(--color-maroon)"
+              : "border-l-(--color-gold)",
+          ]}
+        >
+          <div class="min-w-0">
+            <h3 class="text-sm font-bold text-slate-900 sm:text-base">
+              {type.name}
+            </h3>
+            <p class="mt-1 text-xs text-slate-500 sm:text-sm">
+              {type.description}
+            </p>
+          </div>
+
+          <div class="shrink-0 text-right flex flex-col gap-0 items-center">
+            <p
+              class:list={[
+                "text-xl font-extrabold",
+                type.color === "maroon"
+                  ? "text-(--color-maroon)"
+                  : "text-(--color-dark-gold)",
+              ]}
+            >
+              {type.count}
+            </p>
+            <p class="text-xs font-bold text-slate-500">
+              {type.percentage}%
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="mt-5">
+    <div class="flex h-3 overflow-hidden rounded-full bg-slate-200">
+      <div class="h-full bg-(--color-maroon)" style="width: 42%"></div>
+      <div class="h-full flex-1 bg-(--color-gold)"></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="mt-2 flex flex-wrap justify-between gap-2 text-xs font-semibold sm:text-sm">
+      <p class="text-(--color-maroon)">
+        <span class="font-extrabold">42%</span>
+        <span class="text-slate-600"> Regular (10)</span>
+      </p>
+
+      <p class="text-(--color-dark-gold)">
+        <span class="font-extrabold">58%</span>
+        <span class="text-slate-600"> Part-Time (14)</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+    .container {
+        border-inline: 2px var(--color-dark-gold) solid;
+        border-block-end: 2px var(--color-dark-gold) solid;
+        border-block-start: 6px var(--color-maroon) solid;
+    }
+
+    h3 {
+        color: var(--color-text-body);
+    }
+
+    p {
+        margin-bottom: 0.5em;
+    }
+</style>
