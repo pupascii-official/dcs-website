@@ -1,0 +1,591 @@
+---
+import ScrollSnapLayout from '../layouts/ScrollSnapLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ContentSection from '../components/ContentSection.astro';
+import HeadlineComponent from "../components/HeadlineComponent.astro";
+import ContentCard from "../components/ContentCard.astro";
+import GalleryCard from "../components/GalleryCard.astro";
+import SpotlightBanner from "../components/SpotlightBanner.astro";
+import {CORE_VALUES, STRATEGIC_PILLARS} from "../consts.ts";
+import Badge from "../components/Badge.astro";
+import Accordion from '../components/Accordion.astro';
+import Timeline from '../components/Timeline.astro';
+import LinkCard from "../components/LinkCard.astro";
+import PillCard from '../components/PillCard.astro';
+import PDFModal from "../components/PDFModal.astro";
+import path from "node:path";
+
+const TIMELINE_ITEMS = [
+    {
+        number: "01",
+        title: "University Development Plan (UDP)",
+        description: "Establishes the University's strategic direction and goals.",
+    },
+    {
+        number: "02",
+        title: "College And Department Development Plans",
+        description: "Translate University goals into college and departmental priorities.",
+    },
+    {
+        number: "03",
+        title: "Office Performance Commitment And Review (OPCR)",
+        description: "Documents the commitments and expected outputs of the college and department.",
+    },
+    {
+        number: "04",
+        title: "Individual Performance Commitment And Review (IPCR)",
+        description: "Establishes the responsibilities and performance commitments of individual faculty and staff members.",
+    },
+    {
+        number: "05",
+        title: "Electronic Quarterly Accomplishment Reporting (EQAR)",
+        description: "Monitors and documents the progress of planned activities and accomplishments.",
+    },
+];
+
+const CORE_PROCESSES = [
+    {
+        number: "01",
+        title: "Curriculum Design and Development",
+        description:
+            "The curriculum is developed and revised based on CHED guidelines, University policies, and industry requirements. Proposed revisions undergo consultation with students, parents, alumni, faculty, administrative personnel, and industry representatives before evaluation and approval by the appropriate University bodies.",
+        pdfSlug: "curriculum-design",
+    },
+    {
+        number: "02",
+        title: "Syllabi Preparation",
+        description:
+            "Course syllabi are prepared by faculty members based on CHED directives and University guidelines. The process includes resource gathering, faculty consultation, preparation, committee evaluation, revision when necessary, and submission for approval.",
+        pdfSlug: "syllabi-preparation",
+    },
+    {
+        number: "03",
+        title: "Instructional Materials Development",
+        description:
+            "Faculty members develop instructional materials such as modules, visual aids, manuals, and textbooks. These materials undergo evaluation by the University Textbook and Other Instructional Materials Evaluation Committee (UTIMEC) before approval for University use.",
+        pdfSlug: "instructional-materials",
+    },
+    {
+        number: "04",
+        title: "Test Administration and Evaluation",
+        description:
+            "Departmental examinations are administered during the midterm and final periods. A test formulation committee prepares standardized written and practical examinations supported by Tables of Specifications to ensure appropriate topic coverage and distribution of difficulty.",
+        pdfSlug: "test-administration",
+    },
+    {
+        number: "05",
+        title: "Classroom Management",
+        description:
+            "Faculty members manage class enrollment, syllabus distribution, instructional delivery, student participation, assessment, grading, feedback, progress monitoring, and submission of official academic records.",
+        pdfSlug: "classroom-management",
+    },
+    {
+        number: "06",
+        title: "Internship / On-the-Job Training",
+        description:
+            "The Internship/OJT program prepares students for professional practice through workplace experience, industry supervision, technical skill development, networking, and career preparation. It is managed through the coordination of the OJT Coordinator and OJT Adviser.",
+        pdfSlug: "internship-ojt",
+    },
+];
+
+const PDCA_STEPS = [
+    {
+        number: "1",
+        phase: "PLAN",
+        description: "Establish institutional goals, strategic priorities, and action plans.",
+    },
+    {
+        number: "2",
+        phase: "DO",
+        description: "Implement planned programs, projects, and activities.",
+    },
+    {
+        number: "3",
+        phase: "CHECK",
+        description: "Monitor accomplishments and evaluate performance through assessment reports.",
+    },
+    {
+        number: "4",
+        phase: "ACT",
+        description: "Address identified concerns, resolve issues, and implement improvements.",
+    },
+];
+---
+
+<ScrollSnapLayout title="Planning & QA" description="Test">
+    <HeroSection title="Planning & Quality Assurance" subtitle="Systematizing Plans for Excellence" }>
+        <p>The College of Computer and Information Sciences, through its Bachelor of Science in Computer Science and
+            Bachelor of Science in Information Technology programs, actively contributes to the University's
+            institutional development through research, quality instruction, extension services, and continuous
+            improvement.</p>
+
+        <p>Its long-term commitment focuses on aligning academic programs, research initiatives, and institutional
+            processes with University policies and international standards.</p>
+    </HeroSection>
+
+    <ContentSection
+            sectionLabel="SECTION 01"
+            category="University Development Plan 2024–2028"
+    >
+        <div class="mission-vision-grid">
+            <HeadlineComponent kicker="University Vision"
+                               headline="A Leading Comprehensive Polytechnic University In Asia">
+                <p>The University Development Plan (UDP) 2024–2028 serves as the current strategic framework of PUP. It
+                    focuses on three foundational pillars and eleven strategic goals designed to strengthen teaching and
+                    learning, research and extension, and internal governance.</p>
+            </HeadlineComponent>
+
+            <ContentCard>
+                <small slot="kicker">University Mission</small>
+                <p slot="content">Advance an Inclusive, Equitable, and Globally Relevant Polytechnic Education Towards
+                    National Development.</p>
+            </ContentCard>
+
+            <section class="core-values-section">
+                <div>
+                    <small class="core-values-kicker">Core Values</small>
+                    <h3 class="inspired-text">INSPIRED</h3>
+                </div>
+
+                <div class="core-values-pills">
+                    {
+                        CORE_VALUES.map((value: string) => (<Badge>{value}</Badge>))
+                    }
+                </div>
+            </section>
+
+        </div>
+
+        <HeadlineComponent headline="Strategic Pillars"/>
+
+        <div class="strategic-pillars-column">
+            {STRATEGIC_PILLARS.map((pillar) => (
+                    <Accordion
+                            number={pillar.number}
+                            title={pillar.title}
+                            items={pillar.items}
+                    />
+            ))}
+        </div>
+
+    </ContentSection>
+
+    <ContentSection
+            sectionLabel="SECTION 02"
+            category="Quality Assurance Center"
+    >
+        <HeadlineComponent headline="Nurturing a Culture of Quality">
+            <p>Established in June 2008, the PUP Quality Assurance Center (QAC) is responsible for nurturing a culture
+                of quality through the development, implementation, monitoring, and review of quality assurance
+                policies, procedures, and projects.</p>
+
+            <p>It works with colleges, branches, campuses, and university offices to ensure that academic programs and
+                institutional processes meet institutional, national, and international standards.</p>
+        </HeadlineComponent>
+
+        <div class="qac-grid">
+            <Accordion
+                    title="QAC Goals"
+                    items={[
+                        "Excellence in institutional and program management.",
+                        "Excellence in capacity development for continuous quality improvement.",
+                        "Excellence in partnership for institutional and program development.",
+                    ]}
+            />
+
+            <Accordion
+                    title="QAC Objectives"
+                    items={[
+                        "Develop and maintain an effective internal quality assurance system.",
+                        "Secure Certificates of Program Compliance and attain higher accreditation status for academic programs.",
+                        "Attain Center of Development and Center of Excellence status for priority programs.",
+                        "Strengthen collaborative arrangements with internal and external stakeholders.",
+                        "Maintain an efficient, secure, and accessible database of quality assurance materials.",
+                        "Develop and implement capacity-building interventions to improve teaching and learning.",
+                        "Rationalize academic program offerings.",
+                    ]}
+            />
+        </div>
+
+        <GalleryCard caption="The Quality Assurance Center">
+            <img slot="media" src="/planning_and_qa/qac.jpg" alt="Quality Assurance Center staff">
+        </GalleryCard>
+    </ContentSection>
+
+    <ContentSection
+            sectionLabel="SECTION 03"
+            category="Year-Round Institutional Planning"
+    >
+        <HeadlineComponent headline="Planning and Performance Management">
+            <p>The University implements a year-round planning, monitoring, and assessment process guided by its Vision,
+                Mission, Goals, and Objectives (VMGO). It follows a top-down and bottom-up management approach to ensure
+                that institutional goals are translated into measurable commitments.</p>
+        </HeadlineComponent>
+
+        <div class="timeline-container">
+            <Timeline items={TIMELINE_ITEMS}/>
+        </div>
+
+        <ContentCard kicker="Performance Monitoring" display="Measurable commitments, reviewed throughout the year.">
+            <dl slot="content" class="schedule-list">
+                <dt>Quarterly</dt>
+                <dd>Accomplishment Report (eQAR)</dd>
+
+                <dt>Semi Annual</dt>
+                <dd>OPCR Submission</dd>
+
+                <dt>January-June</dt>
+                <dd>First reporting period</dd>
+
+                <dt>July-December</dt>
+                <dd>Second reporting period</dd>
+            </dl>
+        </ContentCard>
+    </ContentSection>
+
+    <ContentSection
+            sectionLabel="SECTION 04"
+            category="Department Level Quality Assurance"
+    >
+        <HeadlineComponent headline="Department-Level Processes">
+            <p>The Department of Computer Science implements systematic academic processes to ensure the quality of
+                curriculum development, instruction, assessment, and student preparation for professional practice.</p>
+        </HeadlineComponent>
+
+        <div class="process-grid">
+            {CORE_PROCESSES.map((proc) => (
+                    <LinkCard
+                            number={proc.number}
+                            title={proc.title}
+                            description={proc.description}
+                            pdfSlug={ proc.pdfSlug }
+                            linkLabel="View Processes"
+                    />
+            ))}
+        </div>
+    </ContentSection>
+
+    <ContentSection
+            sectionLabel="SECTION 05"
+            category="Monitoring and Continuous Improvement"
+    >
+        <HeadlineComponent headline="A Cycle of Continuous Quality">
+            <p>PUP conducts regular assessments to monitor the implementation of development plans and evaluate
+                institutional performance. The process follows the Plan-Do-Check-Act (PDCA) cycle to promote continuous
+                quality improvement.</p>
+        </HeadlineComponent>
+
+        <ContentCard>
+            <div slot="content" class="pdca-grid">
+                {PDCA_STEPS.map((step) => (
+                        <div class="pdca-step">
+                            <span class="pdca-number">{step.number}</span>
+                            <h3 class="pdca-phase">{step.phase}</h3>
+                            <p class="pdca-desc">{step.description}</p>
+                        </div>
+                ))}
+            </div>
+        </ContentCard>
+
+        <div class="institutional-review-bar">
+            <HeadlineComponent headline="Regular Institutional Review">
+                <p>The units submit their monitoring reports to their respective sectors, which consolidate the results
+                    for review by the Executive Committee.</p>
+            </HeadlineComponent>
+
+            <ContentCard kicker="JUNE-JULY" display="Mid-Year Assessment"></ContentCard>
+            <ContentCard kicker="DECEMBER" display="Year-End Assessment"></ContentCard>
+        </div>
+
+        <SpotlightBanner kicker="Institutional Recognition" display="Governance Organization of the Year">
+            <img slot="media" src="/planning_and_qa/pres_muhi_asia_ceo_award.jpg"
+                 alt="President Muhi receiving his award at Asia CEO 2024"/>
+
+            <div slot="content">
+                <b>Asia CEO Awards 2024</b>
+                <p>PUP received this recognition in acknowledgment of its institutional governance and management
+                    practices.</p>
+            </div>
+        </SpotlightBanner>
+    </ContentSection>
+
+    <ContentSection
+            sectionLabel="SECTION 06"
+            category="Quality Assurance Initiatives"
+    >
+        <HeadlineComponent headline="International Benchmarking and Recognition">
+            <p>The BSCS program participates in quality assurance initiatives that support international benchmarking,
+                external validation, and continuous improvement of academic standards.</p>
+        </HeadlineComponent>
+
+        <ContentCard kicker="International Recognition" display="PICAB-CAC Certification">
+            <img slot="media" src="/planning_and_qa/picab-cic.png" alt="PICAB-CIC Summary of Accreditation Actions">
+
+            <div slot="content" class="picab-cic-content">
+                <b>July 2026</b>
+
+                <p>The Bachelor of Science in Computer Science program of CCIS earned certification from the Computing
+                    Accreditation Commission (CAC) of PICAB in July 2026.</p>
+
+                <p>This certification marks PUP's first international program accreditation. PICAB is a provisional
+                    signatory to the Seoul Accord, an international agreement that recognizes substantial equivalence in
+                    computing and IT degrees across member countries.</p>
+            </div>
+        </ContentCard>
+
+        <h2 class="other-qais">Other Quality Assurance Initiatives</h2>
+
+        <div class="iso-grid">
+            <PillCard
+                    number="01"
+                    title="ISO 9001:2015 RE-CERTIFICATION"
+                    subtitle="Quality Management System"
+            />
+            <PillCard
+                    number="02"
+                    title="ISO 21001:2018"
+                    subtitle="Educational Organizations Management System Application"
+            />
+        </div>
+    </ContentSection>
+
+    <PDFModal />
+</ScrollSnapLayout>
+
+<style>
+    .mission-vision-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    @media (min-width: 800px) {
+        .mission-vision-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mission-vision-grid > :first-child {
+            grid-column: auto;
+            align-self: center;
+        }
+    }
+
+    .inspired-text {
+        font-size: xxx-large;
+        background: linear-gradient(to right, var(--color-gold), var(--color-maroon));
+        background-clip: text;
+        color: transparent;
+    }
+
+    .core-values-section {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        border-top: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 2rem;
+    }
+
+    @media (min-width: 800px) {
+        .core-values-section {
+            /* Desktop: left column fits "INSPIRED", right column gets all leftover space */
+            grid-template-columns: max-content minmax(0, 1fr);
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .core-values-pills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .strategic-pillars-column {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        align-items: start; /* Keeps cards sized to their own content when opened */
+        margin-bottom: 2rem;
+    }
+
+    .timeline-container {
+        padding-left: 2em;
+        padding-right: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .schedule-list {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        row-gap: 1.15rem;
+        column-gap: 3rem;
+        margin: 1rem 0 0;
+        font-family: var(--font-montserrat), system-ui, sans-serif;
+        font-weight: 600;
+        font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    }
+
+    .schedule-list dt {
+        color: var(--color-gold);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .schedule-list dd {
+        margin: 0; /* Overrides the browser's default 40px left indent on <dd> */
+        color: var(--color-white);
+    }
+
+    @media (max-width: 550px) {
+        .schedule-list {
+            grid-template-columns: 1fr;
+            row-gap: 0.25rem;
+        }
+
+        .schedule-list dd {
+            margin-bottom: 1rem;
+        }
+
+        .schedule-list dd:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .pillars-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .qac-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        align-items: start; /* Keeps cards sized to their own content when opened */
+        margin-bottom: 2rem;
+    }
+
+    @media (min-width: 850px) {
+        .qac-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 2rem;
+        }
+    }
+
+    .process-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 650px) {
+        .process-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 1000px) {
+        .process-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+    }
+
+    .pdca-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    @media (min-width: 600px) {
+        .pdca-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (min-width: 950px) {
+        .pdca-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 2.25rem;
+        }
+    }
+
+    .pdca-step {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+    }
+
+    .pdca-number {
+        font-family: var(--font-montserrat), system-ui, sans-serif;
+        font-weight: 600;
+        font-size: clamp(1.5rem, 2.4vw, 2rem);
+        line-height: 1;
+        color: var(--color-white);
+        margin-bottom: 0.75rem; /* Preserves the vertical breathing room above the phase title */
+    }
+
+    .pdca-phase {
+        margin: 0;
+        width: fit-content; /* Ensures short words like DO and ACT get the full gradient */
+        font-family: var(--font-montserrat), system-ui, sans-serif;
+        font-weight: 800;
+        font-size: clamp(2rem, 3vw, 2.75rem);
+        line-height: 1.05;
+        background: linear-gradient(to right, var(--color-gold), var(--color-white));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .pdca-desc {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--color-white);
+    }
+
+    .institutional-review-bar {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    @media (min-width: 800px) {
+        .institutional-review-bar {
+            grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr));
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .institutional-review-bar > :first-child {
+            grid-column: auto;
+            align-self: center;
+        }
+    }
+
+    .picab-cic-content :global(p) {
+        margin-bottom: 1rem;
+    }
+
+    .other-qais {
+        margin-bottom: 1rem;
+    }
+
+    .iso-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    @media (min-width: 800px) {
+        .iso-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+</style>

@@ -8,7 +8,7 @@ const {
 } = Astro.props;
 ---
 
-<article class="rounded-3xl h-full border border-(--color-gold) bg-white p-5 sm:p-6">
+<article class="rounded-3xl shadow-lg h-full border border-(--color-gold) bg-white p-5 sm:p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
 
     <!-- LABEL -->
     <p class="text-xs font-extrabold uppercase text-(--color-maroon)">
@@ -20,10 +20,10 @@ const {
         <img
             src={image}
             alt={imageAlt}
-            class="h-full w-full object-cover"
+            class="h-full! w-full!"
             class:list={[
                 "h-full w-full",
-                imageFit === "contain" ? "object-contain" : "object-cover"
+                imageFit === "contain" ? "w-auto! max-w-full! object-contain!" : "object-cover!"
             ]}
         />
     </div>
@@ -43,5 +43,9 @@ const {
 <style>
     h3 {
         color: black;
+    }
+
+    img {
+
     }
 </style>

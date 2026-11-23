@@ -21,25 +21,36 @@ const categories = [
         category: "Professional Electives",
         units: 12,
         description: "Provide opportunities for students to explore specialized and emerging areas of computer science based on their interests and career goals."
+    },
+    {
+        category: "Math, PE & NSTP",
+        units: 17,
+        description: "Additional Math (3 units), Physical Education / PATHFIT (8 units), and National Service Training Program / NSTP (6 units)."
     }
 ];
 ---
 
 <div class="mx-auto w-full mb-3">
-    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- Total Units Banner -->
+    <div class="my-4 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-(--color-maroon) px-8 py-3 text-white">
+        <h3>
+            CURRICULUM DISTRIBUTION
+        </h3>
+        <span class="rounded-lg bg-(--color-gold) px-4 py-2 text-base font-extrabold text-(--color-dark-maroon)">
+            167 UNITS
+        </span>
+    </div>
+    
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {categories.map((item) => (
             <CurriculumCard {...item} />
         ))}
     </div>
-
-    <!-- Total Units Banner -->
-    <div class="mt-4 flex flex-wrap items-center justify-center gap-4 rounded-2xl bg-red-900 px-5 py-4 text-white">
-        <span class="rounded-lg bg-yellow-400 px-4 py-2 text-base font-extrabold text-red-950">
-            167 UNITS
-        </span>
-
-        <span class="text-sm font-bold uppercase">
-            (Including PATHFIT & NSTP)
-        </span>
-    </div>
 </div>
+
+<style>
+    h3 {
+        color: white;
+        font-size: large;
+    }
+</style>

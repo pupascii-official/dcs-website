@@ -14,11 +14,11 @@ const slides = [
 ];
 ---
 
-<article class="h-full rounded-2xl border border-amber-300 bg-white p-5 sm:p-6">
+<article class="h-full rounded-2xl border border-(--color-gold) bg-white p-5 sm:p-6 shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
 
     <!-- HEADER -->
     <div>
-        <p class="text-xs font-bold uppercase text-red-900">
+        <p class="text-xs font-bold uppercase text-(--color-dark-maroon)">
             Assessment & Feedback Mechanisms
         </p>
 
@@ -31,21 +31,21 @@ const slides = [
     <div class="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
 
         <p>
-            <strong class="text-red-900">Sample Intern Evaluation:</strong>
+            <strong class="text-(--color-dark-maroon)">Sample Intern Evaluation:</strong>
             OJT supervisor ratings on Character (30%) and Competence (70%)—e.g.,
             GoGenie Solutions Inc. evaluation of technical skills, teamwork,
             and workplace readiness.
         </p>
 
         <p>
-            <strong class="text-red-900">Sample Course Assessment Result:</strong>
+            <strong class="text-(--color-dark-maroon)">Sample Course Assessment Result:</strong>
             QAC Course Assessment Datasheet for <em>CS Thesis Writing 1</em>
             (193 enrolled students across Dastas, Dela Fuente, Espinelli,
             Juancho, Tan, Usero) mapping SO1 & SO2 performance indicators.
         </p>
 
         <p>
-            <strong class="text-red-900">Graduate Exit & Tracer Studies:</strong>
+            <strong class="text-(--color-dark-maroon)">Graduate Exit & Tracer Studies:</strong>
             Evaluates preparedness for professional practice and aligns
             curriculum with industry requirements.
         </p>
@@ -58,7 +58,7 @@ const slides = [
         data-carousel
     >
         <!-- IMAGE VIEWER -->
-        <div class="relative overflow-hidden rounded-xl border border-red-200 bg-slate-50 p-2">
+        <div class="relative overflow-hidden rounded-xl border border-(--color-muted-maroon) bg-slate-50 p-2">
 
             <div class="relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-lg bg-black">
 
@@ -74,7 +74,7 @@ const slides = [
                     type="button"
                     data-carousel-prev
                     aria-label="Previous image"
-                    class="absolute left-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-lg font-bold text-red-900 shadow transition hover:bg-yellow-400"
+                    class="absolute left-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-lg font-bold text-(--color-dark-maroon) shadow transition hover:bg-(--color-gold)"
                 >
                     ‹
                 </button>
@@ -84,7 +84,7 @@ const slides = [
                     type="button"
                     data-carousel-next
                     aria-label="Next image"
-                    class="absolute right-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-lg font-bold text-red-900 shadow transition hover:bg-yellow-400"
+                    class="absolute right-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-lg font-bold text-(--color-dark-maroon) shadow transition hover:bg-(--color-gold)"
                 >
                     ›
                 </button>
@@ -94,7 +94,7 @@ const slides = [
             <!-- CAPTION -->
             <p
                 data-carousel-caption
-                class="mt-2 text-center text-xs font-bold text-red-900"
+                class="mt-2 text-center text-xs font-bold text-(--color-dark-maroon)"
             >
                 {slides[0].caption}
             </p>
@@ -113,7 +113,7 @@ const slides = [
                         class:list={[
                             "h-2 rounded-full transition-all",
                             index === 0
-                                ? "w-6 bg-red-900"
+                                ? "w-6 bg-(--color-dark-maroon)"
                                 : "w-2 bg-red-200 hover:bg-red-400",
                         ]}
                     />
