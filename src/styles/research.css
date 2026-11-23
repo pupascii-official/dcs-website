@@ -118,3 +118,16 @@
 		font-size: 11px;
 	}
 }
+
+@media (min-width: 1024px) {
+	.research-page .scroll-section {
+		height: auto !important;
+		min-height: 100dvh;
+		overflow-y: visible !important;
+		scroll-snap-stop: always;
+	}
+
+	main.scroll-container:has(.research-page) {
+		scroll-snap-type: y mandatory;
+	}
+}
