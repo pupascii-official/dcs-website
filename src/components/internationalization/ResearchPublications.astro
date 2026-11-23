@@ -10,9 +10,7 @@ const filterTabs = [
   { id: "iictc-award", label: "IICTC 2022 Best Paper Awards" }
 ];
 
-const pillBase = "px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer";
-const pillActive = `${pillBase} bg-(--color-maroon) text-(--color-gold) shadow-2xs`;
-const pillIdle = `${pillBase} bg-white border border-neutral-300 text-neutral-700 hover:border-(--color-maroon) hover:text-(--color-maroon)`;
+const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block";
 ---
 
 <div class="w-full space-y-4" data-research-publications>
@@ -45,7 +43,7 @@ const pillIdle = `${pillBase} bg-white border border-neutral-300 text-neutral-70
         role="tab"
         aria-selected={idx === 0 ? "true" : "false"}
         data-cat-btn={tab.id}
-        class={idx === 0 ? pillActive : pillIdle}
+        class="cat-pill px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer"
       >
         {tab.label}
       </button>
@@ -106,34 +104,26 @@ const pillIdle = `${pillBase} bg-white border border-neutral-300 text-neutral-70
               class="hidden mt-3 rounded-xl bg-neutral-50 border border-neutral-200/90 p-4 space-y-2 text-xs break-words"
             >
               <div>
-                <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
-                  Fora / Publication
-                </span>
+                <span class={metaLabelClass}>Fora / Publication</span>
                 <p class="text-neutral-800 font-medium leading-relaxed mt-0.5">{paper.fora}</p>
               </div>
 
               <div class="flex flex-wrap gap-x-6 gap-y-2">
                 <div>
-                  <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
-                    Date
-                  </span>
+                  <span class={metaLabelClass}>Date</span>
                   <p class="text-neutral-800 font-medium mt-0.5">{paper.date}</p>
                 </div>
 
                 {paper.location && (
                   <div>
-                    <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
-                      Location
-                    </span>
+                    <span class={metaLabelClass}>Location</span>
                     <p class="text-neutral-800 font-medium mt-0.5">{paper.location}</p>
                   </div>
                 )}
               </div>
 
               <div>
-                <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
-                  Authors
-                </span>
+                <span class={metaLabelClass}>Authors</span>
                 <p class="text-neutral-800 font-medium leading-relaxed mt-0.5">{paper.authors}</p>
               </div>
 
@@ -171,6 +161,23 @@ const pillIdle = `${pillBase} bg-white border border-neutral-300 text-neutral-70
 </div>
 
 <style>
+  .cat-pill {
+    background-color: var(--color-white);
+    border: 1px solid #d4d4d4;
+    color: #404040;
+  }
+
+  .cat-pill:hover {
+    border-color: var(--color-maroon);
+    color: var(--color-maroon);
+  }
+
+  .cat-pill[aria-selected="true"] {
+    background-color: var(--color-maroon);
+    border-color: var(--color-maroon);
+    color: var(--color-gold);
+  }
+
   .paper-row-title {
     color: var(--color-text-body) !important;
   }
@@ -210,9 +217,6 @@ const pillIdle = `${pillBase} bg-white border border-neutral-300 text-neutral-70
 
 <script is:inline>
   (() => {
-    const activeCls = "px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer bg-(--color-maroon) text-(--color-gold) shadow-2xs";
-    const idleCls = "px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer bg-white border border-neutral-300 text-neutral-700 hover:border-(--color-maroon) hover:text-(--color-maroon)";
-
     document.querySelectorAll("[data-research-publications]").forEach((root) => {
       const input = root.querySelector("[data-filter-input]");
       const clearBtn = root.querySelector("[data-filter-clear]");
@@ -244,9 +248,7 @@ const pillIdle = `${pillBase} bg-white border border-neutral-300 text-neutral-70
         btn.addEventListener("click", () => {
           activeCategory = btn.getAttribute("data-cat-btn") || "all";
           catButtons.forEach((b) => {
-            const isSelected = b.getAttribute("data-cat-btn") === activeCategory;
-            b.setAttribute("aria-selected", String(isSelected));
-            b.className = isSelected ? activeCls : idleCls;
+            b.setAttribute("aria-selected", String(b.getAttribute("data-cat-btn") === activeCategory));
           });
           applyFilters();
         });

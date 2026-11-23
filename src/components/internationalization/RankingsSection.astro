@@ -23,15 +23,14 @@ const edurankMetrics = [
 
 const wuriMain = splitRank(wuri.rank);
 const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight";
+const cardTitleClass = "font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight";
 ---
 
 <div class="rankings-root w-full border-t border-(--color-maroon)/50 pt-5 space-y-6">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-0 pb-6 border-b border-(--color-maroon)/50">
     <div class="flex flex-col justify-between md:pr-8 min-w-0">
       <div class="flex items-center justify-between gap-3 mb-3">
-        <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
-          {qsStars.title}
-        </h3>
+        <h3 class={cardTitleClass}>{qsStars.title}</h3>
         <img src={qsStars.logoPath} alt="QS Stars" class="ranking-logo ranking-logo-qs shrink-0" loading="lazy" />
       </div>
 
@@ -77,9 +76,7 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-5xl 
     <div class="flex flex-col justify-between border-t md:border-t-0 md:border-l border-(--color-maroon)/50 pt-5 md:pt-0 md:pl-8 min-w-0">
       <div class="flex items-center justify-between gap-3 mb-3">
         <div class="min-w-0">
-          <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
-            {edurank.title}
-          </h3>
+          <h3 class={cardTitleClass}>{edurank.title}</h3>
           <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{edurank.subtitle}</p>
         </div>
         <img src={edurank.logoPath} alt="EduRank Logo" class="ranking-logo-edurank shrink-0 shadow-2xs" loading="lazy" />
@@ -105,9 +102,7 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-5xl 
     <div class="md:col-span-7 flex flex-col justify-between md:pr-8 min-w-0">
       <div class="flex items-center justify-between gap-3 mb-2">
         <div class="min-w-0">
-          <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
-            {theImpact.title}
-          </h3>
+          <h3 class={cardTitleClass}>{theImpact.title}</h3>
           <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{theImpact.subtitle}</p>
         </div>
         <img src={theImpact.logoPath} alt="THE Impact Ranking" class="ranking-logo ranking-logo-the shrink-0" loading="lazy" />
@@ -124,9 +119,7 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-5xl 
     <div class="md:col-span-5 flex flex-col justify-center border-t md:border-t-0 md:border-l border-(--color-maroon)/50 pt-5 md:pt-0 md:pl-8 min-w-0">
       <div class="flex items-center justify-between gap-3 mb-1.5">
         <div class="min-w-0">
-          <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
-            {aunQa.title}
-          </h3>
+          <h3 class={cardTitleClass}>{aunQa.title}</h3>
           <span class="text-xs font-bold text-(--color-maroon) block mt-0.5">{aunQa.subtitle}</span>
         </div>
         <img src={aunQa.logoPath} alt="AUN-QA Logo" class="ranking-logo ranking-logo-aun shrink-0" loading="lazy" />
@@ -138,9 +131,7 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-5xl 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     <div class="lg:col-span-5 flex flex-col min-w-0">
       <div class="mb-2">
-        <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
-          {wuri.title}
-        </h3>
+        <h3 class={cardTitleClass}>{wuri.title}</h3>
         <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{wuri.subtitle}</p>
       </div>
 

@@ -26,11 +26,11 @@ import StackedDeck from "./StackedDeck.astro";
           <img
             src={student.portraitPath}
             alt={`Student scholar ${student.name}`}
-            class="collapsed-portrait-img transition-transform duration-300 group-hover:scale-[1.03]"
+            class="intl-deck-photo collapsed-portrait-img transition-transform duration-300 group-hover:scale-[1.03]"
             loading="lazy"
           />
           <div class="collapsed-overlay absolute inset-0 flex flex-col justify-end p-4 sm:p-5 text-center">
-            <h3 class="collapsed-overlay-name font-['Montserrat',sans-serif] text-base sm:text-lg font-extrabold leading-tight">
+            <h3 class="intl-deck-title font-['Montserrat',sans-serif] text-base sm:text-lg font-extrabold leading-tight">
               {student.displayNameOnPortrait}
             </h3>
             <p class="text-xs font-bold text-white mt-1">{student.university}</p>
@@ -42,7 +42,7 @@ import StackedDeck from "./StackedDeck.astro";
         </div>
 
         <div
-          class="expanded-card hidden relative w-full md:h-full rounded-2xl overflow-hidden shadow-2xl border border-(--color-maroon) cursor-pointer"
+          class="intl-deck-expanded hidden relative w-full md:h-full rounded-2xl overflow-hidden shadow-2xl border border-(--color-maroon) cursor-pointer"
           data-deck-expanded
           role="button"
           tabindex="0"
@@ -58,35 +58,35 @@ import StackedDeck from "./StackedDeck.astro";
           </button>
 
           <div class="md:hidden relative w-full h-52 overflow-hidden">
-            <img src={student.groupPhotoPath} alt={`${student.name} exchange group`} class="expanded-group-img" loading="lazy" />
-            <div class="expanded-mobile-gradient absolute inset-0 pointer-events-none"></div>
+            <img src={student.groupPhotoPath} alt={`${student.name} exchange group`} class="intl-deck-photo" loading="lazy" />
+            <div class="intl-deck-fade-mobile absolute inset-0 pointer-events-none"></div>
           </div>
 
           <div class="hidden md:block absolute inset-y-0 right-0 w-3/5 h-full overflow-hidden">
-            <img src={student.groupPhotoPath} alt={`${student.name} exchange group`} class="expanded-group-img" loading="lazy" />
+            <img src={student.groupPhotoPath} alt={`${student.name} exchange group`} class="intl-deck-photo" loading="lazy" />
           </div>
 
-          <div class="hidden md:block expanded-desktop-gradient absolute inset-0 pointer-events-none z-[1]"></div>
+          <div class="hidden md:block intl-deck-fade-desktop absolute inset-0 pointer-events-none z-[1]"></div>
 
           <div class="relative z-10 w-full md:w-[55%] md:h-full p-5 sm:p-7 flex flex-col justify-center overflow-y-auto scrollbar-none">
-            <h3 class="expanded-student-name font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold leading-tight pr-8 md:pr-0">
+            <h3 class="intl-deck-title font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold leading-tight pr-8 md:pr-0">
               {student.name}
             </h3>
-            <p class="expanded-meta mb-2.5 text-xs font-medium text-white/90 mt-0.5">{student.degree}</p>
+            <p class="expanded-degree text-xs font-medium text-white/90 mt-0.5">{student.degree}</p>
             <p class="text-xs sm:text-[13px] font-bold text-white leading-snug">
               {student.university}, {student.country}
             </p>
             <p class="text-[11px] sm:text-xs text-white/90 leading-snug mt-1">
               <span class="font-bold text-white">Activity:</span> {student.activity}
             </p>
-            <p class="expanded-meta mb-3 text-[11px] sm:text-xs text-white/90 leading-snug mt-0.5">
+            <p class="expanded-modality text-[11px] sm:text-xs text-white/90 leading-snug mt-0.5">
               <span class="font-bold text-white">Modality:</span> {student.modality}
             </p>
 
             <div class="space-y-2.5 pt-2.5 border-t border-white/20">
               {student.sections.map((sec) => (
                 <div>
-                  <h4 class="expanded-section-heading font-['Montserrat',sans-serif] text-xs font-bold tracking-wide">
+                  <h4 class="intl-deck-subheading font-['Montserrat',sans-serif] text-xs font-bold tracking-wide">
                     {sec.heading}
                   </h4>
                   <ul class="space-y-1 text-[11px] sm:text-xs text-white/90 leading-snug list-disc pl-4 mt-1">
@@ -127,29 +127,16 @@ import StackedDeck from "./StackedDeck.astro";
   }
 
   .student-experience-root .upcoming-lead,
-  .student-experience-root .expanded-meta.mb-2\.5 {
+  .student-experience-root .expanded-degree {
     margin-bottom: 0.625rem;
   }
 
-  .student-experience-root .expanded-meta.mb-3 {
+  .student-experience-root .expanded-modality {
     margin-bottom: 0.75rem;
-  }
-
-  .collapsed-portrait-img,
-  .expanded-group-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
   }
 
   .collapsed-portrait-img {
     object-position: top center;
-  }
-
-  .expanded-group-img {
-    object-position: center;
   }
 
   .collapsed-overlay {
@@ -160,40 +147,6 @@ import StackedDeck from "./StackedDeck.astro";
       rgba(128, 0, 0, 0.92) 26%,
       rgba(128, 0, 0, 0.25) 42%,
       transparent 60%
-    );
-  }
-
-  .collapsed-overlay-name,
-  .expanded-student-name {
-    color: var(--color-gold) !important;
-  }
-
-  .expanded-card {
-    background-color: var(--color-dark-maroon);
-  }
-
-  .expanded-section-heading {
-    color: var(--color-white) !important;
-  }
-
-  .expanded-desktop-gradient {
-    background: linear-gradient(
-      90deg,
-      var(--color-dark-maroon) 0%,
-      var(--color-maroon) 36%,
-      rgba(128, 0, 0, 0.94) 44%,
-      rgba(128, 0, 0, 0.55) 56%,
-      rgba(128, 0, 0, 0.15) 68%,
-      transparent 80%
-    );
-  }
-
-  .expanded-mobile-gradient {
-    background: linear-gradient(
-      to top,
-      var(--color-dark-maroon) 0%,
-      rgba(66, 0, 0, 0.45) 45%,
-      transparent 100%
     );
   }
 </style>

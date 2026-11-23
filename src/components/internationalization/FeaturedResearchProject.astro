@@ -3,9 +3,6 @@ import { internationalData } from "../../data/internationalization/content";
 import SectionHeader from "./SectionHeader.astro";
 
 const { label, title, description, subsectionTitle, projects } = internationalData.section4;
-const tabBase = "px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer";
-const tabActive = `${tabBase} bg-(--color-maroon) text-(--color-gold) shadow-sm`;
-const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--color-maroon) hover:border-(--color-maroon)`;
 ---
 
 <div class="featured-research-root w-full" data-featured-research>
@@ -22,7 +19,7 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
         role="tab"
         aria-selected={idx === 0 ? "true" : "false"}
         data-project-tab={proj.id}
-        class={idx === 0 ? tabActive : tabIdle}
+        class="project-pill px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer"
       >
         {proj.tabLabel}
       </button>
@@ -133,6 +130,23 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
     margin-bottom: 0;
   }
 
+  .project-pill {
+    background-color: var(--color-white);
+    border: 1px solid rgba(128, 0, 0, 0.3);
+    color: var(--color-maroon);
+  }
+
+  .project-pill:hover {
+    border-color: var(--color-maroon);
+  }
+
+  .project-pill[aria-selected="true"] {
+    background-color: var(--color-maroon);
+    border-color: var(--color-maroon);
+    color: var(--color-gold);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+
   .project-gradient-title {
     background-image: linear-gradient(to right, #800000 0%, #c87d00 55%, #ffde00 100%);
     -webkit-background-clip: text;
@@ -152,9 +166,6 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
 
 <script is:inline>
   (() => {
-    const activeCls = "px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer bg-(--color-maroon) text-(--color-gold) shadow-sm";
-    const idleCls = "px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer bg-white border border-(--color-maroon)/30 text-(--color-maroon) hover:border-(--color-maroon)";
-
     document.querySelectorAll("[data-featured-research]").forEach((root) => {
       const tabs = root.querySelectorAll("[data-project-tab]");
       const panels = root.querySelectorAll("[data-project-panel]");
@@ -163,9 +174,7 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
         tab.addEventListener("click", () => {
           const targetId = tab.getAttribute("data-project-tab");
           tabs.forEach((t) => {
-            const isSelected = t.getAttribute("data-project-tab") === targetId;
-            t.setAttribute("aria-selected", String(isSelected));
-            t.className = isSelected ? activeCls : idleCls;
+            t.setAttribute("aria-selected", String(t.getAttribute("data-project-tab") === targetId));
           });
           panels.forEach((panel) => {
             const isMatch = panel.getAttribute("data-project-panel") === targetId;

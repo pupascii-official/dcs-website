@@ -23,6 +23,48 @@ const { desktopHeight = "460px" } = Astro.props;
     width: 100%;
   }
 
+  :global(.intl-deck-expanded) {
+    background-color: var(--color-dark-maroon);
+  }
+
+  :global(.intl-deck-title) {
+    color: var(--color-gold) !important;
+  }
+
+  :global(.intl-deck-subheading) {
+    color: var(--color-white) !important;
+  }
+
+  :global(.intl-deck-photo) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    display: block;
+  }
+
+  :global(.intl-deck-fade-desktop) {
+    background: linear-gradient(
+      90deg,
+      var(--color-dark-maroon) 0%,
+      var(--color-maroon) 40%,
+      rgba(128, 0, 0, 0.94) 48%,
+      rgba(128, 0, 0, 0.58) 60%,
+      rgba(128, 0, 0, 0.16) 72%,
+      transparent 84%
+    );
+  }
+
+  :global(.intl-deck-fade-mobile) {
+    background: linear-gradient(
+      to top,
+      var(--color-dark-maroon) 0%,
+      rgba(66, 0, 0, 0.45) 45%,
+      transparent 100%
+    );
+  }
+
   @media (min-width: 768px) {
     :global(.intl-deck) {
       flex-direction: row;
