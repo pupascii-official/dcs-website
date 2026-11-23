@@ -11,7 +11,10 @@ import EvidenceShowcase from "../components/teaching-learning/EvidenceShowcase.a
 import ElectiveTracks from "../components/teaching-learning/ElectiveTracks.astro";
 import CurriculumMap from "../components/teaching-learning/curriculum/CurriculumMap.astro";
 import CurriculumExplorer from "../components/teaching-learning/curriculum/CurriculumExplorer.astro";
-
+import StudentOrg from "../components/teaching-learning/StudentOrg.astro";
+import StudentAwards from "../components/teaching-learning/StudentAwards.astro";
+import StudentsIntl from "../components/teaching-learning/StudentsIntl.astro";
+import AccomplishmentReports from "../components/teaching-learning/AccomplishmentReports.astro";
 ---
 
 <ScrollSnapLayout title="Teaching & Learning" description="">
@@ -100,6 +103,70 @@ import CurriculumExplorer from "../components/teaching-learning/curriculum/Curri
             <CurriculumExplorer></CurriculumExplorer>
         </SectionContent>
     </section>
+
+    <!-- STUDENT ORGANIZATIONS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="Presentation of Student Organizations"
+            sectionLabel="SECTION 04C • STUDENTS OUTCOMES & ECO-SYSTEM">
+
+            <p>Recognized Computer Science student organizations fostering technical leadership, peer mentoring,
+                community building, and co-curricular excellence.</p>
+
+            <StudentOrg></StudentOrg>
+
+        </SectionContent>
+    </section>
+
+    <!-- STUDENT ACHIEVEMENTS & AWARDS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="Student Achievements & Awards"
+            sectionLabel="SECTION 05 • STUDENT ACHIEVEMENTS & AWARDS">
+
+            <p>National and international recognitions earned by BSCS students in competitions, hackathons, and
+                research forums — sourced primarily from recognized student organizations.</p>
+
+            <StudentAwards></StudentAwards>
+
+        </SectionContent>
+    </section>
+
+    <!-- CS INTERNATIONAL STUDENTS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="CS International Students"
+            sectionLabel="SECTION 06 • INTERNATIONAL STUDENTS">
+
+            <p>Cross-border academic mobility, inbound and outbound exchange cohorts, and international student
+                participation in the BSCS program. Detailed data will be included.</p>
+
+            <StudentsIntl></StudentsIntl>
+
+        </SectionContent>
+    </section>
+
+    <!-- ACCOMPLISHMENT REPORTS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="Department & Program Accomplishment Reports"
+            sectionLabel="SECTION 07 • ACCOMPLISHMENT REPORTS">
+
+            <p>Consolidated annual and semesterly accomplishment reports documenting teaching, research, extension,
+                and student development milestones.</p>
+
+            <!-- accomplishment items -->
+            <AccomplishmentReports></AccomplishmentReports>
+        </SectionContent>
+
+     
+    </section>
+
+    <!--  -->
+
+
+
+
 </ScrollSnapLayout>
 
 <style>
