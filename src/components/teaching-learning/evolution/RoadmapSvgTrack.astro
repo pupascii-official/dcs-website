@@ -1,0 +1,80 @@
+---
+import type  { EvolutionMilestone }  from './evolutionMilestones';
+
+interface Props {
+  uid: string;
+  milestones: EvolutionMilestone[];
+}
+
+const { uid, milestones } = Astro.props;
+
+const glowId = `road-pulse-glow-${uid}`;
+const gradId = `road-fade-grad-${uid}`;
+const maskId = `road-fade-mask-${uid}`;
+const pathId = `pup-road-path-${uid}`;
+const shuttleId = `pup-road-shuttle-${uid}`;
+
+const roadD =
+  'M 110 -10 C 110 40, 55 55, 55 100 C 55 190, 165 210, 165 300 C 165 390, 55 410, 55 500 C 55 590, 165 610, 165 700 C 165 780, 110 810, 110 860';
+---
+
+<div class="roadmap-road-layer" aria-hidden="true">
+  <svg class="roadmap-road-svg" viewBox="0 0 220 800" preserveAspectRatio="none">
+    <defs>
+      <filter id={glowId} x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <linearGradient id={gradId} gradientUnits="userSpaceOnUse" x1="0" y1="-10" x2="0" y2="860">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0" />
+        <stop offset="6%" stop-color="#ffffff" stop-opacity="0.45" />
+        <stop offset="14%" stop-color="#ffffff" stop-opacity="1" />
+        <stop offset="86%" stop-color="#ffffff" stop-opacity="1" />
+        <stop offset="95%" stop-color="#ffffff" stop-opacity="0.4" />
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+      </linearGradient>
+      <mask id={maskId} maskUnits="userSpaceOnUse" x="-60" y="-40" width="340" height="940">
+        <rect x="-60" y="-40" width="340" height="940" fill={`url(#${gradId})`} />
+      </mask>
+    </defs>
+
+    <g mask={`url(#${maskId})`}>
+      <path class="road-edge-outer" d={roadD} />
+      <path class="road-asphalt" d={roadD} />
+      <path class="road-stripes-edge" d={roadD} />
+      <path class="road-asphalt-inner" d={roadD} />
+      <path id={pathId} class="road-center-dash" d={roadD} />
+      <g id={shuttleId} data-road-shuttle filter={`url(#${glowId})`} transform="translate(110, 35)">
+        <circle r="12" fill="#FFDE00" fill-opacity="0.32" />
+        <circle r="7" fill="#FFDE00" stroke="#800000" stroke-width="2.2" />
+        <path d="M -2.2 -3.2 L 4 0 L -2.2 3.2 Z" fill="#800000" />
+      </g>
+    </g>
+  </svg>
+
+  {milestones.map((m) => (
+    <div
+      class:list={[
+        'road-node-anchor',
+        m.stepClass,
+        m.bendSide === 'left' ? 'is-left-bend' : 'is-right-bend',
+      ]}
+      data-road-anchor
+    >
+      {m.bendSide === 'left' ? (
+        <>
+          <span class="road-dotted-stem" />
+          <span class="road-donut" />
+        </>
+      ) : (
+        <>
+          <span class="road-donut" />
+          <span class="road-dotted-stem" />
+        </>
+      )}
+    </div>
+  ))}
+</div>

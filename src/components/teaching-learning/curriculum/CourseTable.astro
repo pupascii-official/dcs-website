@@ -20,8 +20,7 @@ interface Props {
 const { semester, units, tuitionHours, courses } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-xl border border-red-200" data-semester-panel>
-
+<div class="overflow-hidden rounded-xl border border-(--color-muted-maroon)" data-semester-panel>
     <!-- Semester Header -->
     <div class="flex flex-wrap items-center justify-between gap-2 bg-(--color-maroon) px-4 py-3 text-(--color-gold)">
         <h3 class="semester-label text-sm uppercase">
@@ -37,7 +36,7 @@ const { semester, units, tuitionHours, courses } = Astro.props;
     <div class="overflow-x-auto">
         <table class="w-full min-w-162 text-left text-xs">
 
-            <thead class="bg-(--bg-light-maroon) text-(--color-dark-maroon)">
+            <thead class="bg-(--color-muted-maroon) text-(--color-dark-maroon)">
                 <tr>
                     <th class="p-2">Code</th>
                     <th class="p-2">Prereq</th>
@@ -52,7 +51,7 @@ const { semester, units, tuitionHours, courses } = Astro.props;
             <tbody>
                 {courses.map((course) => (
                     <tr
-                            class="border-t border-(--bg-light-maroon) hover:bg-red-50/50"
+                            class="border-t border-(--bg-light-maroon) hover:bg-(--color-muted-maroon)"
                             data-course-row
                             data-course-units={course.units}
                             data-course-search={[
@@ -76,14 +75,13 @@ const { semester, units, tuitionHours, courses } = Astro.props;
                 ))}
             </tbody>
 
-            <tfoot class="bg-(--bg-light-maroon) font-bold text-(--color-maroon)">
+            <tfoot class="bg-(--color-muted-maroon) font-bold text-(--color-maroon)">
                 <tr>
                     <td colspan="5" class="p-2">TOTAL UNITS</td>
                     <td class="p-2">{units}</td>
                     <td class="p-2">{tuitionHours}</td>
                 </tr>
             </tfoot>
-
         </table>
     </div>
 </div>

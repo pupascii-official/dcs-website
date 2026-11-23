@@ -1,7 +1,7 @@
 
 ---
 import EvidenceCard from "./EvidenceCard.astro";
-import type { EvidenceItem } from "../../data/teaching-learning/evidence";
+import type { EvidenceItem } from "../../../data/teaching-learning/evidence";
 
 interface Props {
     area: string;
@@ -36,14 +36,14 @@ const {
     </header>
 
     <!-- Evidence cards -->
-    <div class="relative mx-auto mt-10 h-auto w-full max-w-135 md:mt-12 md:h-77.5">
+    <div data-evidence-gallery class="relative mx-auto mt-10 h-auto w-full max-w-135 md:mt-12 md:h-77.5">
         {items.map((item) => (
             <EvidenceCard {...item} />
         ))}
     </div>
 
     <!-- Footer -->
-    <footer class="mt-2 pb-1 text-center font-bold text-(--color-gold) text-xs">
+    <footer class="mt-6 pb-1 text-center font-bold text-(--color-gold) text-xs">
         <span class="text-(--dark-gold)">{footer}</span>
     </footer>
 

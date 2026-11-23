@@ -13,12 +13,12 @@ const {
 } = Astro.props;
 ---
 
-<article class="overflow-hidden rounded-2xl border border-red-200 bg-white">
+<article class="overflow-hidden shadow-sm rounded-2xl border border-(--color-muted-maroon) bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
     <!-- Category Header -->
     <div class="bg-(--color-maroon) px-3 py-2 text-center">
-        <h3 class="category text-sm font-bold uppercase">
+        <h4 class="category text-sm font-bold uppercase">
             {category}
-        </h3>
+        </h4>
     </div>
 
     <!-- Card Content -->

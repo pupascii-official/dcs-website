@@ -1,0 +1,48 @@
+---
+interface Props {
+  uid: string;
+}
+
+const { uid } = Astro.props;
+const modalId = `roadmapModal-${uid}`;
+const titleId = `roadmapModalTitle-${uid}`;
+---
+
+<div
+  class="roadmap-modal-backdrop"
+  id={modalId}
+  data-roadmap-modal
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={titleId}
+  hidden
+>
+  <div class="roadmap-modal-dialog" data-modal-dialog>
+    <div class="roadmap-modal-header">
+      <div class="roadmap-modal-badges">
+        <span class="tl-timeline-year" data-modal-year></span>
+        <span class="roadmap-tech-code" data-modal-code></span>
+      </div>
+      <button
+        type="button"
+        class="roadmap-modal-close"
+        data-modal-close
+        aria-label="Close milestone details"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="roadmap-modal-title-row">
+      <span class="roadmap-card-icon" data-modal-icon aria-hidden="true"></span>
+      <h3 id={titleId} data-modal-title></h3>
+    </div>
+
+    <div class="roadmap-modal-body" data-modal-body></div>
+
+    <div class="roadmap-modal-footer">
+      <button type="button" class="roadmap-modal-nav" data-modal-prev>← Previous</button>
+      <button type="button" class="roadmap-modal-nav" data-modal-next>Next →</button>
+    </div>
+  </div>
+</div>
