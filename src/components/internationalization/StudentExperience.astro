@@ -4,8 +4,13 @@ import SectionHeader from "./SectionHeader.astro";
 import StackedDeck from "./StackedDeck.astro";
 ---
 
-<div class="student-experience-root w-full space-y-6">
-  <SectionHeader label="SECTION 05" title="Global Student Experience" marginClass="mb-0" />
+<div class="student-experience-root w-full">
+  <SectionHeader
+    label="SECTION 05"
+    title="Global Student Experience"
+    description="BSCS students participate in outbound academic exchange programs across partner universities in South Korea, India, and Japan, gaining cross-cultural exposure and international computing coursework."
+    marginClass="mb-8"
+  />
 
   <StackedDeck desktopHeight="460px">
     {studentExchangeData.map((student, idx) => (
@@ -47,7 +52,7 @@ import StackedDeck from "./StackedDeck.astro";
             type="button"
             data-deck-close
             aria-label="Collapse card"
-            class="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-black/40 hover:bg-black/65 text-white flex items-center justify-center text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer"
+            class="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-black/70 text-white flex items-center justify-center text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer"
           >
             ✕
           </button>
@@ -98,7 +103,7 @@ import StackedDeck from "./StackedDeck.astro";
     ))}
   </StackedDeck>
 
-  <div class="pt-4 border-t border-neutral-200">
+  <div class="mt-6 pt-4 border-t border-neutral-200">
     <h3 class="font-['Montserrat',sans-serif] text-sm sm:text-base font-extrabold text-(--color-maroon) mb-1">
       {studentExchangeMore.heading}
     </h3>

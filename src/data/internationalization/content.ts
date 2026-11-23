@@ -19,6 +19,7 @@ export interface FeaturedProjectItem {
   location?: string;
   imagePath: string;
   imageAlt: string;
+  imagePosition?: string;
   leadLabel: string;
   leadResearchers: string;
   studentResearchers?: string;
@@ -144,7 +145,7 @@ export const internationalData = {
         focus: "Joint International Conferences, Keynote Lectures & Student Cultural Exchange",
         highlights: [
           "Co-organized the International ICT Conference (IICTC 2022) (August 2–5, 2022) featuring keynote lectures by Dr. Aleta C. Fabregas and Dr. Iluminada Vivien R. Domingo alongside BINUS faculty.",
-          "Hosted Best Paper Presentation Awards where three PUP BSCS student research teams won top honors.",
+          "Hosted Best Paper Presentation Awards where six PUP BSCS student research teams won.",
           "Conducted the PUP–BINUS Student Cultural & Language Exchange connecting computing students from both institutions.",
           "Held bilateral faculty and leadership research coordination forums."
         ]
@@ -157,7 +158,7 @@ export const internationalData = {
         meetingPhotoPath: "/images/internationalization/unpam-bigpicture-meeting.png",
         focus: "International Guest Lectures & Curriculum Benchmarking",
         highlights: [
-          'Hosted Dean Assoc. Prof. Melvin C. Roxas as distinguished international speaker for the Faculty of Computer Science general lecture and welcoming ceremony on "AI and the Skills of the Future: Preparing Students for AI-Driven Jobs" (March 13, 2025).',
+          'Hosted Dean Melvin C. Roxas as distinguished international speaker for the Faculty of Computer Science general lecture and welcoming ceremony on "AI and the Skills of the Future: Preparing Students for AI-Driven Jobs" (March 13, 2025).',
           "Facilitated cross-border faculty engagement on AI, data science, emerging computing trends, and curriculum innovation."
         ]
       },
@@ -169,7 +170,7 @@ export const internationalData = {
         meetingPhotoPath: "/images/internationalization/umpsa-bigpicture-meeting.png",
         focus: "Global Classroom Lectures, Joint Flood-Disaster Research & Co-Hosted Conferences",
         highlights: [
-          "Invited Prof. Dr. Aleta C. Fabregas as international guest lecturer for UMPSA's Global Classroom Session on Statistical Modelling and Simulation: Introduction to Synthetic Data Generation (January 5–6, 2026).",
+          "Invited Dr. Aleta C. Fabregas as international guest lecturer for UMPSA's Global Classroom Session on Statistical Modelling and Simulation: Introduction to Synthetic Data Generation (January 5–6, 2026).",
           "Executed formal Letters of Intent (LOI) and an International Matching Grant partnership for IFloodSense, IFloodServer, and Stochastic Modelling of River Water Level Dynamics.",
           "Co-organized ICoAIMS 2025 in Kuala Lumpur, Malaysia (May 23–24, 2025) under a formal Memorandum of Agreement (MOA) and coauthored Scopus/IEEE-indexed papers."
         ]
@@ -191,9 +192,9 @@ export const internationalData = {
         imagePath: "/images/internationalization/Iflood-Meet-BigPicture.png",
         imageAlt: "IFloodSense PUP-CCIS and UMPSA joint online research meeting",
         leadLabel: "Lead Researchers",
-        leadResearchers: "Dr. Aleta C. Fabregas (PUP); Dr. Noryanti Binti Muhammad & Assoc. Prof. Dr. Norhayati Rosli (UMPSA)",
+        leadResearchers: "Dr. Aleta C. Fabregas (PUP); Dr. Noryanti Binti Muhammad & Dr. Norhayati Rosli (UMPSA)",
         studentResearchers: "Jomari Arago, Harold Benedict Hernandez, James Patrick Isidro",
-        priorTeam: "Dr. Aleta C. Fabregas, Prof. Leoven Basista, Prof. Rachel Nayre, Prof. Ma. Leonila Amata, Prof. Leo Mariel Violeta, Dane Aldrich Datuin"
+        priorTeam: "Dr. Aleta C. Fabregas, Leoven Basista, Rachel Nayre, Ma. Leonila Amata, Mariel Leo T. Violeta, Dane Aldrich Datuin"
       },
       {
         id: "habagatplus",
@@ -264,6 +265,7 @@ export const internationalData = {
         location: "Jeju Island, South Korea",
         imagePath: "/images/internationalization/BERT WCSE.png",
         imageAlt: "Filipino Genz Slang Sentiment Analyzer using BERT delegation at WCSE 2025",
+        imagePosition: "72% 35%",
         leadLabel: "Authors",
         leadResearchers: "Dr. Ria A. Sagum, Mark Ciedrick A. Ramos, Diana Rose A. Certeza, Alijah Czareen A. Andres, Aaronn Daphne M. Gatchalian",
         url: "https://www.wcse.org/index.php?m=content&c=index&a=show&catid=28&id=1413"
@@ -490,7 +492,7 @@ export const internationalData = {
         organizers: "PUP & BINUS University",
         date: "August 2–5, 2022",
         location: "Virtual / Online (Zoom)",
-        participants: "Dr. Erwin Halim, Dr. Iluminada Vivien R. Domingo, Dr. Aleta C. Fabregas, Dr. Dany Eka Saputra; Conference Chair: Assoc. Prof. Ria A. Sagum",
+        participants: "Dr. Erwin Halim, Dr. Iluminada Vivien R. Domingo, Dr. Aleta C. Fabregas, Dr. Dany Eka Saputra; Conference Chair: Dr. Ria A. Sagum",
         imagePath: "/images/internationalization/IICTC.png"
       },
       {
@@ -537,12 +539,22 @@ export const internationalData = {
         location: "The Pearl Hotel, Kuala Lumpur, Malaysia",
         participants: "Ryan P. Villalon, Marc Lester Acunin, Jonabelle Lavapie, Dr. Aleta C. Fabregas",
         imagePath: "/images/internationalization/ICOAIMS.png"
+      },
+      {
+        id: "wcse-2025",
+        title: "2025 15th International Workshop on Computer Science and Engineering (WCSE 2025)",
+        organizers: "WCSE / International Workshop on Computer Science and Engineering",
+        date: "June 28–30, 2025",
+        location: "Jeju Island, South Korea",
+        participants: "Dr. Ria A. Sagum, Mark Ciedrick A. Ramos, Diana Rose A. Certeza, Alijah Czareen A. Andres, Aaronn Daphne M. Gatchalian, Carlo G. Inovero, Michael Dela Fuente",
+        imagePath: "/images/internationalization/BERT WCSE.png"
       }
     ] as ConferenceDelegationItem[]
   },
   competitions: {
     label: "SECTION 06",
     title: "International Competition and Academic Excellence",
+    description: "Students represent the department in international computing competitions and research colloquia, earning recognition in software engineering, data analytics, and applied AI.",
     items: [
       {
         id: "finalists",

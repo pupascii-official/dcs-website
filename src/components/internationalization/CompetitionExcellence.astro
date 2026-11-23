@@ -2,11 +2,11 @@
 import { internationalData } from "../../data/internationalization/content";
 import SectionHeader from "./SectionHeader.astro";
 
-const { label, title, items, cta } = internationalData.competitions;
+const { label, title, description, items, cta } = internationalData.competitions;
 ---
 
-<div class="competitions-root w-full space-y-6" data-competition-excellence>
-  <SectionHeader label={label} title={title} marginClass="mb-0" />
+<div class="competitions-root w-full" data-competition-excellence>
+  <SectionHeader label={label} title={title} description={description} marginClass="mb-8" />
 
   <div class="flex flex-col gap-6">
     {items.map((item) => (
@@ -55,10 +55,10 @@ const { label, title, items, cta } = internationalData.competitions;
     ))}
   </div>
 
-  <div class="flex justify-end pt-2">
+  <div class="flex justify-end mt-6 pt-2">
     <a
       href={cta.href}
-      class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-(--color-gold) text-[#1A1414] font-['Montserrat',sans-serif] font-bold text-sm tracking-wide shadow-sm hover:bg-(--color-dark-gold) hover:text-white transition-colors duration-200"
+      class="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-full bg-(--color-gold) text-[#1A1414] font-['Montserrat',sans-serif] font-bold text-sm tracking-wide shadow-sm hover:bg-(--color-dark-gold) hover:text-white transition-colors duration-200"
     >
       {cta.label}
     </a>

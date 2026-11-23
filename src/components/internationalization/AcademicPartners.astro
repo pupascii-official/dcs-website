@@ -9,7 +9,7 @@ const { label, title, description, partners } = internationalData.section3;
 <div class="partners-root w-full">
   <SectionHeader label={label} title={title} description={description} marginClass="mb-8" />
 
-  <StackedDeck desktopHeight="430px">
+  <StackedDeck desktopHeight="450px">
     {partners.map((partner, idx) => (
       <div class="intl-deck-item" data-deck-item data-index={idx} data-state="idle">
         <div
@@ -51,7 +51,7 @@ const { label, title, description, partners } = internationalData.section3;
             type="button"
             data-deck-close
             aria-label="Collapse card"
-            class="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-black/40 hover:bg-black/65 text-white flex items-center justify-center text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer"
+            class="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-black/70 text-white flex items-center justify-center text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer"
           >
             ✕
           </button>

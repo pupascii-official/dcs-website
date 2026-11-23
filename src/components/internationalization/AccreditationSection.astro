@@ -8,7 +8,7 @@ const { label, title, badge, headline, programs, imagePath } = internationalData
 <div class="w-full">
   <SectionHeader label={label} title={title} />
 
-  <div class="relative w-full h-[320px] sm:h-[420px] lg:h-[60vh] max-h-[540px] rounded-2xl overflow-hidden border border-(--color-maroon)/50 shadow-lg bg-[#420000] group">
+  <div class="relative w-full h-[340px] sm:h-[420px] lg:h-[60vh] max-h-[540px] rounded-2xl overflow-hidden border border-(--color-maroon)/50 shadow-lg bg-[#420000] group">
     <img
       src={imagePath}
       alt="PUP's First International Program Accreditation PICAB-CAC Certified"
@@ -18,16 +18,16 @@ const { label, title, badge, headline, programs, imagePath } = internationalData
 
     <div class="accreditation-overlay absolute inset-0 pointer-events-none"></div>
 
-    <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-8 lg:p-10 flex flex-col items-start">
-      <p class="accreditation-kicker font-['Montserrat',sans-serif] text-[11px] sm:text-xs font-extrabold tracking-widest uppercase">
+    <div class="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-8 lg:p-10 flex flex-col items-start">
+      <p class="accreditation-kicker font-['Montserrat',sans-serif] text-[10px] sm:text-xs font-extrabold tracking-widest uppercase">
         {badge}
       </p>
-      <h3 class="accreditation-headline font-['Montserrat',sans-serif] text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] max-w-3xl mb-4">
+      <h3 class="accreditation-headline font-['Montserrat',sans-serif] text-xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.12] max-w-3xl mb-3 sm:mb-4">
         {headline}
       </h3>
-      <div class="flex flex-wrap items-center gap-2.5">
+      <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
         {programs.map((program) => (
-          <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-[#FFDE00] text-[#420000] font-['Montserrat',sans-serif] text-xs sm:text-sm font-bold shadow-sm">
+          <span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#FFDE00] text-[#420000] font-['Montserrat',sans-serif] text-[11px] sm:text-sm font-bold shadow-sm">
             {program}
           </span>
         ))}

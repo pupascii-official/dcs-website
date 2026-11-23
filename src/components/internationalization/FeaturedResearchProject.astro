@@ -44,7 +44,7 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
         role="tabpanel"
         class={`${idx === 0 ? "grid" : "hidden"} grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center`}
       >
-        <div class="lg:col-span-6 flex flex-col space-y-3.5">
+        <div class="lg:col-span-6 flex flex-col space-y-3.5 min-w-0">
           {project.award && (
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-(--color-gold) text-[#420000] font-['Montserrat',sans-serif] text-[11px] font-extrabold w-fit shadow-2xs">
               {project.award}
@@ -52,9 +52,9 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
           )}
 
           <h3
-            class={`project-gradient-title font-['Montserrat',sans-serif] font-black tracking-tight ${
+            class={`project-gradient-title font-['Montserrat',sans-serif] font-black tracking-tight break-words ${
               project.useFullTitleAsHeadline
-                ? "text-2xl md:text-3xl leading-tight"
+                ? "text-xl sm:text-2xl md:text-3xl leading-tight"
                 : "text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.1] w-fit"
             }`}
           >
@@ -114,6 +114,7 @@ const tabIdle = `${tabBase} bg-white border border-(--color-maroon)/30 text-(--c
             <img
               src={project.imagePath}
               alt={project.imageAlt}
+              style={project.imagePosition ? `object-position: ${project.imagePosition};` : undefined}
               class="featured-project-img transition-transform duration-300 group-hover:scale-[1.02]"
               loading="lazy"
             />

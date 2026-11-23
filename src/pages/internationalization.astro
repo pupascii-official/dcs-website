@@ -1,9 +1,7 @@
 ---
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
-import Navbar from "../components/Navbar.astro";
 import HeroSection from "../components/HeroSection.astro";
 import PillarBadge from "../components/PillarBadge.astro";
-import Footer from "../components/Footer.astro";
 
 import SectionHeader from "../components/internationalization/SectionHeader.astro";
 import ImageLightbox from "../components/internationalization/ImageLightbox.astro";
@@ -18,76 +16,73 @@ import CompetitionExcellence from "../components/internationalization/Competitio
 
 import { internationalData } from "../data/internationalization/content";
 
-const sectionBase = "scroll-section scrollbar-none flex flex-col px-6 md:px-8 pt-24 md:pt-28 max-w-6xl mx-auto w-full";
+const sectionBase = "scroll-section scrollbar-none flex flex-col px-4 sm:px-6 md:px-8 pb-12 max-w-6xl mx-auto w-full overflow-x-hidden";
 ---
 
 <ScrollSnapLayout
   title="Internationalization | PUP Department of Computer Science"
   description="Showcasing PUP BSCS's international recognition, academic partnerships, research innovation, and global engagement."
 >
-  <Navbar />
-
   <HeroSection
     title={internationalData.hero.title}
     subtitle={internationalData.hero.lead}
   >
     <PillarBadge
-      slot="eyebrow"
+      slot="top"
       label="Department of Computer Science • [Internationalization]"
     />
-    <p class="max-w-2xl text-center text-xs sm:text-sm text-neutral-200 mt-2 mb-0! font-medium">
+    <p class="max-w-2xl text-center text-xs sm:text-sm text-neutral-200 mt-2 mb-0! font-medium px-2">
       {internationalData.hero.subtext}
     </p>
   </HeroSection>
 
-  <section class={`${sectionBase} pb-12`}>
-    <div class="my-auto w-full">
+  <section class={sectionBase}>
+    <div class="my-auto w-full min-w-0">
       <AccreditationSection />
     </div>
   </section>
 
   <section class={`${sectionBase} pb-14`}>
-    <div class="w-full">
+    <div class="w-full min-w-0">
       <SectionHeader label={internationalData.section2.label} title={internationalData.section2.title} marginClass="mb-5" />
       <RankingsSection />
     </div>
   </section>
 
-  <section class={`${sectionBase} pb-12`}>
-    <div class="my-auto w-full">
+  <section class={sectionBase}>
+    <div class="my-auto w-full min-w-0">
       <AcademicPartners />
     </div>
   </section>
 
-  <section class={`${sectionBase} pb-12`}>
-    <div class="my-auto w-full">
+  <section class={sectionBase}>
+    <div class="my-auto w-full min-w-0">
       <FeaturedResearchProject />
     </div>
   </section>
 
   <section class={`${sectionBase} pb-14`}>
-    <div class="w-full">
+    <div class="w-full min-w-0">
       <ResearchPublications />
     </div>
   </section>
 
   <section class={`${sectionBase} pb-14`}>
-    <div class="w-full">
+    <div class="w-full min-w-0">
       <ConferencesDelegations />
     </div>
   </section>
 
-  <section class={`${sectionBase} pb-12`}>
-    <div class="my-auto w-full">
+  <section class={sectionBase}>
+    <div class="my-auto w-full min-w-0">
       <StudentExperience />
     </div>
   </section>
 
-  <section class="scroll-section scrollbar-none flex flex-col justify-between pt-24 md:pt-28 w-full">
-    <div class="max-w-6xl mx-auto px-6 md:px-8 w-full mb-12">
+  <section class={`${sectionBase} pb-14`}>
+    <div class="my-auto w-full min-w-0">
       <CompetitionExcellence />
     </div>
-    <Footer />
   </section>
 
   <ImageLightbox />

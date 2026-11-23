@@ -9,38 +9,52 @@ const splitRank = (rank: string) => {
 };
 
 const edurankMetrics = [
-  { ...splitRank(edurank.phRank), label: edurank.phContext, colClass: "col-span-5 pr-3 border-r border-(--color-maroon)/40" },
-  { ...splitRank(edurank.worldRank), label: edurank.worldContext, colClass: "col-span-7 pl-4 sm:pl-5" }
+  {
+    ...splitRank(edurank.phRank),
+    label: edurank.phContext,
+    colClass: "sm:col-span-5 pb-4 sm:pb-0 sm:pr-3 border-b sm:border-b-0 sm:border-r border-(--color-maroon)/40"
+  },
+  {
+    ...splitRank(edurank.worldRank),
+    label: edurank.worldContext,
+    colClass: "sm:col-span-7 pt-4 sm:pt-0 sm:pl-4 md:pl-5"
+  }
 ];
 
 const wuriMain = splitRank(wuri.rank);
-const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight";
+const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-none tracking-tight";
 ---
 
 <div class="rankings-root w-full border-t border-(--color-maroon)/50 pt-5 space-y-6">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-0 pb-6 border-b border-(--color-maroon)/50">
-    <div class="flex flex-col justify-between md:pr-8">
-      <div class="flex items-center justify-between gap-4 mb-3">
-        <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
+    <div class="flex flex-col justify-between md:pr-8 min-w-0">
+      <div class="flex items-center justify-between gap-3 mb-3">
+        <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
           {qsStars.title}
         </h3>
         <img src={qsStars.logoPath} alt="QS Stars" class="ranking-logo ranking-logo-qs shrink-0" loading="lazy" />
       </div>
 
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2">
         {qsStars.ratings.map((rating, idx) => (
-          <div class={`flex flex-col ${idx === 0 ? "pr-4 border-r border-(--color-maroon)/40" : "pl-4 sm:pl-6"}`}>
+          <div
+            class={`flex flex-col ${
+              idx === 0
+                ? "pb-4 sm:pb-0 sm:pr-4 border-b sm:border-b-0 sm:border-r border-(--color-maroon)/40"
+                : "pt-4 sm:pt-0 sm:pl-4 md:pl-6"
+            }`}
+          >
             <span class="text-xs font-bold text-(--color-maroon) mb-1">{rating.year}</span>
             <div class="flex items-baseline gap-1.5 mb-2">
               <span class={gradNumClass}>{rating.stars}</span>
-              <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
+              <span class="font-['Montserrat',sans-serif] text-lg sm:text-2xl font-extrabold text-(--color-maroon)">
                 Stars
               </span>
             </div>
             <div class="flex items-center gap-1 mb-2" aria-label={`${rating.stars} out of 5 stars`}>
               {[...Array(5)].map((_, i) => (
                 <svg
-                  class="w-6 h-6"
+                  class="w-6 h-6 shrink-0"
                   viewBox="0 0 24 24"
                   fill={i < rating.stars ? "#FFDE00" : "none"}
                   stroke={i < rating.stars ? "#E5B800" : "#D99B00"}
@@ -60,10 +74,10 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
       </div>
     </div>
 
-    <div class="flex flex-col justify-between border-t md:border-t-0 md:border-l border-(--color-maroon)/50 pt-5 md:pt-0 md:pl-8">
-      <div class="flex items-center justify-between gap-4 mb-3">
-        <div>
-          <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
+    <div class="flex flex-col justify-between border-t md:border-t-0 md:border-l border-(--color-maroon)/50 pt-5 md:pt-0 md:pl-8 min-w-0">
+      <div class="flex items-center justify-between gap-3 mb-3">
+        <div class="min-w-0">
+          <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
             {edurank.title}
           </h3>
           <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{edurank.subtitle}</p>
@@ -71,12 +85,12 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
         <img src={edurank.logoPath} alt="EduRank Logo" class="ranking-logo-edurank shrink-0 shadow-2xs" loading="lazy" />
       </div>
 
-      <div class="grid grid-cols-12 items-end">
+      <div class="grid grid-cols-1 sm:grid-cols-12 items-end">
         {edurankMetrics.map((m) => (
-          <div class={m.colClass}>
+          <div class={`${m.colClass} min-w-0`}>
             <div class="flex items-baseline whitespace-nowrap">
               <span class={gradNumClass}>{m.num}</span>
-              <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
+              <span class="font-['Montserrat',sans-serif] text-lg sm:text-2xl font-extrabold text-(--color-maroon)">
                 {m.suffix}
               </span>
             </div>
@@ -88,10 +102,10 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-0 pb-6 border-b border-(--color-maroon)/50">
-    <div class="md:col-span-7 flex flex-col justify-between md:pr-8">
-      <div class="flex items-center justify-between gap-4 mb-2">
-        <div>
-          <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
+    <div class="md:col-span-7 flex flex-col justify-between md:pr-8 min-w-0">
+      <div class="flex items-center justify-between gap-3 mb-2">
+        <div class="min-w-0">
+          <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
             {theImpact.title}
           </h3>
           <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{theImpact.subtitle}</p>
@@ -100,17 +114,17 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
       </div>
       <div class="flex flex-wrap items-baseline gap-2 mt-2">
         <span class={gradNumClass}>{theImpact.rank}</span>
-        <span class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-extrabold text-(--color-maroon)">
+        <span class="font-['Montserrat',sans-serif] text-base sm:text-xl font-extrabold text-(--color-maroon)">
           {theImpact.context}
         </span>
       </div>
       <p class="text-xs font-semibold text-neutral-700 mt-1.5">{theImpact.note}</p>
     </div>
 
-    <div class="md:col-span-5 flex flex-col justify-center border-t md:border-t-0 md:border-l border-(--color-maroon)/50 pt-5 md:pt-0 md:pl-8">
-      <div class="flex items-center justify-between gap-4 mb-1.5">
-        <div>
-          <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
+    <div class="md:col-span-5 flex flex-col justify-center border-t md:border-t-0 md:border-l border-(--color-maroon)/50 pt-5 md:pt-0 md:pl-8 min-w-0">
+      <div class="flex items-center justify-between gap-3 mb-1.5">
+        <div class="min-w-0">
+          <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
             {aunQa.title}
           </h3>
           <span class="text-xs font-bold text-(--color-maroon) block mt-0.5">{aunQa.subtitle}</span>
@@ -122,9 +136,9 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
   </div>
 
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-    <div class="lg:col-span-5 flex flex-col">
+    <div class="lg:col-span-5 flex flex-col min-w-0">
       <div class="mb-2">
-        <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
+        <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
           {wuri.title}
         </h3>
         <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{wuri.subtitle}</p>
@@ -132,7 +146,7 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
 
       <div class="flex items-baseline mt-1">
         <span class={gradNumClass}>{wuriMain.num}</span>
-        <span class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon)">
+        <span class="font-['Montserrat',sans-serif] text-xl sm:text-3xl font-extrabold text-(--color-maroon)">
           {wuriMain.suffix}
         </span>
       </div>
@@ -144,10 +158,10 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
       </div>
     </div>
 
-    <div class="lg:col-span-7 flex flex-col space-y-6">
+    <div class="lg:col-span-7 flex flex-col space-y-6 min-w-0">
       {wuri.years.map((y, idx) => (
         <div class="flex flex-col">
-          <div class="flex items-end justify-between pb-1.5 border-b border-(--color-maroon)/50 mb-4">
+          <div class="flex items-end justify-between gap-3 pb-1.5 border-b border-(--color-maroon)/50 mb-4">
             <span class="font-['Montserrat',sans-serif] text-xs font-extrabold text-(--color-maroon) tracking-wide">
               {y.year}
             </span>
@@ -160,10 +174,10 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
             {y.ranks.map((item) => {
               const parsed = splitRank(item.rank);
               return (
-                <div class="flex flex-col">
+                <div class="flex flex-col min-w-0">
                   <div class="flex items-baseline whitespace-nowrap">
                     <span class={gradNumClass}>{parsed.num}</span>
-                    <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
+                    <span class="font-['Montserrat',sans-serif] text-lg sm:text-2xl font-extrabold text-(--color-maroon)">
                       {parsed.suffix}
                     </span>
                   </div>
@@ -198,32 +212,58 @@ const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl 
   }
 
   .ranking-logo-qs {
-    height: 3.25rem;
+    height: 2.75rem;
     max-height: 3.25rem;
   }
 
   .ranking-logo-edurank {
-    height: 3.25rem;
-    width: 3.25rem;
+    height: 2.75rem;
+    width: 2.75rem;
     object-fit: contain;
     border-radius: 9999px;
   }
 
   .ranking-logo-the {
-    height: 3rem;
+    height: 2.5rem;
     max-height: 5rem;
-    max-width: 11rem;
+    max-width: 8rem;
   }
 
   .ranking-logo-aun {
-    height: 3rem;
+    height: 2.5rem;
     max-height: 3.5rem;
-    max-width: 10rem;
+    max-width: 7.5rem;
   }
 
   .ranking-logo-wuri {
-    height: 3.5rem;
+    height: 3rem;
     max-height: 5rem;
-    max-width: 11rem;
+    max-width: 9rem;
+  }
+
+  @media (min-width: 640px) {
+    .ranking-logo-qs {
+      height: 3.25rem;
+    }
+
+    .ranking-logo-edurank {
+      height: 3.25rem;
+      width: 3.25rem;
+    }
+
+    .ranking-logo-the {
+      height: 3rem;
+      max-width: 11rem;
+    }
+
+    .ranking-logo-aun {
+      height: 3rem;
+      max-width: 10rem;
+    }
+
+    .ranking-logo-wuri {
+      height: 3.5rem;
+      max-width: 11rem;
+    }
   }
 </style>
