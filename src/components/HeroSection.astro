@@ -3,65 +3,48 @@ export interface Props {
 	title: string;
 	accentTitle?: string;
 	subtitle?: string;
-	class?: string;
 }
 
 const {
 	title,
 	accentTitle,
 	subtitle,
-	class: className = "",
 } = Astro.props;
 ---
 
 <section
-	id="top"
-	class={`scroll-section hero-gradient-canvas ${className}`}
+	class={`scroll-section hero`}
 >
-	<!-- Ambient blurred maroon/gold mesh orbs (isolated behind content with no stacking trap) -->
-	<div aria-hidden="true" class="hero-orbs">
-		<div class="hero-orb hero-orb-1"></div>
-		<div class="hero-orb hero-orb-2"></div>
-		<div class="hero-orb hero-orb-3"></div>
-	</div>
+	<div class="hero-content">
+		<slot name="top"/>
 
-	<slot name="top" />
+		<h1 class="hero-title">
+			<span>{title}</span>{accentTitle && <span class="hero-title-accent"> {accentTitle}</span>}
+		</h1>
+		{subtitle && <p class="hero-subtitle">{subtitle}</p>}
 
-	<!-- Centered Frosted Glass Card Wrapper -->
-	<div class="hero-card">
-		<div aria-hidden="true" class="hero-glass-surface"></div>
-
-		<div class="hero-content">
-			<h1 class="hero-title">
-				<span>{title}</span>{accentTitle && <span class="hero-title-accent"> {accentTitle}</span>}
-			</h1>
-
-			{subtitle && <p class="hero-subtitle">{subtitle}</p>}
-
-			<div class="hero-slot-content"><slot /></div>
+		<div class="hero-slot-content">
+			<slot/>
 		</div>
 	</div>
 </section>
 
 <style>
-	.hero-gradient-canvas {
-		position: relative;
-		width: 100%;
-		min-height: 100dvh;
-		overflow-x: hidden;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 7rem 1rem 2.5rem;
-		text-align: center;
-		color: var(--color-white, #ffffff);
+	.hero {
+		color: var(--color-white);
+		padding: 2rem;
+
 		background-color: #4a0000;
-		background-image:
-			radial-gradient(ellipse 68% 66% at 50% 48%, rgba(128, 0, 0, 0.75) 0%, rgba(128, 0, 0, 0) 60%),
-			radial-gradient(ellipse 85% 95% at 24% 85%, rgba(90, 0, 0, 0.9) 0%, rgba(90, 0, 0, 0) 50%),
-			radial-gradient(ellipse 85% 90% at 75% 80%, rgba(255, 223, 0, 0.22) 0%, rgba(255, 223, 0, 0) 55%),
-			radial-gradient(ellipse 95% 85% at 85% 25%, rgba(218, 165, 32, 0.35) 0%, rgba(218, 165, 32, 0) 50%),
-			radial-gradient(ellipse 95% 90% at 15% 20%, rgba(128, 0, 0, 0.95) 0%, rgba(128, 0, 0, 0) 55%);
+		background-image: radial-gradient(ellipse 68% 66% at 50% 48%, rgba(128, 0, 0, 0.75) 0%, rgba(128, 0, 0, 0) 60%),
+		radial-gradient(ellipse 85% 95% at 24% 85%, rgba(90, 0, 0, 0.9) 0%, rgba(90, 0, 0, 0) 50%),
+		radial-gradient(ellipse 85% 90% at 75% 80%, rgba(255, 223, 0, 0.22) 0%, rgba(255, 223, 0, 0) 55%),
+		radial-gradient(ellipse 95% 85% at 85% 25%, rgba(218, 165, 32, 0.35) 0%, rgba(218, 165, 32, 0) 50%),
+		radial-gradient(ellipse 95% 90% at 15% 20%, rgba(128, 0, 0, 0.95) 0%, rgba(128, 0, 0, 0) 55%);
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
 	}
 
 	.hero-orbs {
@@ -103,6 +86,14 @@ const {
 		filter: blur(88px);
 	}
 
+
+	.hero-content {
+		max-width: 1100px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.hero-card {
 		position: relative;
 		margin: auto;
@@ -112,24 +103,9 @@ const {
 		padding: 2rem 1.5rem;
 	}
 
-	.hero-glass-surface {
-		position: absolute;
-		inset: 0;
-		border-radius: 24px;
-		pointer-events: none;
-	}
-
-	.hero-content {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-	}
-
 	h1.hero-title {
 		margin: 0;
-		font-family: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+		font-family: var(--font-montserrat), system-ui, sans-serif;
 		font-size: clamp(3rem, 8vw, 6rem);
 		font-weight: 800;
 		letter-spacing: -0.03em;
@@ -147,7 +123,7 @@ const {
 		max-width: 800px;
 		color: var(--color-dark-gold, #daa520);
 		font-size: medium;
-		font-family: var(--font-inter), "Plus Jakarta Sans", system-ui, sans-serif;
+		font-family: var(--font-inter), system-ui, sans-serif;
 		font-weight: 600;
 	}
 
@@ -159,7 +135,7 @@ const {
 		width: 100%;
 		max-width: 800px;
 		margin-top: 1.25rem;
-		font-family: var(--font-inter), "Plus Jakarta Sans", system-ui, sans-serif;
+		font-family: var(--font-inter), system-ui, sans-serif;
 	}
 
 	.hero-slot-content:empty {
