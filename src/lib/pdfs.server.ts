@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import {createHash} from "node:crypto";
-import {PDF_XOR_KEY} from "./pdfConfig.ts";
+import { createHash } from "node:crypto";
+import { PDF_XOR_KEY } from "./pdfConfig.ts";
 
 export const PDF_CHUNK_SIZE = 64 * 1024; // 64 KB per .bin file
 
@@ -26,6 +26,10 @@ export const DOCS: Record<string, string> = {
     "curriculum-design": "curriculum-design.pdf",
     "syllabi-preparation": "syllabi-preparation.pdf",
     */
+
+    "satisfaction-certification": "emo-certification.pdf",
+    "extension-proposal-mse": "extension-proposal-mse.pdf",
+    "ems-objectives": "extension-proposal-ems.pdf",
 };
 
 function makeHashId(seed: string): string {
@@ -52,6 +56,6 @@ export function getChunkId(slug: string, part: number): string {
 export function getChunkCount(slug: string): number {
     const filePath = getPdfPath(slug);
     if (!filePath) return 0;
-    const {size} = fs.statSync(filePath);
+    const { size } = fs.statSync(filePath);
     return Math.ceil(size / PDF_CHUNK_SIZE);
 }

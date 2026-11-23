@@ -7,17 +7,21 @@ interface Props {
     beneficiaries: string;
     imageLabel: string;
     imageSrc?: string;
-    href: string;
+    href?: string;
+    docRef?: string;
+    pdfTitle?: string;
 }
 
-const { status, title, description, partner, beneficiaries, imageLabel, imageSrc, href } =
+const { status, title, description, partner, beneficiaries, imageLabel, imageSrc, href, docRef, pdfTitle } =
     Astro.props;
 ---
 
 <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
+    href={docRef ? "#" : href}
+    target={docRef ? undefined : "_blank"}
+    rel={docRef ? undefined : "noopener noreferrer"}
+    data-doc-ref={docRef}
+    data-pdf-title={pdfTitle ?? title}
     class="initiative-card group flex flex-col rounded-lg bg-white overflow-hidden shadow-sm transition-all duration-200 hover:-translate-y-1.5 hover:shadow-lg cursor-pointer"
 >
     {imageSrc ? (

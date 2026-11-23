@@ -12,6 +12,8 @@ import StatItem from "../components/community/StatItem.astro";
 import CommunitySection from "../components/community/CommunitySection.astro";
 import EmsHighlightCard from "../components/community/EmsHighlightCard.astro";
 import PhotoCard from "../components/community/PhotoCard.astro";
+import PDFModal from "../components/PDFModal.astro";
+import { getDocRef } from "../lib/pdfs.server";
 ---
 
 <ScrollSnapLayout
@@ -78,7 +80,8 @@ import PhotoCard from "../components/community/PhotoCard.astro";
                 beneficiaries="MSE owners, cooperative officers and staff, and local entrepreneurs"
                 imageLabel="E-Commerce for the MSEs documentation"
                 imageSrc="/community-asset/e-commerce-mse.png"
-                href="https://tinyurl.com/mrym5bzt"
+                docRef={getDocRef("extension-proposal-mse")}
+                pdfTitle="E-Commerce for the MSEs"
             />
             <InitiativeCard
                 status="COMPLETED · DECEMBER 2023"
@@ -98,7 +101,8 @@ import PhotoCard from "../components/community/PhotoCard.astro";
                 beneficiaries="Junior and Senior High School faculty members and students"
                 imageLabel="Examination Management System documentation"
                 imageSrc="/community-asset/exam-management.png"
-                href="https://tinyurl.com/3dh6m6ah"
+                docRef={getDocRef("ems-objectives")}
+                pdfTitle="Examination Management System"
             />
         </div>
     </ContentSection>
@@ -163,7 +167,7 @@ import PhotoCard from "../components/community/PhotoCard.astro";
     </ContentSection>
 
     <CommunitySection class="md:justify-center">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center rounded-lg bg-white p-8 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center rounded-lg border border-(--color-border) bg-white p-8 shadow-sm">
             <img
                 src="/community-asset/computer-literacy.png"
                 alt="Video creation seminar"
@@ -189,14 +193,14 @@ import PhotoCard from "../components/community/PhotoCard.astro";
                     and certificates document the complete extension cycle. EMO
                     certification records high participant satisfaction.
                 </p>
-                <a
-                    href="https://drive.google.com/file/d/1WBJ4EiOQboCCRM3d63WRvtbif_pcVz70/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("satisfaction-certification")}
+                    data-pdf-title="Satisfaction Certification"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
                 >
                     View satisfaction certification ↗
-                </a>
+                </button>
             </div>
         </div>
     </CommunitySection>
@@ -286,14 +290,17 @@ import PhotoCard from "../components/community/PhotoCard.astro";
             <FeedbackCard
                 topic="ON LIVELIHOOD"
                 quote="“Mas napaganda ang pagbebenta.”"
+                source="- Respondent 7"
             />
             <FeedbackCard
                 topic="ON NEW DIGITAL SKILLS"
                 quote="“Natuto ako ng tamang pag gamit ng AI.”"
+                source="- Respondent 1"
             />
             <FeedbackCard
                 topic="ON EVERYDAY WORK"
                 quote="“Mas napapabilis ang trabaho.”"
+                source="- Respondent 6"
             />
         </div>
 
@@ -331,14 +338,14 @@ import PhotoCard from "../components/community/PhotoCard.astro";
     >
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div class="flex flex-col gap-6 rounded-lg bg-white p-6 shadow-sm">
-                <a
-                    href="https://tinyurl.com/mrym5bzt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("extension-proposal-mse")}
+                    data-pdf-title="E-Commerce for the MSEs"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
                 >
                     E-Commerce seminar series ↗
-                </a>
+                </button>
                 <a
                     href="https://drive.google.com/drive/folders/1x-9RjTppKqretkcVKHzXaYfqNEcKMBPI?usp=sharing"
                     target="_blank"
@@ -347,32 +354,24 @@ import PhotoCard from "../components/community/PhotoCard.astro";
                 >
                     Literacy reports &amp; PUP–CUMC agreement ↗
                 </a>
-                <a
-                    href="https://drive.google.com/file/d/1WBJ4EiOQboCCRM3d63WRvtbif_pcVz70/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("satisfaction-certification")}
+                    data-pdf-title="Satisfaction Certification"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
                 >
                     Satisfaction certification ↗
-                </a>
+                </button>
             </div>
             <div class="flex flex-col gap-6 rounded-lg bg-white p-6 shadow-sm">
-                <a
-                    href="https://tinyurl.com/3dh6m6ah"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("ems-objectives")}
+                    data-pdf-title="EMS Project & Partnership Records"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
                 >
                     EMS project &amp; partnership records ↗
-                </a>
-                <a
-                    href="https://drive.google.com/file/d/1bdQgaGKF74i-5VwuD6plPxek0Zoo-QTK/view?usp=drive_link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-sm font-bold text-(--color-maroon) hover:underline"
-                >
-                    EMS objectives &amp; student participation ↗
-                </a>
+                </button>
                 <a
                     href="https://drive.google.com/drive/folders/19LZYQJp5XGLxsyD-ClKmGIKUYtkvNLK9?usp=sharing"
                     target="_blank"
@@ -384,7 +383,7 @@ import PhotoCard from "../components/community/PhotoCard.astro";
             </div>
         </div>
         <div class="bg-(--color-dark-maroon) p-9 text-white flex flex-col gap-4 mt-8">
-            <h3 class="font-(family-name:--font-montserrat) text-[28px] font-bold leading-tight !text-white">
+            <h3 class="font-(family-name:--font-montserrat) text-[28px] font-bold leading-tight !text-(--color-gold)">
                 A collaboration of efforts, ideas, vision.
             </h3>
             <p class="text-lg leading-relaxed text-white/90">
@@ -396,5 +395,6 @@ import PhotoCard from "../components/community/PhotoCard.astro";
         </div>
     </ContentSection>
 
+    <PDFModal />
     <Footer />
 </ScrollSnapLayout>
