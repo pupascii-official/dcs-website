@@ -2,11 +2,10 @@
 interface Props {
     sectionLabel: string;
     category: string;
-    title: string;
     description?: string;
 }
 
-const { sectionLabel, category, title, description } = Astro.props;
+const {sectionLabel, category, description} = Astro.props;
 ---
 
 <section class="scroll-section content-section">
@@ -16,7 +15,6 @@ const { sectionLabel, category, title, description } = Astro.props;
                 <small>{sectionLabel}</small>
                 <h2 class="category">{category}</h2>
             </div>
-            <h3 class="main-title">{title}</h3>
             {description && <p class="description">{description}</p>}
         </header>
 
@@ -30,6 +28,10 @@ const { sectionLabel, category, title, description } = Astro.props;
     .content-section {
         background-color: var(--color-bg-canvas);
         padding: 3rem 2rem;
+    }
+
+    .category {
+        margin-bottom: 1.5rem;
     }
 
     .section-inner {
