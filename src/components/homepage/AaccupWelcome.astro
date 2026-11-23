@@ -6,6 +6,26 @@ import ScrollReveal from '../react/ScrollReveal';
 import TextLoop from '../react/TextLoop';
 
 const documentRef = getDocRef('certificate-of-authenticity');
+const profiles = [
+	{
+		name: 'Dr. Myrna A. Coliat',
+		role: 'Team Leader',
+		institution: 'Batangas State University',
+		image: '/images/homepage/accreditors/Coliat.webp',
+	},
+	{
+		name: 'Dr. Annjeannette Alain D. Galang',
+		role: 'Accreditor',
+		institution: 'Mariano Marcos State University',
+		image: '/images/homepage/accreditors/Galang.webp',
+	},
+	{
+		name: 'Dr. Alberto D. Yazon',
+		role: 'Coordinator',
+		institution: 'Laguna State Polytechnic University',
+		image: '/images/homepage/accreditors/Yazon.webp',
+	},
+];
 ---
 
 <section class="aaccup" aria-label="Welcome AACCUP Accreditors">
@@ -66,18 +86,31 @@ const documentRef = getDocRef('certificate-of-authenticity');
 				</span>
 			</button>
 		)}
+
+		<div class="aaccup__profiles" aria-label="AACCUP accreditor profiles">
+			{profiles.map((profile) => (
+				<article class="aaccup__profile">
+					<img src={profile.image} alt="" width="96" height="96" loading="lazy" decoding="async" />
+					<div class="aaccup__profile-copy">
+						<span>{profile.role}</span>
+						<h2>{profile.name}</h2>
+						<p>{profile.institution}</p>
+					</div>
+				</article>
+			))}
+		</div>
 	</div>
 
 	<div class="aaccup__divider" aria-hidden="true">
 		<TextLoop
 			client:visible
 			className="aaccup__loop"
-            text="Welcome AACCUP Accreditors"
+            text="ㅤㅤPolytechnic University of the Philippines ㅤㅤ|ㅤ ㅤCollege of Computer and Information Sciences ㅤㅤ|ㅤㅤ Department of Computer Scienceㅤㅤㅤ"
 			shape="line"
 			speed={36}
 			direction="forward"
             separator=""
-            separatorImages={['/pup-logo.png', '/ccis-logo.png', '/dcs-logo.png']}
+            separatorImages={['/ccis-logo.png', '/dcs-logo.png', '/pup-logo.png']}
             separatorImageSize={30}
 			fontSize={10}
 			fontWeight={600}
@@ -142,7 +175,7 @@ const documentRef = getDocRef('certificate-of-authenticity');
 	.aaccup :global(.aaccup__title) { display: block; }
 	.aaccup :global(.aaccup__title-text) {
 		display: block;
-		background: linear-gradient(180deg, #8d101b 0%, #b5222d 55%, #d8463b 100%);
+		background: linear-gradient(180deg, #8e1026 0%, #c63b35 100%);
 		background-clip: text;
 		color: transparent;
 		font-family: var(--font-montserrat), 'Montserrat', sans-serif;
@@ -185,6 +218,49 @@ const documentRef = getDocRef('certificate-of-authenticity');
 	.aaccup__document-meta { color: #625856; }
 	.aaccup__document-action { display: inline-flex; align-items: center; gap: .15rem; color: #801923; font-weight: 600; }
 
+	.aaccup__profiles {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1.25rem;
+		width: min(100%, 1160px);
+		margin: 1.6rem auto 0;
+	}
+
+	.aaccup__profile {
+		display: grid;
+		grid-template-columns: minmax(110px, .78fr) minmax(0, 1fr);
+		min-height: 260px;
+		min-width: 0;
+		overflow: hidden;
+		border-radius: 0 !important;
+		padding: 0;
+		border: 1px solid rgb(255 255 255 / 18%);
+		background: rgb(92 7 19 / 94%);
+		color: white;
+		text-align: left;
+		transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+	}
+
+	.aaccup__profile:hover { transform: translateY(-3px); border-color: rgb(228 195 110 / 72%); background: #640914; }
+
+	.aaccup__profile img {
+		width: 100%;
+		height: 100%;
+		min-height: 260px;
+		border-radius: 0 !important;
+		clip-path: none;
+		object-fit: cover;
+		object-position: center 24%;
+		filter: saturate(.82);
+		transition: transform 350ms ease;
+	}
+
+	.aaccup__profile:hover img { transform: scale(1.035); }
+	.aaccup__profile-copy { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; padding: 1.45rem 1.3rem; }
+	.aaccup__profile-copy > span { color: #ffde00; font-size: .66rem; font-weight: 700; letter-spacing: .07em; line-height: 1.5; text-transform: uppercase; }
+	.aaccup__profile-copy h2 { margin: auto 0 0; padding-top: 1.4rem; color: #fff; font-family: var(--font-montserrat), 'Montserrat', sans-serif; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.25; }
+	.aaccup__profile-copy p { margin: .25rem 0 0; color: rgb(255 255 255 / 65%); font-size: .74rem; }
+
 	.aaccup__divider {
 		position: absolute;
 		z-index: 1;
@@ -217,11 +293,17 @@ const documentRef = getDocRef('certificate-of-authenticity');
 		.aaccup__document { max-width: 100%; gap: .4rem; margin-top: .2rem; padding-block: .1rem; }
 		.aaccup__document-copy { gap: .35rem; }
 		.aaccup__document-meta, .aaccup__document-action { font-size: .67rem; }
+		.aaccup__profiles { grid-template-columns: 1fr; gap: .85rem; margin-top: 1.25rem; }
+		.aaccup__profile { grid-template-columns: minmax(125px, .72fr) minmax(0, 1fr); min-height: 215px; }
+		.aaccup__profile img { min-height: 215px; }
+		.aaccup__profile-copy { padding: 1rem; }
+		.aaccup__profile-copy > span { font-size: .59rem; }
+		.aaccup__profile-copy h2 { padding-top: .8rem; font-size: 1.1rem; }
 		.aaccup__divider { height: 36px; }
 		.aaccup__divider :global(.aaccup__loop) { width: max(100%, 580px); }
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.aaccup__document { transition: none; }
+		.aaccup__document, .aaccup__profile, .aaccup__profile img { transition: none; }
 	}
 </style>

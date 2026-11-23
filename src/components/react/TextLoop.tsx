@@ -44,7 +44,7 @@ interface Metrics {
   length: number;
   reps: number;
   unitWidth: number;
-  phraseWidth: number;
+  imageOffsets: number[];
   crossLength: number;
   crossReps: number;
 }
@@ -199,7 +199,7 @@ const TextLoop = ({
   const crossTailRef = useRef<SVGTextPathElement | null>(null);
   const progressRef = useRef(0);
 
-  const [metrics, setMetrics] = useState<Metrics>({ length: 0, reps: 1, unitWidth: 0, phraseWidth: 0, crossLength: 0, crossReps: 1 });
+  const [metrics, setMetrics] = useState<Metrics>({ length: 0, reps: 1, unitWidth: 0, imageOffsets: [], crossLength: 0, crossReps: 1 });
 
   const rawId = useId();
   const pathId = `text-loop-${rawId.replace(/[^a-zA-Z0-9_-]/g, '')}`;
@@ -229,10 +229,13 @@ const TextLoop = ({
   const crossDim = !ribbon && !crossColor ? 0.45 : 1;
 
   const baseText = uppercase ? String(text).toUpperCase() : String(text);
+  const textSegments = baseText.split('|');
+  const segmentedImages = separatorImages.length > 0 && textSegments.length === separatorImages.length;
   const unit = useMemo(() => {
     const gap = separator && separatorImages.length === 0 ? `\u00A0${separator}\u00A0` : '\u00A0\u00A0\u00A0';
+    if (segmentedImages) return textSegments.map(segment => `${segment}${'\u00A0'.repeat(3)}`).join('');
     return `${baseText}${gap}`;
-  }, [baseText, separator, separatorImages.length]);
+  }, [baseText, separator, separatorImages.length, segmentedImages]);
 
   const textStyle = useMemo<CSSProperties>(
     () => ({ fontSize: `${fontSize}px`, fontWeight, letterSpacing: `${letterSpacing}px` }),
@@ -250,12 +253,23 @@ const TextLoop = ({
       if (cancelled) return;
       let length = 0;
       let unitWidth = 0;
-      let phraseWidth = 0;
+      const imageOffsets: number[] = [];
       let crossLength = 0;
       try {
         length = pathEl.getTotalLength();
         unitWidth = measureEl.getComputedTextLength();
-        phraseWidth = measureEl.getSubStringLength(0, baseText.length);
+        if (separatorImages.length > 0) {
+          let characterOffset = 0;
+          const segments = segmentedImages ? textSegments : [baseText];
+          segments.forEach(segment => {
+            const segmentEnd = characterOffset + segment.length;
+            const gapLength = unit.length - segmentEnd >= 3 ? 3 : Math.max(0, unit.length - segmentEnd);
+            const phraseWidth = measureEl.getSubStringLength(0, segmentEnd);
+            const gapWidth = gapLength ? measureEl.getSubStringLength(segmentEnd, gapLength) : 0;
+            imageOffsets.push(phraseWidth + gapWidth / 2);
+            characterOffset = segmentEnd + gapLength;
+          });
+        }
         crossLength = crossPathRef.current ? crossPathRef.current.getTotalLength() : 0;
       } catch {
         return;
@@ -263,12 +277,13 @@ const TextLoop = ({
       if (!length) return;
 
       const repsFor = (total: number) => (unitWidth > 0 ? Math.max(1, Math.round(total / unitWidth)) : 1);
-      const next = { length, reps: repsFor(length), unitWidth, phraseWidth, crossLength, crossReps: repsFor(crossLength) };
+      const next = { length, reps: repsFor(length), unitWidth, imageOffsets, crossLength, crossReps: repsFor(crossLength) };
       setMetrics(prev =>
         prev.length === next.length &&
         prev.reps === next.reps &&
         prev.unitWidth === next.unitWidth &&
-        prev.phraseWidth === next.phraseWidth &&
+        prev.imageOffsets.length === next.imageOffsets.length &&
+        prev.imageOffsets.every((offset, index) => offset === next.imageOffsets[index]) &&
         prev.crossLength === next.crossLength &&
         prev.crossReps === next.crossReps
           ? prev
@@ -312,11 +327,12 @@ const TextLoop = ({
       }
       if (separatorImages.length > 0 && metrics.unitWidth > 0) {
         const interval = length / metrics.reps;
-        const phraseEnd = (metrics.phraseWidth / metrics.unitWidth) * interval;
-        const logoStart = phraseEnd + (interval - phraseEnd) / 2;
         const logos = svg.querySelectorAll<SVGImageElement>('.text-loop-separator-image');
-        logos.forEach((logo, index) => {
-          const at = wrap(offset + index * interval + logoStart, length);
+        logos.forEach(logo => {
+          const unitIndex = Number(logo.dataset.unitIndex);
+          const imageIndex = Number(logo.dataset.imageIndex);
+          const imageOffset = metrics.imageOffsets[imageIndex] ?? 0;
+          const at = wrap(offset + unitIndex * interval + (imageOffset / metrics.unitWidth) * interval, length);
           const point = mainPath.getPointAtLength(at);
           const before = mainPath.getPointAtLength(wrap(at - 1, length));
           const after = mainPath.getPointAtLength(wrap(at + 1, length));
@@ -691,19 +707,23 @@ const TextLoop = ({
               </textPath>
             </text>
 
-            {separatorImages.length > 0 && Array.from({ length: metrics.reps }, (_, index) => separatorImages[index % separatorImages.length]).map((src, index) => (
-              <image
-                key={`${src}-${index}`}
-                className="text-loop-separator-image"
-                href={src}
-                x={-separatorImageSize / 2}
-                y={-separatorImageSize / 2}
-                width={separatorImageSize}
-                height={separatorImageSize}
-                preserveAspectRatio="xMidYMid meet"
-                aria-hidden="true"
-              />
-            ))}
+            {separatorImages.length > 0 && Array.from({ length: metrics.reps }, (_, unitIndex) =>
+              metrics.imageOffsets.map((_, imageIndex) => (
+                <image
+                  key={`${unitIndex}-${imageIndex}`}
+                  className="text-loop-separator-image"
+                  data-unit-index={unitIndex}
+                  data-image-index={imageIndex}
+                  href={separatorImages[imageIndex]}
+                  x={0}
+                  y={0}
+                  width={separatorImageSize}
+                  height={separatorImageSize}
+                  preserveAspectRatio="xMidYMid meet"
+                  aria-hidden="true"
+                />
+              ))
+            )}
           </g>
         </g>
       </svg>
