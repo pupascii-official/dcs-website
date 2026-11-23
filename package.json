@@ -29,6 +29,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@embedpdf/viewer": "^3.3.0",
     "oxc-transform-react": "^0.158.0"
   }
 }
