@@ -15,6 +15,10 @@ import StudentOrg from "../components/teaching-learning/StudentOrg.astro";
 import StudentAwards from "../components/teaching-learning/StudentAwards.astro";
 import StudentsIntl from "../components/teaching-learning/StudentsIntl.astro";
 import AccomplishmentReports from "../components/teaching-learning/AccomplishmentReports.astro";
+import NotableAlumni from "../components/teaching-learning/NotableAlumni.astro";
+import GraduateTracer from "../components/teaching-learning/GraduateTracer.astro"; 
+import PEOScores from "../components/teaching-learning/PEOScores.astro";
+import PICAB from "../components/teaching-learning/PICAB.astro";
 ---
 
 <ScrollSnapLayout title="Teaching & Learning" description="">
@@ -105,7 +109,7 @@ import AccomplishmentReports from "../components/teaching-learning/Accomplishmen
     </section>
 
     <!-- STUDENT ORGANIZATIONS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
         <SectionContent
             title="Presentation of Student Organizations"
             sectionLabel="SECTION 04C • STUDENTS OUTCOMES & ECO-SYSTEM">
@@ -119,7 +123,7 @@ import AccomplishmentReports from "../components/teaching-learning/Accomplishmen
     </section>
 
     <!-- STUDENT ACHIEVEMENTS & AWARDS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
         <SectionContent
             title="Student Achievements & Awards"
             sectionLabel="SECTION 05 • STUDENT ACHIEVEMENTS & AWARDS">
@@ -133,7 +137,7 @@ import AccomplishmentReports from "../components/teaching-learning/Accomplishmen
     </section>
 
     <!-- CS INTERNATIONAL STUDENTS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
         <SectionContent
             title="CS International Students"
             sectionLabel="SECTION 06 • INTERNATIONAL STUDENTS">
@@ -147,7 +151,7 @@ import AccomplishmentReports from "../components/teaching-learning/Accomplishmen
     </section>
 
     <!-- ACCOMPLISHMENT REPORTS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
         <SectionContent
             title="Department & Program Accomplishment Reports"
             sectionLabel="SECTION 07 • ACCOMPLISHMENT REPORTS">
@@ -155,15 +159,65 @@ import AccomplishmentReports from "../components/teaching-learning/Accomplishmen
             <p>Consolidated annual and semesterly accomplishment reports documenting teaching, research, extension,
                 and student development milestones.</p>
 
-            <!-- accomplishment items -->
             <AccomplishmentReports></AccomplishmentReports>
         </SectionContent>
-
      
     </section>
 
-    <!--  -->
+    <!-- NOTABLE ALUMNI -->
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+        <SectionContent
+            title="Notable BSCS Alumni"
+            sectionLabel="SECTION 08 • NOTABLE ALUMNI • GRADUATE IMPACT">
 
+            <p>Distinguished BSCS graduates leading in software engineering, AI research, cybersecurity,
+                and technology entrepreneurship.</p>
+
+            <NotableAlumni></NotableAlumni>
+        </SectionContent>
+     
+    </section>
+
+    <!-- GRADUATE TRACER -->
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+        <SectionContent
+            title="BSCS Graduate Tracer"
+            sectionLabel="SECTION 09 • GRADUATE TRACER">
+
+            <p>Longitudinal tracking of BSCS graduates covering employment outcomes, career progression, industry
+                alignment, and continuing education.</p>
+
+            <GraduateTracer></GraduateTracer>
+        </SectionContent>
+     
+    </section>
+
+    <!-- PEO ATTAINMENT SCORES -->
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+        <SectionContent
+            title="PEO Attainment Scores"
+            sectionLabel="SECTION 10 • PEO ATTAINMENT SCORES">
+
+            <p>Comes from Graduate Tracer Surveys (2017–2022 Data set) measuring how BSCS graduates demonstrate Program
+                Educational Objectives 3–5 years post-graduation.</p>
+
+            <PEOScores></PEOScores>
+        </SectionContent>
+     
+    </section>
+
+    <!-- PICAB -->
+    <section class="scroll-section scrollbar-none pt-12 md:pt-16 lg:pt-20 mx-2">
+        <SectionContent
+            title="PICAB Accreditation"
+            sectionLabel="SECTION 11 • PICAB ACCREDITATION">
+
+            <p>Information regarding the Philippine Institute of Computer Engineers (PICAB) accreditation of the BSCS program.</p>
+
+            <PICAB></PICAB>
+        </SectionContent>
+     
+    </section>
 
 
 

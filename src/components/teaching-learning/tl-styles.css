@@ -1,3 +1,42 @@
+:root {
+  /* Core Palette from Color Scheme Doc */
+  --color-white: #FFFFFF;
+  --color-maroon: #800000;
+  --color-maroon-dark: #5C0000;
+  --color-maroon-deep: #3D0000;
+  --color-gold: #FFDE00;
+  --color-dark-gold: #DAA520;
+
+  /* Neutrals & Semantics */
+  --color-bg: #FAFAFA;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F4F1F1;
+  --color-text: #1A1414;
+  --color-text-muted: #5C5252;
+  --color-border: #E6DFDF;
+
+  /* Typography (matching DIT CCIS coherence) */
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Overpass', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Radii & Shadows */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 2px 8px rgba(61, 0, 0, 0.06);
+  --shadow-md: 0 10px 30px rgba(61, 0, 0, 0.10);
+  --shadow-lg: 0 20px 50px rgba(61, 0, 0, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 /* FOR STUDENT ORGANIZATIONS */
 .ascii-soft-card {
   border-radius: 20px;
@@ -430,6 +469,296 @@
   align-items: start;
 }
 
+.roadmap-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(24, 8, 8, 0.56);
+  backdrop-filter: blur(4px);
+}
+
+.roadmap-modal-backdrop[hidden] {
+  display: none;
+}
+
+.roadmap-modal-dialog {
+  width: 100%;
+  max-width: 560px;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(128, 0, 0, 0.16);
+  border-top: 4px solid var(--color-maroon);
+  box-shadow: 0 24px 56px rgba(24, 0, 0, 0.28);
+  padding: 24px 26px;
+  animation: roadmapModalIn 0.18s ease-out;
+}
+
+@keyframes roadmapModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.roadmap-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.roadmap-modal-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roadmap-modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.18);
+  background: #FBF0F0;
+  color: var(--color-maroon);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.roadmap-modal-close:hover {
+  background: #F5DADA;
+  transform: scale(1.05);
+}
+
+.roadmap-modal-body p {
+  color: #374151;
+  font-size: 0.96rem;
+  line-height: 1.68;
+  margin: 0 0 16px;
+}
+
+.roadmap-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(128, 0, 0, 0.12);
+}
+
+.roadmap-modal-nav {
+  padding: 7px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.22);
+  background: #FFFFFF;
+  color: var(--color-maroon);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.roadmap-modal-nav:hover:not(:disabled) {
+  background: #FBF0F0;
+  border-color: var(--color-maroon);
+}
+
+.roadmap-modal-nav:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+#tl-student-awards .tl-achiever-card,
+#tl-student-awards .tl-achiever-card.gold-accent {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 24px;
+  border-radius: 20px;
+  background: #FFFFFF;
+  border: 1px solid rgba(128, 0, 0, 0.10);
+  box-shadow: 0 4px 20px rgba(61, 0, 0, 0.045);
+  transition: transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+#tl-student-awards .tl-achiever-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(128, 0, 0, 0.28);
+  box-shadow: 0 14px 32px rgba(61, 0, 0, 0.10);
+}
+
+#tl-student-awards .tl-achiever-card:focus-visible {
+  outline: 2px solid var(--color-maroon);
+  outline-offset: 2px;
+}
+
+#tl-student-awards .tl-achiever-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(128, 0, 0, 0.08);
+}
+
+#tl-student-awards .tl-achiever-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 2px solid #FFFFFF;
+  box-shadow:
+    0 0 0 1px rgba(128, 0, 0, 0.14),
+    0 4px 12px rgba(61, 0, 0, 0.09);
+  background: #FFFFFF;
+}
+
+#tl-student-awards .tl-achiever-header .tl-award-recipient {
+  margin-bottom: 0;
+  font-size: 1.08rem;
+  line-height: 1.25;
+}
+
+#tl-student-awards .tl-achiever-card .tl-faculty-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 18px !important;
+  padding-left: 16px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #374151;
+}
+
+#tl-student-awards .tl-achiever-card .tl-faculty-list li::marker {
+  color: var(--color-maroon);
+}
+
+#tl-student-awards .tl-achiever-cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 12px;
+  background: rgba(128, 0, 0, 0.045);
+  border: 1px solid rgba(128, 0, 0, 0.12);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+#tl-student-awards .tl-achiever-card:hover .tl-achiever-cta {
+  background: var(--color-maroon);
+  border-color: var(--color-maroon);
+  color: #FFFFFF;
+}
+
+.achiever-modal-dialog {
+  max-width: 780px;
+}
+
+.achiever-modal-dialog .roadmap-modal-body {
+  max-height: 62vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.achiever-cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.tl-cert-figure {
+  margin: 0;
+  padding: 10px;
+  border-radius: 12px;
+  background: #FAF8F5;
+  border: 1px solid rgba(128, 0, 0, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tl-cert-figure img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #FFFFFF;
+}
+
+.tl-cert-figure figcaption {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.intl-modal-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.intl-modal-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(128, 0, 0, 0.14);
+}
+
+.intl-modal-meta h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+}
+
+.intl-modal-univ {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+/* FOR STUDENT AWARDS */
+
 
 /* FOR INTERNATIONAL STUDENTS */
 /* Computer Science International Students — 4-Column Desktop Grid */
@@ -555,4 +884,1236 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* International student cards */
+#tl-international-students .intl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+#tl-international-students .intl-item {
+  min-width: 0;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 10px;
+  margin: -10px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#tl-international-students .intl-item:hover {
+  background-color: rgba(128, 0, 0, 0.03);
+  transform: translateY(-2px);
+}
+
+#tl-international-students .intl-item:focus-visible {
+  outline: 2px solid var(--color-maroon);
+  outline-offset: 2px;
+}
+
+#tl-international-students .intl-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+#tl-international-students .tl-award-sub {
+  margin-bottom: 0;
+}
+
+#tl-international-students .intl-details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(128, 0, 0, 0.12);
+}
+
+#tl-international-students .tl-award-top {
+  padding: 0 0 8px;
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+#tl-international-students .intl-modality {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-maroon);
+  margin-bottom: 6px;
+}
+
+#tl-international-students .intl-desc {
+  color: #4B5563;
+  font-size: 0.84rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Modal container */
+.roadmap-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(24, 8, 8, 0.56);
+  backdrop-filter: blur(4px);
+}
+
+.roadmap-modal-backdrop[hidden] {
+  display: none;
+}
+
+.roadmap-modal-dialog {
+  width: 100%;
+  max-width: 560px;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(128, 0, 0, 0.16);
+  border-top: 4px solid var(--color-maroon);
+  box-shadow: 0 24px 56px rgba(24, 0, 0, 0.28);
+  padding: 24px 26px;
+  animation: roadmapModalIn 0.18s ease-out;
+}
+
+@keyframes roadmapModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.roadmap-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.roadmap-modal-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roadmap-modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.18);
+  background: #FBF0F0;
+  color: var(--color-maroon);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.roadmap-modal-close:hover {
+  background: #F5DADA;
+  transform: scale(1.05);
+}
+
+.roadmap-modal-body p {
+  color: #374151;
+  font-size: 0.96rem;
+  line-height: 1.68;
+  margin: 0 0 16px;
+}
+
+.roadmap-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(128, 0, 0, 0.12);
+}
+
+.roadmap-modal-nav {
+  padding: 7px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.22);
+  background: #FFFFFF;
+  color: var(--color-maroon);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.roadmap-modal-nav:hover:not(:disabled) {
+  background: #FBF0F0;
+  border-color: var(--color-maroon);
+}
+
+.roadmap-modal-nav:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* International student modal */
+.intl-modal-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.intl-modal-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(128, 0, 0, 0.14);
+}
+
+.intl-modal-meta h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+}
+
+.intl-modal-univ {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.intl-modal-meta .intl-modality {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-maroon);
+}
+
+@media (max-width: 900px) {
+  #tl-international-students .intl-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  #tl-international-students .intl-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .intl-modal-profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.tl-award-recipient {
+  font-family: var(--font-display);
+  font-size: 1.14rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+.tl-award-sub {
+  font-size: 0.82rem;
+  color: #4B5563;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+#tl-international-students .tl-award-sub {
+  margin-bottom: 0;
+}
+.tl-award-sub {
+  font-size: 0.82rem;
+  color: #4B5563;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+#tl-international-students .tl-award-sub {
+  margin-bottom: 0;
+}
 /* FOR INTERNATIONAL STUDENTS */
+
+
+/* FOR NOTABLE ALUMNI */
+/* Notable Alumni Grid */
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 960px) {
+  .alumni-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .alumni-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alumni-card {
+  border-radius: 20px;
+  border: 1.5px solid rgba(128, 0, 0, 0.22);
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(61, 0, 0, 0.05);
+}
+
+.alumni-photo-box {
+  height: 190px;
+  background: linear-gradient(160deg, #FFFDF7 0%, #F7EFEF 100%);
+  border-bottom: 3px solid var(--color-gold);
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.alumni-photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.alumni-photo-box svg {
+  width: 130px;
+  height: 145px;
+  display: block;
+}
+
+.alumni-photo-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: rgba(26, 20, 20, 0.72);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 222, 0, 0.45);
+  color: var(--color-gold);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.alumni-body {
+  padding: 16px;
+}
+
+.alumni-name {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.alumni-role {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-maroon);
+  margin-bottom: 6px;
+}
+
+.alumni-note {
+  font-size: 0.78rem;
+  color: #4B5563;
+  line-height: 1.45;
+}
+
+#page-teaching .alumni-card {
+  border: 1px solid rgba(128, 0, 0, 0.12);
+  border-top: 3px solid var(--color-maroon);
+  box-shadow: 0 8px 22px rgba(61, 0, 0, 0.05);
+}
+
+/* ============================================================================
+   Notable Alumni Profiles Page (#page-notable-alumni)
+   ============================================================================ */
+#page-notable-alumni .ascii-container {
+  max-width: 960px;
+}
+
+.tl-portrait-img.is-mascot {
+  object-fit: contain;
+  object-position: center;
+  padding: 10px;
+  background: linear-gradient(160deg, #FFFDF7 0%, #F7EFEF 100%);
+}
+
+.alumni-profile-card {
+  height: 100%;
+  align-items: stretch;
+}
+
+.alumni-profile-card .tl-portrait-frame {
+  cursor: pointer;
+}
+
+.alumni-profile-card .tl-portrait-frame .tl-portrait-img {
+  transition: transform 0.25s ease;
+}
+
+.alumni-profile-card .tl-portrait-frame:hover .tl-portrait-img,
+.alumni-profile-card .tl-portrait-frame:focus-visible .tl-portrait-img {
+  transform: scale(1.04);
+}
+
+.alumni-profile-card .tl-portrait-frame:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: -3px;
+}
+
+#alumniModalBody ul.tl-faculty-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.alumni-profile-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.alumni-overview {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #374151;
+  margin: 0 0 10px;
+}
+
+.alumni-overview strong {
+  color: var(--color-maroon);
+}
+
+.alumni-card-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  width: 100%;
+}
+
+.btn-alumni-drive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #800000 0%, #5C0000 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid rgba(255, 222, 0, 0.45);
+  box-shadow: 0 4px 14px rgba(128, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-alumni-drive:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #990000 0%, #6D0000 100%);
+  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.28);
+  color: var(--color-gold);
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: all 0.2s ease;
+}
+.btn-faculty-cta {
+  padding: 14px 28px;
+  font-size: 0.96rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #800000 0%, #5C0000 100%);
+  color: var(--color-gold);
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 10px 24px rgba(128, 0, 0, 0.28), 0 0 0 4px rgba(255, 222, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-faculty-cta:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #990000 0%, #6E0000 100%);
+  box-shadow: 0 14px 30px rgba(128, 0, 0, 0.36), 0 0 0 5px rgba(255, 222, 0, 0.35);
+}
+
+.page-view {
+  display: none;
+  position: relative;
+}
+
+.page-view.active {
+  display: block;
+}
+
+.ascii-tl {
+  background: transparent;
+  color: #111827;
+}
+
+.ascii-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  background: transparent;
+  color: #FFFFFF;
+  padding: 140px 24px 96px;
+}
+
+.ascii-hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.ascii-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+}
+
+.ascii-hero-title span {
+  color: var(--color-gold);
+}
+
+.ascii-hero-sub {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 740px;
+}
+
+.ascii-hero-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ascii-tint-sec {
+  background: #FAF7F7;
+  padding: 72px 24px;
+}
+
+.ascii-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ascii-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+  margin-bottom: 10px;
+}
+
+.ascii-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.ascii-h2 .accent {
+  color: var(--color-maroon);
+}
+
+.tl-faculty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 16px;
+}
+
+.tl-faculty-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1.5px solid rgba(128, 0, 0, 0.25);
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(61, 0, 0, 0.06);
+}
+
+.tl-faculty-card > div:last-child {
+  padding: 18px 20px 20px;
+}
+
+.tl-portrait-frame {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  padding: 12px 12px 44px;
+  overflow: hidden;
+  background: linear-gradient(
+    155deg,
+    #3D0000 0%,
+    #800000 62%,
+    #B8860B 100%
+  );
+  border-bottom: 3px solid var(--color-gold);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.tl-portrait-img {
+  width: 188px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 222, 0, 0.72);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.tl-portrait-tag {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 222, 0, 0.45);
+  color: var(--color-gold);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.tl-faculty-name {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.tl-faculty-list {
+  list-style: disc;
+  padding-left: 16px;
+  font-size: 0.8rem;
+}
+
+#page-notable-alumni .ascii-container {
+  max-width: 960px;
+}
+
+.tl-portrait-img.is-mascot {
+  object-fit: contain;
+  object-position: center;
+  padding: 10px;
+  background: linear-gradient(160deg, #FFFDF7 0%, #F7EFEF 100%);
+}
+
+.alumni-profile-card {
+  height: 100%;
+  align-items: stretch;
+}
+
+.alumni-profile-card .tl-portrait-frame {
+  cursor: pointer;
+}
+
+.alumni-profile-card .tl-portrait-frame .tl-portrait-img {
+  transition: transform 0.25s ease;
+}
+
+.alumni-profile-card .tl-portrait-frame:hover .tl-portrait-img,
+.alumni-profile-card .tl-portrait-frame:focus-visible .tl-portrait-img {
+  transform: scale(1.04);
+}
+
+.alumni-profile-card .tl-portrait-frame:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: -3px;
+}
+
+#alumniModalBody ul.tl-faculty-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #374151;
+}
+
+.alumni-profile-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.alumni-overview {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #374151;
+  margin: 0 0 10px;
+}
+
+.alumni-overview strong {
+  color: var(--color-maroon);
+}
+
+.alumni-card-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  width: 100%;
+}
+
+.btn-alumni-drive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #800000 0%, #5C0000 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid rgba(255, 222, 0, 0.45);
+  box-shadow: 0 4px 14px rgba(128, 0, 0, 0.18);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.btn-alumni-drive:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #990000 0%, #6D0000 100%);
+  box-shadow: 0 8px 20px rgba(128, 0, 0, 0.28);
+  color: var(--color-gold);
+}
+
+/* Modal base styling */
+.roadmap-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(24, 8, 8, 0.56);
+  backdrop-filter: blur(4px);
+}
+
+.roadmap-modal-backdrop[hidden] {
+  display: none;
+}
+
+.roadmap-modal-dialog {
+  width: 100%;
+  max-width: 560px;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid rgba(128, 0, 0, 0.16);
+  border-top: 4px solid var(--color-maroon);
+  box-shadow: 0 24px 56px rgba(24, 0, 0, 0.28);
+  padding: 24px 26px;
+  animation: roadmapModalIn 0.18s ease-out;
+}
+
+@keyframes roadmapModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.roadmap-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.roadmap-modal-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roadmap-modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.18);
+  background: #FBF0F0;
+  color: var(--color-maroon);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.roadmap-modal-close:hover {
+  background: #F5DADA;
+  transform: scale(1.05);
+}
+
+.roadmap-modal-body p {
+  color: #374151;
+  font-size: 0.96rem;
+  line-height: 1.68;
+  margin: 0 0 16px;
+}
+
+.roadmap-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(128, 0, 0, 0.12);
+}
+
+.roadmap-modal-nav {
+  padding: 7px 14px;
+  border-radius: 9999px;
+  border: 1px solid rgba(128, 0, 0, 0.22);
+  background: #FFFFFF;
+  color: var(--color-maroon);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.roadmap-modal-nav:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.intl-modal-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.intl-modal-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(128, 0, 0, 0.14);
+}
+
+.intl-modal-meta h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-maroon-dark);
+}
+
+.intl-modal-univ {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+@media (max-width: 620px) {
+  .tl-faculty-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .intl-modal-profile {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* FOR NOTABLE ALUMNI */
+
+
+/* FOR PEO */
+.ascii-grad-band {
+  background: #FFFFFF;
+  padding: 72px 24px;
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.ascii-band-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 44px;
+}
+
+.ascii-band-head .ascii-eyebrow {
+  color: var(--color-maroon);
+}
+
+.ascii-band-head .ascii-h2 {
+  color: #111827;
+}
+
+.ascii-band-head p {
+  color: var(--color-text-muted);
+  font-size: 0.98rem;
+}
+
+.ascii-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ascii-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+  margin-bottom: 10px;
+}
+
+.ascii-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.ascii-h2 .accent {
+  color: var(--color-maroon);
+}
+
+.ascii-grid-box {
+  background: #FFFFFF;
+  color: #111827;
+  border-radius: 2rem;
+  padding: 36px 40px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+.tl-attainment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid #E5E7EB;
+  padding-top: 22px;
+}
+
+.tl-attainment-cell {
+  padding: 0 22px;
+  border-left: 1px solid #E5E7EB;
+}
+
+.tl-attainment-cell:first-child {
+  padding-left: 0;
+  border-left: none;
+}
+
+.tl-attainment-cell:last-child {
+  padding-right: 0;
+}
+
+.tl-attainment-cell h3 {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 8px;
+}
+
+.tl-attainment-cell p {
+  font-size: 0.88rem;
+  color: #4B5563;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 820px) {
+  .ascii-grid-box {
+    padding: 24px 20px;
+    border-radius: 1.5rem;
+  }
+
+  .tl-attainment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tl-attainment-cell {
+    padding: 18px 0;
+    border-left: none;
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  .tl-attainment-cell:first-child {
+    padding-top: 0;
+  }
+
+  .tl-attainment-cell:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+#page-teaching .ascii-grid-box {
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+/* FOR PEO */
+
+/* FOR PICAB */
+.ascii-white-sec {
+  background: #FFFFFF;
+  padding: 72px 24px;
+}
+
+.ascii-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ascii-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-maroon);
+  margin-bottom: 10px;
+}
+
+.ascii-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.6vw, 2.85rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.ascii-h2 .accent {
+  color: var(--color-maroon);
+}
+
+.ascii-lead {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.72;
+  color: #4B5563;
+}
+
+.tl-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.tl-span-6 {
+  grid-column: span 6;
+}
+
+.tl-span-4 {
+  grid-column: span 4;
+}
+
+.col-6 {
+  grid-column: span 6;
+}
+
+.col-4 {
+  grid-column: span 4;
+}
+
+.ascii-white-card {
+  border-radius: 20px;
+  border: 1.5px solid var(--color-border);
+  background: #FFFFFF;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+}
+
+.ascii-white-card.gold-accent {
+  border-color: var(--color-border);
+}
+
+.ascii-soft-card {
+  border-radius: 20px;
+  border: 1.5px solid rgba(128, 0, 0, 0.35);
+  background: rgba(128, 0, 0, 0.04);
+  padding: 24px;
+  transition: transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ascii-soft-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-maroon);
+  box-shadow: 0 12px 28px rgba(128, 0, 0, 0.08);
+}
+
+.ascii-soft-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.ascii-soft-card p,
+.ascii-soft-card li {
+  font-size: 0.88rem;
+  color: #4B5563;
+  line-height: 1.6;
+}
+
+.btn-drive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--color-maroon);
+  color: var(--color-white);
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: background 0.15s ease;
+  text-decoration: none;
+}
+
+.btn-drive:hover {
+  background: var(--color-maroon-dark);
+}
+
+#page-teaching .ascii-soft-card,
+#page-teaching .ascii-white-card,
+#page-teaching .ascii-white-card.gold-accent {
+  border: 1px solid rgba(128, 0, 0, 0.12);
+  border-top: 3px solid var(--color-maroon);
+  box-shadow: 0 8px 22px rgba(61, 0, 0, 0.05);
+}
+
+#page-teaching .ascii-soft-card {
+  background: #FFFFFF;
+}
+
+@media (max-width: 900px) {
+  .tl-span-6,
+  .tl-span-4,
+  .col-6,
+  .col-4 {
+    grid-column: span 12;
+  }
+}
+/* FOR PICAB */

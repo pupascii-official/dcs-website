@@ -7,7 +7,7 @@ import "./tl-styles.css";
           <div class="ascii-container">
             <!-- Updated Area 2 List of Students with Awards / Distinctions (Pages 31–37) -->
             <div class="tl-bento">
-              <div class="ascii-white-card gold-accent tl-span-4 col-4 tl-achiever-card" role="button" tabindex="0">
+              <div class="ascii-white-card gold-accent tl-span-6 col-6 tl-achiever-card" role="button" tabindex="0">
                 <div class="tl-achiever-header">
                   <img class="tl-achiever-avatar" src="public/teaching-learning-assets/student-award-rosel.jpg" alt="Arjay N. Rosel"
                     loading="lazy">
@@ -55,38 +55,7 @@ import "./tl-styles.css";
                 </div>
               </div>
 
-              <div class="ascii-white-card gold-accent tl-span-4 col-4 tl-achiever-card" role="button" tabindex="0">
-                <div class="tl-achiever-header">
-                  <img class="tl-achiever-avatar" src="public/teaching-learning-assets/student-award-maminta.jpg"
-                    alt="Carlos Jude Maminta" loading="lazy">
-                  <div class="tl-award-recipient">Carlos Jude Maminta</div>
-                </div>
-                <ul class="tl-faculty-list" style="margin-top:8px;">
-                  <li><strong>Student Ambassador</strong> – Microsoft Learn (<strong>ALPHA</strong>)</li>
-                  <li><strong>Student Ambassador</strong> – Microsoft Learn (<strong>BETA</strong>)</li>
-                  <li><strong>PH100</strong> – 100 Brightest Minds in the Philippines</li>
-                </ul>
-                <div class="tl-achiever-cta">View Certificates (3) →</div>
-                <div class="tl-achiever-certs" hidden>
-                  <figure class="tl-cert-figure">
-                    <img src="public/teaching-learning-assets/cert-maminta-1-alpha.jpg"
-                      alt="Microsoft Learn Student Ambassador ALPHA Certificate" loading="lazy">
-                    <figcaption>Student Ambassador – Microsoft Learn (ALPHA)</figcaption>
-                  </figure>
-                  <figure class="tl-cert-figure">
-                    <img src="public/teaching-learning-assets/cert-maminta-2-beta.jpg"
-                      alt="Microsoft Learn Student Ambassador BETA Certificate" loading="lazy">
-                    <figcaption>Student Ambassador – Microsoft Learn (BETA)</figcaption>
-                  </figure>
-                  <figure class="tl-cert-figure">
-                    <img src="public/teaching-learning-assets/cert-maminta-3-ph100.jpg" alt="StellarPH Certificate of Recognition - PH100"
-                      loading="lazy">
-                    <figcaption>PH100 – 100 Brightest Minds in the Philippines</figcaption>
-                  </figure>
-                </div>
-              </div>
-
-              <div class="ascii-white-card gold-accent tl-span-4 col-4 tl-achiever-card" role="button" tabindex="0">
+              <div class="ascii-white-card gold-accent tl-span-6 col-6 tl-achiever-card" role="button" tabindex="0">
                 <div class="tl-achiever-header">
                   <img class="tl-achiever-avatar" src="public/teaching-learning-assets/student-award-sagun.jpg" alt="Eujin Rod Sagun"
                     loading="lazy">
@@ -226,6 +195,189 @@ import "./tl-styles.css";
             </div>
           </div>
         </section>
+
+        <!-- Certificate Modal -->
+<div class="roadmap-modal-backdrop"
+  id="achieverModal"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="achieverModalName">
+
+  <div class="roadmap-modal-dialog achiever-modal-dialog">
+    <div class="roadmap-modal-header">
+      <div class="roadmap-modal-badges">
+        <span class="tl-award-pill" id="achieverModalPill"></span>
+        <span class="tl-award-date" id="achieverModalDate"></span>
+      </div>
+
+      <button type="button"
+        class="roadmap-modal-close"
+        id="achieverModalClose"
+        aria-label="Close certificates">
+        ✕
+      </button>
+    </div>
+
+    <div class="intl-modal-profile">
+      <img class="intl-modal-photo"
+        id="achieverModalPhoto"
+        src=""
+        alt="">
+
+      <div class="intl-modal-meta">
+        <h3 id="achieverModalName"></h3>
+        <div class="intl-modal-univ" id="achieverModalSub"></div>
+      </div>
+    </div>
+
+    <div class="roadmap-modal-body" id="achieverModalBody"></div>
+
+    <div class="roadmap-modal-footer">
+      <button type="button"
+        class="roadmap-modal-nav"
+        id="achieverModalPrev">
+        ← Previous
+      </button>
+
+      <button type="button"
+        class="roadmap-modal-nav"
+        id="achieverModalNext">
+        Next →
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modalCandidate = document.getElementById("achieverModal");
+  const cards = Array.from(
+    document.querySelectorAll<HTMLElement>("#tl-student-awards .tl-achiever-card")
+  );
+
+  if (!modalCandidate || cards.length === 0) {
+    console.error("Student awards modal or cards are missing.");
+  } else {
+    const modal: HTMLElement = modalCandidate;
+    const pillCandidate = document.getElementById("achieverModalPill");
+    const dateCandidate = document.getElementById("achieverModalDate");
+    const photoCandidate = document.getElementById("achieverModalPhoto");
+    const nameCandidate = document.getElementById("achieverModalName");
+    const subCandidate = document.getElementById("achieverModalSub");
+    const bodyCandidate = document.getElementById("achieverModalBody");
+    const closeCandidate = document.getElementById("achieverModalClose");
+    const prevCandidate = document.getElementById("achieverModalPrev");
+    const nextCandidate = document.getElementById("achieverModalNext");
+
+    if (
+      !pillCandidate ||
+      !dateCandidate ||
+      !(photoCandidate instanceof HTMLImageElement) ||
+      !nameCandidate ||
+      !subCandidate ||
+      !bodyCandidate ||
+      !(closeCandidate instanceof HTMLButtonElement) ||
+      !(prevCandidate instanceof HTMLButtonElement) ||
+      !(nextCandidate instanceof HTMLButtonElement)
+    ) {
+      console.error("Student awards modal is missing required elements.");
+    } else {
+      const pillEl: HTMLElement = pillCandidate;
+      const dateEl: HTMLElement = dateCandidate;
+      const photoEl: HTMLImageElement = photoCandidate;
+      const nameEl: HTMLElement = nameCandidate;
+      const subEl: HTMLElement = subCandidate;
+      const bodyEl: HTMLElement = bodyCandidate;
+      const closeBtn: HTMLButtonElement = closeCandidate;
+      const prevBtn: HTMLButtonElement = prevCandidate;
+      const nextBtn: HTMLButtonElement = nextCandidate;
+
+      let activeIndex = -1;
+      let lastTrigger: HTMLElement | null = null;
+
+      function renderAchiever(index: number) {
+        const card = cards[index];
+        if (!card) return;
+        activeIndex = index;
+
+        const image = card.querySelector<HTMLImageElement>(".tl-achiever-avatar");
+        const name = card.querySelector<HTMLElement>(".tl-award-recipient")?.textContent?.trim() ?? "";
+        const list = card.querySelector(".tl-faculty-list");
+        const certs = card.querySelector(".tl-achiever-certs");
+        const certCount = certs?.querySelectorAll(".tl-cert-figure").length ?? 0;
+        const certGrid = document.createElement("div");
+        certGrid.className = "achiever-cert-grid";
+
+        certs?.querySelectorAll(".tl-cert-figure").forEach((figure) => {
+          certGrid.append(figure.cloneNode(true));
+        });
+
+        pillEl.textContent = card.querySelector(".tl-award-pill")?.textContent?.trim() ?? "";
+        dateEl.textContent = card.querySelector(".tl-award-date")?.textContent?.trim() ?? "";
+        photoEl.src = image?.getAttribute("src") ?? "";
+        photoEl.alt = image?.getAttribute("alt") ?? name;
+        nameEl.textContent = name;
+        subEl.textContent =
+          certCount === 1 ? "1 Documented Certificate" : `${certCount} Documented Certificates`;
+        bodyEl.replaceChildren(
+          ...(list ? [list.cloneNode(true)] : []),
+          certGrid
+        );
+
+        prevBtn.disabled = index <= 0;
+        nextBtn.disabled = index >= cards.length - 1;
+      }
+
+      function openModal(index: number, trigger: HTMLElement) {
+        lastTrigger = trigger;
+        renderAchiever(index);
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        if (modal.hidden) return;
+        modal.hidden = true;
+        document.body.style.overflow = "";
+        lastTrigger?.focus();
+      }
+
+      cards.forEach((card, index) => {
+        card.addEventListener("click", () => openModal(index, card));
+        card.addEventListener("keydown", (event: KeyboardEvent) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openModal(index, card);
+          }
+        });
+      });
+
+      closeBtn.addEventListener("click", closeModal);
+      prevBtn.addEventListener("click", () => {
+        if (activeIndex > 0) renderAchiever(activeIndex - 1);
+      });
+      nextBtn.addEventListener("click", () => {
+        if (activeIndex < cards.length - 1) renderAchiever(activeIndex + 1);
+      });
+
+      modal.addEventListener("click", (event: MouseEvent) => {
+        if (event.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", (event: KeyboardEvent) => {
+        if (modal.hidden) return;
+        if (event.key === "Escape") {
+          closeModal();
+        } else if (event.key === "ArrowLeft" && activeIndex > 0) {
+          renderAchiever(activeIndex - 1);
+        } else if (event.key === "ArrowRight" && activeIndex < cards.length - 1) {
+          renderAchiever(activeIndex + 1);
+        }
+      });
+    }
+  }
+</script>
 
 <!-- CSS FILE COMPONENT -->
 <style>

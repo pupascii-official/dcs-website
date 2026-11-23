@@ -1,0 +1,216 @@
+---
+import "./tl-styles.css";
+---
+<!-- Notable BSCS Alumni -->
+        <section class="ascii-white-sec" id="tl-notable-alumni">
+          <div class="ascii-container">
+            <div>
+              <!-- Link to Dedicated Notable Alumni Profiles Page -->
+              <div class="ascii-white-card gold-accent"
+                style="margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:24px 28px;">
+                <div style="flex:1;min-width:260px;">
+                  <div class="ascii-eyebrow" style="margin-bottom:4px;">23 PROFILED BSCS ALUMNI • ALPHABETICAL BY
+                    SURNAME</div>
+                  <h3
+                    style="font-family:var(--font-display);font-size:1.25rem;font-weight:800;color:#111827;margin-bottom:4px;">
+                    Notable Alumni Profiles &amp; Achievements</h3>
+                  <p style="font-size:0.86rem;color:#4B5563;margin:0;">View full career overviews, recognitions,
+                    certifications, LinkedIn profiles, and direct Google Drive folders for every profiled BSCS alumnus.
+                  </p>
+                </div>
+                <button class="btn btn-faculty-cta" data-nav="notable-alumni">View Notable Alumni Profiles →</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+<!-- FOR VIEWING THE NOTABLE ALUMNI PROFILES -->
+<!-- Notable Alumni Profiles Page -->
+<main class="page-view" id="page-notable-alumni">
+  <div class="ascii-tl">
+    <section class="ascii-hero">
+      <div class="ascii-hero-inner">
+        <div style="
+          font-family: var(--font-mono);
+          font-size: 0.78rem;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--color-gold);
+        ">
+          AREA 2 • TEACHING AND LEARNING • NOTABLE ALUMNI DIRECTORY_
+        </div>
+
+        <h1 class="ascii-hero-title">
+          Notable <span>Alumni</span> Profiles
+        </h1>
+
+        <p class="ascii-hero-sub">
+          Career overviews, leadership achievements, technical certifications,
+          LinkedIn profiles, and direct Google Drive evidence folders of
+          distinguished PUP CCIS BSCS graduates.
+        </p>
+
+        <div class="ascii-hero-cta-row">
+          <button class="ascii-btn-white" data-nav="teaching">
+            <span>← Back to Teaching &amp; Learning</span>
+          </button>
+
+          <a class="ascii-btn-glass"
+            href="https://drive.google.com/drive/folders/1m_M-id-JfolXjpQrnX9bx1LhTkt_SVHY"
+            target="_blank"
+            rel="noopener noreferrer">
+            <span>Open Main Alumni Drive Folder ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ascii-tint-sec" id="notable-alumni-directory">
+      <div class="ascii-container">
+        <div style="
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          flex-wrap: wrap;
+          margin-bottom: 24px;
+        ">
+          <div>
+            <div class="ascii-eyebrow">
+              section 01 • profiled alumni roster
+            </div>
+
+            <h2 class="ascii-h2" style="margin-bottom:0;">
+              BSCS <span class="accent">Notable Alumni</span>
+            </h2>
+          </div>
+
+          <button class="btn btn-gold" data-nav="teaching">
+            ← Back to Teaching &amp; Learning
+          </button>
+        </div>
+
+        <div id="notableAlumniRoster">
+          <div class="tl-faculty-grid">
+
+            <!-- Alumni card template -->
+            <div class="tl-faculty-card alumni-profile-card">
+              <div class="tl-portrait-frame"
+                role="button"
+                tabindex="0"
+                title="Click photo to view accomplishments">
+
+                <img class="tl-portrait-img"
+                  src="assets/images/alumni-lord-acuna.jpg"
+                  alt="Lord Acuña"
+                  loading="lazy">
+
+                <span class="tl-portrait-tag">BSCS 2009</span>
+              </div>
+
+              <div class="alumni-profile-content">
+                <div class="tl-faculty-name">Lord Acuña</div>
+
+                <p class="alumni-overview">
+                  <strong>Technology Professional (Singapore)</strong>
+                </p>
+
+                <div class="alumni-modal-details" hidden>
+                  <p>
+                    BSCS Batch 2009 Alumnus — International technology
+                    professional based in Singapore.
+                  </p>
+
+                  <ul class="tl-faculty-list">
+                    <li>
+                      Graduate of
+                      <strong>Bachelor of Science in Computer Science (Batch 2009)</strong>,
+                      PUP Manila.
+                    </li>
+
+                    <li>
+                      Practicing computing professional in
+                      <strong>Singapore</strong>.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="alumni-card-actions">
+                  <a class="btn-alumni-drive"
+                    href="https://drive.google.com/drive/folders/1bZ3BbK9HR2fNDhq-B33JVXhMgLqHqTve"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Open Google Drive Folder ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Duplicate .alumni-profile-card for each alumnus -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- Notable Alumni Modal -->
+<div class="roadmap-modal-backdrop"
+  id="alumniModal"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="alumniModalName">
+
+  <div class="roadmap-modal-dialog intl-modal-dialog">
+    <div class="roadmap-modal-header">
+      <div class="roadmap-modal-badges">
+        <span class="tl-award-pill" id="alumniModalBatch"></span>
+      </div>
+
+      <button type="button"
+        class="roadmap-modal-close"
+        id="alumniModalClose"
+        aria-label="Close accomplishments">
+        ✕
+      </button>
+    </div>
+
+    <div class="intl-modal-profile">
+      <img class="intl-modal-photo"
+        id="alumniModalPhoto"
+        src=""
+        alt="">
+
+      <div class="intl-modal-meta">
+        <h3 id="alumniModalName"></h3>
+        <div class="intl-modal-univ" id="alumniModalWork"></div>
+      </div>
+    </div>
+
+    <div class="roadmap-modal-body"
+      id="alumniModalBody">
+    </div>
+
+    <div class="roadmap-modal-footer">
+      <button type="button"
+        class="roadmap-modal-nav"
+        id="alumniModalPrev">
+        ← Previous
+      </button>
+
+      <button type="button"
+        class="roadmap-modal-nav"
+        id="alumniModalNext">
+        Next →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+
+</script>
