@@ -26,11 +26,14 @@ const hasMedia = Astro.slots.has("media");
 
 <style>
     .content-card {
+        container-type: inline-size;
+        min-width: 0;
         background-color: var(--color-maroon);
         color: var(--color-white);
         border-radius: 1.25rem;
         padding: 2rem;
         box-shadow: 0 8px 24px color-mix(in srgb, var(--color-drop-shadow) 25%, transparent);
+        margin-bottom: 2.5rem;
     }
 
     .split-layout {
@@ -59,6 +62,7 @@ const hasMedia = Astro.slots.has("media");
         display: flex;
         flex-direction: column;
         gap: 0.75rem;
+        min-width: 0;
     }
 
     .kicker {
@@ -68,7 +72,9 @@ const hasMedia = Astro.slots.has("media");
     }
 
     .display {
-        font-size: clamp(1.75rem, 3vw, 3rem);
+        font-size: clamp(1.35rem, 10cqi, 3rem);
+        line-height: 1.15;
+        overflow-wrap: break-word;
         background: linear-gradient(to right, var(--color-gold), var(--color-white));
         -webkit-background-clip: text;
         background-clip: text;

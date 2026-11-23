@@ -1,56 +1,158 @@
 ---
-interface Props {
-    title: string;
-    subtitle: string;
+export interface Props {
+	title: string;
+	accentTitle?: string;
+	subtitle?: string;
 }
 
-const {title, subtitle} = Astro.props;
+const {
+	title,
+	accentTitle,
+	subtitle,
+} = Astro.props;
 ---
 
-<section class="scroll-section hero">
-    <div class="hero-content">
-        <h1 class="title">{title}</h1>
-        <p class="subtitle">{subtitle}</p>
+<section
+	class={`scroll-section hero`}
+>
+	<div class="hero-content">
+		<slot name="top"/>
 
-        <div class="hero-slot-content">
-            <slot/>
-        </div>
-    </div>
+		<h1 class="hero-title">
+			<span>{title}</span>{accentTitle && <span class="hero-title-accent"> {accentTitle}</span>}
+		</h1>
+		{subtitle && <p class="hero-subtitle">{subtitle}</p>}
+
+		<div class="hero-slot-content">
+			<slot/>
+		</div>
+	</div>
 </section>
 
 <style>
-    .hero {
-        background: linear-gradient(to bottom, var(--color-dark-maroon), var(--color-maroon));
-        color: var(--color-white);
-        padding: 2rem;
+	.hero {
+		color: var(--color-white);
+		padding: 2rem;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
+		background-color: #4a0000;
+		background-image: radial-gradient(ellipse 68% 66% at 50% 48%, rgba(128, 0, 0, 0.75) 0%, rgba(128, 0, 0, 0) 60%),
+		radial-gradient(ellipse 85% 95% at 24% 85%, rgba(90, 0, 0, 0.9) 0%, rgba(90, 0, 0, 0) 50%),
+		radial-gradient(ellipse 85% 90% at 75% 80%, rgba(255, 223, 0, 0.22) 0%, rgba(255, 223, 0, 0) 55%),
+		radial-gradient(ellipse 95% 85% at 85% 25%, rgba(218, 165, 32, 0.35) 0%, rgba(218, 165, 32, 0) 50%),
+		radial-gradient(ellipse 95% 90% at 15% 20%, rgba(128, 0, 0, 0.95) 0%, rgba(128, 0, 0, 0) 55%);
 
-    .title {
-        font-size: clamp(3rem, 8vw, 6rem);
-        margin: 1rem 0;
-    }
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
 
-    .subtitle {
-        color: var(--color-dark-gold);
-        font-size: medium;
-        font-family: var(--font-inter), system-ui, sans-serif;
-        font-weight: 600;
-        margin: 0 0 1rem;
-    }
+	.hero-orbs {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
 
-    .hero-content {
-        max-width: 1100px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+	.hero-orb {
+		position: absolute;
+		border-radius: 9999px;
+	}
 
-    .hero-slot-content {
-        max-width: 800px;
-    }
-</style>
+	.hero-orb-1 {
+		top: -6rem;
+		left: 55%;
+		width: 384px;
+		height: 384px;
+		background: rgba(255, 223, 0, 0.15);
+		filter: blur(96px);
+	}
+
+	.hero-orb-2 {
+		bottom: -8rem;
+		left: 32%;
+		width: 448px;
+		height: 448px;
+		background: rgba(218, 165, 32, 0.2);
+		filter: blur(96px);
+	}
+
+	.hero-orb-3 {
+		top: 28%;
+		left: -4rem;
+		width: 288px;
+		height: 288px;
+		background: rgba(128, 0, 0, 0.6);
+		filter: blur(88px);
+	}
+
+	.hero-content {
+		max-width: 1100px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.hero-card {
+		position: relative;
+		margin: auto;
+		width: 100%;
+		max-width: 1024px;
+		border-radius: 24px;
+		padding: 2rem 1.5rem;
+	}
+
+	h1.hero-title {
+		margin: 0;
+		font-family: var(--font-montserrat), system-ui, sans-serif;
+		font-size: clamp(3rem, 8vw, 6rem);
+		font-weight: 800;
+		letter-spacing: -0.03em;
+		line-height: 1.06;
+		color: var(--color-white, #ffffff);
+		text-wrap: balance;
+	}
+
+	.hero-title-accent {
+		color: var(--color-dark-gold, #daa520);
+	}
+
+	p.hero-subtitle {
+		margin: 0.75rem 0 0;
+		max-width: 800px;
+		color: var(--color-dark-gold, #daa520);
+		font-size: medium;
+		font-family: var(--font-inter), system-ui, sans-serif;
+		font-weight: 600;
+	}
+
+	.hero-slot-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		max-width: 800px;
+		margin-top: 1.25rem;
+		font-family: var(--font-inter), system-ui, sans-serif;
+	}
+
+	.hero-slot-content:empty {
+		display: none;
+	}
+
+	.hero-slot-content :global(p) {
+		margin-top: 0;
+		margin-bottom: 0.75rem;
+	}
+
+	.hero-slot-content :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.hero-slot-content :global(h2),
+	.hero-slot-content :global(h3),
+	.hero-slot-content :global(h4) {
+		color: inherit;
+	}
+    </style>

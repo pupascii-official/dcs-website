@@ -1,0 +1,275 @@
+﻿---
+import PillarBadge from "../PillarBadge.astro";
+import BscsOverview from "./BscsOverview.astro";
+import LeaderDialog from "./LeaderDialog.astro";
+import LetterGlitch from "../react/LetterGlitch";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+import {
+	leaders,
+	missionItems,
+	pillars,
+	visionIntro,
+	visionItems,
+} from "../../data/homepage/homepage";
+import Navbar from "../Navbar.astro";
+import Footer from "../Footer.svelte";
+---
+
+<div class="home-page">
+	<Navbar />
+	
+	<main>
+		<section class="hero" id="home" aria-labelledby="hero-title">
+			<img class="hero-image" src="/images/homepage/hero/pup-pylon.webp" alt="" aria-hidden="true" fetchpriority="high" />
+			<div class="hero-wash" aria-hidden="true"></div>
+			<div class="hero-glitch" aria-hidden="true">
+				<LetterGlitch
+					client:only="react"
+					glitchColors={["#ffffff", "#eab308"]}
+					baseColor="#ffffff"
+					characters="01"
+					fontSize={16}
+					spacing={0.7}
+					density={0.02}
+					baseOpacity={0.16}
+					glitchAmount={0.5}
+					speed={0.15}
+					interactive={true}
+					clickEffect="tear"
+					flow={0.5}
+					edgeFade={0.13}
+					centerFade={0}
+					dpr={1}
+				/>
+			</div>
+			<div class="hero-content page-width">
+				<div class="hero-copy">
+					<PillarBadge label="PUP COLLEGE OF COMPUTER AND INFORMATION SCIENCES" />
+					<h1 id="hero-title" aria-label="Bachelor of Science in Computer Science">
+						<span class="hero-line hero-line-one" aria-hidden="true">BACHELOR OF SCIENCE IN</span>
+						<span class="hero-line hero-line-two" aria-hidden="true">COMPUTER SCIENCE</span>
+					</h1>
+					<p class="hero-description">Thinking Beyond Code: Where Logic Meets Innovation</p>
+					<div class="hero-actions">
+						<a class="button button-gold" href="/teaching-and-learning">Explore the BSCS program <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /></a>
+						<a class="text-link" href="#leadership">Meet our leadership <ArrowDown size={16} strokeWidth={1.8} aria-hidden="true" /></a>
+					</div>
+				</div>
+			</div>
+			<a class="hero-scroll" href="#snapshot"><span class="scroll-line"></span>Scroll to explore</a>
+		</section>
+
+		<BscsOverview mission={missionItems} vision={visionItems} visionIntro={visionIntro} />
+
+		<section class="leadership-section" id="leadership" aria-labelledby="leadership-title">
+			<div class="leadership-inner page-width">
+				<div class="leadership-heading">
+					<h2 id="leadership-title">A message from our leaders</h2>
+					<p>Our department is built by a community. Hear from the leaders who help guide its direction.</p>
+				</div>
+				<div class="leader-grid">
+					{leaders.map((leader) => (
+						<button
+							class="leader-card"
+							type="button"
+							data-open-dialog={leader.id}
+							aria-haspopup="dialog"
+							aria-label={`Read the welcome message from ${leader.name}, ${leader.role}`}
+						>
+							<span class="leader-photo-wrap">
+								<img src={leader.image} alt="" class="leader-photo" style={`object-position: ${leader.imagePosition}`} loading="lazy" />
+							</span>
+							<span class="leader-info">
+								<span class="leader-role">{leader.role}</span>
+								<span class="leader-name">{leader.name}</span>
+								<span class="leader-credentials">{leader.credentials}</span>
+								<span class="leader-action"><span class="leader-action-label">Read welcome message</span><ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /></span>
+							</span>
+						</button>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="pillars-section page-width" id="pillars" aria-labelledby="pillars-title">
+			<div class="pillars-heading">
+				<div><h2 id="pillars-title">Explore our <em>works and impact.</em></h2></div>
+				<a class="inline-link" href="/compliance">View all evidence <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /></a>
+			</div>
+			<div class="pillars-grid">
+				{pillars.map((pillar) => (
+						<a class="pillar-card" href={pillar.href}>
+							<img class="pillar-image" src={pillar.image} alt="" aria-hidden="true" loading="lazy" />
+							<span class="pillar-overlay" aria-hidden="true"></span>
+							<span class="pillar-card-top">
+								<span>{pillar.number}</span>
+								<ArrowUpRight className="pillar-arrow" size={21} strokeWidth={1.8} aria-hidden="true" />
+							</span>
+							<div class="pillar-card-content">
+								<h3>{pillar.detail}</h3>
+								<p>{pillar.note}</p>
+							</div>
+						</a>
+				))}
+			</div>
+		</section>
+	</main>
+
+	{leaders.map((leader) => (
+		<LeaderDialog
+			id={leader.id}
+			name={leader.name}
+			role={leader.role}
+			credentials={leader.credentials}
+			photo={leader.image}
+			photoPosition={leader.imagePosition}
+			paragraphs={leader.message}
+			closing={leader.closing}
+		/>
+	))}
+
+	<Footer client:load/>
+</div>
+
+<style>
+	.home-page {
+		--page-width: 1160px;
+		--page-gutter: clamp(1.25rem, 5vw, 4rem);
+		--ink: #251d1b;
+		--muted: #716866;
+		--paper: #faf8f4;
+		--line: #e7dfd7;
+		--home-gold: var(--color-gold, #ffde00);
+		--gold-ink: var(--home-gold);
+		font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+		color: var(--ink);
+		background: var(--paper);
+	}
+
+	.home-page :global(h1),
+	.home-page :global(h2),
+	.home-page :global(h3) {
+		font-family: var(--font-montserrat), "Montserrat", system-ui, sans-serif;
+	}
+	:global(html) { scroll-behavior: smooth; }
+
+	.page-width { width: min(calc(100% - var(--page-gutter) * 2), var(--page-width)); margin-inline: auto; }
+
+	.hero { position: relative; display: grid; height: 100vh; min-height: 0; place-items: center; isolation: isolate; overflow: hidden; padding: 8rem 0 5rem; background: #330606; color: #fff; text-align: center; }
+	.hero-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 68% 48%; opacity: .34; filter: saturate(.74) contrast(1.06); }
+	.hero-wash { position: absolute; z-index: -1; inset: 0; background: radial-gradient(ellipse 85% 75% at 50% 42%, rgb(120 8 8 / 68%) 0%, rgb(88 4 4 / 78%) 55%, rgb(61 1 1 / 88%) 100%), linear-gradient(0deg, rgb(35 4 5 / 36%), transparent 38%); }
+	.hero-glitch { position: absolute; z-index: 0; inset: 0; opacity: .78; pointer-events: none; }
+	.hero-content { position: relative; z-index: 1; display: grid; place-items: center; }
+	.hero-copy { width: min(100%, 1080px); }
+	.hero-copy :global(.pillar-badge) { margin-inline: auto; }
+	.hero h1 { margin: .85rem 0 0; font-size: clamp(3rem, 6.4vw, 5.5rem); font-weight: 700; letter-spacing: -.055em; line-height: 1.02; text-wrap: balance; }
+	.hero-line { display: block; }
+	.hero-line-one { color: white; font-family: var(--font-inter), "Inter", system-ui, sans-serif; font-size: clamp(1.55rem, 3.5vw, 2.55rem); font-weight: 600; letter-spacing: -.045em; line-height: 1.08; }
+	.hero-line-two { max-width: 100%; margin-top: -.025em; background: linear-gradient(180deg, var(--home-gold) 0%, #fffdf5 100%); background-clip: text; color: transparent; font-size: clamp(1.8rem, 6.3vw, 6rem); letter-spacing: -.075em; line-height: .9; white-space: nowrap; -webkit-background-clip: text; }
+	.hero-description { max-width: 50ch; margin: .65rem auto 0; color: rgb(255 255 255 / 82%); font-size: clamp(1rem, 1.45vw, 1.2rem); line-height: 1.5; text-wrap: balance; }
+	.hero-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .9rem; margin-top: 1.7rem; }
+	.button { display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; gap: .85rem; padding: .85rem 1.2rem; border: 1px solid transparent; border-radius: 2px; font-size: .83rem; font-weight: 700; text-decoration: none; transition: background-color 180ms ease, color 180ms ease, transform 180ms ease; }
+	.button:hover { transform: translateY(-2px); }
+	.button-gold { background: linear-gradient(115deg, var(--home-gold), #f2cf00); color: #2c1a06; box-shadow: 0 8px 24px rgb(255 222 0 / 18%); }
+	.button-gold:hover { background: linear-gradient(115deg, #fff06b, var(--home-gold)); }
+	.text-link { display: inline-flex; align-items: center; gap: .65rem; color: white; font-size: .85rem; font-weight: 600; text-decoration: none; }
+	.text-link span { color: var(--gold-ink); }
+	.inline-link { display: inline-flex; align-items: center; gap: .5rem; color: var(--color-maroon); font-size: .94rem; font-weight: 500; letter-spacing: -.025em; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: .3em; }
+	.inline-link:hover { text-underline-offset: .36em; }
+	.hero-scroll { position: absolute; z-index: 1; right: max(var(--page-gutter), calc((100vw - var(--page-width)) / 2)); bottom: 2rem; display: flex; align-items: center; gap: .65rem; color: rgb(255 255 255 / 70%); font-size: .68rem; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; }
+	.scroll-line { width: 2.5rem; height: 1px; background: var(--gold-ink); }
+
+	.leadership-heading h2,
+	.pillars-heading h2 { margin: 0; font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 600; letter-spacing: -.045em; line-height: 1.1; text-wrap: balance; }
+
+	.leadership-section { position: relative; overflow: hidden; background: radial-gradient(ellipse 85% 75% at 50% 42%, #780808 0%, #580404 55%, #3d0101 100%); color: white; }
+	#leadership { scroll-margin-top: 6rem; }
+	.leadership-section::before { position: absolute; top: -10rem; right: -7rem; width: 34rem; aspect-ratio: 1; border: 1px solid rgb(255 255 255 / 8%); border-radius: 50%; box-shadow: 0 0 0 4rem rgb(255 255 255 / 2%), 0 0 0 9rem rgb(255 255 255 / 1%); content: ""; }
+	.leadership-inner { position: relative; padding-block: 5.4rem 5rem; }
+	.leadership-heading { display: block; margin-block: 2rem 2.5rem; }
+	.leadership-heading h2 { max-width: none; color: #fff9ed; font-size: clamp(1.1rem, 3.8vw, 3rem); white-space: nowrap; }
+	.pillars-heading h2,
+	.pillars-heading h2 em { color: #000; }
+	.pillars-heading h2 em { font-style: normal; }
+	.leadership-heading > p { max-width: none; margin: .7rem 0 0; color: rgb(255 255 255 / 78%); font-size: .92rem; line-height: 1.65; white-space: nowrap; }
+	.leader-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+	.leader-card { display: grid; grid-template-columns: minmax(145px, .78fr) minmax(0, 1fr); min-height: 260px; padding: 0; border: 1px solid rgb(255 255 255 / 18%); background: rgb(255 255 255 / 5%); color: white; cursor: pointer; font: inherit; text-align: left; transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease; }
+	.leader-card:hover { transform: translateY(-3px); border-color: rgb(228 195 110 / 72%); background: rgb(255 255 255 / 8%); }
+	.leader-card:focus-visible { outline: 3px solid var(--home-gold); outline-offset: 4px; }
+	.leader-photo-wrap { position: relative; display: block; min-height: 100%; overflow: hidden; background: #d0c6b9; }
+	.leader-photo { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 0; object-fit: cover; filter: saturate(.82); transition: transform 350ms ease; }
+	.leader-card:hover .leader-photo { transform: scale(1.035); }
+	.leader-info { display: flex; flex-direction: column; align-items: flex-start; padding: 1.45rem 1.3rem; }
+	.leader-role { color: var(--home-gold); font-size: .66rem; font-weight: 700; letter-spacing: .07em; line-height: 1.5; text-transform: uppercase; }
+	.leader-name { margin-top: auto; padding-top: 1.4rem; font-family: var(--font-montserrat), "Montserrat", sans-serif; font-size: clamp(1.05rem, 1.6vw, 1.35rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.25; }
+	.leader-credentials { margin-top: .25rem; color: rgb(255 255 255 / 65%); font-size: .74rem; }
+	.leader-action { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: .5rem; margin-top: 1.2rem; padding-top: .85rem; border-top: 1px solid rgb(255 255 255 / 20%); color: rgb(255 255 255 / 88%); font-size: .78rem; font-weight: 500; letter-spacing: -.025em; }
+	.leader-action-label { text-decoration: underline; text-decoration-color: rgb(255 255 255 / 50%); text-underline-offset: .25em; transition: text-decoration-color 180ms ease, color 180ms ease; }
+	.leader-card:hover .leader-action-label { color: var(--home-gold); text-decoration-color: currentColor; }
+	.leader-action svg { flex: none; color: var(--home-gold); }
+
+	.pillars-section { padding-block: 5.5rem 6rem; }
+	.pillars-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-block: 2rem 2.2rem; }
+	.pillars-heading h2 { font-size: clamp(2.3rem, 4.6vw, 3.9rem); }
+	.pillars-heading .inline-link { flex: 0 0 auto; margin-bottom: .45rem; }
+	.pillars-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+	.pillar-card { position: relative; isolation: isolate; display: flex; min-height: 320px; flex-direction: column; overflow: hidden; padding: 1.35rem 1.4rem 1.25rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(135deg, #8e1026, #c63b35); color: white; text-decoration: none; }
+	.pillar-image { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; border-radius: 0; object-fit: cover; transition: transform 350ms ease; }
+	.pillar-overlay { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, rgb(68 6 14 / 0%) 12%, rgb(92 7 19 / 10%) 42%, rgb(128 0 0 / 86%) 100%); transition: opacity 220ms ease; }
+	.pillar-card > :not(.pillar-image):not(.pillar-overlay) { position: relative; z-index: 2; }
+	.pillar-card:hover .pillar-image { transform: scale(1.025); }
+	.pillar-card:hover .pillar-overlay { opacity: .88; }
+	.pillar-card:focus-visible { z-index: 1; outline: 3px solid var(--home-gold); outline-offset: -3px; }
+	.pillar-card-top { display: flex; align-items: center; justify-content: space-between; color: rgb(255 255 255 / 76%); font-size: .78rem; font-weight: 400; }
+	.pillar-arrow { color: #fffdf8; opacity: 0; transform: translate(-3px, 3px); transition: opacity 160ms ease, transform 160ms ease; }
+	.pillar-card:hover .pillar-arrow,
+	.pillar-card:focus-visible .pillar-arrow { opacity: 1; transform: translate(0, 0); }
+	.pillar-card-content { display: flex; flex-direction: column; align-items: flex-start; gap: .2rem; margin-top: auto; padding-top: 1.5rem; text-align: left; }
+	.pillar-card h3 { max-width: 24ch; margin: 0; color: #fffdf8; font-family: var(--font-montserrat), "Montserrat", system-ui, sans-serif; font-size: clamp(1.1rem, 1.4vw, 1.3rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.3; text-shadow: 0 1px 8px rgb(25 18 3 / 38%); }
+	.pillar-card p { max-width: 37ch; margin: 0; color: rgb(255 255 255 / 92%); font-family: var(--font-inter), "Inter", system-ui, sans-serif; font-size: .9rem; line-height: 1.4; text-shadow: 0 1px 6px rgb(20 14 2 / 44%); }
+
+
+	@media (max-width: 850px) {
+		.hero h1 { font-size: clamp(2.8rem, 6.5vw, 3.8rem); }
+		.leader-card { grid-template-columns: minmax(125px, .72fr) minmax(0, 1fr); }
+		.leader-info { padding: 1.15rem 1rem; }
+		.pillar-card { min-height: 270px; padding: 1.15rem; }
+	}
+
+	@media (max-width: 640px) {
+		.hero { height: auto; min-height: 100vh; min-height: 100svh; padding: 7.5rem 0 5.5rem; }
+		.hero-image { object-position: 63% center; opacity: .37; }
+		.hero-wash { background: radial-gradient(ellipse 95% 78% at 50% 40%, rgb(120 8 8 / 72%) 0%, rgb(88 4 4 / 82%) 58%, rgb(61 1 1 / 90%) 100%), linear-gradient(0deg, rgb(35 4 5 / 56%), transparent 50%); }
+		.hero-content { display: block; }
+		.hero-copy { width: 100%; }
+		.hero-copy :global(.pillar-badge) { max-width: 100%; padding: .35rem .7rem; font-size: 9px; line-height: 1.45; text-wrap: balance; }
+		.hero h1 { margin-top: .8rem; font-size: 2rem; letter-spacing: -.055em; line-height: .98; }
+		.hero-line-one { font-size: clamp(1.2rem, 5.2vw, 1.5rem); line-height: 1.08; }
+		.hero-line-two { max-width: 100%; margin-top: -.01em; font-size: clamp(1.4rem, 7vw, 2.7rem); letter-spacing: -.08em; }
+		.hero-description { max-width: 34ch; margin: .65rem auto 0; font-size: .9rem; line-height: 1.5; }
+		.hero-actions { align-items: center; flex-direction: column; gap: 1.05rem; margin-top: 1.5rem; }
+		.hero-actions .button { width: min(100%, 18rem); min-height: 3rem; }
+		.hero-scroll { right: var(--page-gutter); bottom: 1.6rem; font-size: .58rem; }
+		.leadership-inner { padding-block: 3.8rem 3.4rem; }
+		.leadership-heading { margin-block: 1.65rem 1.6rem; }
+		.leadership-heading h2 { font-size: clamp(1.1rem, 5.8vw, 1.6rem); }
+		.leadership-heading > p { max-width: 40ch; margin-top: .55rem; font-size: .83rem; white-space: normal; }
+		.leader-grid { grid-template-columns: 1fr; gap: .85rem; }
+		.leader-card { min-height: 215px; grid-template-columns: minmax(125px, .72fr) minmax(0, 1fr); }
+		.leader-info { padding: 1rem; }
+		.leader-role { font-size: .59rem; }
+		.leader-name { padding-top: .8rem; font-size: 1.1rem; }
+		.leader-action { margin-top: .9rem; font-size: .68rem; }
+		.pillars-section { padding-block: 3.8rem 4rem; }
+		.pillars-heading { align-items: flex-start; flex-direction: column; gap: .5rem; margin-block: 1.65rem 1.35rem; }
+		.pillars-heading h2 { font-size: clamp(2.15rem, 9vw, 3rem); }
+		.pillars-heading .inline-link { margin-top: .4rem; }
+		.pillars-grid { grid-template-columns: 1fr; }
+		.pillar-card { min-height: 260px; padding: 1rem 1.1rem; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) { scroll-behavior: auto; }
+		*, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+	}
+</style>
