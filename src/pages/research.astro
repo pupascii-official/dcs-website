@@ -1,7 +1,6 @@
 ---
 import "../styles/research.css";
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
-import ResearchHero from "../components/research-components/ResearchHero.astro";
 import ContentSection from "../components/ContentSection.astro";
 import { SITE_TITLE } from "../consts";
 import Navbar from "../components/Navbar.astro";
@@ -10,7 +9,9 @@ import ResearchMetrics from "../components/research-components/ResearchMetrics.a
 import IndexationDashboard from "../components/research-components/IndexationDashboard.astro";
 import FacultyShowcase from "../components/research-components/FacultyShowcase.astro";
 import Footer from "../components/Footer.astro"
+import HeroSection from "../components/HeroSection.astro";
 ---
+
 
 <ScrollSnapLayout
   title={`Research & Innovation — ${SITE_TITLE}`}
@@ -18,25 +19,22 @@ import Footer from "../components/Footer.astro"
 >
   <div class="research-page bg-white text-neutral-900 antialiased font-sans">
     <Navbar />
-    
-    <!-- SNAP 1 // Hero -->
-    <ResearchHero
-      title="Research & Innovation"
-      subtitle="Pillar 01 / Research • Department of Computer Science"
-    >
 
-      <p class="mt-6 mb-0 max-w-2xl text-[14px] sm:text-[16px] font-normal leading-[1.6] text-white/90">
+    <!-- SNAP 1 // Hero -->
+    <HeroSection title="Research & Innovation">
+      <p class="mx-auto mt-0 mb-0 max-w-2xl text-[13.5px] sm:text-[16px] font-normal leading-[1.6] text-white/90 text-center">
         39 completed studies, 24 refereed publications, and 225 citations. Research
         that is published, presented, cited, recognized, and used.
       </p>
 
-      <p class="mt-4 mb-0 max-w-xl text-[12px] sm:text-[13px] font-normal leading-[1.65] text-white/75">
+      <p class="mx-auto mt-3 sm:mt-4 mb-0 max-w-xl text-[12px] sm:text-[13px] font-normal leading-[1.65] text-white/75 text-center">
         The University envisions itself as a premier center of research in social
         capital and innovation towards inclusive growth for national development.
         Five active projects have target completion dates from July 2026 to
         January 2028.
       </p>
-    </ResearchHero>
+    </HeroSection>
+
 
     <!-- SNAP 2 // Section 01: Research Agenda & Quality Assurance -->
     <ContentSection

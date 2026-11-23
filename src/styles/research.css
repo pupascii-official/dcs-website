@@ -30,12 +30,12 @@
 	margin-bottom: 0;
 }
 
-.research-page h1:not(.headline-text),
-.research-page h2:not(.headline-text),
-.research-page h3:not(.headline-text),
-.research-page h4:not(.headline-text),
-.research-page h5:not(.headline-text),
-.research-page h6:not(.headline-text) {
+.research-page h1:not(.headline-text):not(.hero-title):not(.title),
+.research-page h2:not(.headline-text):not(.hero-title):not(.title),
+.research-page h3:not(.headline-text):not(.hero-title):not(.title),
+.research-page h4:not(.headline-text):not(.hero-title):not(.title),
+.research-page h5:not(.headline-text):not(.hero-title):not(.title),
+.research-page h6:not(.headline-text):not(.hero-title):not(.title) {
 	margin: 0;
 	color: inherit;
 	font-size: inherit;
@@ -107,11 +107,11 @@
 
 @media (min-width: 640px) {
 	.research-page .scroll-section.content-section .section-inner {
-		padding: 5.5rem 2.5rem 2.5rem;
+		padding: 5.25rem 2.5rem 1.75rem;
 	}
 
 	.research-page .scroll-section.content-section .header-top {
-		margin-bottom: 1.5rem;
+		margin-bottom: 1.15rem;
 	}
 
 	.research-page .scroll-section.content-section .header-top small {
