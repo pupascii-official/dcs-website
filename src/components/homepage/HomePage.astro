@@ -12,10 +12,12 @@ import {
 	visionItems,
 } from "../../data/homepage/homepage";
 import Navbar from "../Navbar.astro";
-
+import Footer from "../Footer.svelte";
 ---
+
 <div class="home-page">
 	<Navbar />
+	
 	<main>
 		<section class="hero" id="home" aria-labelledby="hero-title">
 			<img class="hero-image" src="/images/homepage/hero/pup-pylon.webp" alt="" aria-hidden="true" fetchpriority="high" />
@@ -111,8 +113,8 @@ import Navbar from "../Navbar.astro";
 				))}
 			</div>
 		</section>
-
 	</main>
+
 	{leaders.map((leader) => (
 		<LeaderDialog
 			id={leader.id}
@@ -125,7 +127,10 @@ import Navbar from "../Navbar.astro";
 			closing={leader.closing}
 		/>
 	))}
+
+	<Footer client:load/>
 </div>
+
 <style>
 	.home-page {
 		--page-width: 1160px;
