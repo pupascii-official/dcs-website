@@ -2,25 +2,25 @@
 import BaseHead from "../components/BaseHead.astro";
 import ScrollBar from "../components/ScrollBar.astro";
 interface Props {
-    title: string
-    description: string
+    title: string;
+    description: string;
 }
-const {title, description} = Astro.props;
+
+const { title, description } = Astro.props;
 ---
 
 <html lang="en">
+    <head>
+        <BaseHead title={title} description={description} />
+    </head>
 
-<head>
-    <BaseHead title={title} description={description}/>
-</head>
-
-<body>
- <main class="scroll-container">
-        <!-- Everything inside <ScrollSnapLayout> should appear inside the slot -->
-        <slot/>
-    </main>
-    <ScrollBar/>
-</body>
+    <body>
+        <main class="scroll-container">
+            <!-- Everything inside <ScrollSnapLayout> should appear inside the slot -->
+            <slot />
+        </main>
+        <ScrollBar />
+    </body>
 </html>
 
 <style>
@@ -41,5 +41,6 @@ const {title, description} = Astro.props;
         scroll-snap-align: start;
         scroll-snap-stop: always;
         overflow-y: auto;
+        padding-top: 7rem !important;
     }
 </style>
