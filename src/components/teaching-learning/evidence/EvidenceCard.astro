@@ -19,21 +19,26 @@ const {
     data-evidence-card
     aria-label={`Center evidence card: ${title}`}
     aria-pressed="false"
-    class={`evidence-card relative mb-8 block w-full cursor-pointer appearance-none border-0 bg-transparent p-0 text-left md:absolute md:mb-0 md:w-[60%] ${position} hover:-translate-y-3`}
+    class={`group evidence-card relative mb-8 block w-full cursor-pointer appearance-none border-0 bg-transparent p-0 text-left md:absolute md:mb-0 md:w-[60%] ${position} hover:-translate-y-3`}
 >
     <!-- Folder tab -->
     <div class="absolute -top-5 left-2 z-10 flex items-center gap-2 rounded-t-xl border border-(--color-maroon) bg-red-50 px-4 py-2 text-xs font-bold text-(--color-maroon)">
-        <span>□</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
         EVIDENCE • PAGE {page}
     </div>
 
     <!-- Card body -->
     <div class="rounded-2xl border border-(--color-maroon) bg-white p-3 shadow-lg">
-        <img
-            src={image}
-            alt={alt}
-            class="w-full rounded-lg border border-slate-200 object-cover"
-        />
+        <div class="overflow-hidden! h-40 rounded-xl m-2">
+            <img
+                src={image}
+                alt={alt}
+                class="w-full rounded-lg border border-slate-200 object-cover transition-transform group-hover:scale-105"
+            />
+        </div>
+        
 
         <h3 class="mt-2 font-bold leading-tight">
             {title}
@@ -58,9 +63,17 @@ const {
         transition:
             left 0.45s ease,
             top 0.45s ease,
-            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.5s ease-in-out,
             opacity 0.35s ease,
             filter 0.35s ease;
+    }
+
+    .evidence-card:not(.is-active):not(.is-dimmed) {
+        transition-duration: 0.2s;
+    }
+
+    .evidence-card:not(.is-active):not(.is-dimmed):hover {
+        transform: translateY(-12px);
     }
 
     @media (min-width: 768px) {

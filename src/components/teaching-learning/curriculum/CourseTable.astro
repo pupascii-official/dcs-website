@@ -20,7 +20,7 @@ interface Props {
 const { semester, units, tuitionHours, courses } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-xl border border-(--color-muted-maroon)" data-semester-panel>
+<div class="overflow-hidden shadow-lg rounded-xl border border-(--color-muted-maroon)" data-semester-panel>
     <!-- Semester Header -->
     <div class="flex flex-wrap items-center justify-between gap-2 bg-(--color-maroon) px-4 py-3 text-(--color-gold)">
         <h3 class="semester-label text-sm uppercase">
@@ -89,5 +89,13 @@ const { semester, units, tuitionHours, courses } = Astro.props;
 <style>
     .semester-label {
         color: var(--color-gold);
+    }
+
+    tbody {
+        cursor: pointer;
+    }
+
+    td, th {
+        border-bottom: 1px rgba(70, 79, 88, 0.263) solid;
     }
 </style>

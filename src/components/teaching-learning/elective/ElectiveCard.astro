@@ -18,13 +18,14 @@ const {
 } = Astro.props;
 ---
 
-<article class="overflow-hidden rounded-2xl border border-transparent bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
+<article class="group overflow-hidden rounded-2xl border border-transparent bg-white shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
     <!-- Image Header -->
     <div class="relative h-28 w-full border-b-[3px] border-(--color-gold) sm:h-32">
         <img
             src={image}
             alt={title}
             loading="lazy"
+            class="transition-transform duration-300 ease-in-out group-hover:scale-110"
         />
 
         <!-- Track Number -->

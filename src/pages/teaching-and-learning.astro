@@ -16,7 +16,7 @@ import AccomplishmentReports from "../components/teaching-learning/Accomplishmen
 import ContentSection from "../components/ContentSection.astro";
 import FacultyDistribution from "../components/teaching-learning/faculty/FacultyDistribution.astro";
 import OutcomesOverview from "../components/teaching-learning/outcomes/OutcomesOverview.astro";
-import EvolutionTimeline from "../components/teaching-learning/evolution/EvolutionTimeline.astro"
+import EvolutionTimeline from "../components/teaching-learning/evolution/EvolutionTimeline.astro";
 
 import CommonCard from "../components/teaching-learning/CommonCard.astro";
 ---
@@ -29,7 +29,21 @@ import CommonCard from "../components/teaching-learning/CommonCard.astro";
             accentTitle="Learning"
         >
         <span>PUP CCIS Bachelor of Science in Computer Science — outcomes-based education aligned with CHED CMO No. 25, s. 2015 and the 2022 Revised Curriculum (167 Units).</span>
+        <a href="#CurriculumMap" class=" inline-block bg-white shadow-md mt-9 py-4 px-6 rounded-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <span class="main-button font-bold text-center"> Explore 2022 Curriculum &ThinSpace;↗</span>
+        </a>
     </HeroSection>
+    
+    <!-- EVOLUTION -->
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
+            category="Evolution of PUP’s Computer Science Program"
+            description="From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree."
+            >
+            <EvolutionTimeline></EvolutionTimeline>
+        </ContentSection>
+    </section>
     
     <!-- Outcomes-Based Computing Education -->
     <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 gap-8 mx-6 scroll-section scrollbar-none">
@@ -73,17 +87,6 @@ import CommonCard from "../components/teaching-learning/CommonCard.astro";
         </div>
     </section>
 
-    <!-- EVOLUTION -->
-    <section>
-        <ContentSection
-            sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
-            category="Evolution of PUP’s Computer Science Program"
-            description="From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree."
-            >
-            <EvolutionTimeline></EvolutionTimeline>
-        </ContentSection>
-    </section>
-
     <!-- ELECTIVES  -->
     <section class=" scrollbar-none">
         <MaroonSection
@@ -96,8 +99,9 @@ import CommonCard from "../components/teaching-learning/CommonCard.astro";
         </MaroonSection>
     </section>
 
+    
     <!-- CURRICULUM MAP -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+    <section id="CurriculumMap" class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
         <SectionContent
             title="2022 BSCS Curriculum Map"
             sectionLabel="CURRICULUM STRUCTURE • 167 UNITS">
@@ -109,69 +113,6 @@ import CommonCard from "../components/teaching-learning/CommonCard.astro";
             <CurriculumExplorer></CurriculumExplorer>
         </SectionContent>
     </section>
-
-    <!-- STUDENT ORGANIZATIONS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
-        <SectionContent
-            title="Presentation of Student Organizations"
-            sectionLabel="SECTION 04C • STUDENTS OUTCOMES & ECO-SYSTEM">
-
-            <p>Recognized Computer Science student organizations fostering technical leadership, peer mentoring,
-                community building, and co-curricular excellence.</p>
-
-            <StudentOrg></StudentOrg>
-
-        </SectionContent>
-    </section>
-
-    <!-- STUDENT ACHIEVEMENTS & AWARDS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
-        <SectionContent
-            title="Student Achievements & Awards"
-            sectionLabel="SECTION 05 • STUDENT ACHIEVEMENTS & AWARDS">
-
-            <p>National and international recognitions earned by BSCS students in competitions, hackathons, and
-                research forums — sourced primarily from recognized student organizations.</p>
-
-            <StudentAwards></StudentAwards>
-
-        </SectionContent>
-    </section>
-
-    <!-- CS INTERNATIONAL STUDENTS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
-        <SectionContent
-            title="CS International Students"
-            sectionLabel="SECTION 06 • INTERNATIONAL STUDENTS">
-
-            <p>Cross-border academic mobility, inbound and outbound exchange cohorts, and international student
-                participation in the BSCS program. Detailed data will be included.</p>
-
-            <StudentsIntl></StudentsIntl>
-
-        </SectionContent>
-    </section>
-
-    <!-- ACCOMPLISHMENT REPORTS -->
-    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
-        <SectionContent
-            title="Department & Program Accomplishment Reports"
-            sectionLabel="SECTION 07 • ACCOMPLISHMENT REPORTS">
-
-            <p>Consolidated annual and semesterly accomplishment reports documenting teaching, research, extension,
-                and student development milestones.</p>
-
-            <!-- accomplishment items -->
-            <AccomplishmentReports></AccomplishmentReports>
-        </SectionContent>
-
-     
-    </section>
-
-    <!--  -->
-
-
-
 
     <!-- BSCS Faculty Distribution & Profiles -->
     <section class="mx-6">
@@ -297,14 +238,83 @@ import CommonCard from "../components/teaching-learning/CommonCard.astro";
         </ContentSection>
     </section>
 
+    <!-- Program Educational Objectives & Student Outcomes -->
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 04 • STUDENTS OUTCOMES & ECO-SYSTEM"
+            category="Program Educational Objectives & Student Outcomes"
+            description="Purposeful alignment among PEOs, SOs, curriculum, teaching-learning processes, assessment mechanisms, and graduate achievements."
+            >
 
+        </ContentSection>
+    </section>
 
+    <!-- STUDENT ORGANIZATIONS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="Presentation of Student Organizations"
+            sectionLabel="SECTION 04C • STUDENTS OUTCOMES & ECO-SYSTEM">
 
-    
+            <p>Recognized Computer Science student organizations fostering technical leadership, peer mentoring,
+                community building, and co-curricular excellence.</p>
+
+            <StudentOrg></StudentOrg>
+
+        </SectionContent>
+    </section>
+
+    <!-- STUDENT ACHIEVEMENTS & AWARDS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="Student Achievements & Awards"
+            sectionLabel="SECTION 05 • STUDENT ACHIEVEMENTS & AWARDS">
+
+            <p>National and international recognitions earned by BSCS students in competitions, hackathons, and
+                research forums — sourced primarily from recognized student organizations.</p>
+
+            <StudentAwards></StudentAwards>
+
+        </SectionContent>
+    </section>
+
+    <!-- CS INTERNATIONAL STUDENTS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="CS International Students"
+            sectionLabel="SECTION 06 • INTERNATIONAL STUDENTS">
+
+            <p>Cross-border academic mobility, inbound and outbound exchange cohorts, and international student
+                participation in the BSCS program. Detailed data will be included.</p>
+
+            <StudentsIntl></StudentsIntl>
+
+        </SectionContent>
+    </section>
+
+    <!-- ACCOMPLISHMENT REPORTS -->
+    <section class="scroll-section scrollbar-none pt-20 md:pt-24 lg:pt-28 mx-6">
+        <SectionContent
+            title="Department & Program Accomplishment Reports"
+            sectionLabel="SECTION 07 • ACCOMPLISHMENT REPORTS">
+
+            <p>Consolidated annual and semesterly accomplishment reports documenting teaching, research, extension,
+                and student development milestones.</p>
+
+            <!-- accomplishment items -->
+            <AccomplishmentReports></AccomplishmentReports>
+        </SectionContent>
+
+     
+    </section>
+
+    <!--  -->
 </ScrollSnapLayout>
 
 <style>
-    section {
-        
+    .main-button {
+        background-color: white;
+        background: linear-gradient(90deg, #800000, #B8860B, #5C0000);
+        background-clip: text;
+        color: transparent;
     }
 </style>
