@@ -1,0 +1,67 @@
+---
+import { internationalData } from "../../data/internationalization/content";
+import SectionHeader from "./SectionHeader.astro";
+
+const { label, title, badge, headline, programs, imagePath } = internationalData.section1;
+---
+
+<div class="w-full">
+  <SectionHeader label={label} title={title} />
+
+  <div class="relative w-full h-[340px] sm:h-[420px] lg:h-[60vh] max-h-[540px] rounded-2xl overflow-hidden border border-(--color-maroon)/50 shadow-lg bg-[#420000] group">
+    <img
+      src={imagePath}
+      alt="PUP's First International Program Accreditation PICAB-CAC Certified"
+      class="accreditation-banner-img transition-transform duration-500 group-hover:scale-[1.01]"
+      loading="lazy"
+    />
+
+    <div class="accreditation-overlay absolute inset-0 pointer-events-none"></div>
+
+    <div class="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-8 lg:p-10 flex flex-col items-start">
+      <p class="accreditation-kicker font-['Montserrat',sans-serif] text-[10px] sm:text-xs font-extrabold tracking-widest uppercase">
+        {badge}
+      </p>
+      <h3 class="accreditation-headline font-['Montserrat',sans-serif] text-xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.12] max-w-3xl mb-3 sm:mb-4">
+        {headline}
+      </h3>
+      <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+        {programs.map((program) => (
+          <span class="inline-flex items-center px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-[#FFDE00] text-[#420000] font-['Montserrat',sans-serif] text-[11px] sm:text-sm font-bold shadow-sm">
+            {program}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .accreditation-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    border-radius: 0;
+    display: block;
+  }
+
+  .accreditation-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(66, 0, 0, 0.96) 0%,
+      rgba(128, 0, 0, 0.78) 32%,
+      rgba(128, 0, 0, 0.22) 56%,
+      transparent 76%
+    );
+  }
+
+  .accreditation-kicker {
+    color: var(--color-gold) !important;
+    margin-bottom: 0.375rem;
+  }
+
+  .accreditation-headline {
+    color: var(--color-white) !important;
+  }
+</style>
