@@ -1,36 +1,36 @@
 ---
 interface Props {
-    variant?: "maroon" | "gold";
+  variant?: "maroon" | "gold";
 }
 
-const {variant = "maroon"} = Astro.props;
+const { variant = "maroon" } = Astro.props;
 ---
 
 <span class:list={["pill", variant]}>
-    <slot/>
+  <slot />
 </span>
 
 <style>
-    .pill {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 9999px;
-        padding: 0.45rem 1.25rem;
-        font-family: var(--font-inter), system-ui, sans-serif;
-        font-weight: 600;
-        font-size: clamp(0.8rem, 1.1vw, 0.95rem);
-        line-height: 1.2;
-        text-align: center;
-    }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0.45rem 1.25rem;
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    line-height: 1.2;
+    text-align: center;
+  }
 
-    .maroon {
-        background-color: var(--color-maroon);
-        color: var(--color-white);
-    }
+  .maroon {
+    background-color: var(--color-maroon);
+    color: var(--color-white);
+  }
 
-    .gold {
-        background-color: var(--color-gold);
-        color: var(--color-text-body);
-    }
+  .gold {
+    background-color: var(--color-gold);
+    color: var(--color-text-body);
+  }
 </style>

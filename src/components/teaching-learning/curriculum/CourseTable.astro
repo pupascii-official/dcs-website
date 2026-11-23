@@ -1,95 +1,96 @@
-
 ---
 interface Course {
-    code: string;
-    prerequisite: string[];
-    description: string;
-    lec: number;
-    lab: number;
-    units: number;
-    tuition: number;
+  code: string;
+  prerequisite: string[];
+  description: string;
+  lec: number;
+  lab: number;
+  units: number;
+  tuition: number;
 }
 
 interface Props {
-    semester: string;
-    units: number;
-    tuitionHours: number;
-    courses: Course[];
+  semester: string;
+  units: number;
+  tuitionHours: number;
+  courses: Course[];
 }
 
 const { semester, units, tuitionHours, courses } = Astro.props;
 ---
 
-<div class="overflow-hidden rounded-xl border border-red-200" data-semester-panel>
+<div
+  class="overflow-hidden rounded-xl border border-red-200"
+  data-semester-panel
+>
+  <!-- Semester Header -->
+  <div class="flex flex-wrap items-center justify-between gap-2 bg-(--color-maroon) px-4 py-3 text-(--color-gold)">
+    <h3 class="semester-label text-sm uppercase">{semester}</h3>
 
-    <!-- Semester Header -->
-    <div class="flex flex-wrap items-center justify-between gap-2 bg-(--color-maroon) px-4 py-3 text-(--color-gold)">
-        <h3 class="semester-label text-sm uppercase">
-            {semester}
-        </h3>
+    <p class="text-xs font-bold">
+      {units} Credited Units &bull; {tuitionHours} Tuition Hours
+    </p>
+  </div>
 
-        <p class="text-xs font-bold">
-            {units} Credited Units &bull; {tuitionHours} Tuition Hours
-        </p>
-    </div>
+  <!-- Course Table -->
+  <div class="overflow-x-auto">
+    <table class="w-full min-w-162 text-left text-xs">
+      <thead class="bg-(--bg-light-maroon) text-(--color-dark-maroon)">
+        <tr>
+          <th class="p-2">Code</th>
+          <th class="p-2">Prereq</th>
+          <th class="p-2">Description</th>
+          <th class="p-2">Lec</th>
+          <th class="p-2">Lab</th>
+          <th class="p-2">Units</th>
+          <th class="p-2">Tuition</th>
+        </tr>
+      </thead>
 
-    <!-- Course Table -->
-    <div class="overflow-x-auto">
-        <table class="w-full min-w-162 text-left text-xs">
+      <tbody>
+        {courses.map((course) => (
+          <tr
+            class="border-t border-(--bg-light-maroon) hover:bg-red-50/50"
+            data-course-row
+            data-course-units={course.units}
+            data-course-search={[
+              course.code,
+              course.description,
+              ...course.prerequisite,
+            ]
+              .join(" ")
+              .toLowerCase()}
+          >
+            <td class="p-2">{course.code}</td>
+            <td class="p-2">
+              {course.prerequisite.length
+                ? course.prerequisite.join(", ")
+                : "—"}
+            </td>
+            <td class="p-2">{course.description}</td>
+            <td class="p-2">{course.lec}</td>
+            <td class="p-2">{course.lab}</td>
+            <td class="p-2">{course.units}</td>
+            <td class="p-2">{course.tuition}</td>
+          </tr>
+        ))}
+      </tbody>
 
-            <thead class="bg-(--bg-light-maroon) text-(--color-dark-maroon)">
-                <tr>
-                    <th class="p-2">Code</th>
-                    <th class="p-2">Prereq</th>
-                    <th class="p-2">Description</th>
-                    <th class="p-2">Lec</th>
-                    <th class="p-2">Lab</th>
-                    <th class="p-2">Units</th>
-                    <th class="p-2">Tuition</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {courses.map((course) => (
-                    <tr
-                            class="border-t border-(--bg-light-maroon) hover:bg-red-50/50"
-                            data-course-row
-                            data-course-units={course.units}
-                            data-course-search={[
-                                course.code,
-                                course.description,
-                                ...course.prerequisite
-                            ].join(" ").toLowerCase()}
-                        >
-                        <td class="p-2">{course.code}</td>
-                        <td class="p-2">
-                            {course.prerequisite.length
-                                ? course.prerequisite.join(", ")
-                                : "—"}
-                        </td>
-                        <td class="p-2">{course.description}</td>
-                        <td class="p-2">{course.lec}</td>
-                        <td class="p-2">{course.lab}</td>
-                        <td class="p-2">{course.units}</td>
-                        <td class="p-2">{course.tuition}</td>
-                    </tr>
-                ))}
-            </tbody>
-
-            <tfoot class="bg-(--bg-light-maroon) font-bold text-(--color-maroon)">
-                <tr>
-                    <td colspan="5" class="p-2">TOTAL UNITS</td>
-                    <td class="p-2">{units}</td>
-                    <td class="p-2">{tuitionHours}</td>
-                </tr>
-            </tfoot>
-
-        </table>
-    </div>
+      <tfoot class="bg-(--bg-light-maroon) font-bold text-(--color-maroon)">
+        <tr>
+          <td colspan="5" class="p-2">
+            TOTAL UNITS
+          </td>
+          <td class="p-2">{units}</td>
+          <td class="p-2">{tuitionHours}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>
 
 <style>
-    .semester-label {
-        color: var(--color-gold);
-    }
+  .semester-label {
+    color: var(--color-gold);
+  }
 </style>

@@ -1,72 +1,80 @@
 ---
 interface Props {
-    number: string;
-    title: string;
-    subtitle?: string;
+  number: string;
+  title: string;
+  subtitle?: string;
 }
 
-const {number, title, subtitle} = Astro.props;
+const { number, title, subtitle } = Astro.props;
 ---
 
 <div class="highlight-pill-card">
-    <span class="pill-number">{number}</span>
-    <div class="pill-text">
-        <h3 class="pill-title">{title}</h3>
-        {subtitle && <p class="pill-subtitle">{subtitle}</p>}
-    </div>
+  <span class="pill-number">{number}</span>
+  <div class="pill-text">
+    <h3 class="pill-title">{title}</h3>
+    {subtitle && <p class="pill-subtitle">{subtitle}</p>}
+  </div>
 </div>
 
 <style>
+  .highlight-pill-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 2rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 600px) {
     .highlight-pill-card {
-        background-color: var(--color-white);
-        border: 1px solid var(--color-border);
-        border-radius: 2rem;
-        padding: 1.5rem 2rem;
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
+      border-radius: 9999px;
+      padding: 1.5rem 2.5rem;
     }
+  }
 
-    @media (min-width: 600px) {
-        .highlight-pill-card {
-            border-radius: 9999px;
-            padding: 1.5rem 2.5rem;
-        }
-    }
+  .pill-number {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    line-height: 1;
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+    flex-shrink: 0;
+  }
 
-    .pill-number {
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.75rem, 3vw, 2.4rem);
-        line-height: 1;
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-        flex-shrink: 0;
-    }
+  .pill-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
 
-    .pill-text {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
+  .pill-title {
+    margin: 0;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+  }
 
-    .pill-title {
-        margin: 0;
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: clamp(1rem, 1.5vw, 1.25rem);
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-    }
-
-    .pill-subtitle {
-        margin: 0;
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 600;
-        font-size: 0.95rem;
-        line-height: 1.35;
-        color: var(--color-dark-maroon);
-    }
+  .pill-subtitle {
+    margin: 0;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: var(--color-dark-maroon);
+  }
 </style>

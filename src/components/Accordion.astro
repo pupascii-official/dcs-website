@@ -1,194 +1,213 @@
 ---
 interface AccordionItem {
-    label?: string;
-    title?: string;
-    description: string;
+  label?: string;
+  title?: string;
+  description: string;
 }
 
 interface Props {
-    title: string;
-    number?: string;
-    items?: (string | AccordionItem)[];
-    open?: boolean;
+  title: string;
+  number?: string;
+  items?: (string | AccordionItem)[];
+  open?: boolean;
 }
 
-const {title, number, items = [], open = false} = Astro.props;
+const { title, number, items = [], open = false } = Astro.props;
 
 const normalizedItems = items.map((item, index) => {
-    const defaultLabel = String(index + 1).padStart(2, "0");
-    if (typeof item === "string") {
-        return {label: defaultLabel, title: undefined, description: item};
-    }
-    return {
-        label: item.label ?? defaultLabel,
-        title: item.title,
-        description: item.description,
-    };
+  const defaultLabel = String(index + 1).padStart(2, "0");
+  if (typeof item === "string") {
+    return { label: defaultLabel, title: undefined, description: item };
+  }
+  return {
+    label: item.label ?? defaultLabel,
+    title: item.title,
+    description: item.description,
+  };
 });
 ---
 
-<details class:list={["accordion-card", {"has-number": Boolean(number)}]} open={open}>
-    <summary class="accordion-header">
-        {number && <span class="accordion-number">{number}</span>}
-        <h3 class="accordion-title">{title}</h3>
-        <span class="toggle-icon" aria-hidden="true"></span>
-    </summary>
+<details
+  class:list={["accordion-card", { "has-number": Boolean(number) }]}
+  open={open}
+>
+  <summary class="accordion-header">
+    {number && <span class="accordion-number">{number}</span>}
+    <h3 class="accordion-title">{title}</h3>
+    <span class="toggle-icon" aria-hidden="true"></span>
+  </summary>
 
-    <div class="accordion-body">
-        {normalizedItems.length > 0 ? (
-                <ol class="numbered-list">
-                    {normalizedItems.map((item) => (
-                            <li>
-                                <span class="item-num">{item.label}</span>
-                                <div class="item-content">
-                                    {item.title && <p class="item-title">{item.title}</p>}
-                                    <p class="item-text">{item.description}</p>
-                                </div>
-                            </li>
-                    ))}
-                </ol>
-        ) : (
-                <slot/>
-        )}
-    </div>
+  <div class="accordion-body">
+    {normalizedItems.length > 0 ? (
+      <ol class="numbered-list">
+        {normalizedItems.map((item) => (
+          <li>
+            <span class="item-num">{item.label}</span>
+            <div class="item-content">
+              {item.title && <p class="item-title">{item.title}</p>}
+              <p class="item-text">{item.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <slot />
+    )}
+  </div>
 </details>
 
 <style>
-    /* Shared column width so "01" and "SG 1" share the exact same vertical track */
-    .accordion-card {
-        --num-col-width: 3.5rem;
-        --header-gap: clamp(1rem, 2.5vw, 1.5rem);
+  /* Shared column width so "01" and "SG 1" share the exact same vertical track */
+  .accordion-card {
+    --num-col-width: 3.5rem;
+    --header-gap: clamp(1rem, 2.5vw, 1.5rem);
 
-        background-color: var(--color-white);
-        border: 1px solid var(--color-border);
-        border-radius: 2.5rem;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease, border-radius 0.2s ease;
-    }
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 2.5rem;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      border-radius 0.2s ease;
+  }
 
-    .accordion-card[open] {
-        border-color: var(--color-maroon);
-        border-radius: 2rem;
-        box-shadow: 0 8px 24px color-mix(in srgb, var(--color-drop-shadow) 18%, transparent);
-    }
+  .accordion-card[open] {
+    border-color: var(--color-maroon);
+    border-radius: 2rem;
+    box-shadow: 0 8px 24px
+      color-mix(in srgb, var(--color-drop-shadow) 18%, transparent);
+  }
 
-    /* Header */
-    .accordion-header {
-        display: flex;
-        align-items: center;
-        gap: var(--header-gap);
-        padding: 1.5rem 2rem;
-        cursor: pointer;
-        list-style: none;
-        user-select: none;
-    }
+  /* Header */
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    gap: var(--header-gap);
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
 
-    .has-number .accordion-header {
-        display: grid;
-        grid-template-columns: var(--num-col-width) minmax(0, 1fr) auto;
-    }
+  .has-number .accordion-header {
+    display: grid;
+    grid-template-columns: var(--num-col-width) minmax(0, 1fr) auto;
+  }
 
-    .accordion-header::-webkit-details-marker {
-        display: none;
-    }
+  .accordion-header::-webkit-details-marker {
+    display: none;
+  }
 
-    .accordion-number {
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.5rem, 2.5vw, 2rem);
-        line-height: 1;
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-    }
+  .accordion-number {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1;
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+  }
 
-    .accordion-title {
-        flex: 1;
-        margin: 0;
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.25rem, 2.2vw, 1.75rem);
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-    }
+  .accordion-title {
+    flex: 1;
+    margin: 0;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+  }
 
-    /* Circular + / - Button */
-    .toggle-icon {
-        width: 2.25rem;
-        height: 2.25rem;
-        flex-shrink: 0;
-        border-radius: 50%;
-        border: 1px solid var(--color-border);
-        display: grid;
-        place-items: center;
-        color: var(--color-maroon);
-        font-family: var(--font-inter), system-ui, sans-serif;
-        font-size: 1.15rem;
-        font-weight: 600;
-        line-height: 1;
-    }
+  /* Circular + / - Button */
+  .toggle-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    display: grid;
+    place-items: center;
+    color: var(--color-maroon);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1;
+  }
 
-    .toggle-icon::before {
-        content: "+";
-    }
+  .toggle-icon::before {
+    content: "+";
+  }
 
-    .accordion-card[open] .toggle-icon::before {
-        content: "−";
-    }
+  .accordion-card[open] .toggle-icon::before {
+    content: "−";
+  }
 
-    /* Expanded Body & List */
-    .accordion-body {
-        padding: 0 2rem 2rem;
-    }
+  /* Expanded Body & List */
+  .accordion-body {
+    padding: 0 2rem 2rem;
+  }
 
-    .numbered-list {
-        list-style: none;
-        margin: 0.5rem 0 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
+  .numbered-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
 
-    .numbered-list li {
-        display: grid;
-        grid-template-columns: max-content minmax(0, 1fr);
-        gap: 2rem;
-        align-items: baseline;
-    }
+  .numbered-list li {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 2rem;
+    align-items: baseline;
+  }
 
-    .has-number .numbered-list li {
-        grid-template-columns: var(--num-col-width) minmax(0, 1fr);
-        gap: var(--header-gap);
-    }
+  .has-number .numbered-list li {
+    grid-template-columns: var(--num-col-width) minmax(0, 1fr);
+    gap: var(--header-gap);
+  }
 
-    .item-num {
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: 0.95rem;
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-        white-space: nowrap;
-    }
+  .item-num {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
 
-    .item-content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-    }
+  .item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
 
-    .item-title {
-        margin: 0;
-        font-weight: 600;
-        font-size: 1rem;
-        color: var(--color-text-body);
-    }
+  .item-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text-body);
+  }
 
-    .item-text {
-        margin: 0;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: color-mix(in srgb, var(--color-text-body) 72%, transparent);
-    }
+  .item-text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--color-text-body) 72%, transparent);
+  }
 </style>

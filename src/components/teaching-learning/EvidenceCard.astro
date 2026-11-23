@@ -3,40 +3,31 @@ import type { EvidenceItem } from "../../data/teaching-learning/evidence";
 
 interface Props extends EvidenceItem {}
 
-const {
-    title,
-    description,
-    image,
-    alt,
-    page,
-    position,
-} = Astro.props;
+const { title, description, image, alt, page, position } = Astro.props;
 ---
 
 <article
-    class={`relative mb-8 w-full md:absolute md:mb-0 md:w-[72%] ${position}`}
+  class={`relative mb-8 w-full md:absolute md:mb-0 md:w-[72%] ${position}`}
 >
-    <!-- Folder tab -->
-    <div class="absolute -top-5 left-2 flex items-center gap-2 rounded-t-xl border border-(--color-maroon) bg-red-50 px-4 py-2 text-xs font-bold text-(--color-maroon)">
-        <!-- INSERT LUCIDE REACT SYMBOL FOR FOLDER HERE -->
-        <span>□</span>
-        EVIDENCE • PAGE {page}
-    </div>
+  <!-- Folder tab -->
+  <div class="absolute -top-5 left-2 flex items-center gap-2 rounded-t-xl border border-(--color-maroon) bg-red-50 px-4 py-2 text-xs font-bold text-(--color-maroon)">
+    <!-- INSERT LUCIDE REACT SYMBOL FOR FOLDER HERE -->
+    <span>□</span>
+    EVIDENCE • PAGE {page}
+  </div>
 
-    <!-- Card body -->
-    <div class="rounded-2xl border border-(--color-maroon) bg-white p-3 shadow-lg">
-        <img
-            src={image}
-            alt={alt}
-            class="h-24 w-full rounded-lg border border-slate-200 object-cover md:h-30"
-        />
+  <!-- Card body -->
+  <div class="rounded-2xl border border-(--color-maroon) bg-white p-3 shadow-lg">
+    <img
+      src={image}
+      alt={alt}
+      class="h-24 w-full rounded-lg border border-slate-200 object-cover md:h-30"
+    />
 
-        <h3 class="mt-2 font-bold leading-tight">
-            {title}
-        </h3>
+    <h3 class="mt-2 font-bold leading-tight">{title}</h3>
 
-        <p class="mt-1 text-xs leading-relaxed text-(--color-text-body)">
-            {description}
-        </p>
-    </div>
+    <p class="mt-1 text-xs leading-relaxed text-(--color-text-body)">
+      {description}
+    </p>
+  </div>
 </article>

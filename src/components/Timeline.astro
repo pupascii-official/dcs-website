@@ -1,99 +1,103 @@
 ---
 interface TimelineItem {
-    number?: string;
-    title: string;
-    description: string;
+  number?: string;
+  title: string;
+  description: string;
 }
 
 interface Props {
-    items: TimelineItem[];
+  items: TimelineItem[];
 }
 
-const {items} = Astro.props;
+const { items } = Astro.props;
 ---
 
 <ol class="timeline">
-    {items.map((item, index) => (
-            <li class="timeline-step">
-            <span class="step-badge">
-                {item.number ?? String(index + 1).padStart(2, "0")}
-            </span>
-                <div class="step-content">
-                    <h3 class="step-title">{item.title}</h3>
-                    <p class="step-description">{item.description}</p>
-                </div>
-            </li>
-    ))}
+  {items.map((item, index) => (
+    <li class="timeline-step">
+      <span class="step-badge">
+        {item.number ?? String(index + 1).padStart(2, "0")}
+      </span>
+      <div class="step-content">
+        <h3 class="step-title">{item.title}</h3>
+        <p class="step-description">{item.description}</p>
+      </div>
+    </li>
+  ))}
 </ol>
 
 <style>
-    .timeline {
-        --badge-size: 2.75rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+  .timeline {
+    --badge-size: 2.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-    .timeline-step {
-        position: relative;
-        display: grid;
-        grid-template-columns: var(--badge-size) minmax(0, 1fr);
-        gap: 1.5rem;
-        align-items: start;
-    }
+  .timeline-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--badge-size) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
 
-    .timeline-step:not(:last-child) {
-        padding-bottom: 2rem;
-    }
+  .timeline-step:not(:last-child) {
+    padding-bottom: 2rem;
+  }
 
-    /* Vertical maroon line connecting each circle */
-    .timeline-step:not(:last-child)::before {
-        content: "";
-        position: absolute;
-        left: calc(var(--badge-size) / 2);
-        top: var(--badge-size);
-        bottom: 0;
-        width: 3px;
-        background-color: var(--color-maroon);
-        transform: translateX(-50%);
-    }
+  /* Vertical maroon line connecting each circle */
+  .timeline-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--badge-size) / 2);
+    top: var(--badge-size);
+    bottom: 0;
+    width: 3px;
+    background-color: var(--color-maroon);
+    transform: translateX(-50%);
+  }
 
-    .step-badge {
-        width: var(--badge-size);
-        height: var(--badge-size);
-        border-radius: 50%;
-        background-color: var(--color-gold);
-        border: 3px solid var(--color-maroon);
-        color: var(--color-maroon);
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: 0.95rem;
-        display: grid;
-        place-items: center;
-        position: relative;
-        z-index: 1;
-    }
+  .step-badge {
+    width: var(--badge-size);
+    height: var(--badge-size);
+    border-radius: 50%;
+    background-color: var(--color-gold);
+    border: 3px solid var(--color-maroon);
+    color: var(--color-maroon);
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: grid;
+    place-items: center;
+    position: relative;
+    z-index: 1;
+  }
 
-    .step-content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.35rem;
-        padding-top: 0.25rem;
-    }
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-top: 0.25rem;
+  }
 
-    .step-title {
-        margin: 0;
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-    }
+  .step-title {
+    margin: 0;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+  }
 
-    .step-description {
-        margin: 0;
-        font-size: 0.95rem;
-        color: var(--color-text-body);
-    }
+  .step-description {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-body);
+  }
 </style>

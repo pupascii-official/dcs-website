@@ -1,4 +1,3 @@
-
 ---
 import { curriculum } from "../../../data/teaching-learning/curriculum";
 import CourseTable from "./CourseTable.astro";
@@ -6,223 +5,204 @@ import CourseTable from "./CourseTable.astro";
 const initialYear = curriculum[0];
 
 const getCourseCount = (year: typeof initialYear) =>
-    year.semesters.reduce(
-        (total, semester) => total + semester.courses.length,
-        0
-    );
+  year.semesters.reduce(
+    (total, semester) => total + semester.courses.length,
+    0,
+  );
 
 const getTotalUnits = (year: typeof initialYear) =>
-    year.semesters.reduce(
-        (total, semester) =>
-            total + semester.courses.reduce(
-                (sum, course) => sum + course.units,
-                0
-            ),
-        0
-    );
-
+  year.semesters.reduce(
+    (total, semester) =>
+      total + semester.courses.reduce((sum, course) => sum + course.units, 0),
+    0,
+  );
 ---
 
-<div class="curriculum-explorer ">
-    <div class="rounded-2xl border border-(--bg-light-maroon) bg-(--bg-light-maroon) p-4"> 
-        <!-- EXPLORER HEADER -->
-        <div class="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-
-            <div>
-                <p class="text-sm uppercase font-bold text-(--color-maroon)">
-                    Curriculum Explorer
-                </p>
-
-                <h2 class="explorerTitle mt-1 font-bold text-(--color-text-body)">
-                    Search, Filter, & Inspect BSCS Courses
-                </h2>
-            </div>
-
-            <!-- SEARCH BAR -->
-            <div class="w-full md:w-[35%]">
-                <input
-                    type="search"
-                    data-course-search-input
-                    placeholder="Search course code or description..."
-                    class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none transition focus:border-(--color-maroon) focus:ring-1 focus:ring-(--color-maroon)"
-                />
-            </div>
-
-        </div>
-
-        <!-- YEAR FILTERS -->
-        <div class="mt-4 flex flex-wrap gap-1.5 border-b border-(--border-light-maroon) pb-3">
-
-            {curriculum.map((year, index) => (
-                <button
-                    type="button"
-                    data-year-button={year.id}
-                    aria-pressed={index === 0 ? "true" : "false"}
-                    class:list={[
-                        "rounded-full border px-3 py-1.5 text-[10px] font-bold transition-colors",
-                        index === 0
-                            ? "active-year border-(--color-maroon) bg-(--color-maroon) text-white"
-                            : "border-slate-200 bg-white text-slate-600 hover:border-(--border-light-maroon) hover:text-(--color-maroon)"
-                    ]}
-                >
-                    {year.label}
-                </button>
-            ))}
-
-        </div>
-
-        <!-- COURSE SUMMARY -->
-        <p
-            class="mt-3 text-sm text-(--color-text-body)"
-            data-course-summary
-        >
-            Showing {getCourseCount(initialYear)} {initialYear.label} courses
-            ({getTotalUnits(initialYear)} units) • Click any course row to inspect prerequisites & unlocks.
+<div class="curriculum-explorer">
+  <div class="rounded-2xl border border-(--bg-light-maroon) bg-(--bg-light-maroon) p-4">
+    <!-- EXPLORER HEADER -->
+    <div class="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+      <div>
+        <p class="text-sm uppercase font-bold text-(--color-maroon)">
+          Curriculum Explorer
         </p>
+
+        <h2 class="explorerTitle mt-1 font-bold text-(--color-text-body)">
+          Search, Filter, & Inspect BSCS Courses
+        </h2>
+      </div>
+
+      <!-- SEARCH BAR -->
+      <div class="w-full md:w-[35%]">
+        <input
+          type="search"
+          data-course-search-input
+          placeholder="Search course code or description..."
+          class="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs outline-none transition focus:border-(--color-maroon) focus:ring-1 focus:ring-(--color-maroon)"
+        />
+      </div>
     </div>
 
-    <!-- CURRICULUM TABLES -->
-    <div class="mt-4 space-y-4">
-
-        {curriculum.map((year, index) => (
-            <div
-                data-year-panel={year.id}
-                hidden={index !== 0}
-                class="space-y-4"
-            >
-                <span data-year-label class="hidden">{year.label}</span>
-                {year.semesters.map((semester) => (
-                    <CourseTable
-                        {...semester}
-                        semester={semester.name}
-                    />
-                ))}
-            </div>
-        ))}
-
+    <!-- YEAR FILTERS -->
+    <div class="mt-4 flex flex-wrap gap-1.5 border-b border-(--border-light-maroon) pb-3">
+      {curriculum.map((year, index) => (
+        <button
+          type="button"
+          data-year-button={year.id}
+          aria-pressed={index === 0 ? "true" : "false"}
+          class:list={[
+            "rounded-full border px-3 py-1.5 text-[10px] font-bold transition-colors",
+            index === 0
+              ? "active-year border-(--color-maroon) bg-(--color-maroon) text-white"
+              : "border-slate-200 bg-white text-slate-600 hover:border-(--border-light-maroon) hover:text-(--color-maroon)",
+          ]}
+        >
+          {year.label}
+        </button>
+      ))}
     </div>
 
-    <!-- EMPTY SEARCH STATE -->
-    <p
-        data-empty-state
-        hidden
-        class="py-8 text-center text-xs text-(--color-text-body)"
-    >
-        No courses found matching your search.
+    <!-- COURSE SUMMARY -->
+    <p class="mt-3 text-sm text-(--color-text-body)" data-course-summary>
+      Showing {getCourseCount(initialYear)} {initialYear.label} courses (
+      {getTotalUnits(initialYear)} units) • Click any course row to inspect
+      prerequisites & unlocks.
     </p>
+  </div>
+
+  <!-- CURRICULUM TABLES -->
+  <div class="mt-4 space-y-4">
+    {curriculum.map((year, index) => (
+      <div data-year-panel={year.id} hidden={index !== 0} class="space-y-4">
+        <span data-year-label class="hidden">
+          {year.label}
+        </span>
+        {year.semesters.map((semester) => (
+          <CourseTable {...semester} semester={semester.name} />
+        ))}
+      </div>
+    ))}
+  </div>
+
+  <!-- EMPTY SEARCH STATE -->
+  <p
+    data-empty-state
+    hidden
+    class="py-8 text-center text-xs text-(--color-text-body)"
+  >
+    No courses found matching your search.
+  </p>
 </div>
 
 <script>
-    const explorer = document.querySelector(".curriculum-explorer");
+  const explorer = document.querySelector(".curriculum-explorer");
 
-    if (explorer) {
-        const yearButtons = explorer.querySelectorAll("[data-year-button]");
-        const yearPanels = explorer.querySelectorAll("[data-year-panel]");
-        const searchInput = explorer.querySelector("[data-course-search-input]");
-        const summary = explorer.querySelector("[data-course-summary]");
-        const emptyState = explorer.querySelector("[data-empty-state]");
+  if (explorer) {
+    const yearButtons = explorer.querySelectorAll("[data-year-button]");
+    const yearPanels = explorer.querySelectorAll("[data-year-panel]");
+    const searchInput = explorer.querySelector("[data-course-search-input]");
+    const summary = explorer.querySelector("[data-course-summary]");
+    const emptyState = explorer.querySelector("[data-empty-state]");
 
-        let activeYear = yearPanels[0]?.getAttribute("data-year-panel") ?? "";
+    let activeYear = yearPanels[0]?.getAttribute("data-year-panel") ?? "";
 
-        function updateExplorer() {
-            const activePanel = explorer.querySelector(
-                `[data-year-panel="${activeYear}"]`
-            );
+    function updateExplorer() {
+      const activePanel = explorer.querySelector(
+        `[data-year-panel="${activeYear}"]`,
+      );
 
-            if (!activePanel) return;
+      if (!activePanel) return;
 
-            const searchTerm = searchInput.value.trim().toLowerCase();
+      const searchTerm = searchInput.value.trim().toLowerCase();
 
-            // Filter course rows
-            const rows = activePanel.querySelectorAll("[data-course-row]");
+      // Filter course rows
+      const rows = activePanel.querySelectorAll("[data-course-row]");
 
-            let visibleCount = 0;
-            let visibleUnits = 0;
+      let visibleCount = 0;
+      let visibleUnits = 0;
 
-            rows.forEach((row) => {
-                const searchableText =
-                    row.getAttribute("data-course-search") ?? "";
+      rows.forEach((row) => {
+        const searchableText = row.getAttribute("data-course-search") ?? "";
 
-                const matches = searchableText.includes(searchTerm);
+        const matches = searchableText.includes(searchTerm);
 
-                row.hidden = !matches;
+        row.hidden = !matches;
 
-                if (matches) {
-                    visibleCount++;
-                    visibleUnits += Number(row.getAttribute("data-course-units") ?? 0);
-                }
-            });
-
-            // Hide semesters with no matching courses
-            activePanel.querySelectorAll("[data-semester-panel]").forEach((semester) => {
-                const hasVisibleRows = semester.querySelector(
-                    "[data-course-row]:not([hidden])"
-                );
-
-                semester.hidden = !hasVisibleRows;
-            });
-
-            // Update summary
-            const yearLabel =
-                activePanel.querySelector("[data-year-label]")?.textContent?.trim() ??
-                yearButtons[0]?.textContent?.trim() ??
-                "";
-
-            if (summary) {
-                summary.textContent =
-                    `Showing ${visibleCount} ${yearLabel} courses (${visibleUnits} units) • Click any course row to inspect prerequisites & unlocks.`;
-            }
-
-            // Empty state
-            if (emptyState) {
-                emptyState.hidden = visibleCount !== 0;
-            }
+        if (matches) {
+          visibleCount++;
+          visibleUnits += Number(row.getAttribute("data-course-units") ?? 0);
         }
+      });
 
-        // Switch active year
-        yearButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                activeYear = button.getAttribute("data-year-button") ?? "";
+      // Hide semesters with no matching courses
+      activePanel
+        .querySelectorAll("[data-semester-panel]")
+        .forEach((semester) => {
+          const hasVisibleRows = semester.querySelector(
+            "[data-course-row]:not([hidden])",
+          );
 
-                yearButtons.forEach((item) => {
-                    const isActive =
-                        item.getAttribute("data-year-button") === activeYear;
-
-                    item.classList.toggle("active-year", isActive);
-                    item.classList.toggle("bg-red-900", isActive);
-                    item.classList.toggle("text-white", isActive);
-                    item.classList.toggle("border-red-900", isActive);
-
-                    item.classList.toggle("bg-white", !isActive);
-                    item.classList.toggle("text-slate-600", !isActive);
-                    item.classList.toggle("border-slate-200", !isActive);
-
-                    item.setAttribute("aria-pressed", String(isActive));
-                });
-
-                yearPanels.forEach((panel) => {
-                    panel.hidden =
-                        panel.getAttribute("data-year-panel") !== activeYear;
-                });
-
-                updateExplorer();
-            });
+          semester.hidden = !hasVisibleRows;
         });
 
-        // Search courses in the selected year
-        searchInput?.addEventListener("input", updateExplorer);
+      // Update summary
+      const yearLabel =
+        activePanel.querySelector("[data-year-label]")?.textContent?.trim() ??
+        yearButtons[0]?.textContent?.trim() ??
+        "";
 
-        // Initial render
-        updateExplorer();
+      if (summary) {
+        summary.textContent = `Showing ${visibleCount} ${yearLabel} courses (${visibleUnits} units) • Click any course row to inspect prerequisites & unlocks.`;
+      }
+
+      // Empty state
+      if (emptyState) {
+        emptyState.hidden = visibleCount !== 0;
+      }
     }
+
+    // Switch active year
+    yearButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeYear = button.getAttribute("data-year-button") ?? "";
+
+        yearButtons.forEach((item) => {
+          const isActive = item.getAttribute("data-year-button") === activeYear;
+
+          item.classList.toggle("active-year", isActive);
+          item.classList.toggle("bg-red-900", isActive);
+          item.classList.toggle("text-white", isActive);
+          item.classList.toggle("border-red-900", isActive);
+
+          item.classList.toggle("bg-white", !isActive);
+          item.classList.toggle("text-slate-600", !isActive);
+          item.classList.toggle("border-slate-200", !isActive);
+
+          item.setAttribute("aria-pressed", String(isActive));
+        });
+
+        yearPanels.forEach((panel) => {
+          panel.hidden = panel.getAttribute("data-year-panel") !== activeYear;
+        });
+
+        updateExplorer();
+      });
+    });
+
+    // Search courses in the selected year
+    searchInput?.addEventListener("input", updateExplorer);
+
+    // Initial render
+    updateExplorer();
+  }
 </script>
 
 <style>
-    [hidden] {
-        display: none !important;
-    }
+  [hidden] {
+    display: none !important;
+  }
 
-    .explorerTitle {
-        color: var(--color-text-body);
-    }
+  .explorerTitle {
+    color: var(--color-text-body);
+  }
 </style>

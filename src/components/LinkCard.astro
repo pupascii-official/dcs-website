@@ -1,111 +1,118 @@
 ---
 interface Props {
-    number?: string;
-    title: string;
-    description: string;
-    href?: string;
-    linkLabel: string;
+  number?: string;
+  title: string;
+  description: string;
+  href?: string;
+  linkLabel: string;
 }
 
-const {
-    number,
-    title,
-    description,
-    href,
-    linkLabel,
-} = Astro.props;
+const { number, title, description, href, linkLabel } = Astro.props;
 ---
 
 <article class="link-card">
-    <div class="card-top">
-        <header class="card-header">
-            <h3 class="card-title">{title}</h3>
-            { number && <span class="card-number">{number}</span> }
-        </header>
-        <p class="card-description">{description}</p>
-    </div>
+  <div class="card-top">
+    <header class="card-header">
+      <h3 class="card-title">{title}</h3>
+      {number && <span class="card-number">{number}</span>}
+    </header>
+    <p class="card-description">{description}</p>
+  </div>
 
-    {href ? (
-            <a href={href} class="card-link">
-                {linkLabel} <span aria-hidden="true">↗</span>
-            </a>
-    ) : (
-            <span class="card-link">
-            {linkLabel} <span aria-hidden="true">↗</span>
-        </span>
-    )}
+  {href ? (
+    <a href={href} class="card-link">
+      {linkLabel} <span aria-hidden="true">↗</span>
+    </a>
+  ) : (
+    <span class="card-link">
+      {linkLabel} <span aria-hidden="true">↗</span>
+    </span>
+  )}
 </article>
 
 <style>
-    .link-card {
-        background-color: var(--color-white);
-        border: 1px solid var(--color-maroon);
-        border-radius: 1.5rem;
-        padding: 1.75rem;
-        box-shadow: 0 4px 16px color-mix(in srgb, var(--color-drop-shadow) 12%, transparent);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 1.5rem;
-        height: 100%;
-    }
+  .link-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-maroon);
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 16px
+      color-mix(in srgb, var(--color-drop-shadow) 12%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    height: 100%;
+  }
 
-    .card-top {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .card-top {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 1rem;
-    }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 
-    .card-title {
-        margin: 0;
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-    }
+  .card-title {
+    margin: 0;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+  }
 
-    .card-number {
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: 1.05rem;
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-        flex-shrink: 0;
-    }
+  .card-number {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+    flex-shrink: 0;
+  }
 
-    .card-description {
-        margin: 0;
-        font-size: 0.9rem;
-        line-height: 1.55;
-        color: var(--color-text-body);
-    }
+  .card-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--color-text-body);
+  }
 
-    .card-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        width: fit-content;
-        font-family: var(--font-montserrat), system-ui, sans-serif;
-        font-weight: 800;
-        font-size: 0.95rem;
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-        text-decoration: none;
-    }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: fit-content;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+  }
 
-    a.card-link:hover {
-        color: var(--color-maroon);
-        text-decoration: underline;
-    }
+  a.card-link:hover {
+    color: var(--color-maroon);
+    text-decoration: underline;
+  }
 </style>

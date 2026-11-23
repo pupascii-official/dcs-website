@@ -1,41 +1,45 @@
 ---
 interface Props {
-    kicker?: string;
-    headline: string;
+  kicker?: string;
+  headline: string;
 }
 
-const {kicker, headline} = Astro.props;
+const { kicker, headline } = Astro.props;
 ---
 
 <div class="headline-component">
-    <div class="headline-content">
-        {kicker && <small class="headline-kicker">{kicker}</small>}
-        <h3 class="headline-text">{headline}</h3>
+  <div class="headline-content">
+    {kicker && <small class="headline-kicker">{kicker}</small>}
+    <h3 class="headline-text">{headline}</h3>
 
-        <div class="headline-description">
-            <slot/>
-        </div>
+    <div class="headline-description">
+      <slot />
     </div>
+  </div>
 </div>
 
 <style>
-    .headline-content {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 1rem;
-    }
+  .headline-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
 
-    .headline-kicker {
-        font-size: large;
-        color: var(--color-text-body);
-    }
+  .headline-kicker {
+    font-size: large;
+    color: var(--color-text-body);
+  }
 
-    .headline-text {
-        font-size: clamp(2rem, 4vw, 3rem);
-        background: linear-gradient(to right, var(--color-maroon), var(--color-dark-maroon));
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 0.75rem;
-    }
+  .headline-text {
+    font-size: clamp(2rem, 4vw, 3rem);
+    background: linear-gradient(
+      to right,
+      var(--color-maroon),
+      var(--color-dark-maroon)
+    );
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.75rem;
+  }
 </style>
