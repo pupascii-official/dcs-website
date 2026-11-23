@@ -1,0 +1,24 @@
+---
+interface Props {
+  label: string;
+  title: string;
+  description?: string;
+  marginClass?: string;
+}
+
+const { label, title, description, marginClass = "mb-6" } = Astro.props;
+---
+
+<div class={`border-l-[3px] border-(--color-maroon) pl-4 ${marginClass}`}>
+  <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
+    {label}
+  </small>
+  <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
+    {title}
+  </h2>
+  {description && (
+    <p class="text-sm text-neutral-700 max-w-4xl mt-2 mb-0! leading-relaxed">
+      {description}
+    </p>
+  )}
+</div>

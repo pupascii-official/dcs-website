@@ -1,0 +1,188 @@
+---
+import { internationalData } from "../../data/internationalization/content";
+import SectionHeader from "./SectionHeader.astro";
+
+const { label, title, description, subsectionTitle, projects } = internationalData.section4;
+---
+
+<div class="featured-research-root w-full" data-featured-research>
+  <SectionHeader label={label} title={title} description={description} />
+
+  <h3 class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-extrabold text-(--color-maroon) mb-4">
+    {subsectionTitle}
+  </h3>
+
+  <div class="flex flex-wrap items-center gap-2 mb-7" role="tablist" aria-label="Featured International Research Projects">
+    {projects.map((proj, idx) => (
+      <button
+        type="button"
+        role="tab"
+        aria-selected={idx === 0 ? "true" : "false"}
+        data-project-tab={proj.id}
+        class="project-pill px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer"
+      >
+        {proj.tabLabel}
+      </button>
+    ))}
+  </div>
+
+  {projects.map((project, idx) => {
+    const metaFields = [
+      project.date ? { label: "Date", value: project.date } : null,
+      { label: "Fora", value: project.fora },
+      project.location ? { label: "Location", value: project.location } : null,
+      { label: project.leadLabel, value: project.leadResearchers },
+      project.studentResearchers ? { label: "Student Researchers", value: project.studentResearchers } : null
+    ].filter((f): f is { label: string; value: string } => f !== null);
+
+    return (
+      <div
+        data-project-panel={project.id}
+        role="tabpanel"
+        class={`${idx === 0 ? "grid" : "hidden"} grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center`}
+      >
+        <div class="lg:col-span-6 flex flex-col space-y-3.5 min-w-0">
+          {project.award && (
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-(--color-gold) text-[#420000] font-['Montserrat',sans-serif] text-[11px] font-extrabold w-fit shadow-2xs">
+              {project.award}
+            </span>
+          )}
+
+          <h3
+            class={`project-gradient-title font-['Montserrat',sans-serif] font-black tracking-tight break-words ${
+              project.useFullTitleAsHeadline
+                ? "text-xl sm:text-2xl md:text-3xl leading-tight"
+                : "text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.1] w-fit"
+            }`}
+          >
+            {project.useFullTitleAsHeadline ? project.fullTitle : project.name}
+          </h3>
+
+          {!project.useFullTitleAsHeadline && (
+            <p class="text-sm sm:text-[15px] font-bold text-neutral-900 leading-snug">
+              {project.fullTitle}
+            </p>
+          )}
+
+          <div class="space-y-2.5 pt-1">
+            {metaFields.map((field) => (
+              <div>
+                <h4 class="font-['Montserrat',sans-serif] text-xs font-extrabold text-(--color-maroon) uppercase tracking-wider mb-0.5">
+                  {field.label}
+                </h4>
+                <p class="text-xs sm:text-sm font-semibold text-neutral-800 leading-relaxed">
+                  {field.value}
+                </p>
+              </div>
+            ))}
+
+            {project.priorTeam && (
+              <div>
+                <h4 class="font-['Montserrat',sans-serif] text-[11px] font-extrabold text-neutral-600 uppercase tracking-wider mb-0.5">
+                  Prior FloodDetectWaze Team
+                </h4>
+                <p class="text-xs text-neutral-700 leading-relaxed">{project.priorTeam}</p>
+              </div>
+            )}
+          </div>
+
+          {project.url && project.url.trim().length > 0 && (
+            <div class="pt-1.5">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-(--color-maroon) text-(--color-gold) hover:bg-(--color-dark-maroon) font-['Montserrat',sans-serif] text-xs font-bold shadow-sm transition-colors"
+              >
+                View Paper ↗
+              </a>
+            </div>
+          )}
+        </div>
+
+        <div class="lg:col-span-6">
+          <div
+            data-lightbox-trigger
+            data-lightbox-src={project.imagePath}
+            data-lightbox-title={project.useFullTitleAsHeadline ? project.fullTitle : project.name}
+            data-lightbox-subtitle={project.useFullTitleAsHeadline ? project.fora : project.fullTitle}
+            class="w-full h-[260px] sm:h-[340px] lg:h-[380px] rounded-2xl overflow-hidden border border-(--color-maroon)/30 shadow-lg bg-neutral-900 cursor-pointer group relative"
+          >
+            <img
+              src={project.imagePath}
+              alt={project.imageAlt}
+              style={project.imagePosition ? `object-position: ${project.imagePosition};` : undefined}
+              class="featured-project-img transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+            <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-black/55 text-white text-[10px] font-semibold backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
+              Click to enlarge
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .featured-research-root p {
+    margin-bottom: 0;
+  }
+
+  .project-pill {
+    background-color: var(--color-white);
+    border: 1px solid rgba(128, 0, 0, 0.3);
+    color: var(--color-maroon);
+  }
+
+  .project-pill:hover {
+    border-color: var(--color-maroon);
+  }
+
+  .project-pill[aria-selected="true"] {
+    background-color: var(--color-maroon);
+    border-color: var(--color-maroon);
+    color: var(--color-gold);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+
+  .project-gradient-title {
+    background-image: linear-gradient(to right, #800000 0%, #c87d00 55%, #ffde00 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+  }
+
+  .featured-project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    display: block;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll("[data-featured-research]").forEach((root) => {
+      const tabs = root.querySelectorAll("[data-project-tab]");
+      const panels = root.querySelectorAll("[data-project-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetId = tab.getAttribute("data-project-tab");
+          tabs.forEach((t) => {
+            t.setAttribute("aria-selected", String(t.getAttribute("data-project-tab") === targetId));
+          });
+          panels.forEach((panel) => {
+            const isMatch = panel.getAttribute("data-project-panel") === targetId;
+            panel.classList.toggle("hidden", !isMatch);
+            panel.classList.toggle("grid", isMatch);
+          });
+        });
+      });
+    });
+  })();
+</script>
