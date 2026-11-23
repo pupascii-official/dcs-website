@@ -6,6 +6,7 @@ import { PDF_XOR_KEY } from "./pdfConfig.ts";
 export const PDF_CHUNK_SIZE = 64 * 1024; // 64 KB per .bin file
 
 export const DOCS: Record<string, string> = {
+
     "research-manual": "BSCS-research-manual.pdf",
 
     // For Planning and QA
@@ -15,6 +16,19 @@ export const DOCS: Record<string, string> = {
     "test-administration": "test-administration.pdf",
     "classroom-management": "classroom-management.pdf",
     "internship-ojt": "internship-ojt.pdf",
+
+    "certificate-of-authenticity": "src/data/homepage/Certificate-of-Authenticity-NOV-25-27-2026-2.pdf",
+
+    /*
+    Put PDFs in /src/assets/pdfs!
+
+    Add slugs and their corresponding PDFs here.
+
+    For example:
+
+    "curriculum-design": "curriculum-design.pdf",
+    "syllabi-preparation": "syllabi-preparation.pdf",
+    */
 
     // For Community
     "satisfaction-certification": "emo-certification.pdf",
@@ -32,7 +46,7 @@ function makeHashId(seed: string): string {
 
 export function getPdfPath(slug: string): string | undefined {
     const filename = DOCS[slug];
-    return filename ? path.resolve("src/assets/pdfs", filename) : undefined;
+    return filename ? path.resolve(filename.startsWith("src/") ? "" : "src/assets/pdfs", filename) : undefined;
 }
 
 export function getDocRef(slug: string): string | undefined {

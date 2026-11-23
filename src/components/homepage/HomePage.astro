@@ -1,7 +1,9 @@
-﻿---
+---
 import PillarBadge from "../PillarBadge.astro";
 import BscsOverview from "./BscsOverview.astro";
+import AaccupWelcome from "./AaccupWelcome.astro";
 import LeaderDialog from "./LeaderDialog.astro";
+import PDFModal from "../PDFModal.astro";
 import LetterGlitch from "../react/LetterGlitch";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import {
@@ -17,7 +19,7 @@ import Footer from "../Footer.svelte";
 
 <div class="home-page">
 	<Navbar />
-	
+
 	<main>
 		<section class="hero" id="home" aria-labelledby="hero-title">
 			<img class="hero-image" src="/images/homepage/hero/pup-pylon.webp" alt="" aria-hidden="true" fetchpriority="high" />
@@ -58,6 +60,8 @@ import Footer from "../Footer.svelte";
 			</div>
 			<a class="hero-scroll" href="#snapshot"><span class="scroll-line"></span>Scroll to explore</a>
 		</section>
+
+		<AaccupWelcome />
 
 		<BscsOverview mission={missionItems} vision={visionItems} visionIntro={visionIntro} />
 
@@ -127,8 +131,8 @@ import Footer from "../Footer.svelte";
 			closing={leader.closing}
 		/>
 	))}
-
-	<Footer client:load/>
+	<PDFModal />
+	<Footer client:load />
 </div>
 
 <style>
