@@ -19,13 +19,13 @@ export default defineConfig({
             provider: fontProviders.google(),
             name: 'Montserrat',
             cssVariable: '--font-montserrat',
-            weights: [400, 600, 800],
+            weights: [400, 500, 600, 700, 800],
         },
         {
             provider: fontProviders.google(),
             name: 'Inter',
             cssVariable: '--font-inter',
-            weights: [400, 600],
+            weights: [400, 500, 600, 700],
         },
     ],
     vite: {
