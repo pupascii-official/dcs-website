@@ -3,9 +3,7 @@ import ScrollSnapLayout from '../layouts/ScrollSnapLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import ContentSection from '../components/ContentSection.astro';
 import HeadlineComponent from "../components/HeadlineComponent.astro";
-import Footer from "../components/Footer.astro";
 import ContentCard from "../components/ContentCard.astro";
-import Navbar from '../components/Navbar.astro';
 import GalleryCard from "../components/GalleryCard.astro";
 import SpotlightBanner from "../components/SpotlightBanner.astro";
 import {CORE_VALUES, STRATEGIC_PILLARS} from "../consts.ts";
@@ -115,8 +113,6 @@ const PDCA_STEPS = [
 ---
 
 <ScrollSnapLayout title="Planning & QA" description="Test">
-    <Navbar/>
-
     <HeroSection title="Planning & Quality Assurance" subtitle="Systematizing Plans for Excellence" }>
         <p>The College of Computer and Information Sciences, through its Bachelor of Science in Computer Science and
             Bachelor of Science in Information Technology programs, actively contributes to the University's
@@ -354,8 +350,6 @@ const PDCA_STEPS = [
     </ContentSection>
 
     <PDFModal />
-
-    <Footer/>
 </ScrollSnapLayout>
 
 <style>
