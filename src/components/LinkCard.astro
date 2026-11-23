@@ -1,21 +1,17 @@
 ---
+import {getDocRef} from "../lib/pdfs.server";
+
 interface Props {
     number?: string;
     title: string;
     description: string;
-    pdfUrl?: string;
+    pdfSlug?: string;
     href?: string;
     linkLabel: string;
 }
 
-const {
-    number,
-    title,
-    description,
-    pdfUrl,
-    href,
-    linkLabel,
-} = Astro.props;
+const {number, title, description, pdfSlug, href, linkLabel} = Astro.props;
+const docRef = pdfSlug ? getDocRef(pdfSlug) : undefined;
 ---
 
 <article class="link-card">
@@ -27,11 +23,11 @@ const {
         <p class="card-description">{description}</p>
     </div>
 
-    {pdfUrl ? (
+    {docRef ? (
             <button
                     type="button"
                     class="card-link"
-                    data-pdf-url={pdfUrl}
+                    data-doc-ref={docRef}
                     data-pdf-title={title}
             >
                 {linkLabel} <span aria-hidden="true">↗</span>
