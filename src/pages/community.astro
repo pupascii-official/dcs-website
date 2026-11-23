@@ -1,8 +1,6 @@
 ---
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
-import Navbar from "../components/Navbar.astro";
 import HeroSection from "../components/HeroSection.astro";
-import Footer from "../components/Footer.astro";
 import ContentSection from "../components/ContentSection.astro";
 import HeadlineComponent from "../components/HeadlineComponent.astro";
 import InitiativeCard from "../components/community/InitiativeCard.astro";
@@ -20,17 +18,11 @@ import { getDocRef } from "../lib/pdfs.server";
     title="Community & Extension"
     description="Community outreach, digital literacy programs, and extension partnerships."
 >
-    <Navbar />
-
-    <HeroSection>
-        <Fragment slot="title">
-            Community &amp; <span class="text-(--color-gold)">Extension</span>
-        </Fragment>
-        <span slot="subtitle" class="text-white">
-            Community outreach, digital literacy programs, and extension
-            partnerships.
-        </span>
-    </HeroSection>
+    <HeroSection
+        title="Community &"
+        accentTitle="Extension"
+        subtitle="Community outreach, digital literacy programs, and extension partnerships."
+    />
 
     <CommunitySection class="md:justify-center gap-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -396,5 +388,4 @@ import { getDocRef } from "../lib/pdfs.server";
     </ContentSection>
 
     <PDFModal />
-    <Footer />
 </ScrollSnapLayout>

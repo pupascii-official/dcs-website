@@ -16,17 +16,7 @@ export const DOCS: Record<string, string> = {
     "classroom-management": "classroom-management.pdf",
     "internship-ojt": "internship-ojt.pdf",
 
-    /*
-    Put PDFs in /src/assets/pdfs!
-
-    Add slugs and their corresponding PDFs here.
-
-    For example:
-    
-    "curriculum-design": "curriculum-design.pdf",
-    "syllabi-preparation": "syllabi-preparation.pdf",
-    */
-
+    // For Community
     "satisfaction-certification": "emo-certification.pdf",
     "extension-proposal-mse": "extension-proposal-mse.pdf",
     "ems-objectives": "extension-proposal-ems.pdf",
