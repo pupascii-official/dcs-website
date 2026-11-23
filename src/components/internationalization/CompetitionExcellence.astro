@@ -1,18 +1,12 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
+import SectionHeader from "./SectionHeader.astro";
 
 const { label, title, items, cta } = internationalData.competitions;
 ---
 
 <div class="competitions-root w-full space-y-6" data-competition-excellence>
-  <div class="border-l-[3px] border-(--color-maroon) pl-4">
-    <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
-      {label}
-    </small>
-    <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
-      {title}
-    </h2>
-  </div>
+  <SectionHeader label={label} title={title} marginClass="mb-0" />
 
   <div class="flex flex-col gap-6">
     {items.map((item) => (
@@ -22,7 +16,7 @@ const { label, title, items, cta } = internationalData.competitions;
       >
         <div class="relative z-10 w-full md:w-[56%] p-6 sm:p-8 flex flex-col justify-between">
           <div>
-            <h3 class="competition-banner-title font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold leading-tight mb-3">
+            <h3 class="competition-gold-text font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold leading-tight mb-3">
               {item.headline}
             </h3>
 
@@ -37,15 +31,11 @@ const { label, title, items, cta } = internationalData.competitions;
               ))}
             </ul>
 
-            <p class="text-xs sm:text-sm font-bold text-white leading-snug">
-              {item.programName}
-            </p>
-            <p class="text-[11px] sm:text-xs text-white/85 mt-0.5">
-              {item.theme}
-            </p>
+            <p class="text-xs sm:text-sm font-bold text-white leading-snug">{item.programName}</p>
+            <p class="text-[11px] sm:text-xs text-white/85 mt-0.5">{item.theme}</p>
           </div>
 
-          <p class="competition-award-label font-['Montserrat',sans-serif] text-3xl sm:text-4xl font-extrabold leading-none mt-5">
+          <p class="competition-gold-text font-['Montserrat',sans-serif] text-3xl sm:text-4xl font-extrabold leading-none mt-5">
             {item.award}
           </p>
         </div>
@@ -84,11 +74,7 @@ const { label, title, items, cta } = internationalData.competitions;
     background: linear-gradient(90deg, #5c0000 0%, #800000 60%, #6e0000 100%);
   }
 
-  .competition-banner-title {
-    color: var(--color-gold) !important;
-  }
-
-  .competition-award-label {
+  .competition-gold-text {
     color: var(--color-gold) !important;
   }
 
@@ -96,7 +82,6 @@ const { label, title, items, cta } = internationalData.competitions;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 22%;
     border-radius: 0;
     display: block;
   }
@@ -135,17 +120,11 @@ const { label, title, items, cta } = internationalData.competitions;
   (() => {
     document.querySelectorAll("[data-competition-excellence]").forEach((root) => {
       const cards = root.querySelectorAll("[data-competition-card]");
-
       cards.forEach((card) => {
         card.addEventListener("click", () => {
           const isSelected = card.classList.contains("ring-2");
-          cards.forEach((c) => {
-            c.classList.remove("ring-2", "ring-[#FFDE00]", "-translate-y-0.5");
-          });
-
-          if (!isSelected) {
-            card.classList.add("ring-2", "ring-[#FFDE00]", "-translate-y-0.5");
-          }
+          cards.forEach((c) => c.classList.remove("ring-2", "ring-[#FFDE00]", "-translate-y-0.5"));
+          if (!isSelected) card.classList.add("ring-2", "ring-[#FFDE00]", "-translate-y-0.5");
         });
       });
     });

@@ -1,28 +1,18 @@
 ---
 import { studentExchangeData, studentExchangeMore } from "../../data/internationalization/students";
+import SectionHeader from "./SectionHeader.astro";
+import StackedDeck from "./StackedDeck.astro";
 ---
 
-<div class="student-experience-root w-full space-y-6" data-student-experience>
-  <div class="border-l-[3px] border-(--color-maroon) pl-4">
-    <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
-      SECTION 04
-    </small>
-    <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
-      Global Student Experience
-    </h2>
-  </div>
+<div class="student-experience-root w-full space-y-6">
+  <SectionHeader label="SECTION 05" title="Global Student Experience" marginClass="mb-0" />
 
-  <div class="student-deck" data-deck data-active="-1">
+  <StackedDeck desktopHeight="460px">
     {studentExchangeData.map((student, idx) => (
-      <div
-        class="student-deck-item"
-        data-deck-item
-        data-index={idx}
-        data-state="idle"
-      >
+      <div class="intl-deck-item" data-deck-item data-index={idx} data-state="idle">
         <div
-          class="collapsed-card relative w-full aspect-[3/4] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-neutral-200 hover:border-(--color-maroon) bg-(--color-dark-maroon) shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
-          data-collapsed-card
+          class="relative w-full aspect-[3/4] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-neutral-200 hover:border-(--color-maroon) bg-(--color-dark-maroon) shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
+          data-deck-collapsed
           role="button"
           tabindex="0"
           aria-expanded="false"
@@ -35,28 +25,27 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
             loading="lazy"
           />
           <div class="collapsed-overlay absolute inset-0 flex flex-col justify-end p-4 sm:p-5 text-center">
-            <h3 class="collapsed-overlay-name font-['Montserrat',sans-serif] text-base sm:text-lg font-extrabold text-(--color-gold) leading-tight">
+            <h3 class="collapsed-overlay-name font-['Montserrat',sans-serif] text-base sm:text-lg font-extrabold leading-tight">
               {student.displayNameOnPortrait}
             </h3>
-            <p class="collapsed-overlay-uni text-xs font-bold text-white mt-1">
-              {student.university}
-            </p>
-            <p class="collapsed-overlay-loc text-[11px] text-white/85 mt-0.5">
-              {student.cityCountry}
-            </p>
+            <p class="text-xs font-bold text-white mt-1">{student.university}</p>
+            <p class="text-[11px] text-white/85 mt-0.5">{student.cityCountry}</p>
+            <span class="inline-flex items-center gap-1 mt-2.5 mx-auto px-3 py-1 rounded-full text-[10px] font-bold text-(--color-gold) bg-white/10 border border-(--color-gold)/35 group-hover:bg-(--color-gold) group-hover:text-[#420000] transition-colors w-fit">
+              View highlights →
+            </span>
           </div>
         </div>
 
         <div
           class="expanded-card hidden relative w-full md:h-full rounded-2xl overflow-hidden shadow-2xl border border-(--color-maroon) cursor-pointer"
-          data-expanded-card
+          data-deck-expanded
           role="button"
           tabindex="0"
           aria-label={`Collapse exchange story of ${student.name}`}
         >
           <button
             type="button"
-            data-close-btn
+            data-deck-close
             aria-label="Collapse card"
             class="absolute top-3.5 right-3.5 z-20 w-8 h-8 rounded-full bg-black/40 hover:bg-black/65 text-white flex items-center justify-center text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer"
           >
@@ -64,48 +53,35 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
           </button>
 
           <div class="md:hidden relative w-full h-52 overflow-hidden">
-            <img
-              src={student.groupPhotoPath}
-              alt={`${student.name} exchange group`}
-              class="expanded-group-img"
-              loading="lazy"
-            />
+            <img src={student.groupPhotoPath} alt={`${student.name} exchange group`} class="expanded-group-img" loading="lazy" />
             <div class="expanded-mobile-gradient absolute inset-0 pointer-events-none"></div>
           </div>
 
           <div class="hidden md:block absolute inset-y-0 right-0 w-3/5 h-full overflow-hidden">
-            <img
-              src={student.groupPhotoPath}
-              alt={`${student.name} exchange group`}
-              class="expanded-group-img"
-              loading="lazy"
-            />
+            <img src={student.groupPhotoPath} alt={`${student.name} exchange group`} class="expanded-group-img" loading="lazy" />
           </div>
 
           <div class="hidden md:block expanded-desktop-gradient absolute inset-0 pointer-events-none z-[1]"></div>
 
           <div class="relative z-10 w-full md:w-[55%] md:h-full p-5 sm:p-7 flex flex-col justify-center overflow-y-auto scrollbar-none">
-            <h3 class="expanded-student-name font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-gold) leading-tight pr-8 md:pr-0">
+            <h3 class="expanded-student-name font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold leading-tight pr-8 md:pr-0">
               {student.name}
             </h3>
-            <p class="expanded-meta text-xs font-medium text-white/90 mt-0.5 mb-2.5">
-              {student.degree}
-            </p>
-
-            <p class="expanded-meta text-xs sm:text-[13px] font-bold text-white leading-snug">
+            <p class="expanded-meta mb-2.5 text-xs font-medium text-white/90 mt-0.5">{student.degree}</p>
+            <p class="text-xs sm:text-[13px] font-bold text-white leading-snug">
               {student.university}, {student.country}
             </p>
-            <p class="expanded-meta text-[11px] sm:text-xs text-white/90 leading-snug mt-1">
+            <p class="text-[11px] sm:text-xs text-white/90 leading-snug mt-1">
               <span class="font-bold text-white">Activity:</span> {student.activity}
             </p>
-            <p class="expanded-meta text-[11px] sm:text-xs text-white/90 leading-snug mt-0.5 mb-3">
+            <p class="expanded-meta mb-3 text-[11px] sm:text-xs text-white/90 leading-snug mt-0.5">
               <span class="font-bold text-white">Modality:</span> {student.modality}
             </p>
 
             <div class="space-y-2.5 pt-2.5 border-t border-white/20">
               {student.sections.map((sec) => (
                 <div>
-                  <h4 class="expanded-section-heading font-['Montserrat',sans-serif] text-xs font-bold text-white tracking-wide">
+                  <h4 class="expanded-section-heading font-['Montserrat',sans-serif] text-xs font-bold tracking-wide">
                     {sec.heading}
                   </h4>
                   <ul class="space-y-1 text-[11px] sm:text-xs text-white/90 leading-snug list-disc pl-4 mt-1">
@@ -120,13 +96,13 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
         </div>
       </div>
     ))}
-  </div>
+  </StackedDeck>
 
   <div class="pt-4 border-t border-neutral-200">
     <h3 class="font-['Montserrat',sans-serif] text-sm sm:text-base font-extrabold text-(--color-maroon) mb-1">
       {studentExchangeMore.heading}
     </h3>
-    <p class="upcoming-lead text-sm text-neutral-800 font-medium mb-2.5">
+    <p class="upcoming-lead text-sm text-neutral-800 font-medium">
       {studentExchangeMore.lead}
     </p>
     <ul class="space-y-1.5 text-xs sm:text-sm font-bold text-(--color-maroon)">
@@ -145,10 +121,7 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
     margin-bottom: 0;
   }
 
-  .student-experience-root .upcoming-lead {
-    margin-bottom: 0.625rem;
-  }
-
+  .student-experience-root .upcoming-lead,
   .student-experience-root .expanded-meta.mb-2\.5 {
     margin-bottom: 0.625rem;
   }
@@ -157,13 +130,21 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
     margin-bottom: 0.75rem;
   }
 
-  .collapsed-portrait-img {
+  .collapsed-portrait-img,
+  .expanded-group-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
     border-radius: 0;
     display: block;
+  }
+
+  .collapsed-portrait-img {
+    object-position: top center;
+  }
+
+  .expanded-group-img {
+    object-position: center;
   }
 
   .collapsed-overlay {
@@ -177,7 +158,8 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
     );
   }
 
-  .collapsed-overlay-name {
+  .collapsed-overlay-name,
+  .expanded-student-name {
     color: var(--color-gold) !important;
   }
 
@@ -185,21 +167,8 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
     background-color: var(--color-dark-maroon);
   }
 
-  .expanded-student-name {
-    color: var(--color-gold) !important;
-  }
-
   .expanded-section-heading {
     color: var(--color-white) !important;
-  }
-
-  .expanded-group-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 0;
-    display: block;
   }
 
   .expanded-desktop-gradient {
@@ -222,177 +191,4 @@ import { studentExchangeData, studentExchangeMore } from "../../data/internation
       transparent 100%
     );
   }
-
-  .student-deck {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    width: 100%;
-  }
-
-  .student-deck-item {
-    position: relative;
-    width: 100%;
-  }
-
-  @media (min-width: 768px) {
-    .student-deck {
-      flex-direction: row;
-      align-items: stretch;
-      gap: 0;
-      height: 460px;
-      padding: 0.25rem 0;
-    }
-
-    .student-deck-item {
-      flex: 0 0 auto;
-      height: 100%;
-      width: 32%;
-      margin-left: 2%;
-      z-index: 10;
-      transform: scale(1);
-      transition:
-        width 420ms cubic-bezier(0.22, 1, 0.36, 1),
-        margin-left 420ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
-        filter 300ms ease;
-    }
-
-    .student-deck-item:first-child {
-      margin-left: 0;
-    }
-
-    .student-deck[data-active="0"] .student-deck-item[data-index="0"] {
-      width: 75%;
-      margin-left: 0;
-      z-index: 30;
-      transform: scale(1);
-    }
-
-    .student-deck[data-active="0"] .student-deck-item[data-index="1"] {
-      width: 28%;
-      margin-left: -15.5%;
-      z-index: 20;
-      transform: scale(0.95);
-      filter: brightness(0.9);
-    }
-
-    .student-deck[data-active="0"] .student-deck-item[data-index="2"] {
-      width: 28%;
-      margin-left: -15.5%;
-      z-index: 10;
-      transform: scale(0.9);
-      filter: brightness(0.82);
-    }
-
-    .student-deck[data-active="1"] .student-deck-item[data-index="0"] {
-      width: 28%;
-      margin-left: 0;
-      z-index: 20;
-      transform: scale(0.95);
-      filter: brightness(0.9);
-    }
-
-    .student-deck[data-active="1"] .student-deck-item[data-index="1"] {
-      width: 75%;
-      margin-left: -15.5%;
-      z-index: 30;
-      transform: scale(1);
-    }
-
-    .student-deck[data-active="1"] .student-deck-item[data-index="2"] {
-      width: 28%;
-      margin-left: -15.5%;
-      z-index: 20;
-      transform: scale(0.95);
-      filter: brightness(0.9);
-    }
-
-    .student-deck[data-active="2"] .student-deck-item[data-index="0"] {
-      width: 28%;
-      margin-left: 0;
-      z-index: 10;
-      transform: scale(0.9);
-      filter: brightness(0.82);
-    }
-
-    .student-deck[data-active="2"] .student-deck-item[data-index="1"] {
-      width: 28%;
-      margin-left: -15.5%;
-      z-index: 20;
-      transform: scale(0.95);
-      filter: brightness(0.9);
-    }
-
-    .student-deck[data-active="2"] .student-deck-item[data-index="2"] {
-      width: 75%;
-      margin-left: -15.5%;
-      z-index: 30;
-      transform: scale(1);
-    }
-
-    .student-deck:not([data-active="-1"]) .student-deck-item[data-state="peeking"]:hover {
-      filter: brightness(1);
-    }
-  }
 </style>
-
-<script is:inline>
-  (() => {
-    document.querySelectorAll("[data-student-experience]").forEach((root) => {
-      const deck = root.querySelector("[data-deck]");
-      const items = Array.from(root.querySelectorAll("[data-deck-item]"));
-      if (!deck) return;
-
-      const setActive = (activeIdx) => {
-        deck.setAttribute("data-active", String(activeIdx));
-
-        items.forEach((item, idx) => {
-          const collapsed = item.querySelector("[data-collapsed-card]");
-          const expanded = item.querySelector("[data-expanded-card]");
-          const isActive = idx === activeIdx;
-
-          if (activeIdx === -1) {
-            item.setAttribute("data-state", "idle");
-          } else {
-            item.setAttribute("data-state", isActive ? "active" : "peeking");
-          }
-
-          collapsed?.classList.toggle("hidden", isActive);
-          collapsed?.setAttribute("aria-expanded", String(isActive));
-          expanded?.classList.toggle("hidden", !isActive);
-        });
-      };
-
-      items.forEach((item, idx) => {
-        const collapsed = item.querySelector("[data-collapsed-card]");
-        const expanded = item.querySelector("[data-expanded-card]");
-        const closeBtn = item.querySelector("[data-close-btn]");
-
-        collapsed?.addEventListener("click", () => setActive(idx));
-        collapsed?.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setActive(idx);
-          }
-        });
-
-        expanded?.addEventListener("click", (e) => {
-          if (e.target.closest("[data-close-btn]")) return;
-          setActive(-1);
-        });
-        expanded?.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " " || e.key === "Escape") {
-            e.preventDefault();
-            setActive(-1);
-          }
-        });
-
-        closeBtn?.addEventListener("click", (e) => {
-          e.stopPropagation();
-          setActive(-1);
-        });
-      });
-    });
-  })();
-</script>

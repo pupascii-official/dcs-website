@@ -1,57 +1,33 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
 
-const { label, title, description, publications, selectedConferenceHeading, selectedConferenceList } =
-  internationalData.section5;
+const { selectedConferenceHeading, selectedConferenceList } = internationalData.section5;
+
+const filterTabs = [
+  { id: "all", label: "All" },
+  { id: "journal-book", label: "Journal & Book" },
+  { id: "conference", label: "Conference Papers" },
+  { id: "iictc-award", label: "IICTC 2022 Best Paper Awards" }
+];
 ---
 
-<div class="w-full space-y-8" data-research-publications>
-  <div class="border-l-[3px] border-(--color-maroon) pl-4">
-    <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
-      {label}
-    </small>
-    <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
-      {title}
-    </h2>
-    <p class="text-sm text-neutral-700 max-w-4xl mt-2 leading-relaxed">
-      {description}
-    </p>
-  </div>
-
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full">
-    {publications.map((pub) => (
-      <div class="rounded-2xl border border-(--color-maroon) bg-white p-6 sm:p-8 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow duration-200">
-        <div>
-          <span class="text-[11px] font-bold text-(--color-maroon) tracking-wider uppercase block mb-3">
-            {pub.typeBadge}
-          </span>
-          <h3 class="pub-card-title font-['Montserrat',sans-serif] text-base sm:text-lg font-extrabold text-[#1A1414] leading-snug mb-3">
-            {pub.title}
-          </h3>
-          <p class="text-xs text-neutral-600 mb-4">{pub.journal}</p>
-        </div>
-        <p class="text-xs font-bold text-(--color-maroon) pt-4 border-t border-neutral-100">
-          {pub.faculty}
-        </p>
-      </div>
-    ))}
-  </div>
-
-  <div class="w-full space-y-4 pt-2">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 w-full">
-      <h3 class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-bold text-(--color-maroon)">
+<div class="w-full space-y-5" data-research-publications>
+  <div class="w-full space-y-4">
+    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 w-full">
+      <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon) tracking-tight">
         {selectedConferenceHeading}
       </h3>
-      <div class="relative w-full sm:w-64 shrink-0">
+      <div class="relative w-full lg:w-80 shrink-0">
         <input
           type="text"
           data-filter-input
-          placeholder="Filter papers or authors..."
-          class="w-full text-xs px-3.5 py-2 rounded-full border border-neutral-300 focus:outline-none focus:border-(--color-maroon) bg-white shadow-2xs"
+          placeholder="Filter by title, author, year, venue, or award..."
+          class="w-full text-xs px-3.5 py-2 pr-8 rounded-full border border-neutral-300 focus:outline-none focus:border-(--color-maroon) bg-white shadow-2xs"
         />
         <button
           type="button"
           data-filter-clear
+          aria-label="Clear filter"
           class="hidden absolute right-3 top-2 text-neutral-400 hover:text-neutral-700 text-xs font-bold cursor-pointer"
         >
           ✕
@@ -59,23 +35,134 @@ const { label, title, description, publications, selectedConferenceHeading, sele
       </div>
     </div>
 
-    <div class="w-full h-auto rounded-2xl border border-neutral-300 bg-white py-5 px-6 shadow-sm">
-      <div class="conference-list-scroll h-auto max-h-[340px] overflow-y-auto pr-2 space-y-5">
-        {selectedConferenceList.map((paper, idx) => (
+    <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter research by category">
+      {filterTabs.map((tab, idx) => (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={idx === 0 ? "true" : "false"}
+          data-cat-btn={tab.id}
+          class={`px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer ${
+            idx === 0
+              ? "bg-(--color-maroon) text-(--color-gold) shadow-2xs"
+              : "bg-white border border-neutral-300 text-neutral-700 hover:border-(--color-maroon) hover:text-(--color-maroon)"
+          }`}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="w-full h-auto rounded-2xl border border-neutral-300 bg-white py-4 px-5 sm:px-6 shadow-sm">
+      <div class="conference-list-scroll h-auto max-h-[420px] overflow-y-auto pr-2 divide-y divide-neutral-200">
+        {selectedConferenceList.map((paper) => (
           <div
             data-paper-row
-            data-paper-title={paper.title.toLowerCase()}
-            data-paper-authors={paper.authors.toLowerCase()}
-            class={idx !== selectedConferenceList.length - 1 ? "pb-5 border-b border-neutral-200" : "pb-0"}
+            data-paper-category={paper.category}
+            data-paper-search={`${paper.title} ${paper.authors} ${paper.date} ${paper.fora} ${paper.location ?? ""} ${paper.award ?? ""} ${paper.categoryLabel}`.toLowerCase()}
+            class="py-3.5 first:pt-1 last:pb-1"
           >
-            <h4 class="paper-row-title font-['Montserrat',sans-serif] text-sm sm:text-base font-bold text-[#1A1414] leading-snug mb-1.5">
-              {paper.title}
-            </h4>
-            <p class="text-xs font-bold text-(--color-maroon)">{paper.authors}</p>
+            <button
+              type="button"
+              data-row-toggle
+              aria-expanded="false"
+              class="w-full text-left flex items-start justify-between gap-3 group cursor-pointer"
+            >
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-(--color-maroon) text-(--color-gold)">
+                    {paper.date}
+                  </span>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-(--color-maroon)/10 text-(--color-maroon)">
+                    {paper.categoryLabel}
+                  </span>
+                  {paper.award && (
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-(--color-gold) text-[#420000]">
+                      {paper.award}
+                    </span>
+                  )}
+                </div>
+
+                <h4 class="paper-row-title font-['Montserrat',sans-serif] text-sm sm:text-[15px] font-bold text-[#1A1414] group-hover:text-(--color-maroon) transition-colors leading-snug">
+                  {paper.title}
+                </h4>
+                <p class="text-xs font-semibold text-(--color-maroon) mt-1 leading-snug">
+                  {paper.authors}
+                </p>
+              </div>
+
+              <span
+                data-row-chevron
+                aria-hidden="true"
+                class="shrink-0 w-7 h-7 rounded-full border border-neutral-200 group-hover:border-(--color-maroon) text-neutral-500 group-hover:text-(--color-maroon) flex items-center justify-center text-xs transition-transform duration-200 mt-0.5"
+              >
+                ▾
+              </span>
+            </button>
+
+            <div
+              data-row-drawer
+              class="hidden mt-3 rounded-xl bg-neutral-50 border border-neutral-200/90 p-4 space-y-2 text-xs"
+            >
+              <div>
+                <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
+                  Fora / Publication
+                </span>
+                <p class="text-neutral-800 font-medium leading-relaxed mt-0.5">{paper.fora}</p>
+              </div>
+
+              <div class="flex flex-wrap gap-x-6 gap-y-2">
+                <div>
+                  <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
+                    Date
+                  </span>
+                  <p class="text-neutral-800 font-medium mt-0.5">{paper.date}</p>
+                </div>
+
+                {paper.location && (
+                  <div>
+                    <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
+                      Location
+                    </span>
+                    <p class="text-neutral-800 font-medium mt-0.5">{paper.location}</p>
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <span class="font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block">
+                  Authors
+                </span>
+                <p class="text-neutral-800 font-medium leading-relaxed mt-0.5">{paper.authors}</p>
+              </div>
+
+              {(paper.award || (paper.url && paper.url.trim().length > 0)) && (
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-neutral-200/80">
+                  {paper.award ? (
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-extrabold bg-(--color-gold) text-[#420000]">
+                      {paper.award}
+                    </span>
+                  ) : (
+                    <span></span>
+                  )}
+
+                  {paper.url && paper.url.trim().length > 0 && (
+                    <a
+                      href={paper.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-(--color-maroon) text-(--color-gold) hover:bg-(--color-dark-maroon) font-['Montserrat',sans-serif] text-[11px] font-bold transition-colors shadow-2xs"
+                    >
+                      View Paper ↗
+                    </a>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         ))}
-        <p data-no-results class="hidden text-xs text-neutral-500 py-4 text-center">
-          No papers found matching your query.
+        <p data-no-results class="hidden text-xs text-neutral-500 py-6 text-center">
+          No research entries match your filter.
         </p>
       </div>
     </div>
@@ -83,9 +170,12 @@ const { label, title, description, publications, selectedConferenceHeading, sele
 </div>
 
 <style>
-  .pub-card-title,
   .paper-row-title {
     color: var(--color-text-body) !important;
+  }
+
+  .group:hover .paper-row-title {
+    color: var(--color-maroon) !important;
   }
 
   [data-research-publications] p {
@@ -122,24 +212,27 @@ const { label, title, description, publications, selectedConferenceHeading, sele
     document.querySelectorAll("[data-research-publications]").forEach((root) => {
       const input = root.querySelector("[data-filter-input]");
       const clearBtn = root.querySelector("[data-filter-clear]");
+      const catButtons = root.querySelectorAll("[data-cat-btn]");
       const rows = root.querySelectorAll("[data-paper-row]");
       const noResults = root.querySelector("[data-no-results]");
 
-      if (!input) return;
+      let activeCategory = "all";
 
-      const filter = () => {
-        const query = input.value.trim().toLowerCase();
+      const applyFilters = () => {
+        const query = (input?.value || "").trim().toLowerCase();
         let visibleCount = 0;
 
         clearBtn?.classList.toggle("hidden", query === "");
 
         rows.forEach((row) => {
-          const title = row.getAttribute("data-paper-title") || "";
-          const authors = row.getAttribute("data-paper-authors") || "";
-          const isMatch = title.includes(query) || authors.includes(query);
+          const searchText = row.getAttribute("data-paper-search") || "";
+          const category = row.getAttribute("data-paper-category") || "";
+          const matchesQuery = searchText.includes(query);
+          const matchesCat = activeCategory === "all" || category === activeCategory;
+          const show = matchesQuery && matchesCat;
 
-          row.classList.toggle("hidden", !isMatch);
-          if (isMatch) visibleCount++;
+          row.classList.toggle("hidden", !show);
+          if (show) visibleCount++;
         });
 
         if (noResults) {
@@ -147,10 +240,41 @@ const { label, title, description, publications, selectedConferenceHeading, sele
         }
       };
 
-      input.addEventListener("input", filter);
+      catButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeCategory = btn.getAttribute("data-cat-btn") || "all";
+
+          catButtons.forEach((b) => {
+            const isSelected = b.getAttribute("data-cat-btn") === activeCategory;
+            b.setAttribute("aria-selected", String(isSelected));
+            b.className = isSelected
+              ? "px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer bg-(--color-maroon) text-(--color-gold) shadow-2xs"
+              : "px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer bg-white border border-neutral-300 text-neutral-700 hover:border-(--color-maroon) hover:text-(--color-maroon)";
+          });
+
+          applyFilters();
+        });
+      });
+
+      input?.addEventListener("input", applyFilters);
       clearBtn?.addEventListener("click", () => {
-        input.value = "";
-        filter();
+        if (input) input.value = "";
+        applyFilters();
+      });
+
+      rows.forEach((row) => {
+        const toggleBtn = row.querySelector("[data-row-toggle]");
+        const drawer = row.querySelector("[data-row-drawer]");
+        const chevron = row.querySelector("[data-row-chevron]");
+
+        toggleBtn?.addEventListener("click", () => {
+          const isOpen = !drawer?.classList.contains("hidden");
+          drawer?.classList.toggle("hidden", isOpen);
+          toggleBtn.setAttribute("aria-expanded", String(!isOpen));
+          if (chevron) {
+            chevron.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+          }
+        });
       });
     });
   })();

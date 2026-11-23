@@ -2,23 +2,29 @@
 import { internationalData } from "../../data/internationalization/content";
 
 const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
+
+const splitRank = (rank: string) => {
+  const match = rank.match(/^(\d+)(st|nd|rd|th)$/);
+  return match ? { num: match[1], suffix: match[2] } : { num: rank, suffix: "" };
+};
+
+const edurankMetrics = [
+  { ...splitRank(edurank.phRank), label: edurank.phContext, colClass: "col-span-5 pr-3 border-r border-(--color-maroon)/40" },
+  { ...splitRank(edurank.worldRank), label: edurank.worldContext, colClass: "col-span-7 pl-4 sm:pl-5" }
+];
+
+const wuriMain = splitRank(wuri.rank);
+const gradNumClass = "rank-gradient-num font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight";
 ---
 
-<div class="rankings-root w-full border-t border-(--color-maroon)/50 pt-5 space-y-6" data-rankings-section>
+<div class="rankings-root w-full border-t border-(--color-maroon)/50 pt-5 space-y-6">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-0 pb-6 border-b border-(--color-maroon)/50">
     <div class="flex flex-col justify-between md:pr-8">
       <div class="flex items-center justify-between gap-4 mb-3">
         <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
           {qsStars.title}
         </h3>
-        {qsStars.logoPath && (
-          <img
-            src={qsStars.logoPath}
-            alt="QS Stars"
-            class="ranking-logo ranking-logo-qs shrink-0"
-            loading="lazy"
-          />
-        )}
+        <img src={qsStars.logoPath} alt="QS Stars" class="ranking-logo ranking-logo-qs shrink-0" loading="lazy" />
       </div>
 
       <div class="grid grid-cols-2">
@@ -26,9 +32,7 @@ const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
           <div class={`flex flex-col ${idx === 0 ? "pr-4 border-r border-(--color-maroon)/40" : "pl-4 sm:pl-6"}`}>
             <span class="text-xs font-bold text-(--color-maroon) mb-1">{rating.year}</span>
             <div class="flex items-baseline gap-1.5 mb-2">
-              <span class="rank-gradient-num bg-gradient-to-b from-[#D99B00] via-[#A64B00] to-[#800000] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none">
-                {rating.stars}
-              </span>
+              <span class={gradNumClass}>{rating.stars}</span>
               <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
                 Stars
               </span>
@@ -64,39 +68,21 @@ const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
           </h3>
           <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{edurank.subtitle}</p>
         </div>
-        {edurank.logoPath && (
-          <img
-            src={edurank.logoPath}
-            alt="EduRank Logo"
-            class="ranking-logo-edurank shrink-0 shadow-2xs"
-            loading="lazy"
-          />
-        )}
+        <img src={edurank.logoPath} alt="EduRank Logo" class="ranking-logo-edurank shrink-0 shadow-2xs" loading="lazy" />
       </div>
 
       <div class="grid grid-cols-12 items-end">
-        <div class="col-span-5 pr-3 border-r border-(--color-maroon)/40">
-          <div class="flex items-baseline whitespace-nowrap">
-            <span class="rank-gradient-num bg-gradient-to-b from-[#D99B00] via-[#A64B00] to-[#800000] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight">
-              15
-            </span>
-            <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
-              th
-            </span>
+        {edurankMetrics.map((m) => (
+          <div class={m.colClass}>
+            <div class="flex items-baseline whitespace-nowrap">
+              <span class={gradNumClass}>{m.num}</span>
+              <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
+                {m.suffix}
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-neutral-800 font-semibold mt-1.5">{m.label}</p>
           </div>
-          <p class="text-xs sm:text-sm text-neutral-800 font-semibold mt-1.5">{edurank.phContext}</p>
-        </div>
-        <div class="col-span-7 pl-4 sm:pl-5">
-          <div class="flex items-baseline whitespace-nowrap">
-            <span class="rank-gradient-num bg-gradient-to-b from-[#D99B00] via-[#A64B00] to-[#800000] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight">
-              4976
-            </span>
-            <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
-              th
-            </span>
-          </div>
-          <p class="text-xs sm:text-sm text-neutral-800 font-semibold mt-1.5">{edurank.worldContext}</p>
-        </div>
+        ))}
       </div>
     </div>
   </div>
@@ -110,19 +96,10 @@ const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
           </h3>
           <p class="text-xs font-bold text-(--color-maroon) mt-0.5">{theImpact.subtitle}</p>
         </div>
-        {theImpact.logoPath && (
-          <img
-            src={theImpact.logoPath}
-            alt="THE Impact Ranking"
-            class="ranking-logo ranking-logo-the max-h-20 w-auto object-contain shrink-0"
-            loading="lazy"
-          />
-        )}
+        <img src={theImpact.logoPath} alt="THE Impact Ranking" class="ranking-logo ranking-logo-the shrink-0" loading="lazy" />
       </div>
       <div class="flex flex-wrap items-baseline gap-2 mt-2">
-        <span class="rank-gradient-num bg-gradient-to-b from-[#D99B00] via-[#A64B00] to-[#800000] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight">
-          {theImpact.rank}
-        </span>
+        <span class={gradNumClass}>{theImpact.rank}</span>
         <span class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-extrabold text-(--color-maroon)">
           {theImpact.context}
         </span>
@@ -136,18 +113,9 @@ const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
           <h3 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon) tracking-tight">
             {aunQa.title}
           </h3>
-          <span class="text-xs font-bold text-(--color-maroon) block mt-0.5">
-            {aunQa.subtitle}
-          </span>
+          <span class="text-xs font-bold text-(--color-maroon) block mt-0.5">{aunQa.subtitle}</span>
         </div>
-        {aunQa.logoPath && (
-          <img
-            src={aunQa.logoPath}
-            alt="AUN-QA Logo"
-            class="ranking-logo ranking-logo-aun shrink-0"
-            loading="lazy"
-          />
-        )}
+        <img src={aunQa.logoPath} alt="AUN-QA Logo" class="ranking-logo ranking-logo-aun shrink-0" loading="lazy" />
       </div>
       <p class="text-xs sm:text-sm text-neutral-700 leading-relaxed mt-1">{aunQa.description}</p>
     </div>
@@ -163,11 +131,9 @@ const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
       </div>
 
       <div class="flex items-baseline mt-1">
-        <span class="rank-gradient-num bg-gradient-to-b from-[#D99B00] via-[#A64B00] to-[#800000] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight">
-          {wuri.rank.replace("th", "")}
-        </span>
+        <span class={gradNumClass}>{wuriMain.num}</span>
         <span class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl font-extrabold text-(--color-maroon)">
-          th
+          {wuriMain.suffix}
         </span>
       </div>
       <p class="text-xs font-semibold text-neutral-700 mt-1.5 mb-3">{wuri.previousRank}</p>
@@ -185,32 +151,26 @@ const { qsStars, edurank, theImpact, aunQa, wuri } = internationalData.section2;
             <span class="font-['Montserrat',sans-serif] text-xs font-extrabold text-(--color-maroon) tracking-wide">
               {y.year}
             </span>
-            {idx === 0 && wuri.logoPath && (
-              <img
-                src={wuri.logoPath}
-                alt="WURI Logo"
-                class="ranking-logo ranking-logo-wuri max-h-20 w-auto object-contain shrink-0"
-                loading="lazy"
-              />
+            {idx === 0 && (
+              <img src={wuri.logoPath} alt="WURI Logo" class="ranking-logo ranking-logo-wuri shrink-0" loading="lazy" />
             )}
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {y.ranks.map((item) => (
-              <div class="flex flex-col">
-                <div class="flex items-baseline whitespace-nowrap">
-                  <span class="rank-gradient-num bg-gradient-to-b from-[#D99B00] via-[#A64B00] to-[#800000] bg-clip-text text-transparent font-['Montserrat',sans-serif] text-6xl md:text-7xl font-extrabold leading-none tracking-tight">
-                    {item.rank.replace(/(st|nd|rd|th)/, "")}
-                  </span>
-                  <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
-                    {item.rank.match(/(st|nd|rd|th)/)?.[0]}
-                  </span>
+            {y.ranks.map((item) => {
+              const parsed = splitRank(item.rank);
+              return (
+                <div class="flex flex-col">
+                  <div class="flex items-baseline whitespace-nowrap">
+                    <span class={gradNumClass}>{parsed.num}</span>
+                    <span class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon)">
+                      {parsed.suffix}
+                    </span>
+                  </div>
+                  <p class="text-xs font-bold text-(--color-maroon) mt-1.5 leading-snug">{item.label}</p>
                 </div>
-                <p class="text-xs font-bold text-(--color-maroon) mt-1.5 leading-snug">
-                  {item.label}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       ))}

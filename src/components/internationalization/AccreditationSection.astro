@@ -1,18 +1,12 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
+import SectionHeader from "./SectionHeader.astro";
 
 const { label, title, badge, headline, programs, imagePath } = internationalData.section1;
 ---
 
-<div class="accreditation-section w-full">
-  <div class="border-l-[3px] border-(--color-maroon) pl-4 mb-6">
-    <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
-      {label}
-    </small>
-    <h2 class="font-['Montserrat',sans-serif] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-(--color-maroon) tracking-tight">
-      {title}
-    </h2>
-  </div>
+<div class="w-full">
+  <SectionHeader label={label} title={title} />
 
   <div class="relative w-full h-[320px] sm:h-[420px] lg:h-[60vh] max-h-[540px] rounded-2xl overflow-hidden border border-(--color-maroon)/50 shadow-lg bg-[#420000] group">
     <img
@@ -22,12 +16,10 @@ const { label, title, badge, headline, programs, imagePath } = internationalData
       loading="lazy"
     />
 
-    <div
-      class="accreditation-overlay absolute inset-0 bg-gradient-to-t from-[#420000]/95 via-[#800000]/75 to-transparent pointer-events-none"
-    ></div>
+    <div class="accreditation-overlay absolute inset-0 pointer-events-none"></div>
 
     <div class="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-8 lg:p-10 flex flex-col items-start">
-      <p class="accreditation-kicker font-['Montserrat',sans-serif] text-[11px] sm:text-xs font-extrabold tracking-widest uppercase mb-1.5">
+      <p class="accreditation-kicker font-['Montserrat',sans-serif] text-[11px] sm:text-xs font-extrabold tracking-widest uppercase">
         {badge}
       </p>
       <h3 class="accreditation-headline font-['Montserrat',sans-serif] text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] max-w-3xl mb-4">
