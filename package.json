@@ -29,6 +29,9 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "oxc-transform-react": "^0.158.0"
+    "oxc-transform-react": "^0.158.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-astro": "^1.1.2",
+    "prettier-plugin-tailwindcss": "^0.8.1"
   }
 }
