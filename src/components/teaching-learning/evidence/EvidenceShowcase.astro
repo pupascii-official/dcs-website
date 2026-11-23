@@ -1,0 +1,50 @@
+
+---
+import EvidenceCard from "./EvidenceCard.astro";
+import type { EvidenceItem } from "../../../data/teaching-learning/evidence";
+
+interface Props {
+    area: string;
+    category: string;
+    instruction?: string;
+    footer: string;
+    items: EvidenceItem[];
+}
+
+const {
+    area,
+    category,
+    instruction = "CLICK FOLDER TO CENTER",
+    footer,
+    items,
+} = Astro.props;
+---
+
+<section class="relative isolate min-h-117.5 overflow-hidden rounded-[28px] bg-linear-to-br from-(--color-maroon) to-(--color-dark-maroon) px-6 py-7 text-white sm:px-8">
+
+    <!-- Header -->
+    <header class="flex items-start justify-between gap-3 text-sm font-bold">
+        <div class="max-w-[55%]">
+            <span class="text-(--color-gold)">{area}</span>
+            <span class="mx-1 text-white">•</span>
+            <span class="text-white">{category}</span>
+        </div>
+
+        <span class="max-w-[40%] text-right text-white/80">
+            {instruction}
+        </span>
+    </header>
+
+    <!-- Evidence cards -->
+    <div data-evidence-gallery class="relative mx-auto mt-10 h-auto w-full max-w-135 md:mt-12 md:h-77.5">
+        {items.map((item) => (
+            <EvidenceCard {...item} />
+        ))}
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-6 pb-1 text-center font-bold text-(--color-gold) text-xs">
+        <span class="text-(--dark-gold)">{footer}</span>
+    </footer>
+
+</section>

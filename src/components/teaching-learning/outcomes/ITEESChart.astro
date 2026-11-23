@@ -1,0 +1,131 @@
+
+---
+const maxValue = 16;
+
+const periods = [
+    { label: "1. 22-23", outstanding: 3, verySatisfactory: 13, satisfactory: 0 },
+    { label: "2. 22-23", outstanding: 3, verySatisfactory: 15, satisfactory: 0 },
+    { label: "1. 23-24", outstanding: 7, verySatisfactory: 10, satisfactory: 1 },
+    { label: "2. 23-24", outstanding: 5, verySatisfactory: 9, satisfactory: 0 },
+    { label: "1. 24-25", outstanding: 9, verySatisfactory: 7, satisfactory: 0 },
+    { label: "2. 24-25", outstanding: 9, verySatisfactory: 7, satisfactory: 1 },
+];
+
+const series = [
+    { key: "outstanding", label: "Outstanding", color: "#800000" },
+    { key: "verySatisfactory", label: "Very Satisfactory", color: "#DAA520" },
+    { key: "satisfactory", label: "Satisfactory", color: "#a18f8f" },
+];
+
+const ticks = [0, 4, 8, 12, 16];
+---
+
+<article class="h-full flex flex-col justify-between rounded-2xl border border-red-100 bg-white p-5 sm:p-6 shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
+
+    <!-- HEADER -->
+    <div>
+        <p class="text-xs font-bold uppercase tracking-wide text-(--color-dark-gold)">
+            Learner Satisfaction • AY 2022-2023 to AY 2024-2025
+        </p>
+
+        <h3 class="mt-2 text-xl font-extrabold leading-snug text-(--color-maroon) sm:text-2xl">
+            Summary of ITEES Results — Department of Computer Science
+        </h3>
+    </div>
+
+    <!-- CHART -->
+    <div class="mt-8 grid grid-cols-[25px_minmax(0,1fr)] gap-3 sm:mt-12">
+
+        <!-- Y AXIS LABELS -->
+        <div class="relative h-64 md:h-96">
+            {ticks.map((tick) => (
+                <span
+                    class="absolute right-0 -translate-y-1/2 text-sm text-(--color-text-body) sm:text-xs"
+                    style={`bottom: ${(tick / maxValue) * 100}%`}
+                >
+                    {tick}
+                </span>
+            ))}
+        </div>
+
+        <!-- PLOT AREA -->
+        <div class="min-w-0">
+
+            <!-- BARS AND GRID LINES -->
+            <div class="relative h-64 md:h-96 border-b border-slate-300">
+
+                <!-- Horizontal grid lines -->
+                {ticks.filter((tick) => tick !== 0).map((tick) => (
+                    <div
+                        class="absolute left-0 w-full border-t border-slate-100"
+                        style={`bottom: ${(tick / maxValue) * 100}%`}
+                    />
+                ))}
+
+                <!-- BAR GROUPS -->
+                <div class="absolute inset-0 flex justify-around gap-1">
+                    {periods.map((period) => (
+                        <div class="flex min-w-0 flex-1 items-end justify-center gap-1 sm:gap-2">
+
+                            {series.map((item) => {
+                                const value = period[item.key];
+                                const height = (value / maxValue) * 100;
+
+                                return (
+                                    <div class="relative flex h-full w-3 items-end sm:w-5">
+                                        {value > 0 && (
+                                            <>
+                                                <span
+                                                    class="absolute left-1/2 -translate-x-1/2 text-[9px] font-bold sm:text-xs"
+                                                    style={`bottom: calc(${height}% + 4px); color: ${item.color}`}
+                                                >
+                                                    {value}
+                                                </span>
+
+                                                <div
+                                                    class="w-full rounded-t-[3px]"
+                                                    style={`height: ${height}%; background-color: ${item.color}`}
+                                                />
+                                            </>
+                                        )}
+                                    </div>
+                                );
+                            })}
+
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <!-- X AXIS LABELS -->
+            <div class="mt-2 flex justify-around gap-1">
+                {periods.map((period) => (
+                    <span class="min-w-0 flex-1 text-center text-[9px] font-bold text-slate-800 sm:text-xs">
+                        {period.label}
+                    </span>
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <!-- LEGEND AND FOOTNOTE -->
+    <div class="mt-8 flex flex-col gap-3 text-[10px] text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:text-xs">
+
+        <div class="flex flex-wrap gap-x-3 gap-y-2">
+            {series.map((item) => (
+                <div class="flex items-center gap-1">
+                    <span
+                        class="h-2.5 w-2.5"
+                        style={`background-color: ${item.color}`}
+                    />
+                    <span>{item.label}</span>
+                </div>
+            ))}
+        </div>
+
+        <p class="sm:text-right">
+            (Fair: 0 • Poor: 0)
+        </p>
+    </div>
+
+</article>

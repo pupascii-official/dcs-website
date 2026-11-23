@@ -1,0 +1,98 @@
+---
+import ScrollSnapLayout from "../../layouts/ScrollSnapLayout.astro";
+import HeroSection from "../../components/HeroSection.astro";
+import ContentSection from "../../components/ContentSection.astro";
+import FacultyCard from "../../components/teaching-learning/FacultyCard.astro";
+import { FacultyProfile } from "../../data/teaching-learning/faculty";
+
+const regularFaculty = FacultyProfile.filter(
+    (member) => member.status === "REGULAR"
+);
+
+const partTimeFaculty = FacultyProfile.filter(
+    (member) => member.status === "PART-TIME"
+);
+---
+
+<ScrollSnapLayout
+    title="Faculty Profiles"
+    description=""
+>
+    <!-- HERO -->
+    <HeroSection
+        title="BSCS Faculty "
+        accentTitle="Profiles"
+        subtitle="AREA 2 • TEACHING AND LEARNING • FACULTY DIRECTORY"
+    >
+        <span>Academic qualifications, areas of specialization, and course assignments of the Regular (Permanent/Plantilla) and Part-Time BSCS faculty members.</span>
+        <a href="../teaching-and-learning" class=" inline-block bg-white shadow-md mt-9 py-4 px-6 rounded-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <span class="main-button font-bold text-center">← Back to Teaching & Learning</span>
+        </a>
+    </HeroSection>
+
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 01 • PROFILED FACULTY ROSTER"
+            category="Regular & Part-Time Faculty"
+        >
+            <div>
+                <a href="../teaching-and-learning" class="inline-block font-medium text-center text-(--color-dark-maroon) py-2 px-4 bg-(--color-gold) rounded-full hover:bg-(--color-dark-gold) hover:text-white transition-all duration-200">
+                    ← Back to Teaching & Learning
+                </a>
+            </div>
+
+            <!-- PROFILES: Regular Faculty Members -->
+            <div class="mt-8">
+                <h3 class="mb-4 text-lg font-bold">
+                    Regular Faculty Members ({regularFaculty.length})
+                </h3>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {regularFaculty.map((member) => (
+                        <FacultyCard
+                            name={member.name}
+                            image={member.image}
+                            imageAlt={member.imageAlt}
+                            status={member.status}
+                            degrees={member.degrees}
+                            specialization={member.specialization}
+                            courses={member.courses}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <!-- PROFILES: Part-Time Faculty Members (Profiled Roster) -->
+            <div class="my-8">
+                <h3 class="mb-4 text-lg font-bold">
+                    Part-Time Faculty Members (Profiled Roster)
+                </h3>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {partTimeFaculty.map((member) => (
+                        <FacultyCard
+                            name={member.name}
+                            image={member.image}
+                            imageAlt={member.imageAlt}
+                            status={member.status}
+                            degrees={member.degrees}
+                            specialization={member.specialization}
+                            courses={member.courses}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <a href="../teaching-and-learning" class="inline-block font-medium text-center text-(--color-dark-maroon) py-2 px-4 bg-(--color-gold) rounded-full hover:bg-(--color-dark-gold) hover:text-white transition-all duration-200">
+                ← Return to Teaching & Learning
+            </a>
+        </ContentSection>
+    </section>
+</ScrollSnapLayout>
+
+<style>
+    .main-button {
+        background-color: white;
+        background: linear-gradient(90deg, #800000, #B8860B, #5C0000);
+        background-clip: text;
+        color: transparent;
+    }
+</style>
