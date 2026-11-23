@@ -1,0 +1,295 @@
+---
+interface Props {
+	/** dialog trigger id */
+	id: string;
+	name: string;
+	role: string;
+	credentials?: string;
+	/** portrait image path */
+	photo?: string;
+	photoAlt?: string;
+	/** portrait crop position */
+	photoPosition?: string;
+	/** message paragraphs */
+	paragraphs: string[];
+	/** optional closing line */
+	closing?: string;
+}
+
+const {
+	id,
+	name,
+	role,
+	credentials,
+	photo = '/images/homepage/bscs-overview-placeholder.png',
+	photoAlt = '',
+	photoPosition = 'center top',
+	paragraphs,
+	closing,
+} = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<dialog id={id} class="leader-dialog" aria-labelledby={titleId}>
+	<div class="ld-shell">
+		<aside class="ld-portrait">
+			<img src={photo} alt={photoAlt} width="640" height="800" loading="lazy" decoding="async" style={`object-position: ${photoPosition}`} />
+			<div class="ld-portrait-caption">
+				<h2>{name}{credentials && <span>, {credentials}</span>}</h2>
+			</div>
+		</aside>
+
+		<div class="ld-message">
+			<header class="ld-head">
+				<div>
+					<h3 id={titleId}>{id === 'dean-message' ? 'Welcome, accreditors' : 'A message of welcome'}</h3>
+				</div>
+				<button type="button" class="ld-close" data-close aria-label="Close message">
+					<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+						<path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+					</svg>
+				</button>
+			</header>
+
+			<div class="ld-body">
+				{paragraphs.map((p) => <p>{p}</p>)}
+			</div>
+
+			{closing && <p class="ld-closing">{closing}</p>}
+
+			<footer class="ld-sign">
+				<p class="ld-sign__name">{name}{credentials ? `, ${credentials}` : ''}</p>
+				<p class="ld-sign__role">{role}</p>
+			</footer>
+		</div>
+	</div>
+</dialog>
+
+<style is:global>
+	.leader-dialog {
+		--ld-maroon: var(--color-maroon, #800000);
+		--ld-deep: #3a0a0f;
+		--ld-gold: #e3c675;
+		--ld-cream: #faf8f5;
+		--ld-ink: #231618;
+		--ld-soft: #4a3d3f;
+		--ld-muted: #6a5c5e;
+		--ld-line: rgba(128, 0, 0, 0.16);
+		--ld-ease: cubic-bezier(0.23, 1, 0.32, 1);
+
+		padding: 0;
+		border: 0;
+		border: 1px solid rgba(227, 198, 117, 0.7);
+		border-radius: 0;
+		overflow: hidden;
+		background: linear-gradient(145deg, #fffdfa, #f3eadc);
+		color: var(--ld-ink);
+		width: min(1040px, calc(100vw - 2rem));
+		max-width: none;
+		height: min(86dvh, 780px);
+		margin: auto;
+		box-shadow: 0 30px 80px -24px rgba(20, 0, 4, 0.6);
+
+		/* dialog entrance */
+		opacity: 0;
+		transform: translateY(8px) scale(0.97);
+		transition:
+			opacity 200ms var(--ld-ease),
+			transform 200ms var(--ld-ease),
+			overlay 200ms allow-discrete,
+			display 200ms allow-discrete;
+	}
+	.leader-dialog[open] { opacity: 1; transform: none; }
+	@starting-style {
+		.leader-dialog[open] { opacity: 0; transform: translateY(8px) scale(0.97); }
+	}
+	.leader-dialog::backdrop {
+		background: rgba(26, 4, 8, 0);
+		transition:
+			background-color 200ms ease-out,
+			overlay 200ms allow-discrete,
+			display 200ms allow-discrete;
+	}
+	.leader-dialog[open]::backdrop { background: rgba(26, 4, 8, 0.74); }
+	@starting-style {
+		.leader-dialog[open]::backdrop { background: rgba(26, 4, 8, 0); }
+	}
+	html:has(.leader-dialog[open]) { overflow: hidden; }
+
+	.ld-shell {
+		display: grid;
+		grid-template-columns: minmax(260px, 38%) minmax(0, 1fr);
+		height: 100%;
+	}
+
+	/* portrait */
+	.ld-portrait {
+		position: relative;
+		min-width: 0;
+		overflow: hidden;
+		background: linear-gradient(160deg, var(--ld-maroon), var(--ld-deep));
+	}
+	.ld-portrait::after {
+		position: absolute;
+		inset: 35% 0 0;
+		background: linear-gradient(180deg, transparent, rgba(22, 4, 6, 0.88));
+		content: '';
+		pointer-events: none;
+	}
+	.ld-portrait img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+		object-fit: cover;
+		object-position: center top;
+	}
+	.ld-portrait-caption {
+		position: absolute;
+		z-index: 1;
+		right: 1.5rem;
+		bottom: 1.6rem;
+		left: 1.75rem;
+		color: #fffaf0;
+	}
+	.ld-portrait-caption h2 {
+		margin: 0;
+		color: #fffaf0;
+		font: 700 clamp(1.45rem, 2.5vw, 2rem) / 1.16 var(--font-montserrat), 'Montserrat', system-ui, sans-serif;
+		letter-spacing: -0.035em;
+	}
+	.ld-portrait-caption h2 span { color: var(--ld-gold); white-space: nowrap; }
+
+	/* message column */
+	.ld-message {
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		background: linear-gradient(150deg, #fffefa, #f5ecdf);
+		overscroll-behavior: contain;
+		scrollbar-gutter: stable;
+	}
+	.ld-head {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 1rem;
+		padding: 2rem clamp(1.5rem, 4vw, 3rem) 1.25rem;
+		background: var(--ld-cream);
+		border-bottom: 1px solid var(--ld-line);
+	}
+	.ld-head h3 { margin: 0; }
+	.ld-head h3 {
+		margin-top: 0.35rem;
+		font: 800 clamp(1.7rem, 2.6vw, 2.3rem) / 1.1 var(--font-montserrat), 'Montserrat', system-ui, sans-serif;
+		letter-spacing: -0.02em;
+		color: var(--ld-maroon);
+	}
+	.ld-close {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 1px solid var(--ld-line);
+		border-radius: 999px;
+		background: #fffdfa;
+		color: var(--ld-maroon);
+		cursor: pointer;
+		transition: background-color 160ms ease-out, color 160ms ease-out, transform 160ms ease-out;
+	}
+	.ld-close:hover { background: var(--ld-maroon); color: var(--ld-cream); }
+	.ld-close:active { transform: scale(0.95); }
+	.ld-close:focus-visible { outline: 2px solid var(--ld-maroon); outline-offset: 3px; }
+
+	.ld-body { padding: 1.75rem clamp(1.5rem, 4vw, 3rem) 1rem; }
+	.ld-body p {
+		margin: 0 0 1.1em;
+		max-width: 62ch;
+		font-size: 1.0625rem;
+		line-height: 1.75;
+		color: var(--ld-soft);
+		text-align: justify;
+		text-justify: inter-word;
+	}
+	/* lead paragraph */
+	.ld-body p:first-child {
+		font-size: 1.15rem;
+		line-height: 1.65;
+		font-weight: 500;
+		color: var(--ld-ink);
+	}
+
+	.ld-closing {
+		margin: 0 clamp(1.5rem, 4vw, 3rem) 1.75rem;
+		max-width: 62ch;
+		font-size: 1.0625rem;
+		line-height: 1.6;
+		font-style: italic;
+		color: var(--ld-ink);
+		text-align: justify;
+	}
+	.ld-sign {
+		margin: auto clamp(1.5rem, 4vw, 3rem) 0;
+		padding: 1.5rem 0 2.25rem;
+		border-top: 1px solid var(--ld-line);
+	}
+	.ld-sign p { margin: 0; }
+	.ld-sign__name { font: 700 1.05rem / 1.3 var(--font-montserrat), 'Montserrat', system-ui, sans-serif; color: var(--ld-maroon); }
+	.ld-sign__role { margin-top: 0.2rem !important; font-size: 0.9rem; color: var(--ld-muted); }
+
+	@media (max-width: 720px) {
+		.leader-dialog {
+			width: 100vw;
+			height: 100dvh;
+			max-height: none;
+			border-radius: 0;
+			border: 0;
+		}
+		.ld-shell { grid-template-columns: 1fr; grid-template-rows: minmax(200px, 29dvh) minmax(0, 1fr); min-height: 0; }
+		.ld-message { min-height: 0; }
+		.ld-portrait-caption { right: 1.25rem; bottom: 1rem; left: 1.25rem; }
+		.ld-head { padding: 1.25rem 1.25rem 1rem; }
+		.ld-body { padding: 1.25rem 1.25rem 0.75rem; }
+		.ld-body p { font-size: 0.98rem; }
+		.ld-closing { margin-inline: 1.25rem; }
+		.ld-sign { margin-inline: 1.25rem; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.leader-dialog,
+		.leader-dialog::backdrop,
+		.ld-close { transition-duration: 1ms; }
+	}
+</style>
+
+<script>
+	// delegate dialog triggers
+	document.addEventListener('click', (e) => {
+		const target = e.target as Element;
+
+		const trigger = target.closest<HTMLElement>('[data-open-dialog]');
+		if (trigger) {
+			const dialog = document.getElementById(trigger.dataset.openDialog ?? '');
+			if (dialog instanceof HTMLDialogElement && !dialog.open) {
+				e.preventDefault();
+				dialog.showModal();
+			}
+			return;
+		}
+
+		const closer = target.closest('[data-close]');
+		if (closer) {
+			closer.closest('dialog')?.close();
+			return;
+		}
+
+		// close on backdrop click
+		if (target instanceof HTMLDialogElement && target.classList.contains('leader-dialog')) {
+			target.close();
+		}
+	});
+</script>
