@@ -27,6 +27,10 @@ const {title, description} = Astro.props;
 </body>
 </html>
 
+<script>
+    import "../scripts/entranceAnimation.js";
+</script>
+
 <style>
     .scroll-container {
         width: 100%;
@@ -34,5 +38,35 @@ const {title, description} = Astro.props;
 
     :global(.scroll-section) {
         scroll-margin-top: 3rem;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* For ntrance Animation */
+    :global([data-reveal]) {
+        opacity: 0;
+        transform: translateY(35px);
+        transition:
+            opacity 0.7s ease,
+            transform 0.7s ease;
+    }
+
+    :global([data-reveal]).is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :global([data-reveal]) {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+
+        :global(html) {
+            scroll-behavior: auto;
+        }
     }
 </style>
