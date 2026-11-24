@@ -14,6 +14,10 @@ import LinkCard from "../components/LinkCard.astro";
 import PillCard from '../components/PillCard.astro';
 import PDFModal from "../components/PDFModal.astro";
 
+import HeroButton from '../components/HeroButton.astro';
+import { getDocRef } from "../lib/pdfs.server"
+const manualDocRef = getDocRef("area5-narrative");
+
 const TIMELINE_ITEMS = [
     {
         number: "01",
@@ -123,6 +127,13 @@ const PDCA_STEPS = [
 
         <p>Its long-term commitment focuses on aligning academic programs, research initiatives, and institutional
             processes with University policies and international standards.</p>
+
+            <HeroButton
+            label="Area 5 Narrative Report"
+            docRef={manualDocRef}
+            pdfTitle="PUP Area 5 - Planning and QA Narrative Report"
+            />
+
     </HeroSection>
 
     <ContentSection
@@ -349,16 +360,6 @@ const PDCA_STEPS = [
                     subtitle="Educational Organizations Management System Application"
             />
         </div>
-    </ContentSection>
-
-    <ContentSection category="See the full Area 5 report" sectionLabel="Want to know more?">
-        <LinkCard
-                description="Read the full narrative report for Area 5, Planning and QA."
-                linkLabel="Open"
-                title="Area 5 Narrative Report"
-                pdfSlug="area5-narrative"
-        >
-        </LinkCard>
     </ContentSection>
 
     <PDFModal />
