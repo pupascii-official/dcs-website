@@ -43,36 +43,44 @@ const manualDocRef = getDocRef("research-manual");
     </HeroSection>
 
     <!-- SNAP 2 // Section 01: Research Agenda & Quality Assurance -->
+    <section data-reveal>
     <ContentSection
       sectionLabel="SECTION 01 // GOVERNANCE & STANDARDS"
       category="Research Agenda & Quality Assurance"
     >
       <PolicyFrameworkDashboard />
     </ContentSection>
+    </section>
 
     <!-- SNAP 3 // Section 02: Research Metrics -->
+    <section data-reveal>
     <ContentSection
       sectionLabel="SECTION 02 // KEY PERFORMANCE INDICATORS"
       category="Research Metrics"
     >
       <ResearchMetrics showHeader={false} class="!py-0" />
     </ContentSection>
+    </section>
 
     <!-- SNAP 4 // Section 03: Research Productivity by Calendar Year -->
+<section data-reveal>
     <ContentSection
       sectionLabel="SECTION 03 // DATA PRESENTATION"
       category="Research Productivity by Calendar Year"
     >
       <IndexationDashboard />
     </ContentSection>
+</section>
 
     <!-- Section 04: Faculty Involved in Research -->
     <section class="scroll-section w-full bg-white py-14 sm:py-18">
       <div class="mx-auto w-full max-w-6xl px-5 sm:px-10">
+        <section data-reveal>
         <FacultyShowcase/>
+      </section>
       </div>
     </section>
-  </div>
-
+    </div>
+  
   <PDFModal />
 </ScrollSnapLayout>
