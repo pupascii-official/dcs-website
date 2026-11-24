@@ -8,27 +8,24 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
 <div class="featured-research-root w-full" data-featured-research>
   <SectionHeader label={label} title={title} description={description} />
 
-  <div data-intl-reveal style="--reveal-delay: 60ms;">
-    <h3 class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-extrabold text-(--color-maroon) mb-4">
-      {subsectionTitle}
-    </h3>
+  <h3 class="font-['Montserrat',sans-serif] text-lg sm:text-xl font-extrabold text-(--color-maroon) mb-4">
+    {subsectionTitle}
+  </h3>
 
-    <div class="flex flex-wrap items-center gap-2 mb-7" role="tablist" aria-label="Featured International Research Projects">
-      {projects.map((proj, idx) => (
-        <button
-          type="button"
-          role="tab"
-          aria-selected={idx === 0 ? "true" : "false"}
-          data-project-tab={proj.id}
-          class="project-pill px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all duration-200 ease-out cursor-pointer"
-        >
-          {proj.tabLabel}
-        </button>
-      ))}
-    </div>
+  <div class="flex flex-wrap items-center gap-2 mb-7" role="tablist" aria-label="Featured International Research Projects">
+    {projects.map((proj, idx) => (
+      <button
+        type="button"
+        role="tab"
+        aria-selected={idx === 0 ? "true" : "false"}
+        data-project-tab={proj.id}
+        class="project-pill px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all duration-200 ease-out cursor-pointer"
+      >
+        {proj.tabLabel}
+      </button>
+    ))}
   </div>
 
-  <div data-intl-reveal style="--reveal-delay: 120ms;">
   {projects.map((project, idx) => {
     const metaFields = [
       project.date ? { label: "Date", value: project.date } : null,
@@ -130,7 +127,6 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
       </div>
     );
   })}
-  </div>
 </div>
 
 <style>

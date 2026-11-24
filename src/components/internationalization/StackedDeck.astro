@@ -6,7 +6,7 @@ interface Props {
 const { desktopHeight = "460px" } = Astro.props;
 ---
 
-<div data-intl-reveal class="intl-deck" data-deck data-active="-1" style={`--deck-h: ${desktopHeight}; --reveal-delay: 80ms;`}>
+<div class="intl-deck" data-deck data-active="-1" style={`--deck-h: ${desktopHeight};`}>
   <slot />
 </div>
 

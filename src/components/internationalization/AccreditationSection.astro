@@ -9,11 +9,7 @@ const { label, title, badge, headline, programs, imagePath, picabSpotlight } = i
 <div class="w-full">
   <SectionHeader label={label} title={title} />
 
-  <div
-    data-intl-reveal
-    style="--reveal-delay: 80ms;"
-    class="relative w-full h-[340px] sm:h-[420px] lg:h-[60vh] max-h-[540px] rounded-2xl overflow-hidden border border-(--color-maroon)/50 shadow-lg bg-[#420000] group"
-  >
+  <div class="relative w-full h-[340px] sm:h-[420px] lg:h-[60vh] max-h-[540px] rounded-2xl overflow-hidden border border-(--color-maroon)/50 shadow-lg bg-[#420000] group">
     <img
       src={imagePath}
       alt="PUP's First International Program Accreditation PICAB-CAC Certified"
@@ -40,7 +36,7 @@ const { label, title, badge, headline, programs, imagePath, picabSpotlight } = i
     </div>
   </div>
 
-  <div data-intl-reveal style="--reveal-delay: 160ms;" class="picab-spotlight mt-6 md:mt-8">
+  <div class="picab-spotlight mt-6 md:mt-8">
     <ContentCard kicker={picabSpotlight.kicker} display={picabSpotlight.display}>
       <img slot="media" src={picabSpotlight.imagePath} alt={picabSpotlight.imageAlt} loading="lazy" />
 
