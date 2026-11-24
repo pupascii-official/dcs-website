@@ -6,7 +6,7 @@ interface Props {
 const { desktopHeight = "460px" } = Astro.props;
 ---
 
-<div class="intl-deck" data-deck data-active="-1" style={`--deck-h: ${desktopHeight};`}>
+<div data-intl-reveal class="intl-deck" data-deck data-active="-1" style={`--deck-h: ${desktopHeight}; --reveal-delay: 80ms;`}>
   <slot />
 </div>
 
@@ -25,6 +25,18 @@ const { desktopHeight = "460px" } = Astro.props;
 
   :global(.intl-deck-expanded) {
     background-color: var(--color-dark-maroon);
+    animation: deckExpandFade 320ms ease-out both;
+  }
+
+  @keyframes deckExpandFade {
+    from {
+      opacity: 0.4;
+      transform: scale(0.985);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 
   :global(.intl-deck-title) {
@@ -82,10 +94,10 @@ const { desktopHeight = "460px" } = Astro.props;
       z-index: 10;
       transform: scale(1);
       transition:
-        width 420ms cubic-bezier(0.22, 1, 0.36, 1),
-        margin-left 420ms cubic-bezier(0.22, 1, 0.36, 1),
-        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
-        filter 300ms ease;
+        width 500ms ease-out,
+        margin-left 500ms ease-out,
+        transform 500ms ease-out,
+        filter 300ms ease-out;
     }
 
     :global(.intl-deck-item:first-child) {
@@ -125,6 +137,16 @@ const { desktopHeight = "460px" } = Astro.props;
 
     :global(.intl-deck:not([data-active="-1"]) .intl-deck-item[data-state="peeking"]:hover) {
       filter: brightness(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.intl-deck-expanded) {
+      animation: none;
+    }
+
+    :global(.intl-deck-item) {
+      transition: none;
     }
   }
 </style>

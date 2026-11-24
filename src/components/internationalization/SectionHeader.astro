@@ -9,7 +9,7 @@ interface Props {
 const { label, title, description, marginClass = "mb-6" } = Astro.props;
 ---
 
-<div class={`border-l-[3px] border-(--color-maroon) pl-4 ${marginClass}`}>
+<div data-intl-reveal class={`border-l-[3px] border-(--color-maroon) pl-4 ${marginClass}`}>
   <small class="text-(--color-dark-gold) font-semibold text-xs tracking-wider uppercase block mb-1">
     {label}
   </small>

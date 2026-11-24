@@ -16,7 +16,7 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
 ---
 
 <div class="w-full space-y-4" data-research-publications>
-  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 w-full">
+  <div data-intl-reveal class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 w-full">
     <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon) tracking-tight">
       {selectedConferenceHeading}
     </h3>
@@ -38,7 +38,7 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
     </div>
   </div>
 
-  <div class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter research by category">
+  <div data-intl-reveal style="--reveal-delay: 60ms;" class="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter research by category">
     {filterTabs.map((tab, idx) => (
       <button
         type="button"
@@ -52,7 +52,7 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
     ))}
   </div>
 
-  <div class="w-full rounded-2xl border border-neutral-300 bg-white py-4 px-4 sm:px-6 shadow-sm">
+  <div data-intl-reveal style="--reveal-delay: 120ms;" class="w-full rounded-2xl border border-neutral-300 bg-white py-4 px-4 sm:px-6 shadow-sm">
     <div class="conference-list-scroll max-h-[420px] overflow-y-auto pr-2 divide-y divide-neutral-200">
       {selectedConferenceList.map((paper) => {
         const hasUrl = Boolean(paper.url?.trim());
@@ -95,60 +95,61 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
               <span
                 data-row-chevron
                 aria-hidden="true"
-                class="shrink-0 w-7 h-7 rounded-full border border-neutral-200 group-hover:border-(--color-maroon) text-neutral-500 group-hover:text-(--color-maroon) flex items-center justify-center text-xs transition-transform duration-200 mt-0.5"
+                class="shrink-0 w-7 h-7 rounded-full border border-neutral-200 group-hover:border-(--color-maroon) text-neutral-500 group-hover:text-(--color-maroon) flex items-center justify-center text-xs transition-transform duration-300 ease-out mt-0.5"
               >
                 ▾
               </span>
             </button>
 
-            <div
-              data-row-drawer
-              class="hidden mt-3 rounded-xl bg-neutral-50 border border-neutral-200/90 p-4 space-y-2 text-xs break-words"
-            >
-              <div>
-                <span class={metaLabelClass}>Fora / Publication</span>
-                <p class={`${metaValueClass} leading-relaxed`}>{paper.fora}</p>
-              </div>
-
-              <div class="flex flex-wrap gap-x-6 gap-y-2">
-                <div>
-                  <span class={metaLabelClass}>Date</span>
-                  <p class={metaValueClass}>{paper.date}</p>
-                </div>
-
-                {paper.location && (
+            <div data-row-drawer data-open="false" class="paper-drawer">
+              <div class="paper-drawer-inner">
+                <div class="mt-3 rounded-xl bg-neutral-50 border border-neutral-200/90 p-4 space-y-2 text-xs break-words">
                   <div>
-                    <span class={metaLabelClass}>Location</span>
-                    <p class={metaValueClass}>{paper.location}</p>
+                    <span class={metaLabelClass}>Fora / Publication</span>
+                    <p class={`${metaValueClass} leading-relaxed`}>{paper.fora}</p>
                   </div>
-                )}
-              </div>
 
-              <div>
-                <span class={metaLabelClass}>Authors</span>
-                <p class={`${metaValueClass} leading-relaxed`}>{paper.authors}</p>
-              </div>
+                  <div class="flex flex-wrap gap-x-6 gap-y-2">
+                    <div>
+                      <span class={metaLabelClass}>Date</span>
+                      <p class={metaValueClass}>{paper.date}</p>
+                    </div>
 
-              {(paper.award || hasUrl) && (
-                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-neutral-200/80">
-                  {paper.award && (
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-extrabold bg-(--color-gold) text-[#420000]">
-                      {paper.award}
-                    </span>
-                  )}
+                    {paper.location && (
+                      <div>
+                        <span class={metaLabelClass}>Location</span>
+                        <p class={metaValueClass}>{paper.location}</p>
+                      </div>
+                    )}
+                  </div>
 
-                  {hasUrl && (
-                    <a
-                      href={paper.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="ml-auto inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-(--color-maroon) text-(--color-gold) hover:bg-(--color-dark-maroon) font-['Montserrat',sans-serif] text-[11px] font-bold transition-colors shadow-2xs"
-                    >
-                      View Paper ↗
-                    </a>
+                  <div>
+                    <span class={metaLabelClass}>Authors</span>
+                    <p class={`${metaValueClass} leading-relaxed`}>{paper.authors}</p>
+                  </div>
+
+                  {(paper.award || hasUrl) && (
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-neutral-200/80">
+                      {paper.award && (
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-extrabold bg-(--color-gold) text-[#420000]">
+                          {paper.award}
+                        </span>
+                      )}
+
+                      {hasUrl && (
+                        <a
+                          href={paper.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="ml-auto inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-(--color-maroon) text-(--color-gold) hover:bg-(--color-dark-maroon) font-['Montserrat',sans-serif] text-[11px] font-bold transition-colors shadow-2xs"
+                        >
+                          View Paper ↗
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         );
@@ -188,6 +189,30 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
 
   [data-research-publications] p {
     margin-bottom: 0;
+  }
+
+  .paper-drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 300ms ease-out,
+      opacity 260ms ease-out;
+  }
+
+  .paper-drawer[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .paper-drawer-inner {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .paper-drawer {
+      transition: none;
+    }
   }
 
   .conference-list-scroll {
@@ -266,8 +291,8 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
         const chevron = row.querySelector("[data-row-chevron]");
 
         toggleBtn?.addEventListener("click", () => {
-          const isOpen = !drawer?.classList.contains("hidden");
-          drawer?.classList.toggle("hidden", isOpen);
+          const isOpen = drawer?.getAttribute("data-open") === "true";
+          drawer?.setAttribute("data-open", String(!isOpen));
           toggleBtn.setAttribute("aria-expanded", String(!isOpen));
           if (chevron) chevron.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
         });

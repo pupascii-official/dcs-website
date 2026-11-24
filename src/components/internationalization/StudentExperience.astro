@@ -29,7 +29,7 @@ import StackedDeck from "./StackedDeck.astro";
       >
         <div
           slot="collapsed"
-          class="relative w-full aspect-[3/4] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-neutral-200 hover:border-(--color-maroon) bg-(--color-dark-maroon) shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
+          class="relative w-full aspect-[3/4] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-neutral-200 hover:border-(--color-maroon) bg-(--color-dark-maroon) shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer group"
           data-deck-collapsed
           role="button"
           tabindex="0"
@@ -86,7 +86,7 @@ import StackedDeck from "./StackedDeck.astro";
     ))}
   </StackedDeck>
 
-  <div class="mt-6 pt-4 border-t border-neutral-200">
+  <div data-intl-reveal style="--reveal-delay: 120ms;" class="mt-6 pt-4 border-t border-neutral-200">
     <h3 class="font-['Montserrat',sans-serif] text-sm sm:text-base font-extrabold text-(--color-maroon) mb-1">
       {upcomingExchanges.heading}
     </h3>

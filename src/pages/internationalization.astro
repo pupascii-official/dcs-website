@@ -71,3 +71,68 @@ const sectionWide = `${sectionBase} pb-14`;
   <ImageLightbox />
   <NarrativeReportModal />
 </ScrollSnapLayout>
+
+<style>
+  :global([data-intl-reveal=""]) {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  :global([data-intl-reveal=""]),
+  :global([data-intl-reveal="visible"]) {
+    transition:
+      opacity 550ms ease-out var(--reveal-delay, 0ms),
+      transform 550ms ease-out var(--reveal-delay, 0ms);
+  }
+
+  :global([data-intl-reveal="visible"]) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global([data-intl-reveal=""]) {
+      opacity: 1;
+      transform: none;
+    }
+
+    :global([data-intl-reveal=""]),
+    :global([data-intl-reveal="visible"]) {
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const targets = document.querySelectorAll("[data-intl-reveal]");
+    if (!targets.length) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      targets.forEach((el) => el.setAttribute("data-intl-reveal", "done"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          el.setAttribute("data-intl-reveal", "visible");
+          const finish = (e) => {
+            if (e.propertyName === "opacity") {
+              el.setAttribute("data-intl-reveal", "done");
+              el.removeEventListener("transitionend", finish);
+            }
+          };
+          el.addEventListener("transitionend", finish);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+  })();
+</script>
