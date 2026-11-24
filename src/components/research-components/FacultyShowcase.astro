@@ -4,8 +4,10 @@ import { X } from "lucide-react";
 export interface PublicationEntry {
   authors: string;
   title: string;
-  journal: string;
-  datePublished: string;
+  journal?: string;
+  researchArea?: string;
+  datePublished?: string;
+  dateCompleted?: string;
   doi?: string;
 }
 
@@ -307,6 +309,37 @@ const {
           journal: "Lecture Notes in Networks and Systems 783 - Novel & Intelligent Digital Systems: Proceedings of the 3rd International Conference (NiDS 2023) Volume 1",
           datePublished: "September 23, 2023",
           doi: "https://doi.org/10.1007/978-3-031-44097-7_34",
+        },
+      ],
+    },
+    {
+      id: "lydinar-dastas",
+      name: "Lydinar D. Dastas",
+      researchArea: "HCI, NLP & COMPUTER VISION",
+      status: "INVOLVED IN RESEARCH",
+      modalStatus: "Involved in Research",
+      ctaLabel: "1 publication • 2 completed",
+      folderSlug: "dastas-research.folder",
+      imageSrc: "images/faculty/faculty-dastas.jpg",
+      publications: [
+        {
+          authors: "Nayre, Rachel A.; Dastas, Lydinar D.; Nayre, Mark Jezekiah A.; Brences, Maven",
+          title: "Revisiting Polytechnic University of the Philippines - Sta.Mesa: An Augmented Reality Journey through Architectural Heritage and Genius Loci",
+          journal: "Resourceedings",
+          datePublished: "April 2, 2025",
+          doi: "https://doi.org/10.21625/resourceedings.v5i1.1138",
+        },
+        {
+          authors: "Espineli, Juancho D.; Dastas, Lydinar D.",
+          title: "Twitter Sentiment Analysis towards Post-pandemic Face-to-Face Classes in the Philippines Using NLP",
+          researchArea: "Natural Language Processing – Sentiment Analysis",
+          dateCompleted: "2023",
+        },
+        {
+          authors: "Espineli, Juancho D.; Dastas, Lydinar D.",
+          title: "An Android-Based App Model for Classification of Endemic Plants Using Teachable Machine and Tensorflow Lite",
+          researchArea: "Computer Vision – Mobile Image Classification",
+          dateCompleted: "2023",
         },
       ],
     },
@@ -742,14 +775,32 @@ const guidancePillClass =
                             <span class="font-semibold text-neutral-900">Title of Research: </span>
                             {pub.title}
                           </p>
-                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                            <span class="font-semibold text-neutral-900">Refereed Journal: </span>
-                            {pub.journal}
-                          </p>
-                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                            <span class="font-semibold text-neutral-900">Date Published: </span>
-                            {pub.datePublished}
-                          </p>
+                          {
+                            pub.researchArea ? (
+                              <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                                <span class="font-semibold text-neutral-900">Research Area: </span>
+                                {pub.researchArea}
+                              </p>
+                            ) : (
+                              <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                                <span class="font-semibold text-neutral-900">Refereed Journal: </span>
+                                {pub.journal}
+                              </p>
+                            )
+                          }
+                          {
+                            pub.dateCompleted ? (
+                              <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                                <span class="font-semibold text-neutral-900">Date Completed: </span>
+                                {pub.dateCompleted}
+                              </p>
+                            ) : (
+                              <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                                <span class="font-semibold text-neutral-900">Date Published: </span>
+                                {pub.datePublished}
+                              </p>
+                            )
+                          }
                           <p class="text-[11.5px] leading-[1.45] text-neutral-600">
                             <span class="font-semibold text-neutral-900">DOI: </span>
                             {
