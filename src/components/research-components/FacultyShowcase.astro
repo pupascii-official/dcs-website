@@ -9,6 +9,13 @@ export interface PublicationEntry {
   doi?: string;
 }
 
+export interface OngoingResearchEntry {
+  researchers: string;
+  title: string;
+  researchArea: string;
+  targetCompletion: string;
+}
+
 export interface FacultyMember {
   id: string;
   name: string;
@@ -18,7 +25,9 @@ export interface FacultyMember {
   ctaLabel?: string;
   folderSlug: string;
   imageSrc?: string;
+  imageFit?: "cover" | "contain";
   publications?: PublicationEntry[];
+  ongoingProjects?: OngoingResearchEntry[];
 }
 
 export interface Props {
@@ -35,18 +44,18 @@ const {
   eyebrow = "SECTION 04 // TEAM & SCHOLARS",
   heading = "Faculty Involved in Research",
   showHeading = true,
-  guidanceLabel = "FACULTY PUBLICATION CONTRIBUTIONS • 2021–2025",
+  guidanceLabel = "FACULTY RESEARCH CONTRIBUTIONS • 2021–2028",
   modalId = "faculty-profile-modal",
   faculty = [
     {
       id: "ria-sagum",
       name: "Ria A. Sagum",
-      researchArea: "NLP",
+      researchArea: "NATURAL LANGUAGE PROCESSING",
       status: "INVOLVED IN RESEARCH",
       modalStatus: "Involved in Research",
-      ctaLabel: "13 refereed publications",
+      ctaLabel: "13 publications • 3 ongoing",
       folderSlug: "sagum-research.folder",
-      imageSrc: "research-asset/sagumria.png",
+      imageSrc: "images/faculty/faculty-sagum.jpg",
       publications: [
         {
           authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
@@ -140,6 +149,26 @@ const {
           doi: "https://doi.org/10.1109/HNICEM54116.2021.9731908",
         },
       ],
+      ongoingProjects: [
+        {
+          researchers: "Sagum, Ria A.",
+          title: "A Hybrid Architectural Extension for Low-Resource Named Entity Recognition: Integrating Localized Classifiers with Transformer Models via Adaptive Weighted Voting",
+          researchArea: "Natural Language Processing",
+          targetCompletion: "January 2028",
+        },
+        {
+          researchers: "Sagum, Ria A.; Roxas, Melvin C.",
+          title: "Bridging Local Products to Digital Markets: An Action Research on E-Commerce Development for Community Cooperatives",
+          researchArea: "Information Systems",
+          targetCompletion: "November 2027",
+        },
+        {
+          researchers: "Sagum, Ria A.",
+          title: "Offline Web Based Quiz Management System with Essay Checker and Program Code Checking (Funding: PUP Research Internal Funding)",
+          researchArea: "Intelligent Information Systems",
+          targetCompletion: "September 2027",
+        },
+      ],
     },
     {
       id: "carlo-inovero",
@@ -149,7 +178,7 @@ const {
       modalStatus: "Involved in Research",
       ctaLabel: "6 refereed publications",
       folderSlug: "inovero-research.folder",
-      imageSrc: "research-asset/inovero.png",
+      imageSrc: "images/faculty/faculty-inovero.jpg",
       publications: [
         {
           authors: "Inovero, Carlo G.",
@@ -201,9 +230,9 @@ const {
       researchArea: "MACHINE LEARNING",
       status: "INVOLVED IN RESEARCH",
       modalStatus: "Involved in Research",
-      ctaLabel: "5 refereed publications",
+      ctaLabel: "5 publications • 1 ongoing",
       folderSlug: "fabregas-research.folder",
-      imageSrc: "research-asset/fabregas.png",
+      imageSrc: "images/faculty/faculty-fabregas.jpg",
       publications: [
         {
           authors: "Fabregas, Aleta C.; Amata, Maria Leonila G.",
@@ -239,6 +268,14 @@ const {
           doi: "https://doi.org/10.1145/3512576.3512591",
         },
       ],
+      ongoingProjects: [
+        {
+          researchers: "Fabregas, Aleta C.; Basista, Leoven R.",
+          title: "FloodDetectWaze: Institutional Funding — Research Institute for Science and Technology - Center for Data Analytics and Intelligence Systems",
+          researchArea: "Machine Learning",
+          targetCompletion: "January 2027",
+        },
+      ],
     },
     {
       id: "mb-dela-fuente",
@@ -248,7 +285,7 @@ const {
       modalStatus: "Involved in Research until 2025",
       ctaLabel: "3 refereed publications",
       folderSlug: "dela-fuente-research.folder",
-      imageSrc: "research-asset/delafuente.png",
+      imageSrc: "images/faculty/faculty-delafuente.jpg",
       publications: [
         {
           authors: "Dela Fuente, Michael B.",
@@ -273,9 +310,125 @@ const {
         },
       ],
     },
+    {
+      id: "marian-arada",
+      name: "Marian G. Arada",
+      researchArea: "DATA SCIENCE / RECOMMENDATION SYSTEM",
+      status: "ONGOING RESEARCH",
+      modalStatus: "Ongoing Research",
+      ctaLabel: "1 ongoing project",
+      folderSlug: "arada-research.folder",
+      imageSrc: "images/faculty/faculty-arada.jpg",
+      ongoingProjects: [
+        {
+          researchers: "Arada, Marian G.",
+          title: "A Data-Driven Maintenance and Fleet Availability Optimization System for Public River Ferry Operations",
+          researchArea: "Data Science/ Recommendation System",
+          targetCompletion: "December 2027",
+        },
+      ],
+    },
+    {
+      id: "monina-barretto",
+      name: "Monina D. Barretto",
+      researchArea: "TECHNOLOGY IN EDUCATION",
+      status: "ONGOING RESEARCH",
+      modalStatus: "Ongoing Research",
+      ctaLabel: "1 ongoing project",
+      folderSlug: "barretto-research.folder",
+      imageSrc: "public/images/faculty/faculty-barretto.jpg",
+      ongoingProjects: [
+        {
+          researchers: "Barretto, Monina D.; Usero, Sherilyn B.",
+          title: "Examination Management System with Data Bank and Test Administration Using LAN",
+          researchArea: "Technology in Education",
+          targetCompletion: "July 2027",
+        },
+      ],
+    },
+    {
+      id: "leoven-basista",
+      name: "Leoven R. Basista",
+      researchArea: "DATA SCIENCE / DATA ANALYTICS & IOT",
+      status: "ONGOING RESEARCH",
+      modalStatus: "Ongoing Research",
+      ctaLabel: "1 ongoing project",
+      folderSlug: "basista-research.folder",
+      imageSrc: "public/images/faculty/faculty-basista.jpg",
+      ongoingProjects: [
+        {
+          researchers: "Basista, Leoven R.; Fabregas, Aleta C.",
+          title: "FloodDetectWaze: Institutional Funding — Research Institute for Science and Technology - Center for Data Analytics and Intelligence Systems",
+          researchArea: "Data Science/Data Analytics and Internet of Things",
+          targetCompletion: "January 2027",
+        },
+      ],
+    },
+    {
+      id: "montaigne-molejon",
+      name: "Montaigne G. Molejon",
+      researchArea: "INFORMATION SYSTEM, MACHINE LEARNING",
+      status: "ONGOING RESEARCH",
+      modalStatus: "Ongoing Research",
+      ctaLabel: "1 ongoing project",
+      folderSlug: "molejon-research.folder",
+      imageSrc: "public/images/faculty/faculty-molejon.jpg",
+      ongoingProjects: [
+        {
+          researchers: "Molejon, Montaigne G.",
+          title: "Augmented Reality Grocery Shopping Application with Smart Product Recommender using Apriori Algorithm",
+          researchArea: "Information System, Machine Learning",
+          targetCompletion: "November 2027",
+        },
+      ],
+    },
+    {
+      id: "melvin-roxas",
+      name: "Melvin C. Roxas",
+      researchArea: "DATA SCIENCE & INFORMATION SYSTEMS",
+      status: "ONGOING RESEARCH",
+      modalStatus: "Ongoing Research",
+      ctaLabel: "2 ongoing projects",
+      folderSlug: "roxas-research.folder",
+      imageSrc: "public/images/faculty/faculty-roxas.jpg",
+      ongoingProjects: [
+        {
+          researchers: "Roxas, Melvin C.",
+          title: "Negotiating the Boundaries of AI Assistance: A Netnographic Study of Computer Science Students’ Sentiment Toward Generative AI in Thesis Writing",
+          researchArea: "Data Science",
+          targetCompletion: "December 2027",
+        },
+        {
+          researchers: "Roxas, Melvin C.; Sagum, Ria A.",
+          title: "Bridging Local Products to Digital Markets: An Action Research on E-Commerce Development for Community Cooperatives",
+          researchArea: "Information Systems",
+          targetCompletion: "November 2027",
+        },
+      ],
+    },
+    {
+      id: "sherilyn-usero",
+      name: "Sherilyn B. Usero",
+      researchArea: "TECHNOLOGY IN EDUCATION",
+      status: "ONGOING RESEARCH",
+      modalStatus: "Ongoing Research",
+      ctaLabel: "1 ongoing project",
+      folderSlug: "usero-research.folder",
+      imageSrc: "public/images/faculty/faculty-usero.jpg",
+      ongoingProjects: [
+        {
+          researchers: "Usero, Sherilyn B.; Barretto, Monina D.",
+          title: "Examination Management System with Data Bank and Test Administration Using LAN",
+          researchArea: "Technology in Education",
+          targetCompletion: "July 2027",
+        },
+      ],
+    },
   ],
   class: className = "",
 } = Astro.props;
+
+const fallbackLogoSrc = "/ccis-logo.png";
 
 const lowercaseWords = new Set(["in", "until", "for", "of", "and", "on", "to"]);
 const resolveModalStatus = (member: FacultyMember) => {
@@ -334,16 +487,13 @@ const guidancePillClass =
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     {
       faculty.map((member) => {
-        const initials = member.name
-          .split(/\s+/)
-          .filter(Boolean)
-          .slice(0, 2)
-          .map((part) => part[0]?.toUpperCase() ?? "")
-          .join("");
         const gradientId = `folder-pocket-grad-${member.id}`;
         const status = member.status ?? "INVOLVED IN RESEARCH";
         const ctaLabel = member.ctaLabel ?? "Refereed publications";
         const memberDialogId = `${modalId}-${member.id}`;
+        const hasMemberImage = Boolean(member.imageSrc);
+        const resolvedImageSrc = member.imageSrc ?? fallbackLogoSrc;
+        const isContain = !hasMemberImage || member.imageFit === "contain";
 
         return (
           <div class="flex flex-col items-center">
@@ -359,7 +509,8 @@ const guidancePillClass =
                 <!-- Inner Full-Bleed Image Sheet + Curved Maroon Pocket -->
                 <div class="relative overflow-hidden rounded-[17px] bg-[#3B0000]">
                   <div
-                    class="relative overflow-hidden rounded-t-[17px] border-[1.5px] border-b-0 border-white/95 bg-[#EFEAEA] transition-transform duration-300 ease-out group-hover:-translate-y-1.5"
+                    data-faculty-image-frame
+                    class={`relative overflow-hidden rounded-t-[17px] border-[1.5px] border-b-0 border-white/95 transition-transform duration-300 ease-out group-hover:-translate-y-1.5 ${isContain ? "bg-white" : "bg-[#EFEAEA]"}`}
                   >
                     <div class="absolute top-2.5 left-2.5 right-2.5 z-10">
                       <span
@@ -369,27 +520,23 @@ const guidancePillClass =
                       </span>
                     </div>
 
-                    <div class="relative aspect-[10/9] w-full overflow-hidden bg-[#EFEAEA]">
-                      {
-                        member.imageSrc ? (
-                          <img
-                            src={member.imageSrc}
-                            alt={`Portrait of ${member.name}`}
-                            loading="lazy"
-                            referrerpolicy="no-referrer"
-                            class="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                          />
-                        ) : (
-                          <div class="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgba(128,0,0,0.12),rgba(243,234,234,0.95)_75%)] pt-4 text-center">
-                            <span class="font-['Montserrat',sans-serif] text-[28px] font-black tracking-tight text-[#780000]">
-                              {initials}
-                            </span>
-                            <span class="mt-0.5 font-['Montserrat',sans-serif] text-[8px] font-bold tracking-[0.14em] uppercase text-[#800000]/70">
-                              PUP-CCIS FACULTY
-                            </span>
-                          </div>
-                        )
-                      }
+                    <div
+                      data-faculty-image-box
+                      class={`relative aspect-[10/9] w-full overflow-hidden ${isContain ? "bg-white" : "bg-[#EFEAEA]"}`}
+                    >
+                      <img
+                        src={resolvedImageSrc}
+                        data-fallback-src={fallbackLogoSrc}
+                        data-fallback-class="h-full w-full object-contain pt-7 pb-6 px-6 transition-transform duration-300 group-hover:scale-[1.03]"
+                        alt={isContain ? `PUP CCIS emblem for ${member.name}` : `Portrait of ${member.name}`}
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        class={
+                          isContain
+                            ? "h-full w-full object-contain pt-7 pb-6 px-6 transition-transform duration-300 group-hover:scale-[1.03]"
+                            : "h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                        }
+                      />
                     </div>
                   </div>
 
@@ -429,7 +576,7 @@ const guidancePillClass =
                         {member.name}
                       </h3>
                       <p
-                        class="mt-1 font-['Montserrat',sans-serif] text-[9.5px] font-bold italic tracking-[0.04em] uppercase text-[#FFE600] truncate"
+                        class="mt-1 flex min-h-[26px] items-center justify-center font-['Montserrat',sans-serif] text-[9.5px] font-bold italic leading-[1.35] tracking-[0.04em] uppercase text-[#FFE600] whitespace-normal break-words"
                       >
                         {member.researchArea}
                       </p>
@@ -457,13 +604,11 @@ const guidancePillClass =
     faculty.map((member) => {
       const memberDialogId = `${modalId}-${member.id}`;
       const publications = member.publications ?? [];
+      const ongoingProjects = member.ongoingProjects ?? [];
       const resolvedStatus = resolveModalStatus(member);
-      const initials = member.name
-        .split(/\s+/)
-        .filter(Boolean)
-        .slice(0, 2)
-        .map((part) => part[0]?.toUpperCase() ?? "")
-        .join("");
+      const hasMemberImage = Boolean(member.imageSrc);
+      const resolvedImageSrc = member.imageSrc ?? fallbackLogoSrc;
+      const isContain = !hasMemberImage || member.imageFit === "contain";
 
       return (
         <dialog
@@ -489,22 +634,21 @@ const guidancePillClass =
           <div class="p-6 space-y-5 max-h-[82vh] overflow-y-auto">
             <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-5 items-center">
               <div
-                class="aspect-[4/4.6] w-full max-w-[155px] mx-auto overflow-hidden rounded-xl border border-neutral-200 bg-[#360000] shadow-sm flex items-center justify-center"
+                data-faculty-image-box
+                class={`aspect-[4/4.6] w-full max-w-[155px] mx-auto overflow-hidden rounded-xl border border-neutral-200 shadow-sm flex items-center justify-center ${isContain ? "bg-white" : "bg-[#360000]"}`}
               >
-                {
-                  member.imageSrc ? (
-                    <img
-                      src={member.imageSrc}
-                      alt={`Portrait of ${member.name}`}
-                      referrerpolicy="no-referrer"
-                      class="h-full w-full object-cover object-top"
-                    />
-                  ) : (
-                    <span class="font-['Montserrat',sans-serif] text-[28px] font-black text-[#FFE600]">
-                      {initials}
-                    </span>
-                  )
-                }
+                <img
+                  src={resolvedImageSrc}
+                  data-fallback-src={fallbackLogoSrc}
+                  data-fallback-class="h-full w-full object-contain p-3"
+                  alt={isContain ? `PUP CCIS emblem for ${member.name}` : `Portrait of ${member.name}`}
+                  referrerpolicy="no-referrer"
+                  class={
+                    isContain
+                      ? "h-full w-full object-contain p-3"
+                      : "h-full w-full object-cover object-top"
+                  }
+                />
               </div>
 
               <div class="space-y-3">
@@ -537,60 +681,106 @@ const guidancePillClass =
               </div>
             </div>
 
-            <div class="border-t border-neutral-200 pt-4">
-              <div class="flex items-center justify-between gap-3 mb-3">
-                <h4 class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]">
-                  REFEREED PUBLICATIONS
-                </h4>
-                <span
-                  class="rounded-full bg-[#F3E8E8] px-2.5 py-0.5 font-['Montserrat',sans-serif] text-[10px] font-bold text-[#780000]"
-                >
-                  {publications.length} {publications.length === 1 ? "publication" : "publications"}
-                </span>
-              </div>
+            {
+              ongoingProjects.length > 0 && (
+                <div class="border-t border-neutral-200 pt-4">
+                  <div class="flex items-center justify-between gap-3 mb-3">
+                    <h4 class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]">
+                      ONGOING RESEARCH PROJECTS
+                    </h4>
+                    <span
+                      class="rounded-full bg-[#FDF3CA] px-2.5 py-0.5 font-['Montserrat',sans-serif] text-[10px] font-bold text-[#800000]"
+                    >
+                      {ongoingProjects.length} {ongoingProjects.length === 1 ? "project" : "projects"}
+                    </span>
+                  </div>
 
-              <div class="space-y-3">
-                {
-                  publications.map((pub) => (
-                    <article class="rounded-xl border border-neutral-200 bg-neutral-50/75 p-3.5 space-y-1">
-                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                        <span class="font-semibold text-neutral-900">Author(s): </span>
-                        {pub.authors}
-                      </p>
-                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                        <span class="font-semibold text-neutral-900">Title of Research: </span>
-                        {pub.title}
-                      </p>
-                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                        <span class="font-semibold text-neutral-900">Refereed Journal: </span>
-                        {pub.journal}
-                      </p>
-                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                        <span class="font-semibold text-neutral-900">Date Published: </span>
-                        {pub.datePublished}
-                      </p>
-                      <p class="text-[11.5px] leading-[1.45] text-neutral-600">
-                        <span class="font-semibold text-neutral-900">DOI: </span>
-                        {
-                          pub.doi ? (
-                            <a
-                              href={pub.doi}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="font-medium text-[#780000] underline decoration-[#780000]/45 underline-offset-2 hover:text-[#4e0000] hover:decoration-[#4e0000] break-all transition-colors"
-                            >
-                              {pub.doi}
-                            </a>
-                          ) : (
-                            <span class="italic text-neutral-400">No DOI available</span>
-                          )
-                        }
-                      </p>
-                    </article>
-                  ))
-                }
-              </div>
-            </div>
+                  <div class="space-y-3">
+                    {
+                      ongoingProjects.map((proj) => (
+                        <article class="rounded-xl border border-[#D9A41D]/40 bg-[#FFFDF5] p-3.5 space-y-1">
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Researcher(s): </span>
+                            {proj.researchers}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Research Working Title: </span>
+                            {proj.title}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Research Area: </span>
+                            {proj.researchArea}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Target Date of Completion: </span>
+                            <span class="font-semibold text-[#780000]">{proj.targetCompletion}</span>
+                          </p>
+                        </article>
+                      ))
+                    }
+                  </div>
+                </div>
+              )
+            }
+
+            {
+              publications.length > 0 && (
+                <div class="border-t border-neutral-200 pt-4">
+                  <div class="flex items-center justify-between gap-3 mb-3">
+                    <h4 class="font-['Montserrat',sans-serif] text-[10.5px] font-extrabold tracking-[0.1em] uppercase text-[#780000]">
+                      REFEREED PUBLICATIONS
+                    </h4>
+                    <span
+                      class="rounded-full bg-[#F3E8E8] px-2.5 py-0.5 font-['Montserrat',sans-serif] text-[10px] font-bold text-[#780000]"
+                    >
+                      {publications.length} {publications.length === 1 ? "publication" : "publications"}
+                    </span>
+                  </div>
+
+                  <div class="space-y-3">
+                    {
+                      publications.map((pub) => (
+                        <article class="rounded-xl border border-neutral-200 bg-neutral-50/75 p-3.5 space-y-1">
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Author(s): </span>
+                            {pub.authors}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Title of Research: </span>
+                            {pub.title}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Refereed Journal: </span>
+                            {pub.journal}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">Date Published: </span>
+                            {pub.datePublished}
+                          </p>
+                          <p class="text-[11.5px] leading-[1.45] text-neutral-600">
+                            <span class="font-semibold text-neutral-900">DOI: </span>
+                            {
+                              pub.doi ? (
+                                <a
+                                  href={pub.doi}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="font-medium text-[#780000] underline decoration-[#780000]/45 underline-offset-2 hover:text-[#4e0000] hover:decoration-[#4e0000] break-all transition-colors"
+                                >
+                                  {pub.doi}
+                                </a>
+                              ) : (
+                                <span class="italic text-neutral-400">No DOI available</span>
+                              )
+                            }
+                          </p>
+                        </article>
+                      ))
+                    }
+                  </div>
+                </div>
+              )
+            }
           </div>
         </dialog>
       );
@@ -608,6 +798,50 @@ const guidancePillClass =
   (() => {
     const root = document.querySelector(`[data-faculty-showcase="${modalId}"]`);
     if (!root) return;
+
+    const applyImageFallback = (img) => {
+      if (!(img instanceof HTMLImageElement)) return;
+      if (img.dataset.fallbackApplied === "true") return;
+      const fallbackSrc = img.getAttribute("data-fallback-src");
+      if (!fallbackSrc) return;
+
+      img.dataset.fallbackApplied = "true";
+      img.src = fallbackSrc;
+
+      const fallbackClass = img.getAttribute("data-fallback-class");
+      if (fallbackClass) {
+        img.className = fallbackClass;
+      }
+
+      const imageBox = img.closest("[data-faculty-image-box]");
+      if (imageBox) {
+        imageBox.classList.remove("bg-[#EFEAEA]", "bg-[#360000]");
+        imageBox.classList.add("bg-white");
+      }
+
+      const imageFrame = img.closest("[data-faculty-image-frame]");
+      if (imageFrame) {
+        imageFrame.classList.remove("bg-[#EFEAEA]");
+        imageFrame.classList.add("bg-white");
+      }
+    };
+
+    root.querySelectorAll("img[data-fallback-src]").forEach((img) => {
+      if (img instanceof HTMLImageElement && img.complete && img.naturalWidth === 0) {
+        applyImageFallback(img);
+      }
+    });
+
+    root.addEventListener(
+      "error",
+      (event) => {
+        const target = event.target;
+        if (target instanceof HTMLImageElement && target.hasAttribute("data-fallback-src")) {
+          applyImageFallback(target);
+        }
+      },
+      true
+    );
 
     root.addEventListener("click", (event) => {
       const target = event.target;
