@@ -101,12 +101,6 @@ const { desktopHeight = "460px" } = Astro.props;
       filter: none;
     }
 
-    :global(.intl-deck[data-active="0"] .intl-deck-item[data-index="0"]),
-    :global(.intl-deck[data-active="1"] .intl-deck-item[data-index="0"]),
-    :global(.intl-deck[data-active="2"] .intl-deck-item[data-index="0"]) {
-      margin-left: 0;
-    }
-
     :global(.intl-deck:not([data-active="-1"]) .intl-deck-item:not(:first-child)) {
       margin-left: -15.5%;
     }

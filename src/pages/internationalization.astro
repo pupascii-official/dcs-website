@@ -1,10 +1,10 @@
 ---
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
-import PillarBadge from "../components/PillarBadge.astro";
+import HeroButton from "../components/HeroButton.astro";
 
-import SectionHeader from "../components/internationalization/SectionHeader.astro";
 import ImageLightbox from "../components/internationalization/ImageLightbox.astro";
+import NarrativeReportModal from "../components/internationalization/NarrativeReportModal.astro";
 import AccreditationSection from "../components/internationalization/AccreditationSection.astro";
 import RankingsSection from "../components/internationalization/RankingsSection.astro";
 import AcademicPartners from "../components/internationalization/AcademicPartners.astro";
@@ -14,66 +14,60 @@ import ConferencesDelegations from "../components/internationalization/Conferenc
 import StudentExperience from "../components/internationalization/StudentExperience.astro";
 import CompetitionExcellence from "../components/internationalization/CompetitionExcellence.astro";
 
+import area4NarrativePdf from "../assets/pdfs/area-4-internationalization.pdf";
 import { internationalData } from "../data/internationalization/content";
 
-const sectionBase = "scroll-section scrollbar-none flex flex-col px-4 sm:px-6 md:px-8 pb-12 max-w-6xl mx-auto w-full overflow-x-hidden";
+const sectionBase = "scroll-section flex flex-col px-4 sm:px-6 md:px-8 pb-12 max-w-6xl mx-auto w-full overflow-x-hidden";
+const sectionWide = `${sectionBase} pb-14`;
 ---
 
 <ScrollSnapLayout
   title="Internationalization | PUP Department of Computer Science"
-  description="Showcasing PUP BSCS's international recognition, academic partnerships, research innovation, and global engagement."
+  description={internationalData.hero.lead}
 >
-  <HeroSection
-    title={internationalData.hero.title}
-    subtitle={internationalData.hero.lead}
-  >
-    <p>
-      {internationalData.hero.subtext}
-    </p>
+  <HeroSection title={internationalData.hero.title}>
+    <p class="text-white font-normal">{internationalData.hero.lead}</p>
+    <div
+      data-area4-pdf-trigger
+      data-pdf-src={area4NarrativePdf}
+      data-pdf-title="Area 4: Internationalization Narrative Report"
+    >
+      <HeroButton label="Area 4 Narrative Report" href={area4NarrativePdf} />
+    </div>
   </HeroSection>
 
-  <section class={sectionBase}>
-    <div class="my-auto w-full min-w-0">
-      <AccreditationSection />
-    </div>
+  <section class={sectionWide}>
+    <AccreditationSection />
   </section>
 
-  <section class={`${sectionBase} pb-14`}>
-    <SectionHeader label={internationalData.section2.label} title={internationalData.section2.title} marginClass="mb-5" />
+  <section class={sectionWide}>
     <RankingsSection />
   </section>
 
   <section class={sectionBase}>
-    <div class="my-auto w-full min-w-0">
-      <AcademicPartners />
-    </div>
+    <AcademicPartners />
   </section>
 
   <section class={sectionBase}>
-    <div class="my-auto w-full min-w-0">
-      <FeaturedResearchProject />
-    </div>
+    <FeaturedResearchProject />
   </section>
 
-  <section class={`${sectionBase} pb-14`}>
+  <section class={sectionWide}>
     <ResearchPublications />
   </section>
 
-  <section class={`${sectionBase} pb-14`}>
+  <section class={sectionWide}>
     <ConferencesDelegations />
   </section>
 
   <section class={sectionBase}>
-    <div class="my-auto w-full min-w-0">
-      <StudentExperience />
-    </div>
+    <StudentExperience />
   </section>
 
-  <section class={`${sectionBase} pb-14`}>
-    <div class="my-auto w-full min-w-0">
-      <CompetitionExcellence />
-    </div>
+  <section class={sectionWide}>
+    <CompetitionExcellence />
   </section>
 
   <ImageLightbox />
+  <NarrativeReportModal />
 </ScrollSnapLayout>

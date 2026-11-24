@@ -174,14 +174,14 @@ const folderBadgeClasses = {
 <div class={`space-y-4 ${className}`} data-policy-dashboard>
   <!-- Main Outer Maroon-Bordered Card -->
   <div
-    class="policy-dashboard-shell rounded-2xl sm:rounded-3xl border-[1.5px] border-[#800000] p-3 sm:p-5 shadow-[0_24px_56px_-14px_rgba(128,0,0,0.16)] space-y-4"
+    class="policy-dashboard-shell rounded-2xl sm:rounded-3xl border-[1.5px] border-[#800000] p-3 sm:p-5 space-y-4"
   >
     <!-- Top 3 Policy Summary Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
       {
         cards.map((card) => (
           <article
-            class="policy-summary-card rounded-2xl border border-[#800000]/22 p-4 sm:p-5 shadow-[0_12px_28px_-14px_rgba(128,0,0,0.14)] flex flex-col justify-between transition-transform duration-200 hover:-translate-y-0.5"
+            class="policy-summary-card rounded-2xl border border-[#800000]/22 p-4 sm:p-5 flex flex-col justify-between transition-transform duration-200 hover:-translate-y-0.5"
           >
             <div class="flex items-center justify-between gap-3 mb-3">
               <span
@@ -220,7 +220,7 @@ const folderBadgeClasses = {
     </div>
 
     <!-- BSCS AREA 1 • RESEARCH EVIDENCE Stacked Folder Container -->
-    <div class="policy-deck-well rounded-xl sm:rounded-2xl border border-[#800000]/20 p-2.5 sm:p-5 shadow-[0_12px_28px_-16px_rgba(128,0,0,0.1)]">
+    <div class="policy-deck-well rounded-xl sm:rounded-2xl border border-[#800000]/20 p-2.5 sm:p-5">
       <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div
           class="flex items-center gap-2 font-heading text-[10px] font-extrabold tracking-[0.12em] uppercase text-[#800000]"
@@ -319,19 +319,19 @@ const folderBadgeClasses = {
 
 <style>
   .policy-dashboard-shell {
-    background-image: linear-gradient(180deg, #ffffff 0%, #fcf9f8 58%, #f4ecea 100%);
+    background-color: #ffffff;
   }
 
   .policy-summary-card {
-    background-image: linear-gradient(180deg, #ffffff 0%, #fdfbfa 58%, #f8f1ef 100%);
+    background-color: #ffffff;
   }
 
   .policy-deck-well {
-    background-image: linear-gradient(180deg, #fdfcfc 0%, #faf6f5 58%, #f4ecea 100%);
+    background-color: #ffffff;
   }
 
   .badge-faculty-dev {
-    background-image: linear-gradient(90deg, #f9ecc3 0%, #f4e1a2 100%);
+    background-color: #f9ecc3;
   }
 </style>
 

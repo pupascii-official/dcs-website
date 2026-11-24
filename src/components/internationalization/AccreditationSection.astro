@@ -1,8 +1,9 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
+import ContentCard from "../ContentCard.astro";
 import SectionHeader from "./SectionHeader.astro";
 
-const { label, title, badge, headline, programs, imagePath } = internationalData.section1;
+const { label, title, badge, headline, programs, imagePath, picabSpotlight } = internationalData.section1;
 ---
 
 <div class="w-full">
@@ -34,6 +35,19 @@ const { label, title, badge, headline, programs, imagePath } = internationalData
       </div>
     </div>
   </div>
+
+  <div class="picab-spotlight mt-6 md:mt-8">
+    <ContentCard kicker={picabSpotlight.kicker} display={picabSpotlight.display}>
+      <img slot="media" src={picabSpotlight.imagePath} alt={picabSpotlight.imageAlt} loading="lazy" />
+
+      <div slot="content" class="picab-cic-content">
+        <b>{picabSpotlight.date}</b>
+        {picabSpotlight.paragraphs.map((text) => (
+          <p>{text}</p>
+        ))}
+      </div>
+    </ContentCard>
+  </div>
 </div>
 
 <style>
@@ -63,5 +77,18 @@ const { label, title, badge, headline, programs, imagePath } = internationalData
 
   .accreditation-headline {
     color: var(--color-white) !important;
+  }
+
+  .picab-spotlight :global(.content-card) {
+    margin-bottom: 0;
+  }
+
+  .picab-cic-content b {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .picab-cic-content p:not(:last-child) {
+    margin-bottom: 1rem;
   }
 </style>
