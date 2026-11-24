@@ -32,7 +32,7 @@ import Area2Btn from "../components/Area2Btn.astro";
 <ScrollSnapLayout
         title="Teaching & Learning"
         description="PUP CCIS Bachelor of Science in Computer Science — outcomes-based education aligned with CHED CMO No. 25, s. 2015 and the 2022 Revised Curriculum (167 Units)."
->
+    >
     <!-- HERO -->
     <HeroSection
             title="Teaching &"
@@ -61,7 +61,9 @@ import Area2Btn from "../components/Area2Btn.astro";
 
     <!-- OUTCOMES-BASED COMPUTING EDUCATION -->
     <section
-            class="section-one scroll-section scrollbar-none mx-6 flex max-w-7xl flex-col items-start gap-8 py-8 md:mx-auto md:px-8 xl:flex-row">
+            data-reveal
+            class="section-one scroll-section scrollbar-none mx-6 flex max-w-7xl flex-col items-start gap-8 my-16 mt-18 md:mx-auto md:px-8 xl:flex-row"
+        >
         <!-- LEFT CONTENT -->
         <div class="min-w-0 flex-1">
             <SectionContent
@@ -109,7 +111,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- ELECTIVES -->
-    <section class="scrollbar-none">
+    <section data-reveal class="scrollbar-none">
         <MaroonSection
                 eyebrow="SECTION 03 • CURRICULUM & ELECTIVE TRACKS"
                 title="Four Specialized Elective Tracks"
@@ -120,7 +122,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- CURRICULUM MAP -->
-    <section id="CurriculumMap" class="scroll-section scrollbar-none mx-6 pt-20 md:pt-24 lg:pt-28">
+    <section data-reveal id="CurriculumMap" class="scrollbar-none mx-6 pt-18 md:pt-24 lg:pt-28">
         <SectionContent
                 title="2022 BSCS Curriculum Map"
                 sectionLabel="SECTION 04 • CURRICULUM STRUCTURE • 167 UNITS"
@@ -136,60 +138,63 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- BSCS FACULTY DISTRIBUTION & PROFILES -->
-    <ContentSection
-            sectionLabel="SECTION 05 • FACULTY MEMBERS & PROFILE"
-            category="BSCS Faculty Distribution & Profiles"
-            description="24 faculty members — 10 Regular (plantilla, 40 hrs/week, 15-unit regular load) and 14 Part-Time (contractual, 3–12 units) — evaluated under the University's ITEES."
-    >
-        <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <div class="min-w-0">
-                <FacultyDistribution/>
-            </div>
+    <section data-reveal>
+        <ContentSection
+                sectionLabel="SECTION 05 • FACULTY MEMBERS & PROFILE"
+                category="BSCS Faculty Distribution & Profiles"
+                description="24 faculty members — 10 Regular (plantilla, 40 hrs/week, 15-unit regular load) and 14 Part-Time (contractual, 3–12 units) — evaluated under the University's ITEES."
+        >
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                <div class="min-w-0">
+                    <FacultyDistribution/>
+                </div>
 
-            <div class="min-w-0">
-                <CommonCard
-                        label="DOCUMENTARY EVIDENCE • PAGE 12"
-                        image="/teaching-learning-assets/evidence-page12-faculty-meeting.jpg"
-                        imageAlt="Faculty Meeting Group Picture"
-                        title="CCIS Faculty Meeting (1st Semester, AY 2425)"
-                >
-                    <p>
-                        BSCS faculty members collaborating on curriculum implementation, syllabus enhancement, Student
-                        Outcomes assessment, thesis and capstone supervision, research initiatives, and academic
-                        mentoring.
-                    </p>
-                </CommonCard>
-            </div>
-
-            <!-- Documentary Evidence -->
-            <div class="lg:col-span-2">
-                <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p class="text-xs font-bold uppercase text-(--color-maroon)">
-                            10 Regular • 8 Profiled Part-Time
-                        </p>
-                        <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
-                            BSCS Faculty Profiles & Qualifications
-                        </h3>
-                        <p class="mt-1 mb-0 text-sm text-(--color-text-body)">
-                            View academic qualifications, specializations, and course assignments of the BSCS faculty on
-                            a dedicated page.
-                        </p>
-                    </div>
-
-                    <a
-                            href="/teaching-and-learning/faculty"
-                            class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-(--color-gold) px-5 py-3 text-sm font-bold text-(--color-maroon) transition hover:bg-(--color-dark-gold)"
+                <div class="min-w-0">
+                    <CommonCard
+                            label="DOCUMENTARY EVIDENCE • PAGE 12"
+                            image="/teaching-learning-assets/evidence-page12-faculty-meeting.jpg"
+                            imageAlt="Faculty Meeting Group Picture"
+                            title="CCIS Faculty Meeting (1st Semester, AY 2425)"
                     >
-                        View Faculty Profiles →
-                    </a>
+                        <p>
+                            BSCS faculty members collaborating on curriculum implementation, syllabus enhancement, Student
+                            Outcomes assessment, thesis and capstone supervision, research initiatives, and academic
+                            mentoring.
+                        </p>
+                    </CommonCard>
+                </div>
+
+                <!-- Documentary Evidence -->
+                <div class="lg:col-span-2">
+                    <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase text-(--color-maroon)">
+                                10 Regular • 8 Profiled Part-Time
+                            </p>
+                            <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
+                                BSCS Faculty Profiles & Qualifications
+                            </h3>
+                            <p class="mt-1 mb-0 text-sm text-(--color-text-body)">
+                                View academic qualifications, specializations, and course assignments of the BSCS faculty on
+                                a dedicated page.
+                            </p>
+                        </div>
+
+                        <a
+                                href="/teaching-and-learning/faculty"
+                                class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-(--color-gold) px-5 py-3 text-sm font-bold text-(--color-maroon) transition hover:bg-(--color-dark-gold)"
+                        >
+                            View Faculty Profiles →
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </ContentSection>
+        </ContentSection>
+    </section>
+    
 
     <!-- DEVELOPMENT, AWARDS & ITEES -->
-    <section class="faculty-development-section scrollbar-none">
+    <section data-reveal class="faculty-development-section scrollbar-none">
         <MaroonSection
                 eyebrow="SECTION 06 • DEVELOPMENT, AWARDS & ITEES"
                 title="Faculty Development, Awards & ITEES"
@@ -200,89 +205,95 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- INSTRUCTIONAL MATERIALS -->
-    <ContentSection
-            sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
-            category="Development of Instructional Materials & Faculty Authors"
-            description="Developed in accordance with OBE, CLOs, PLOs, and SOs, and reviewed/endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA)."
-    >
-        <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
-            <div class="min-w-0">
-                <CommonCard
-                        label="SAMPLE COURSE SYLLABUS • 2022 CURRICULUM"
-                        image="/teaching-learning-assets/images/evidence-page13-syllabus.jpg"
-                        imageAlt="Course Syllabus for Automata and Language Theory"
-                        title="COSC 302 – Automata and Language Theory (3 Units)"
-                >
-                    <p>
-                        <strong>Outcomes-Based Course Syllabus (OVPAA / CCIS):</strong> Covers formal models in Computer
-                        Science including finite automata, regular expressions, properties of regular sets, equivalence
-                        and minimization, context-free grammars, pushdown automata, and Turing machines—aligned with PUP
-                        Vision, Mission, and Quality Policy.
-                    </p>
-                </CommonCard>
-            </div>
-
-            <div class="min-w-0">
-                <CommonCard
-                        label="SAMPLE INSTRUCTIONAL MATERIAL • UTLDO"
-                        image="/teaching-learning-assets/images/evidence-page13-im.jpg"
-                        imageAlt="Automata and Language Theory Instructional Material"
-                        title="Automata and Language Theory — Compiled by Ria A. Sagum"
-                >
-                    <p>
-                        <strong>Published & Distributed by PUP CCIS:</strong> Official UTLDO-endorsed learning module
-                        for COSC 302 (CCIS 5F South Wing, PUP Main Bldg., Sta. Mesa, Manila), providing structured
-                        theoretical discussions and exercises for BSCS students.
-                    </p>
-                </CommonCard>
-            </div>
-
-            <!-- Documentary Evidence -->
-            <div class="xl:col-span-2">
-                <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p class="text-xs font-bold uppercase text-(--color-maroon)">
-                            25 COURSES &bull; UTLDO / CIMDA
-                        </p>
-                        <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
-                            List of Faculty Authors in BSCS Instructional Materials
-                        </h3>
-                        <p class="mt-1 mb-0 text-sm text-(--color-text-body)">
-                            View the complete directory of faculty authors across 25 BSCS courses on a dedicated page.
-                        </p>
-                    </div>
-
-                    <a
-                            href="/teaching-and-learning/faculty-authors"
-                            class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-(--color-gold) px-5 py-3 text-sm font-bold text-(--color-maroon) transition hover:bg-(--color-dark-gold)"
+    <section data-reveal>
+            <ContentSection
+                sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
+                category="Development of Instructional Materials & Faculty Authors"
+                description="Developed in accordance with OBE, CLOs, PLOs, and SOs, and reviewed/endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA)."
+            >
+            <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                <div class="min-w-0">
+                    <CommonCard
+                            label="SAMPLE COURSE SYLLABUS • 2022 CURRICULUM"
+                            image="/teaching-learning-assets/images/evidence-page13-syllabus.jpg"
+                            imageAlt="Course Syllabus for Automata and Language Theory"
+                            title="COSC 302 – Automata and Language Theory (3 Units)"
                     >
-                        View Faculty Authors List →
-                    </a>
+                        <p>
+                            <strong>Outcomes-Based Course Syllabus (OVPAA / CCIS):</strong> Covers formal models in Computer
+                            Science including finite automata, regular expressions, properties of regular sets, equivalence
+                            and minimization, context-free grammars, pushdown automata, and Turing machines—aligned with PUP
+                            Vision, Mission, and Quality Policy.
+                        </p>
+                    </CommonCard>
+                </div>
+
+                <div class="min-w-0">
+                    <CommonCard
+                            label="SAMPLE INSTRUCTIONAL MATERIAL • UTLDO"
+                            image="/teaching-learning-assets/images/evidence-page13-im.jpg"
+                            imageAlt="Automata and Language Theory Instructional Material"
+                            title="Automata and Language Theory — Compiled by Ria A. Sagum"
+                    >
+                        <p>
+                            <strong>Published & Distributed by PUP CCIS:</strong> Official UTLDO-endorsed learning module
+                            for COSC 302 (CCIS 5F South Wing, PUP Main Bldg., Sta. Mesa, Manila), providing structured
+                            theoretical discussions and exercises for BSCS students.
+                        </p>
+                    </CommonCard>
+                </div>
+
+                <!-- Documentary Evidence -->
+                <div class="xl:col-span-2">
+                    <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase text-(--color-maroon)">
+                                25 COURSES &bull; UTLDO / CIMDA
+                            </p>
+                            <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
+                                List of Faculty Authors in BSCS Instructional Materials
+                            </h3>
+                            <p class="mt-1 mb-0 text-sm text-(--color-text-body)">
+                                View the complete directory of faculty authors across 25 BSCS courses on a dedicated page.
+                            </p>
+                        </div>
+
+                        <a
+                                href="/teaching-and-learning/faculty-authors"
+                                class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-(--color-gold) px-5 py-3 text-sm font-bold text-(--color-maroon) transition hover:bg-(--color-dark-gold)"
+                        >
+                            View Faculty Authors List →
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </ContentSection>
+        </ContentSection>
+    </section>
 
     <!-- PROGRAM EDUCATIONAL OBJECTIVES & STUDENT OUTCOMES -->
-    <ContentSection
-            sectionLabel="SECTION 08 • STUDENT OUTCOMES & ECO-SYSTEM"
-            category="Program Educational Objectives & Student Outcomes"
-            description="Purposeful alignment among PEOs, SOs, curriculum, teaching-learning processes, assessment mechanisms, and graduate achievements."
-    >
-        <StudentOutcomes/>
-    </ContentSection>
-
+    <section data-reveal>
+        <ContentSection
+                sectionLabel="SECTION 08 • STUDENT OUTCOMES & ECO-SYSTEM"
+                category="Program Educational Objectives & Student Outcomes"
+                description="Purposeful alignment among PEOs, SOs, curriculum, teaching-learning processes, assessment mechanisms, and graduate achievements."
+        >
+            <StudentOutcomes/>
+        </ContentSection>
+    </section>
+    
     <!-- STUDENT ECO-SYSTEM & RESEARCH COLLOQUIUM -->
-    <ContentSection
-            sectionLabel="SECTION 08B • STUDENT ECO-SYSTEM & RESEARCH COLLOQUIUM"
-            category="Applied Learning, BSCS Thesis & Research Colloquium"
-            description="Bridging theoretical foundations with real-world problem-solving, scientific inquiry, industry immersion, and scholarly dissemination."
-    >
-        <AppliedLearning/>
-    </ContentSection>
-
+    <section data-reveal>
+        <ContentSection
+                sectionLabel="SECTION 08B • STUDENT ECO-SYSTEM & RESEARCH COLLOQUIUM"
+                category="Applied Learning, BSCS Thesis & Research Colloquium"
+                description="Bridging theoretical foundations with real-world problem-solving, scientific inquiry, industry immersion, and scholarly dissemination."
+        >
+            <AppliedLearning/>
+        </ContentSection>
+    </section>
+    
     <!-- STUDENT ORGANIZATIONS -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-16">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-16">
         <SectionContent
                 title="Presentation of Student Organizations"
                 sectionLabel="SECTION 08C • STUDENT OUTCOMES & ECO-SYSTEM"
@@ -297,7 +308,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- STUDENT ACHIEVEMENTS & AWARDS -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-16">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-16">
         <SectionContent
                 title="Student Achievements & Awards"
                 sectionLabel="SECTION 09 • STUDENT ACHIEVEMENTS & AWARDS"
@@ -312,7 +323,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- CS INTERNATIONAL STUDENTS -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2 pt-8 pb-16">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2 pt-8 pb-16">
         <SectionContent
                 title="CS International Students"
                 sectionLabel="SECTION 10 • INTERNATIONAL STUDENTS"
@@ -327,7 +338,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- ACCOMPLISHMENT REPORTS -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-16">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-16">
         <SectionContent
                 title="Department & Program Accomplishment Reports"
                 sectionLabel="SECTION 11 • ACCOMPLISHMENT REPORTS"
@@ -348,7 +359,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- NOTABLE ALUMNI -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-5">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-5">
         <SectionContent
                 title="Notable BSCS Alumni"
                 sectionLabel="SECTION 12 • NOTABLE ALUMNI • GRADUATE IMPACT"
@@ -363,7 +374,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- GRADUATE TRACER -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-10">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-10">
         <SectionContent
                 title="BSCS Graduate Tracer"
                 sectionLabel="SECTION 13 • GRADUATE TRACER"
@@ -378,7 +389,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- PEO ATTAINMENT SCORES -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-10">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2  pt-8 pb-10">
         <SectionContent
                 title="PEO Attainment Scores"
                 sectionLabel="SECTION 14 • PEO ATTAINMENT SCORES"
@@ -393,7 +404,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- PICAB -->
-    <section class="scroll-section scrollbar-none roomy-section mx-2 pt-8 pb-10">
+    <section data-reveal class="scroll-section scrollbar-none roomy-section mx-2 pt-8 pb-10">
         <SectionContent
                 title="PICAB Accreditation"
                 sectionLabel="SECTION 15 • PICAB ACCREDITATION"
@@ -410,6 +421,26 @@ import Area2Btn from "../components/Area2Btn.astro";
     <PDFModal/>
 </ScrollSnapLayout>
 
+<script>
+    const observer = new IntersectionObserver(
+    (entries, observer) => {
+        entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+        }
+        });
+    },
+    {
+        threshold: 0.15,
+    }
+    );
+
+    document.querySelectorAll("[data-reveal]").forEach((element) => {
+    observer.observe(element);
+    });
+</script>
+
 <style>
     .main-button {
         background: linear-gradient(90deg, #800000, #B8860B, #5C0000);
@@ -418,4 +449,29 @@ import Area2Btn from "../components/Area2Btn.astro";
         -webkit-text-fill-color: transparent;
         color: transparent;
     }
+
+    /* Initial state */
+    [data-reveal] {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    /* Visible state */
+    [data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    }
+
 </style>

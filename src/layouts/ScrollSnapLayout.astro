@@ -35,4 +35,14 @@ const {title, description} = Astro.props;
     :global(.scroll-section) {
         scroll-margin-top: 3rem;
     }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :global(html) {
+            scroll-behavior: auto;
+        }
+    }
 </style>
