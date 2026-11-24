@@ -26,14 +26,14 @@ const docRef = pdfSlug ? getDocRef(pdfSlug) : undefined;
     {docRef ? (
             <button
                     type="button"
-                    class="card-link"
+                    class:list={["card-link"]}
                     data-doc-ref={docRef}
                     data-pdf-title={title}
             >
                 {linkLabel} <span aria-hidden="true">↗</span>
             </button>
     ) : href ? (
-            <a href={href} class="card-link">
+            <a href={href} class:list={["card-link"]}>
                 {linkLabel} <span aria-hidden="true">↗</span>
             </a>
     ) : (
@@ -99,7 +99,7 @@ const docRef = pdfSlug ? getDocRef(pdfSlug) : undefined;
         color: var(--color-text-body);
     }
 
-    .card-link {
+    .card-link:not(.btn-drive) {
         display: inline-flex;
         align-items: center;
         gap: 0.35rem;
@@ -121,8 +121,14 @@ const docRef = pdfSlug ? getDocRef(pdfSlug) : undefined;
         cursor: pointer;
     }
 
-    a.card-link:hover,
-    button.card-link:hover {
+    button.card-link.btn-drive {
+        border: none;
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    a.card-link:not(.btn-drive):hover,
+    button.card-link:not(.btn-drive):hover {
         color: var(--color-maroon);
         text-decoration: underline;
     }
