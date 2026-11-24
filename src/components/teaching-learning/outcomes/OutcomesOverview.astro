@@ -1,0 +1,64 @@
+
+---
+import CommonCard from "../CommonCard.astro";
+import ITEESChart from "./ITEESChart.astro";
+import AssessmentFeedback from "./AssessmentFeedback.astro";
+---
+
+<section class="rounded-2xl p-3 sm:p-5">
+
+    <!-- TOP: Documentary Evidence -->
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
+
+        <CommonCard
+            class:list={["bg-(--color-maroon)"]}
+            label="PUP LAMP"
+            image="../../../public/teaching-learning-assets/images/cert-roxas-lamp.jpg"
+            imageAlt="LAMP certificate"
+            imageFit="contain"
+            title="Mr. Melvin C. Roxas"
+        >
+            <p class="text-sm">
+                <strong>Certificate of Participation</strong> — 24-hour Strategic Management and Leadership Module (Oct 11&dash;13, 2021; awarded Oct 13, 2021). Signed by University President Manuel M. Muhi, D.Tech., ASEAN Engr. Demonstrates proactive investment in leadership readiness and succession planning.
+            </p>
+                
+        </CommonCard>
+
+        <CommonCard
+            label="TESDA National Certificate II"
+            image="../../../public/teaching-learning-assets/images/cert-basista-tesda.jpg"
+            imageAlt="TESDA certificate"
+            imageFit="contain"
+            title="Mr. Leoven R. Basista"
+        >
+            <p class="text-sm">
+                <strong>NC II in Computer Systems Servicing</strong> — Philippine TVET Competency Assessment & Certification System (Issued Jan 09, 2025; Valid until Jan 08, 2030; Cert No. 25045802000070). Signed by TESDA Director General Jose Francisco "Kiko" B. Benitez.
+            </p>
+        </CommonCard>
+
+        <CommonCard
+            label="PUP Praise Committee • PESDI Award"
+            image="../../../public/teaching-learning-assets/images/cert-barretto-plaque.jpg"
+            imageAlt="PESDI award plaque"
+            title="Assoc. Prof. Monina D. Barretto"
+        >
+            <p class="text-sm">
+                <strong>Outstanding Faculty Plaque of Recognition & PESDI (Category 6)</strong> — Awarded Oct 23, 2024 during PUP's 120th Foundation Anniversary at PUP Bulwagang Balagtas, recognizing exemplary performance and dedication to education.
+            </p>
+        </CommonCard>
+
+    </div>
+
+    <!-- BOTTOM: Results and Assessment -->
+    <div class="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-12">
+
+        <div class="xl:col-span-7">
+            <ITEESChart />
+        </div>
+
+        <div class="xl:col-span-5">
+            <AssessmentFeedback />
+        </div>
+
+    </div>
+</section>

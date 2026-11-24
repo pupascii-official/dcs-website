@@ -1,0 +1,103 @@
+---
+import ScrollSnapLayout from "../../layouts/ScrollSnapLayout.astro";
+import HeroSection from "../../components/HeroSection.astro";
+import ContentSection from "../../components/ContentSection.astro";
+import { FacultyAuthors } from "../../data/teaching-learning/authors";
+---
+
+<ScrollSnapLayout
+    title="BSCS Faculty Profiles"
+    description=""
+>
+    <!-- HERO -->
+    <HeroSection
+        title="BSCS Instructional Materials "
+        accentTitle="Faculty Authors"
+        subtitle="AREA 2 • INSTRUCTIONAL MATERIALS • UTLDO / CIMDA"
+    >
+        <span>Complete directory of faculty authors who developed and compiled OBE-aligned instructional materials across 25 BSCS courses, reviewed and endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA).</span>
+        <a href="../teaching-and-learning" class=" inline-block bg-white shadow-md mt-9 py-4 px-6 rounded-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <span class="main-button font-bold text-center">← Back to Teaching & Learning</span>
+        </a>
+    </HeroSection>
+
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
+            category="List of Faculty Authors"
+        >
+            <div>
+                <a href="../teaching-and-learning" class="inline-block font-medium text-center text-(--color-dark-maroon) py-2 px-4 bg-(--color-gold) rounded-full hover:bg-(--color-dark-gold) hover:text-white transition-all duration-200">
+                    ← Back to Teaching & Learning
+                </a>
+            </div>
+
+            <!-- Faculty Authors Table -->
+            <div class="overflow-x-auto my-6 shadow-lg rounded-b-2xl">
+                <div class="t-header text-(--color-gold) font-extrabold rounded-t-2xl">
+                    <span>LIST OF FACULTY AUTHORS IN BSCS INSTRUCTIONAL MATERIALS</span>
+                    <span>25 Courses</span>
+                </div>
+                <table class="w-full min-w-162 text-left text-sm">
+                    <thead class="bg-(--color-muted-maroon) text-(--color-dark-maroon)">
+                        <tr>
+                            <th class="p-2 font-bold">Code</th>
+                            <th class="p-2 font-bold">Description</th>
+                            <th class="p-2 font-bold">Faculty Authors</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {FacultyAuthors.map((item) => (
+                            <tr
+                                class="border-t border-(--bg-light-maroon) hover:bg-(--color-muted-maroon)"
+                                data-author-row
+                                data-author-search={[
+                                    item.code ?? "",
+                                    item.title,
+                                    ...item.authors,
+                                ].join(" ").toLowerCase()}
+                            >
+                                <td class="p-2 whitespace-nowrap font-medium">
+                                    {item.code ?? "—"}
+                                </td>
+                                <td class="p-2">{item.title}</td>
+                                <td class="p-2">{item.authors.join(", ")}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <a href="../teaching-and-learning" class="inline-block font-medium text-center text-(--color-dark-maroon) py-2 px-4 bg-(--color-gold) rounded-full hover:bg-(--color-dark-gold) hover:text-white transition-all duration-200">
+                ← Return to Teaching & Learning
+            </a>
+        </ContentSection>
+    </section>
+</ScrollSnapLayout>
+
+<style>
+    .main-button {
+        background-color: white;
+        background: linear-gradient(90deg, #800000, #B8860B, #5C0000);
+        background-clip: text;
+        color: transparent;
+    }
+
+    .t-header {
+        display: flex;
+        justify-content: space-between;
+        background: linear-gradient(90deg, var(--color-dark-maroon), var(--color-maroon));
+        padding: 0.9rem 1.1rem; 
+    }
+
+    tbody {
+        cursor: pointer;
+    }
+
+    td, th {
+        border-bottom: 1px rgba(70, 79, 88, 0.263) solid;
+    }
+</style>
+
+

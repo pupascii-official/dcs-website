@@ -1,0 +1,195 @@
+---
+const slides = [
+    {
+        image: "../../../public/teaching-learning-assets/images/evidence-page23-intern-eval.jpg",
+        alt: "Intern evaluation",
+        caption: "Intern Evaluation (Page 23)",
+    },
+    {
+        image: "../../../public/teaching-learning-assets/images/evidence-page23-course-assess.jpg",
+        alt: "Course assessment datasheet",
+        caption: "Course Assessment",
+    },
+];
+---
+
+<article class="group h-full rounded-2xl border border-(--color-gold) bg-white p-5 sm:p-6 shadow-lg transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl">
+
+    <!-- HEADER -->
+    <div>
+        <p class="text-xs font-bold uppercase text-(--color-dark-maroon)">
+            Assessment & Feedback Mechanisms
+        </p>
+
+        <h3 class="mt-3 text-xl font-extrabold leading-snug text-slate-900">
+            OJT Evaluations, Course Datasheets & Tracer Studies
+        </h3>
+    </div>
+
+    <!-- DESCRIPTIONS -->
+    <div class="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
+
+        <p>
+            <strong class="text-(--color-dark-maroon)">Sample Intern Evaluation:</strong>
+            OJT supervisor ratings on Character (30%) and Competence (70%)—e.g.,
+            GoGenie Solutions Inc. evaluation of technical skills, teamwork,
+            and workplace readiness.
+        </p>
+
+        <p>
+            <strong class="text-(--color-dark-maroon)">Sample Course Assessment Result:</strong>
+            QAC Course Assessment Datasheet for <em>CS Thesis Writing 1</em>
+            (193 enrolled students across Dastas, Dela Fuente, Espinelli,
+            Juancho, Tan, Usero) mapping SO1 & SO2 performance indicators.
+        </p>
+
+        <p>
+            <strong class="text-(--color-dark-maroon)">Graduate Exit & Tracer Studies:</strong>
+            Evaluates preparedness for professional practice and aligns
+            curriculum with industry requirements.
+        </p>
+
+    </div>
+
+    <!-- CAROUSEL -->
+    <div
+        class="evidence-carousel mt-4"
+        data-carousel
+    >
+        <!-- IMAGE VIEWER -->
+        <div class="relative overflow-hidden h-64 rounded-xl border border-slate-800/15 bg-slate-50 p-2 shadow-lg">
+
+            <div class="relative w-full flex aspect-[16/9] items-center justify-center overflow-hidden rounded-lg bg-white ">
+
+                <div class="flex h-full w-full items-center justify-center overflow-hidden">
+                    <img
+                        data-carousel-image
+                        src={slides[0].image}
+                        alt={slides[0].alt}
+                        class="h-full! w-full! object-contain! transition-transform duration-300 ease-in-out group-hover:scale-105"
+                    />
+                </div>
+
+                <!-- PREVIOUS -->
+                <button
+                    type="button"
+                    data-carousel-prev
+                    aria-label="Previous image"
+                    class="absolute left-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-lg font-bold text-(--color-dark-maroon) shadow transition hover:bg-(--color-gold)"
+                >
+                    ‹
+                </button>
+
+                <!-- NEXT -->
+                <button
+                    type="button"
+                    data-carousel-next
+                    aria-label="Next image"
+                    class="absolute right-2 top-1/2 flex size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-lg font-bold text-(--color-dark-maroon) shadow transition hover:bg-(--color-gold)"
+                >
+                    ›
+                </button>
+
+            </div>
+
+            <!-- CAPTION -->
+            <p
+                data-carousel-caption
+                class="mt-2 text-center text-xs font-bold text-(--color-dark-maroon)"
+            >
+                {slides[0].caption}
+            </p>
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="mt-2 flex items-center justify-between">
+
+            <div class="flex items-center gap-2">
+                {slides.map((slide, index) => (
+                    <button
+                        type="button"
+                        data-carousel-dot={index}
+                        aria-label={`Go to slide ${index + 1}`}
+                        aria-current={index === 0 ? "true" : undefined}
+                        class:list={[
+                            "h-2 rounded-full transition-all",
+                            index === 0
+                                ? "w-6 bg-(--color-dark-maroon)"
+                                : "w-2 bg-red-200 hover:bg-red-400",
+                        ]}
+                    />
+                ))}
+            </div>
+
+            <p class="text-xs font-semibold text-slate-500">
+                <span data-carousel-current>1</span>
+                /
+                {slides.length}
+            </p>
+
+        </div>
+    </div>
+
+</article>
+
+<script>
+    const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+
+    carousels.forEach((carousel) => {
+        const slides = [
+            {
+                image: "../../../public/teaching-learning-assets/images/evidence-page23-intern-eval.jpg",
+                alt: "Intern evaluation",
+                caption: "Intern Evaluation (Page 23)",
+            },
+            {
+                image: "../../../public/teaching-learning-assets/images/evidence-page23-course-assess.jpg",
+                alt: "Course assessment datasheet",
+                caption: "Course Assessment",
+            },
+        ];
+
+        const image = carousel.querySelector<HTMLImageElement>("[data-carousel-image]");
+        const caption = carousel.querySelector<HTMLElement>("[data-carousel-caption]");
+        const current = carousel.querySelector<HTMLElement>("[data-carousel-current]");
+        const dots = carousel.querySelectorAll<HTMLButtonElement>("[data-carousel-dot]");
+
+        let activeIndex = 0;
+
+        function showSlide(index: number) {
+            activeIndex = (index + slides.length) % slides.length;
+
+            const slide = slides[activeIndex];
+
+            if (!image || !caption || !current) return;
+
+            image.src = slide.image;
+            image.alt = slide.alt;
+            caption.textContent = slide.caption;
+            current.textContent = String(activeIndex + 1);
+
+            dots.forEach((dot, dotIndex) => {
+                const active = dotIndex === activeIndex;
+
+                dot.classList.toggle("w-6", active);
+                dot.classList.toggle("bg-red-900", active);
+                dot.classList.toggle("w-2", !active);
+                dot.classList.toggle("bg-red-200", !active);
+
+                dot.setAttribute("aria-current", active ? "true" : "false");
+            });
+        }
+
+        carousel.querySelector("[data-carousel-prev]")?.addEventListener("click", () => {
+            showSlide(activeIndex - 1);
+        });
+
+        carousel.querySelector("[data-carousel-next]")?.addEventListener("click", () => {
+            showSlide(activeIndex + 1);
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => showSlide(index));
+        });
+    });
+</script>
