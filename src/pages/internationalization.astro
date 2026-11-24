@@ -1,10 +1,12 @@
 ---
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
+import HeroButton from "../components/HeroButton.astro";
 import ContentCard from "../components/ContentCard.astro";
 
 import SectionHeader from "../components/internationalization/SectionHeader.astro";
 import ImageLightbox from "../components/internationalization/ImageLightbox.astro";
+import NarrativeReportModal from "../components/internationalization/NarrativeReportModal.astro";
 import AccreditationSection from "../components/internationalization/AccreditationSection.astro";
 import RankingsSection from "../components/internationalization/RankingsSection.astro";
 import AcademicPartners from "../components/internationalization/AcademicPartners.astro";
@@ -14,6 +16,7 @@ import ConferencesDelegations from "../components/internationalization/Conferenc
 import StudentExperience from "../components/internationalization/StudentExperience.astro";
 import CompetitionExcellence from "../components/internationalization/CompetitionExcellence.astro";
 
+import area4NarrativePdf from "../assets/pdfs/area-4-internationalization.pdf";
 import { internationalData } from "../data/internationalization/content";
 
 const sectionBase = "scroll-section scrollbar-none flex flex-col px-4 sm:px-6 md:px-8 pb-12 max-w-6xl mx-auto w-full overflow-x-hidden";
@@ -24,13 +27,20 @@ const { picabSpotlight } = internationalData.section2;
   title="Internationalization | PUP Department of Computer Science"
   description="Showcasing PUP BSCS's international recognition, academic partnerships, research innovation, and global engagement."
 >
-  <HeroSection
-    title={internationalData.hero.title}
-    subtitle={internationalData.hero.lead}
-  >
-    <p>
+  <HeroSection title={internationalData.hero.title}>
+    <p class="text-white font-semibold">
+      {internationalData.hero.lead}
+    </p>
+    <p class="text-white/90">
       {internationalData.hero.subtext}
     </p>
+    <div
+      data-area4-pdf-trigger
+      data-pdf-src={area4NarrativePdf}
+      data-pdf-title="Area 4: Internationalization Narrative Report"
+    >
+      <HeroButton label="Area 4 Narrative Report" href={area4NarrativePdf} />
+    </div>
   </HeroSection>
 
   <section class={sectionBase}>
@@ -89,6 +99,7 @@ const { picabSpotlight } = internationalData.section2;
   </section>
 
   <ImageLightbox />
+  <NarrativeReportModal />
 </ScrollSnapLayout>
 
 <style>

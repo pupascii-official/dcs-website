@@ -593,10 +593,6 @@ export const internationalData = {
         award: "Gold Medalist",
         imagePath: "/images/internationalization/salazar-award.JPG"
       }
-    ],
-    cta: {
-      label: "View Full Narative Report ↗",
-      href: "/narrative-report"
-    }
+    ]
   }
 };
