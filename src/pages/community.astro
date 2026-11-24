@@ -1,0 +1,391 @@
+---
+import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import ContentSection from "../components/ContentSection.astro";
+import HeadlineComponent from "../components/HeadlineComponent.astro";
+import InitiativeCard from "../components/community/InitiativeCard.astro";
+import SeminarStepCard from "../components/community/SeminarStepCard.astro";
+import FeedbackCard from "../components/community/FeedbackCard.astro";
+import StatItem from "../components/community/StatItem.astro";
+import CommunitySection from "../components/community/CommunitySection.astro";
+import EmsHighlightCard from "../components/community/EmsHighlightCard.astro";
+import PhotoCard from "../components/community/PhotoCard.astro";
+import PDFModal from "../components/PDFModal.astro";
+import { getDocRef } from "../lib/pdfs.server";
+---
+
+<ScrollSnapLayout
+    title="Community & Extension"
+    description="Community outreach, digital literacy programs, and extension partnerships."
+>
+    <HeroSection
+        title="Community &"
+        accentTitle="Extension">
+        <p>Community outreach, digital literacy programs, and extension partnerships</p>
+        </HeroSection>
+
+    <CommunitySection class="md:justify-center gap-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col gap-2">
+                <span class="text-xs font-bold leading-[19px] text-(--color-maroon) uppercase">
+                    COMPUTER SCIENCE FOR THE PUBLIC GOOD
+                </span>
+                <HeadlineComponent headline="Connecting technology with communities.">
+                    <p class="text-lg leading-relaxed text-(--color-text-body) text-justify mt-4">
+                        The BSCS program brings faculty expertise and student
+                        ingenuity to real-world community needs through digital
+                        literacy, capacity building, and technology transfer.
+                    </p>
+                    <p class="text-base leading-relaxed text-(--color-text-body)/75 text-justify mt-3">
+                        Together with local organizations, schools, and
+                        cooperative partners, we turn classroom learning and
+                        research into responsible computing solutions with
+                        lasting social impact.
+                    </p>
+                </HeadlineComponent>
+            </div>
+            <img
+                src="/community-asset/training-participants.png"
+                alt="Community training participants"
+                class="h-[300px] w-full rounded-lg object-cover"
+            />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 md:justify-items-center gap-6 rounded-lg bg-white p-7 shadow-sm">
+            <StatItem value="01" label="Community initiatives" />
+            <StatItem value="02" label="Ongoing projects" />
+            <StatItem value="03" label="Completed initiative" />
+        </div>
+    </CommunitySection>
+
+    <ContentSection
+        sectionLabel="COMMUNITY & EXTENSION • 01"
+        category="Community Initiatives"
+        description="A sustained partnership, from foundational digital skills to research-driven solutions."
+    >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <InitiativeCard
+                status="ONGOING"
+                title="E-Commerce for the MSEs"
+                description="Empowering Micro and Small Enterprises of Mandaluyong in the Digital Age: E-Commerce"
+                partner="Cooperative Union of Mandaluyong City"
+                beneficiaries="MSE owners, cooperative officers and staff, and local entrepreneurs"
+                imageLabel="E-Commerce for the MSEs documentation"
+                imageSrc="/community-asset/e-commerce-mse.png"
+                docRef={getDocRef("extension-proposal-mse")}
+                pdfTitle="E-Commerce for the MSEs"
+            />
+            <InitiativeCard
+                status="COMPLETED · DECEMBER 2023"
+                title="Digital literacy & cybersecurity"
+                description="Computer Literacy on the Creation of Presentation Materials Using Videos / Malwares and Other Cybersecurity Threats"
+                partner="Cooperative Union of Mandaluyong City"
+                beneficiaries="MSE owners, cooperative officers and staff, and local entrepreneurs"
+                imageLabel="Digital literacy & cybersecurity documentation"
+                imageSrc="/community-asset/cybersec.png"
+                href="https://drive.google.com/drive/folders/1x-9RjTppKqretkcVKHzXaYfqNEcKMBPI?usp=drive_link"
+            />
+            <InitiativeCard
+                status="ONGOING · PLANNED 2026–2029"
+                title="Examination Management System"
+                description="Research into practice: a question repository and LAN-based examination system"
+                partner="Claro M. Recto High School"
+                beneficiaries="Junior and Senior High School faculty members and students"
+                imageLabel="Examination Management System documentation"
+                imageSrc="/community-asset/exam-management.png"
+                docRef={getDocRef("ems-objectives")}
+                pdfTitle="Examination Management System"
+            />
+        </div>
+    </ContentSection>
+
+    <ContentSection
+        sectionLabel="COMMUNITY & EXTENSION • 02"
+        category="Building digital-ready businesses"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+            <div class="flex flex-col gap-3">
+                <h3 class="font-(family-name:--font-montserrat) text-2xl font-bold text-(--color-maroon)">
+                    E-Commerce for the MSEs
+                </h3>
+                <p class="text-base leading-relaxed text-(--color-text-body) text-justify">
+                    Enhancing the capability and readiness of Mandaluyong City’s
+                    micro and small enterprise owners to adopt e-commerce and
+                    digital marketing for sustainable business growth.
+                </p>
+                <p class="text-sm leading-relaxed text-(--color-text-body)/75 text-justify">
+                    Building on seminars held in 2019, 2022, 2023, and 2025, the
+                    program progresses from Microsoft Office and social media to
+                    Canva, CapCut, cybersecurity, and AI. The series prepares
+                    partners for the transfer of an enhanced, capstone-based
+                    e-commerce application.
+                </p>
+            </div>
+            <img
+                src="/community-asset/e-commerce-mse-2.png"
+                alt="E-Commerce system orientation"
+                class="w-full !max-w-[460px] h-auto rounded-lg lg:justify-self-end"
+            />
+        </div>
+
+        <div class="flex flex-col gap-4 mt-8">
+            <span class="text-xs font-bold tracking-wider text-(--color-maroon) uppercase">
+                A THREE-PART SEMINAR SERIES
+            </span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <SeminarStepCard
+                    badge="01 · UNDERSTAND"
+                    badgeClass="border border-[#DAA520]/50 bg-[#DAA520]/20"
+                    code="01"
+                    title="E-Commerce & marketing"
+                    description="Concepts, tools, digital marketing essentials, and participants’ learning expectations."
+                />
+                <SeminarStepCard
+                    badge="02 · PRACTICE"
+                    badgeClass="bg-[#800000]/10"
+                    code="02"
+                    title="Capabilities & skills"
+                    description="Hands-on social media, online page creation, and product posting; identify training needs."
+                />
+                <SeminarStepCard
+                    badge="03 · PREPARE"
+                    badgeClass="bg-[#FFDF00]/40"
+                    code="03"
+                    title="Readiness & commitment"
+                    description="Assess readiness and draft digital strategies for sustained digital transformation."
+                />
+            </div>
+        </div>
+    </ContentSection>
+
+    <CommunitySection class="md:justify-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center rounded-lg border border-(--color-border) bg-white p-8 shadow-sm">
+            <img
+                src="/community-asset/computer-literacy.png"
+                alt="Video creation seminar"
+                class="h-[300px] w-full rounded-lg object-cover"
+            />
+            <div class="flex flex-col gap-4">
+                <span class="text-xs font-bold tracking-wider text-(--color-maroon) uppercase">
+                    COMPLETED · DECEMBER 2023
+                </span>
+                <h3 class="font-(family-name:--font-montserrat) text-3xl font-bold leading-tight text-(--color-maroon)">
+                    Digital skills.
+                    <br />
+                    Safer online communities.
+                </h3>
+                <p class="text-base leading-relaxed text-(--color-text-body)">
+                    A two-day seminar with the Investment Promotion Office –
+                    Negosyo Center of Mandaluyong City combined malware
+                    awareness and cybersecurity protection with video creation
+                    using Canva and CapCut.
+                </p>
+                <p class="text-base leading-relaxed text-(--color-text-body)/75">
+                    Participant evaluations, attendance records, photo evidence,
+                    and certificates document the complete extension cycle. EMO
+                    certification records high participant satisfaction.
+                </p>
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("satisfaction-certification")}
+                    data-pdf-title="Satisfaction Certification"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
+                >
+                    View satisfaction certification ↗
+                </button>
+            </div>
+        </div>
+    </CommunitySection>
+
+    <ContentSection
+        sectionLabel="COMMUNITY & EXTENSION • 03"
+        category="Research that serves education"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="flex flex-col gap-3">
+                <span class="text-xs font-bold tracking-wider text-(--color-maroon) uppercase">
+                    ONGOING · IMPLEMENTATION PLANNED 2026–2029
+                </span>
+                <h3 class="font-(family-name:--font-montserrat) text-2xl font-bold text-(--color-maroon)">
+                    Examination Management System
+                </h3>
+                <p class="text-base leading-relaxed text-(--color-text-body)">
+                    For Claro M. Recto High School, the EMS brings a
+                    collaborative question bank together with LAN-based
+                    examinations, automated checking, and immediate student
+                    feedback—even without internet access for test
+                    administration.
+                </p>
+                <p class="text-base leading-relaxed text-(--color-text-body)/75">
+                    Developed from capstone research and enhanced by Dr. Vivien
+                    Domingo and team, the project is a BSCS–BSIT collaboration.
+                    The newer version adds cheating detection and a web-based
+                    question repository.
+                </p>
+                <a
+                    href="https://quilana-ems.freedev.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                >
+                    Explore the web-based EMS ↗
+                </a>
+            </div>
+            <img
+                src="/community-asset/exam-management.png"
+                alt="Claro M. Recto High School partnership"
+                class="h-[300px] w-full rounded-lg object-cover"
+            />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            <EmsHighlightCard
+                title="Collaborative question bank"
+                description="Faculty can add, review, and update questions for efficient and accurate test creation."
+            />
+            <EmsHighlightCard
+                title="School-wide participation"
+                description="20 Senior High School faculty and about 70 Junior High School faculty, plus their students."
+            />
+            <EmsHighlightCard
+                title="Sustained implementation"
+                description="Installation, training, deployment, enhancements, and impact evaluation guided by MEAL."
+            />
+        </div>
+    </ContentSection>
+
+    <ContentSection
+        sectionLabel="COMMUNITY & EXTENSION • 04"
+        category="Learning through service"
+        description="CCIS students help develop applications for technology transfer and support participants during hands-on training. Alongside faculty project leaders, trainers, developers, and evaluators, they serve as facilitators, technical assistants, and moderators—building problem-solving skills, collaboration, and social responsibility."
+    >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <PhotoCard
+                src="/community-asset/student-volunteers.jpg"
+                alt="Student volunteers"
+                caption="Student volunteers contributing to application development and technology transfer."
+            />
+            <PhotoCard
+                src="/community-asset/hands-on-training-support.jpg"
+                alt="Hands-on training support"
+                caption="Students assisting community participants during hands-on computer training."
+            />
+        </div>
+    </ContentSection>
+
+    <ContentSection
+        sectionLabel="COMMUNITY & EXTENSION • 05"
+        category="Voices from our community"
+        description="Feedback from recent monitoring with members of the Cooperative Union of Mandaluyong City."
+    >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <FeedbackCard
+                topic="ON LIVELIHOOD"
+                quote="“Mas napaganda ang pagbebenta.”"
+                source="- Respondent 7"
+            />
+            <FeedbackCard
+                topic="ON NEW DIGITAL SKILLS"
+                quote="“Natuto ako ng tamang pag gamit ng AI.”"
+                source="- Respondent 1"
+            />
+            <FeedbackCard
+                topic="ON EVERYDAY WORK"
+                quote="“Mas napapabilis ang trabaho.”"
+                source="- Respondent 6"
+            />
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[430px_1fr] gap-8 items-center rounded-lg bg-white p-7 shadow-sm">
+            <img
+                src="/community-asset/rtu-impact-assessment.jpg"
+                alt="CCIS, PUP EMO and RTU impact assessment meeting"
+                class="h-[300px] w-full rounded-lg object-cover"
+            />
+            <div class="flex flex-col gap-4">
+                <span class="text-xs font-bold tracking-wider text-(--color-maroon) uppercase">
+                    ASSESSMENT IN PROGRESS
+                </span>
+                <h3 class="font-(family-name:--font-montserrat) text-2xl font-bold text-(--color-maroon)">
+                    Accountability beyond the activity
+                </h3>
+                <p class="text-base leading-relaxed text-(--color-text-body)">
+                    Rizal Technological University is conducting an ongoing
+                    third-party assessment of past extension programs with CCIS
+                    and the PUP Extension Management Office.
+                </p>
+                <p class="text-sm leading-relaxed text-(--color-text-body)/75">
+                    Assoc. Prof. Dina Miclat and CCIS faculty maintain regular
+                    coordination with community head Mam Mila Robles for updates
+                    and future plans.
+                </p>
+            </div>
+        </div>
+    </ContentSection>
+
+    <ContentSection
+        sectionLabel="COMMUNITY & EXTENSION • 06"
+        category="Documentation & evidence"
+        description="Explore the project records, implementation reports, assessments, and partnership documentation behind our community engagements."
+    >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="flex flex-col gap-6 rounded-lg bg-white p-6 shadow-sm">
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("extension-proposal-mse")}
+                    data-pdf-title="E-Commerce for the MSEs"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
+                >
+                    E-Commerce seminar series ↗
+                </button>
+                <a
+                    href="https://drive.google.com/drive/folders/1x-9RjTppKqretkcVKHzXaYfqNEcKMBPI?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                >
+                    Literacy reports &amp; PUP–CUMC agreement ↗
+                </a>
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("satisfaction-certification")}
+                    data-pdf-title="Satisfaction Certification"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
+                >
+                    Satisfaction certification ↗
+                </button>
+            </div>
+            <div class="flex flex-col gap-6 rounded-lg bg-white p-6 shadow-sm">
+                <button
+                    type="button"
+                    data-doc-ref={getDocRef("ems-objectives")}
+                    data-pdf-title="EMS Project & Partnership Records"
+                    class="w-fit text-left text-sm font-bold text-(--color-maroon) hover:underline cursor-pointer"
+                >
+                    EMS project &amp; partnership records ↗
+                </button>
+                <a
+                    href="https://drive.google.com/drive/folders/19LZYQJp5XGLxsyD-ClKmGIKUYtkvNLK9?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sm font-bold text-(--color-maroon) hover:underline"
+                >
+                    Community assessment records ↗
+                </a>
+            </div>
+        </div>
+        <div class="bg-(--color-dark-maroon) p-9 text-white flex flex-col gap-4 mt-8">
+            <h3 class="font-(family-name:--font-montserrat) text-[28px] font-bold leading-tight !text-(--color-gold)">
+                A collaboration of efforts, ideas, vision.
+            </h3>
+            <p class="text-lg leading-relaxed text-white/90">
+                From digital awareness to deployable technology, faculty
+                leadership, interdisciplinary collaboration, and student
+                participation keep community service connected to academic
+                learning—and technology working for the public good.
+            </p>
+        </div>
+    </ContentSection>
+
+    <PDFModal />
+</ScrollSnapLayout>

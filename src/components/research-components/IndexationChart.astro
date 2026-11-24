@@ -1,0 +1,146 @@
+---
+export interface RingYearData {
+  year: number;
+  count: number;
+  progress: number;
+  color: string;
+}
+
+export interface Props {
+  activeYear?: number;
+  unitLabel?: string;
+  rings?: RingYearData[];
+  class?: string;
+}
+
+const {
+  activeYear = 2025,
+  unitLabel = "STUDIES",
+  rings = [
+    { year: 2025, count: 4, progress: 0.42, color: "#780000" },
+    { year: 2024, count: 6, progress: 0.56, color: "#9E2A1C" },
+    { year: 2023, count: 13, progress: 0.84, color: "#C89416" },
+    { year: 2022, count: 11, progress: 0.72, color: "#E5B82E" },
+    { year: 2021, count: 5, progress: 0.48, color: "#B4690E" },
+  ],
+  class: className = "",
+} = Astro.props;
+
+const activeRing = rings.find((r) => r.year === activeYear) ?? rings[0];
+const size = 250;
+const center = size / 2;
+const radii = [108, 91, 74, 57, 40];
+---
+
+<div
+  data-ring-chart
+  class={`relative inline-flex items-center justify-center select-none ${className}`}
+  role="img"
+  aria-label={`Research productivity rings showing ${activeRing.count} ${unitLabel.toLowerCase()} for year ${activeRing.year}`}
+>
+  <svg
+    width={size}
+    height={size}
+    viewBox={`0 0 ${size} ${size}`}
+    class="-rotate-90 overflow-visible"
+  >
+    {
+      rings.map((ring, idx) => {
+        const r = radii[idx] ?? 40;
+        const circumference = 2 * Math.PI * r;
+        const dashOffset = circumference * (1 - ring.progress);
+        const isActive = ring.year === activeRing.year;
+        return (
+          <g
+            data-ring-group
+            data-ring-year={ring.year}
+            data-ring-count={ring.count}
+            class="cursor-pointer group"
+          >
+            <circle
+              cx={center}
+              cy={center}
+              r={r}
+              fill="none"
+              stroke="#ECECEC"
+              stroke-width="10"
+              class="transition-colors duration-300 group-hover:stroke-[#E3D8D8]"
+            />
+            <circle
+              data-ring-arc
+              data-ring-year={ring.year}
+              data-target-offset={dashOffset}
+              data-circumference={circumference}
+              cx={center}
+              cy={center}
+              r={r}
+              fill="none"
+              stroke={ring.color}
+              stroke-width={isActive ? "11.5" : "10"}
+              stroke-linecap="round"
+              stroke-dasharray={circumference}
+              stroke-dashoffset={dashOffset}
+              opacity={isActive ? "1" : "0.52"}
+              class="ring-arc-circle"
+            />
+          </g>
+        );
+      })
+    }
+  </svg>
+
+  <div
+    data-ring-center
+    class="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center transition-transform duration-300"
+  >
+    <span
+      data-ring-center-year
+      class="font-['Montserrat',sans-serif] text-[8px] font-bold tracking-[0.12em] uppercase text-neutral-400"
+    >
+      YEAR {activeRing.year}
+    </span>
+    <span
+      data-ring-center-count
+      class="font-['Montserrat',sans-serif] text-[24px] font-black leading-none text-[#780000] tabular-nums mt-0.5 transition-all duration-300"
+    >
+      {activeRing.count}
+    </span>
+    <span
+      class="font-['Montserrat',sans-serif] text-[7.5px] font-bold tracking-[0.12em] uppercase text-[#C89416] mt-0.5"
+    >
+      {unitLabel}
+    </span>
+  </div>
+</div>
+
+<style>
+  .ring-arc-circle {
+    transition:
+      stroke-dashoffset 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      stroke-width 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.28s ease;
+  }
+
+  .ring-center-pop {
+    animation: ringCenterPop 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes ringCenterPop {
+    from {
+      opacity: 0.35;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring-arc-circle,
+    .ring-center-pop {
+      transition: none;
+      animation: none;
+    }
+  }
+</style>
