@@ -55,7 +55,7 @@ const {
       modalStatus: "Involved in Research",
       ctaLabel: "13 publications • 3 ongoing",
       folderSlug: "sagum-research.folder",
-      imageSrc: "research-asset/sagumria.png",
+      imageSrc: "images/faculty/faculty-sagum.jpg",
       publications: [
         {
           authors: "Sagum, Ria A.; Sagum, Janelle Kyra A.",
@@ -178,7 +178,7 @@ const {
       modalStatus: "Involved in Research",
       ctaLabel: "6 refereed publications",
       folderSlug: "inovero-research.folder",
-      imageSrc: "research-asset/inovero.png",
+      imageSrc: "images/faculty/faculty-inovero.jpg",
       publications: [
         {
           authors: "Inovero, Carlo G.",
@@ -232,7 +232,7 @@ const {
       modalStatus: "Involved in Research",
       ctaLabel: "5 publications • 1 ongoing",
       folderSlug: "fabregas-research.folder",
-      imageSrc: "research-asset/fabregas.png",
+      imageSrc: "images/faculty/faculty-fabregas.jpg",
       publications: [
         {
           authors: "Fabregas, Aleta C.; Amata, Maria Leonila G.",
@@ -273,7 +273,7 @@ const {
           researchers: "Fabregas, Aleta C.; Basista, Leoven R.",
           title: "FloodDetectWaze: Institutional Funding — Research Institute for Science and Technology - Center for Data Analytics and Intelligence Systems",
           researchArea: "Machine Learning",
-          targetCompletion: "September 2026",
+          targetCompletion: "January 2027",
         },
       ],
     },
@@ -285,7 +285,7 @@ const {
       modalStatus: "Involved in Research until 2025",
       ctaLabel: "3 refereed publications",
       folderSlug: "dela-fuente-research.folder",
-      imageSrc: "research-asset/delafuente.png",
+      imageSrc: "images/faculty/faculty-delafuente.jpg",
       publications: [
         {
           authors: "Dela Fuente, Michael B.",
@@ -318,8 +318,7 @@ const {
       modalStatus: "Ongoing Research",
       ctaLabel: "1 ongoing project",
       folderSlug: "arada-research.folder",
-      imageSrc: "/ccis-logo.png",
-      imageFit: "contain",
+      imageSrc: "images/faculty/faculty-arada.jpg",
       ongoingProjects: [
         {
           researchers: "Arada, Marian G.",
@@ -337,14 +336,13 @@ const {
       modalStatus: "Ongoing Research",
       ctaLabel: "1 ongoing project",
       folderSlug: "barretto-research.folder",
-      imageSrc: "/ccis-logo.png",
-      imageFit: "contain",
+      imageSrc: "public/images/faculty/faculty-barretto.jpg",
       ongoingProjects: [
         {
           researchers: "Barretto, Monina D.; Usero, Sherilyn B.",
           title: "Examination Management System with Data Bank and Test Administration Using LAN",
           researchArea: "Technology in Education",
-          targetCompletion: "July 2026",
+          targetCompletion: "July 2027",
         },
       ],
     },
@@ -356,14 +354,13 @@ const {
       modalStatus: "Ongoing Research",
       ctaLabel: "1 ongoing project",
       folderSlug: "basista-research.folder",
-      imageSrc: "/ccis-logo.png",
-      imageFit: "contain",
+      imageSrc: "public/images/faculty/faculty-basista.jpg",
       ongoingProjects: [
         {
           researchers: "Basista, Leoven R.; Fabregas, Aleta C.",
           title: "FloodDetectWaze: Institutional Funding — Research Institute for Science and Technology - Center for Data Analytics and Intelligence Systems",
           researchArea: "Data Science/Data Analytics and Internet of Things",
-          targetCompletion: "September 2026",
+          targetCompletion: "January 2027",
         },
       ],
     },
@@ -375,8 +372,7 @@ const {
       modalStatus: "Ongoing Research",
       ctaLabel: "1 ongoing project",
       folderSlug: "molejon-research.folder",
-      imageSrc: "/ccis-logo.png",
-      imageFit: "contain",
+      imageSrc: "public/images/faculty/faculty-molejon.jpg",
       ongoingProjects: [
         {
           researchers: "Molejon, Montaigne G.",
@@ -394,8 +390,7 @@ const {
       modalStatus: "Ongoing Research",
       ctaLabel: "2 ongoing projects",
       folderSlug: "roxas-research.folder",
-      imageSrc: "/ccis-logo.png",
-      imageFit: "contain",
+      imageSrc: "public/images/faculty/faculty-roxas.jpg",
       ongoingProjects: [
         {
           researchers: "Roxas, Melvin C.",
@@ -419,20 +414,21 @@ const {
       modalStatus: "Ongoing Research",
       ctaLabel: "1 ongoing project",
       folderSlug: "usero-research.folder",
-      imageSrc: "/ccis-logo.png",
-      imageFit: "contain",
+      imageSrc: "public/images/faculty/faculty-usero.jpg",
       ongoingProjects: [
         {
           researchers: "Usero, Sherilyn B.; Barretto, Monina D.",
           title: "Examination Management System with Data Bank and Test Administration Using LAN",
           researchArea: "Technology in Education",
-          targetCompletion: "July 2026",
+          targetCompletion: "July 2027",
         },
       ],
     },
   ],
   class: className = "",
 } = Astro.props;
+
+const fallbackLogoSrc = "/ccis-logo.png";
 
 const lowercaseWords = new Set(["in", "until", "for", "of", "and", "on", "to"]);
 const resolveModalStatus = (member: FacultyMember) => {
@@ -491,17 +487,13 @@ const guidancePillClass =
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
     {
       faculty.map((member) => {
-        const initials = member.name
-          .split(/\s+/)
-          .filter(Boolean)
-          .slice(0, 2)
-          .map((part) => part[0]?.toUpperCase() ?? "")
-          .join("");
         const gradientId = `folder-pocket-grad-${member.id}`;
         const status = member.status ?? "INVOLVED IN RESEARCH";
         const ctaLabel = member.ctaLabel ?? "Refereed publications";
         const memberDialogId = `${modalId}-${member.id}`;
-        const isContain = member.imageFit === "contain";
+        const hasMemberImage = Boolean(member.imageSrc);
+        const resolvedImageSrc = member.imageSrc ?? fallbackLogoSrc;
+        const isContain = !hasMemberImage || member.imageFit === "contain";
 
         return (
           <div class="flex flex-col items-center">
@@ -517,6 +509,7 @@ const guidancePillClass =
                 <!-- Inner Full-Bleed Image Sheet + Curved Maroon Pocket -->
                 <div class="relative overflow-hidden rounded-[17px] bg-[#3B0000]">
                   <div
+                    data-faculty-image-frame
                     class={`relative overflow-hidden rounded-t-[17px] border-[1.5px] border-b-0 border-white/95 transition-transform duration-300 ease-out group-hover:-translate-y-1.5 ${isContain ? "bg-white" : "bg-[#EFEAEA]"}`}
                   >
                     <div class="absolute top-2.5 left-2.5 right-2.5 z-10">
@@ -527,31 +520,23 @@ const guidancePillClass =
                       </span>
                     </div>
 
-                    <div class={`relative aspect-[10/9] w-full overflow-hidden ${isContain ? "bg-white" : "bg-[#EFEAEA]"}`}>
-                      {
-                        member.imageSrc ? (
-                          <img
-                            src={member.imageSrc}
-                            alt={isContain ? `PUP CCIS emblem for ${member.name}` : `Portrait of ${member.name}`}
-                            loading="lazy"
-                            referrerpolicy="no-referrer"
-                            class={
-                              isContain
-                                ? "h-full w-full object-contain pt-7 pb-6 px-6 transition-transform duration-300 group-hover:scale-[1.03]"
-                                : "h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                            }
-                          />
-                        ) : (
-                          <div class="flex h-full w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_50%_40%,rgba(128,0,0,0.12),rgba(243,234,234,0.95)_75%)] pt-4 text-center">
-                            <span class="font-['Montserrat',sans-serif] text-[28px] font-black tracking-tight text-[#780000]">
-                              {initials}
-                            </span>
-                            <span class="mt-0.5 font-['Montserrat',sans-serif] text-[8px] font-bold tracking-[0.14em] uppercase text-[#800000]/70">
-                              PUP-CCIS FACULTY
-                            </span>
-                          </div>
-                        )
-                      }
+                    <div
+                      data-faculty-image-box
+                      class={`relative aspect-[10/9] w-full overflow-hidden ${isContain ? "bg-white" : "bg-[#EFEAEA]"}`}
+                    >
+                      <img
+                        src={resolvedImageSrc}
+                        data-fallback-src={fallbackLogoSrc}
+                        data-fallback-class="h-full w-full object-contain pt-7 pb-6 px-6 transition-transform duration-300 group-hover:scale-[1.03]"
+                        alt={isContain ? `PUP CCIS emblem for ${member.name}` : `Portrait of ${member.name}`}
+                        loading="lazy"
+                        referrerpolicy="no-referrer"
+                        class={
+                          isContain
+                            ? "h-full w-full object-contain pt-7 pb-6 px-6 transition-transform duration-300 group-hover:scale-[1.03]"
+                            : "h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                        }
+                      />
                     </div>
                   </div>
 
@@ -621,13 +606,9 @@ const guidancePillClass =
       const publications = member.publications ?? [];
       const ongoingProjects = member.ongoingProjects ?? [];
       const resolvedStatus = resolveModalStatus(member);
-      const isContain = member.imageFit === "contain";
-      const initials = member.name
-        .split(/\s+/)
-        .filter(Boolean)
-        .slice(0, 2)
-        .map((part) => part[0]?.toUpperCase() ?? "")
-        .join("");
+      const hasMemberImage = Boolean(member.imageSrc);
+      const resolvedImageSrc = member.imageSrc ?? fallbackLogoSrc;
+      const isContain = !hasMemberImage || member.imageFit === "contain";
 
       return (
         <dialog
@@ -653,26 +634,21 @@ const guidancePillClass =
           <div class="p-6 space-y-5 max-h-[82vh] overflow-y-auto">
             <div class="grid grid-cols-1 sm:grid-cols-[140px_1fr] gap-5 items-center">
               <div
+                data-faculty-image-box
                 class={`aspect-[4/4.6] w-full max-w-[155px] mx-auto overflow-hidden rounded-xl border border-neutral-200 shadow-sm flex items-center justify-center ${isContain ? "bg-white" : "bg-[#360000]"}`}
               >
-                {
-                  member.imageSrc ? (
-                    <img
-                      src={member.imageSrc}
-                      alt={isContain ? `PUP CCIS emblem for ${member.name}` : `Portrait of ${member.name}`}
-                      referrerpolicy="no-referrer"
-                      class={
-                        isContain
-                          ? "h-full w-full object-contain p-3"
-                          : "h-full w-full object-cover object-top"
-                      }
-                    />
-                  ) : (
-                    <span class="font-['Montserrat',sans-serif] text-[28px] font-black text-[#FFE600]">
-                      {initials}
-                    </span>
-                  )
-                }
+                <img
+                  src={resolvedImageSrc}
+                  data-fallback-src={fallbackLogoSrc}
+                  data-fallback-class="h-full w-full object-contain p-3"
+                  alt={isContain ? `PUP CCIS emblem for ${member.name}` : `Portrait of ${member.name}`}
+                  referrerpolicy="no-referrer"
+                  class={
+                    isContain
+                      ? "h-full w-full object-contain p-3"
+                      : "h-full w-full object-cover object-top"
+                  }
+                />
               </div>
 
               <div class="space-y-3">
@@ -822,6 +798,50 @@ const guidancePillClass =
   (() => {
     const root = document.querySelector(`[data-faculty-showcase="${modalId}"]`);
     if (!root) return;
+
+    const applyImageFallback = (img) => {
+      if (!(img instanceof HTMLImageElement)) return;
+      if (img.dataset.fallbackApplied === "true") return;
+      const fallbackSrc = img.getAttribute("data-fallback-src");
+      if (!fallbackSrc) return;
+
+      img.dataset.fallbackApplied = "true";
+      img.src = fallbackSrc;
+
+      const fallbackClass = img.getAttribute("data-fallback-class");
+      if (fallbackClass) {
+        img.className = fallbackClass;
+      }
+
+      const imageBox = img.closest("[data-faculty-image-box]");
+      if (imageBox) {
+        imageBox.classList.remove("bg-[#EFEAEA]", "bg-[#360000]");
+        imageBox.classList.add("bg-white");
+      }
+
+      const imageFrame = img.closest("[data-faculty-image-frame]");
+      if (imageFrame) {
+        imageFrame.classList.remove("bg-[#EFEAEA]");
+        imageFrame.classList.add("bg-white");
+      }
+    };
+
+    root.querySelectorAll("img[data-fallback-src]").forEach((img) => {
+      if (img instanceof HTMLImageElement && img.complete && img.naturalWidth === 0) {
+        applyImageFallback(img);
+      }
+    });
+
+    root.addEventListener(
+      "error",
+      (event) => {
+        const target = event.target;
+        if (target instanceof HTMLImageElement && target.hasAttribute("data-fallback-src")) {
+          applyImageFallback(target);
+        }
+      },
+      true
+    );
 
     root.addEventListener("click", (event) => {
       const target = event.target;
