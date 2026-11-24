@@ -51,13 +51,16 @@ import Area2Btn from "../components/Area2Btn.astro";
     </HeroSection>
 
     <!-- EVOLUTION -->
-    <ContentSection
-            sectionLabel="SECTION 01 • HISTORICAL MILESTONES"
-            category="Evolution of PUP’s Computer Science Program"
-            description="From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree."
-    >
-        <EvolutionTimeline/>
-    </ContentSection>
+     <section data-reveal>
+        <ContentSection
+                sectionLabel="SECTION 01 • HISTORICAL MILESTONES"
+                category="Evolution of PUP’s Computer Science Program"
+                description="From 1960s mainframe EDP courses at PCC to a CHED-recognized flagship BSCS degree."
+        >
+            <EvolutionTimeline/>
+        </ContentSection>
+     </section>
+    
 
     <!-- OUTCOMES-BASED COMPUTING EDUCATION -->
     <section
@@ -138,7 +141,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- BSCS FACULTY DISTRIBUTION & PROFILES -->
-    <section data-reveal>
+    <section data-reveal class="pt-4 md:pt-8 lg:pt-12">
         <ContentSection
                 sectionLabel="SECTION 05 • FACULTY MEMBERS & PROFILE"
                 category="BSCS Faculty Distribution & Profiles"
@@ -169,7 +172,7 @@ import Area2Btn from "../components/Area2Btn.astro";
                     <div class="flex flex-col gap-4 border border-(--color-dark-gold) border-t-4 border-t-(--color-maroon) bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
                         <div>
                             <p class="text-xs font-bold uppercase text-(--color-maroon)">
-                                10 Regular • 8 Profiled Part-Time
+                                10 Regular • 14 Profiled Part-Time
                             </p>
                             <h3 class="mt-2 text-lg font-bold text-(--color-text-body)">
                                 BSCS Faculty Profiles & Qualifications
@@ -194,7 +197,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     
 
     <!-- DEVELOPMENT, AWARDS & ITEES -->
-    <section data-reveal class="faculty-development-section scrollbar-none">
+    <section data-reveal class="faculty-development-section">
         <MaroonSection
                 eyebrow="SECTION 06 • DEVELOPMENT, AWARDS & ITEES"
                 title="Faculty Development, Awards & ITEES"
@@ -205,12 +208,12 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- INSTRUCTIONAL MATERIALS -->
-    <section data-reveal>
+    <section data-reveal class="pt-4 md:pt-8 lg:pt-12">
             <ContentSection
-                sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
-                category="Development of Instructional Materials & Faculty Authors"
-                description="Developed in accordance with OBE, CLOs, PLOs, and SOs, and reviewed/endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA)."
-            >
+                    sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
+                    category="Development of Instructional Materials & Faculty Authors"
+                    description="Developed in accordance with OBE, CLOs, PLOs, and SOs, and reviewed/endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA)."
+                >
             <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
                 <div class="min-w-0">
                     <CommonCard
@@ -421,25 +424,6 @@ import Area2Btn from "../components/Area2Btn.astro";
     <PDFModal/>
 </ScrollSnapLayout>
 
-<script>
-    const observer = new IntersectionObserver(
-    (entries, observer) => {
-        entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-        }
-        });
-    },
-    {
-        threshold: 0.15,
-    }
-    );
-
-    document.querySelectorAll("[data-reveal]").forEach((element) => {
-    observer.observe(element);
-    });
-</script>
 
 <style>
     .main-button {
@@ -449,29 +433,4 @@ import Area2Btn from "../components/Area2Btn.astro";
         -webkit-text-fill-color: transparent;
         color: transparent;
     }
-
-    /* Initial state */
-    [data-reveal] {
-    opacity: 0;
-    transform: translateY(35px);
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-    }
-
-    /* Visible state */
-    [data-reveal].is-visible {
-    opacity: 1;
-    transform: translateY(0);
-    }
-
-    /* Accessibility */
-    @media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
-        opacity: 1;
-        transform: none;
-        transition: none;
-    }
-    }
-
 </style>
