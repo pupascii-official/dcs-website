@@ -70,6 +70,17 @@ export const internationalData = {
   section2: {
     label: "SECTION 02",
     title: "International Rankings and Recognition",
+    picabSpotlight: {
+      kicker: "International Recognition",
+      display: "PICAB-CAC Certification",
+      imagePath: "/planning_and_qa/picab-cic.png",
+      imageAlt: "PICAB-CIC Summary of Accreditation Actions",
+      date: "July 2026",
+      paragraphs: [
+        "The Bachelor of Science in Computer Science program of CCIS earned certification from the Computing Accreditation Commission (CAC) of PICAB in July 2026.",
+        "This certification marks PUP's first international program accreditation. PICAB is a provisional signatory to the Seoul Accord, an international agreement that recognizes substantial equivalence in computing and IT degrees across member countries."
+      ]
+    },
     qsStars: {
       title: "QS STARS",
       logoPath: "/images/internationalization/QS Stars.PNG",

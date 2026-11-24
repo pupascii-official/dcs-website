@@ -1,7 +1,7 @@
 ---
 import ScrollSnapLayout from "../layouts/ScrollSnapLayout.astro";
 import HeroSection from "../components/HeroSection.astro";
-import PillarBadge from "../components/PillarBadge.astro";
+import ContentCard from "../components/ContentCard.astro";
 
 import SectionHeader from "../components/internationalization/SectionHeader.astro";
 import ImageLightbox from "../components/internationalization/ImageLightbox.astro";
@@ -17,6 +17,7 @@ import CompetitionExcellence from "../components/internationalization/Competitio
 import { internationalData } from "../data/internationalization/content";
 
 const sectionBase = "scroll-section scrollbar-none flex flex-col px-4 sm:px-6 md:px-8 pb-12 max-w-6xl mx-auto w-full overflow-x-hidden";
+const { picabSpotlight } = internationalData.section2;
 ---
 
 <ScrollSnapLayout
@@ -39,7 +40,19 @@ const sectionBase = "scroll-section scrollbar-none flex flex-col px-4 sm:px-6 md
   </section>
 
   <section class={`${sectionBase} pb-14`}>
-    <SectionHeader label={internationalData.section2.label} title={internationalData.section2.title} marginClass="mb-5" />
+    <SectionHeader label={internationalData.section2.label} title={internationalData.section2.title} marginClass="mb-6" />
+    <div class="picab-spotlight mb-10 md:mb-12">
+      <ContentCard kicker={picabSpotlight.kicker} display={picabSpotlight.display}>
+        <img slot="media" src={picabSpotlight.imagePath} alt={picabSpotlight.imageAlt} loading="lazy" />
+
+        <div slot="content" class="picab-cic-content">
+          <b>{picabSpotlight.date}</b>
+          {picabSpotlight.paragraphs.map((text) => (
+            <p>{text}</p>
+          ))}
+        </div>
+      </ContentCard>
+    </div>
     <RankingsSection />
   </section>
 
@@ -77,3 +90,18 @@ const sectionBase = "scroll-section scrollbar-none flex flex-col px-4 sm:px-6 md
 
   <ImageLightbox />
 </ScrollSnapLayout>
+
+<style>
+  .picab-spotlight :global(.content-card) {
+    margin-bottom: 0;
+  }
+
+  .picab-cic-content b {
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .picab-cic-content p:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+</style>
