@@ -43,11 +43,11 @@
         background-color: var(--color-maroon);
     }
 
-    :global(.scroll-section) {
+    :global(html) {
         scrollbar-width: none;
     }
 
-    :global(.scroll-section::-webkit-scrollbar) {
+    :global(html::-webkit-scrollbar) {
         display: none;
     }
 </style>
@@ -56,67 +56,39 @@
     const GAP = 8;
     const MIN_THUMB_HEIGHT = 32;
 
-    const container = document.querySelector<HTMLElement>(".scroll-container");
     const bar = document.querySelector<HTMLElement>(".scrollbar");
     const thumb = document.querySelector<HTMLElement>(".scrollbar-thumb");
 
-    let drag: { startY: number; startPosition: number } | null = null;
+    let drag: { startY: number; startScroll: number } | null = null;
 
-    function measure(container: HTMLElement) {
-        const hero = container.querySelector<HTMLElement>(":scope > .hero");
-        const footer = container.querySelector<HTMLElement>(":scope > footer");
-        const sections = [...container.querySelectorAll<HTMLElement>(":scope > .scroll-section:not(.hero)")];
+    function measure() {
+        const hero = document.querySelector<HTMLElement>("section.hero");
+        const footer = document.querySelector<HTMLElement>("footer.site_footer");
 
-        const box = container.getBoundingClientRect();
-        const view = container.clientHeight;
-        const heroBottom = hero ? hero.getBoundingClientRect().bottom - box.top : 0;
-        const footerTop = footer ? footer.getBoundingClientRect().top - box.top : view;
+        const view = window.innerHeight;
+        const scroll = window.scrollY;
+        const heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+        const footerTop = footer ? footer.getBoundingClientRect().top : view;
 
-        const start = heroBottom + container.scrollTop;
-        const end = (footer ? footerTop + container.scrollTop : container.scrollHeight) - view;
-
-        const parts = sections.map((section) => ({
-            section,
-            top: section.getBoundingClientRect().top - box.top + container.scrollTop,
-            innerMax: section.scrollHeight - section.clientHeight,
-        }));
-
-        const total = end - start + parts.reduce((sum, part) => sum + part.innerMax, 0);
-        const position = container.scrollTop - start + parts.reduce((sum, part) => sum + part.section.scrollTop, 0);
+        const start = hero ? heroBottom + scroll : 0;
+        const end = document.documentElement.scrollHeight - view;
+        const total = end - start;
 
         const trackTop = Math.max(GAP, heroBottom + GAP);
         const trackBottom = Math.min(view - GAP, footerTop - GAP);
         const trackHeight = trackBottom - trackTop;
         const thumbHeight = Math.max(MIN_THUMB_HEIGHT, trackHeight * (view / (total + view)));
 
-        return { box, view, heroBottom, start, end, parts, total, position, trackTop, trackHeight, thumbHeight };
-    }
-
-    function scrollToPosition(container: HTMLElement, layout: ReturnType<typeof measure>, target: number) {
-        let remaining = Math.min(Math.max(target, 0), layout.total);
-        let mainTop = layout.start;
-
-        layout.parts.forEach((part) => {
-            const sectionTop = Math.min(Math.max(part.top, layout.start), layout.end);
-            const move = Math.min(remaining, Math.max(sectionTop - mainTop, 0));
-            mainTop += move;
-            remaining -= move;
-
-            const inner = Math.min(remaining, part.innerMax);
-            part.section.scrollTop = inner;
-            remaining -= inner;
-        });
-
-        container.scrollTop = mainTop + remaining;
+        return { view, heroBottom, start, total, position: scroll - start, trackTop, trackHeight, thumbHeight };
     }
 
     function update() {
-        if (!container || !bar || !thumb) return;
+        if (!bar || !thumb) return;
 
-        const layout = measure(container);
+        const layout = measure();
         const progress = layout.total > 0 ? Math.min(Math.max(layout.position / layout.total, 0), 1) : 0;
 
-        bar.style.top = `${layout.box.top + layout.trackTop}px`;
+        bar.style.top = `${layout.trackTop}px`;
         bar.style.height = `${layout.trackHeight}px`;
         thumb.style.height = `${layout.thumbHeight}px`;
         thumb.style.transform = `translateY(${progress * (layout.trackHeight - layout.thumbHeight)}px)`;
@@ -128,36 +100,34 @@
     }
 
     function stopDrag() {
-        if (!container || !thumb || !drag) return;
+        if (!thumb || !drag) return;
         drag = null;
         thumb.classList.remove("dragging");
-        container.style.scrollSnapType = "";
     }
 
-    if (container && thumb) {
+    if (bar && thumb) {
         thumb.addEventListener("pointerdown", (event) => {
-            drag = { startY: event.clientY, startPosition: measure(container).position };
+            drag = { startY: event.clientY, startScroll: window.scrollY };
             thumb.classList.add("dragging");
             thumb.setPointerCapture(event.pointerId);
-            container.style.scrollSnapType = "none";
             event.preventDefault();
         });
 
         thumb.addEventListener("pointermove", (event) => {
             if (!drag) return;
-            const layout = measure(container);
+            const layout = measure();
             const freeSpace = layout.trackHeight - layout.thumbHeight;
             if (freeSpace <= 0) return;
-            const target = drag.startPosition + ((event.clientY - drag.startY) / freeSpace) * layout.total;
-            scrollToPosition(container, layout, target);
+            const target = drag.startScroll + ((event.clientY - drag.startY) / freeSpace) * layout.total;
+            window.scrollTo({ top: target, behavior: "instant" });
         });
 
         thumb.addEventListener("pointerup", stopDrag);
         thumb.addEventListener("pointercancel", stopDrag);
 
-        container.addEventListener("scroll", update, { capture: true, passive: true });
+        window.addEventListener("scroll", update, { passive: true });
         window.addEventListener("resize", update);
-        window.addEventListener("load", update);
+        new ResizeObserver(update).observe(document.body);
         update();
     }
 </script>

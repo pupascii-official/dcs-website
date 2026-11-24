@@ -9,9 +9,9 @@ export const bscsOverview = {
 };
 
 export const metrics = [
-	{ value: 'Level III+', label: 'Accreditation level targeted' },
+	{ value: 'Level IV', label: 'Accreditation level targeted' },
 	{ value: '1,200+', label: 'Computer Science students' },
-	{ value: '35+', label: 'Faculty members' },
+	{ value: '24', label: 'Faculty members' },
 	{ value: '12+', label: 'International partners' },
 ];
 
