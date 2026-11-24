@@ -279,9 +279,9 @@ export const internationalData = {
       }
     ] as FeaturedProjectItem[]
   },
-  section5: {
-    selectedConferenceHeading: "Selected International Conference & Journal Research",
-    selectedConferenceList: [
+  publications: {
+    heading: "Selected International Conference & Journal Research",
+    items: [
       {
         title: "Traffic incident prediction and classification system using naïve bayes algorithm",
         fora: "8th International Conference on Computer Science and Computational Intelligence (ICCSCI 2023) / Procedia Computer Science",

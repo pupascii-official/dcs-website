@@ -19,7 +19,7 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
         role="tab"
         aria-selected={idx === 0 ? "true" : "false"}
         data-project-tab={proj.id}
-        class="project-pill px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-all duration-200 ease-out cursor-pointer"
+        class="project-pill px-4 py-2 rounded-full text-xs font-bold font-['Montserrat',sans-serif] transition-colors duration-200 ease-out cursor-pointer"
       >
         {proj.tabLabel}
       </button>
@@ -192,6 +192,8 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
 <script is:inline>
   (() => {
     document.querySelectorAll("[data-featured-research]").forEach((root) => {
+      if (root.dataset.projectsBound) return;
+      root.dataset.projectsBound = "1";
       const tabs = root.querySelectorAll("[data-project-tab]");
       const panels = root.querySelectorAll("[data-project-panel]");
 

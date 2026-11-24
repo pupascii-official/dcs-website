@@ -110,6 +110,8 @@ const { label, title, description, items } = internationalData.competitions;
 <script is:inline>
   (() => {
     document.querySelectorAll("[data-competition-excellence]").forEach((root) => {
+      if (root.dataset.compBound) return;
+      root.dataset.compBound = "1";
       const cards = root.querySelectorAll("[data-competition-card]");
       cards.forEach((card) => {
         card.addEventListener("click", () => {

@@ -1,7 +1,7 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
 
-const { selectedConferenceHeading, selectedConferenceList } = internationalData.section5;
+const { heading, items } = internationalData.publications;
 
 const filterTabs = [
   { id: "all", label: "All" },
@@ -18,7 +18,7 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
 <div class="w-full space-y-4" data-research-publications>
   <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 w-full">
     <h3 class="publications-heading font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold tracking-tight">
-      {selectedConferenceHeading}
+      {heading}
     </h3>
     <div class="relative w-full lg:w-80 shrink-0">
       <input
@@ -54,7 +54,7 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
 
   <div class="w-full rounded-2xl border border-white/20 bg-white/[0.97] py-3 px-2 sm:px-3 shadow-xl">
     <div class="conference-list-scroll max-h-[420px] overflow-y-auto pr-2 divide-y divide-neutral-200">
-      {selectedConferenceList.map((paper) => {
+      {items.map((paper) => {
         const hasUrl = Boolean(paper.url?.trim());
         return (
           <div
@@ -244,6 +244,8 @@ const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10
 <script is:inline>
   (() => {
     document.querySelectorAll("[data-research-publications]").forEach((root) => {
+      if (root.dataset.pubsBound) return;
+      root.dataset.pubsBound = "1";
       const input = root.querySelector("[data-filter-input]");
       const clearBtn = root.querySelector("[data-filter-clear]");
       const catButtons = root.querySelectorAll("[data-cat-btn]");
