@@ -16,7 +16,7 @@ export const DOCS: Record<string, string> = {
     "test-administration": "test-administration.pdf",
     "classroom-management": "classroom-management.pdf",
     "internship-ojt": "internship-ojt.pdf",
-
+    "area2-tl": "bscs-area2-teaching-and-learning.pdf",
     "certificate-of-authenticity": "src/data/homepage/Certificate-of-Authenticity-NOV-25-27-2026-2.pdf",
 
     /*
