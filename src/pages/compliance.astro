@@ -1,28 +1,24 @@
 ---
 import ScrollSnapLayout from '../layouts/ScrollSnapLayout.astro';
-import Navbar from '../components/Navbar.astro';
 import HeroSection from '../components/HeroSection.astro';
-import Footer from '../components/Footer.astro';
 
 const areas = [
-	{ title: 'Area I: Vision, Mission, Goals & Objectives', short: 'Area I: VMGO', driveUrl: '#' },
-	{ title: 'Area II: Faculty', short: 'Area II: Faculty', driveUrl: '#' },
-	{ title: 'Area III: Curriculum & Instruction', short: 'Area III: Curriculum', driveUrl: '#' },
-	{ title: 'Area IV: Support to Students', short: 'Area IV: Student Support', driveUrl: '#' },
-	{ title: 'Area V: Research', short: 'Area V: Research', driveUrl: '#' },
-	{ title: 'Area VI: Extension & Community Involvement', short: 'Area VI: Extension', driveUrl: '#' },
-	{ title: 'Area VII: Library', short: 'Area VII: Library', driveUrl: '#' },
-	{ title: 'Area VIII: Physical Plant & Facilities', short: 'Area VIII: Physical Plant', driveUrl: '#' },
-	{ title: 'Area IX: Laboratories', short: 'Area IX: Laboratories', driveUrl: '#' },
-	{ title: 'Area X: Administration & PICAB / Narrative', short: 'Area X: Admin & PICAB', driveUrl: '#' },
+	{ title: 'Area I: Vision, Mission, Goals & Objectives', short: 'Area I: VMGO', driveUrl: 'https://drive.google.com/file/d/1lKMExs7J2gClx-ZkpOA76MlSRC0DPf-O/view?usp=sharing' },
+	{ title: 'Area II: Faculty', short: 'Area II: Faculty', driveUrl: 'https://drive.google.com/file/d/1TgYhDQIc-ATvkDCIlnE7uCSX9655iK5Y/view?usp=drive_link' },
+	{ title: 'Area III: Curriculum & Instruction', short: 'Area III: Curriculum', driveUrl: 'https://drive.google.com/file/d/18D9cKUrEHmNhdu5Vsv6kZ7UV2wWpxRkz/view?usp=drive_link' },
+	{ title: 'Area IV: Support to Students', short: 'Area IV: Student Support', driveUrl: 'https://drive.google.com/file/d/1YYBc8ztr2yijF-sqLIjb9uOx1V6W1TvG/view?usp=sharing' },
+	{ title: 'Area V: Research', short: 'Area V: Research', driveUrl: 'https://drive.google.com/file/d/1-Zslp8j7gUym31OIdmYmafQhJ7WJ0eWg/view?usp=sharing' },
+	{ title: 'Area VI: Extension & Community Involvement', short: 'Area VI: Extension', driveUrl: 'https://drive.google.com/file/d/1R4J5VFcvTdQYQGlS0XYQCK-UnI_-DcCc/view?usp=drive_link' },
+	{ title: 'Area VII: Library', short: 'Area VII: Library', driveUrl: 'https://drive.google.com/file/d/1aoeeNoA-FF3LmaAkikg06-aPVHiCgMQs/view?usp=drive_link' },
+	{ title: 'Area VIII: Physical Plant & Facilities', short: 'Area VIII: Physical Plant', driveUrl: 'https://drive.google.com/file/d/1aUfJwRjombZkEg7mbjwsw8Krq0FkE8fg/view?usp=drive_link' },
+	{ title: 'Area IX: Laboratories', short: 'Area IX: Laboratories', driveUrl: 'https://drive.google.com/file/d/1unucDHis13c9-bnFbiybCi3XJGcy8RhU/view?usp=drive_link' },
+	{ title: 'Area X: Administration & PICAB / Narrative', short: 'Area X: Admin & PICAB', driveUrl: 'https://drive.google.com/file/d/1m8FZLQSDhkwdFH5fI0RwEJiF3_Wo5Vvl/view?usp=drive_link' },
 ];
 
 const sectionNumber = (index: number) => String(index + 1).padStart(2, '0');
 ---
 
 <ScrollSnapLayout title="Compliance" description="Accreditation compliance documents of the PUP Department of Computer Science.">
-	<Navbar />
-
 	<HeroSection title="Compliance" subtitle="" />
 
 	<section class="scroll-section areas-section">
@@ -45,8 +41,6 @@ const sectionNumber = (index: number) => String(index + 1).padStart(2, '0');
 			}
 		</div>
 	</section>
-
-	<Footer />
 </ScrollSnapLayout>
 
 <style>
