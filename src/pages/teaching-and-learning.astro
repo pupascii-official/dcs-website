@@ -9,6 +9,8 @@ import EvidenceShowcase from "../components/teaching-learning/evidence/EvidenceS
 import ElectiveTracks from "../components/teaching-learning/elective/ElectiveTracks.astro";
 import CurriculumMap from "../components/teaching-learning/curriculum/CurriculumMap.astro";
 import CurriculumExplorer from "../components/teaching-learning/curriculum/CurriculumExplorer.astro";
+import StudentOutcomes from "../components/teaching-learning/StudentOutcomes.astro";
+import AppliedLearning from "../components/teaching-learning/AppliedLearning.astro";
 import StudentOrg from "../components/teaching-learning/StudentOrg.astro";
 import StudentAwards from "../components/teaching-learning/StudentAwards.astro";
 import StudentsIntl from "../components/teaching-learning/StudentsIntl.astro";
@@ -33,15 +35,15 @@ import Area2Btn from "../components/Area2Btn.astro";
             title="Teaching & " 
             subtitle="AREA 2 • TEACHING AND LEARNING • CODING IDEAS INTO SOLUTIONS"
             accentTitle="Learning"
-        >
+    >
         <span>PUP CCIS Bachelor of Science in Computer Science — outcomes-based education aligned with CHED CMO No. 25, s. 2015 and the 2022 Revised Curriculum (167 Units).</span>
-        <a href="#CurriculumMap" class=" inline-block bg-white shadow-md mt-9 py-4 px-6 rounded-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+        <a href="#CurriculumMap" style="margin-top: 30px; padding: 0.5rem 2rem;" class="inline-block bg-white shadow-md text-lg rounded-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
             <span class="main-button font-bold text-center"> Explore 2022 Curriculum &ThinSpace;↗</span>
         </a>
     </HeroSection>
     
     <!-- EVOLUTION -->
-    <section>
+    <section class="history-intro-section">
         <ContentSection
             sectionLabel="SECTION 02 • HISTORICAL MILESTONES"
             category="Evolution of PUP’s Computer Science Program"
@@ -52,10 +54,10 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
     
     <!-- Outcomes-Based Computing Education -->
-    <section class="flex flex-col md:flex-row max-w-7xl md:mx-auto md:px-8 gap-8 mx-6 scroll-section scrollbar-none">
+    <section class="section-one scroll-section scrollbar-none mx-6 flex max-w-7xl flex-col items-start gap-8 md:mx-auto md:px-8 xl:flex-row">
 
         <!-- RIGHT CONTENT -->
-        <div class="flex-1">
+        <div class="min-w-0 flex-1">
             <!-- Modified ContentSection to remove top-padding -->
             <SectionContent
                 sectionLabel="SECTION 01 • CMO, OVERVIEW & FRAMEWORK"
@@ -83,7 +85,7 @@ import Area2Btn from "../components/Area2Btn.astro";
         </div>
         
         <!-- LEFT CONTENT -->
-        <div class="flex-1 md:my-6">
+        <div class="min-w-0 flex-1">
             <EvidenceShowcase
                 area="AREA 2"
                 category="DOCUMENTARY EVIDENCE"
@@ -175,7 +177,7 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- Development, Awards & ITEES -->
-    <section class="scrollbar-none">
+    <section class="faculty-development-section scrollbar-none">
         <MaroonSection
             eyebrow="SECTION 06 • DEVELOPMENT, AWARDS & ITEES"
             title="Faculty Development, Awards & ITEES"
@@ -186,12 +188,12 @@ import Area2Btn from "../components/Area2Btn.astro";
     </section>
 
     <!-- Instructional Materials -->
-    <section class="mx-6">
+    <section class="instructional-materials-section mx-6">
         <ContentSection
             sectionLabel="SECTION 07 • INSTRUCTIONAL MATERIALS (UTLDO / CIMDA)"
             category="Development of Instructional Materials & Faculty Authors"
             description="Developed in accordance with OBE, CLOs, PLOs, and SOs, and reviewed/endorsed by PUP's UTLDO Center for Instructional Materials Development and Assessment (CIMDA).">
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
                 <div class="min-w-0">
                     <CommonCard
                         label="SAMPLE COURSE SYLLABUS • 2022 CURRICULUM"
@@ -251,7 +253,18 @@ import Area2Btn from "../components/Area2Btn.astro";
             category="Program Educational Objectives & Student Outcomes"
             description="Purposeful alignment among PEOs, SOs, curriculum, teaching-learning processes, assessment mechanisms, and graduate achievements."
             >
+            <StudentOutcomes></StudentOutcomes>
+        </ContentSection>
+    </section>
 
+    <!-- student eco-system & research colloquium -->
+    <section>
+        <ContentSection
+            sectionLabel="SECTION 04B •  STUDENT ECO-SYSTEM & RESEARCH COLLOQUIUM"
+            category="Applied Learning, BSCS Thesis & Research Colloquium"
+            description="Bridging theoretical foundations with real-world problem-solving, scientific inquiry, industry immersion, and scholarly dissemination."
+        >
+            <AppliedLearning></AppliedLearning>
         </ContentSection>
     </section>
 
@@ -375,11 +388,6 @@ import Area2Btn from "../components/Area2Btn.astro";
 
 
 
-</ScrollSnapLayout>
-
-<style>
-
-    <!--  -->
 </ScrollSnapLayout>
 
 <style>

@@ -8,7 +8,7 @@ import AssessmentFeedback from "./AssessmentFeedback.astro";
 <section class="rounded-2xl p-3 sm:p-5">
 
     <!-- TOP: Documentary Evidence -->
-    <div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-3">
 
         <CommonCard
             class:list={["bg-(--color-maroon)"]}
@@ -50,13 +50,13 @@ import AssessmentFeedback from "./AssessmentFeedback.astro";
     </div>
 
     <!-- BOTTOM: Results and Assessment -->
-    <div class="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-12">
+    <div class="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-12">
 
-        <div class="lg:col-span-7">
+        <div class="xl:col-span-7">
             <ITEESChart />
         </div>
 
-        <div class="lg:col-span-5">
+        <div class="xl:col-span-5">
             <AssessmentFeedback />
         </div>
 
