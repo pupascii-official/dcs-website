@@ -47,6 +47,8 @@ const {
 		align-items: center;
 		text-align: center;
 		margin-bottom: 2rem;
+
+		overflow-x: clip;
 	}
 
 	.hero-orbs {
@@ -89,7 +91,9 @@ const {
 	}
 
 	.hero-content {
-		max-width: 1100px;
+		width: 100%;
+		min-width: 0;
+		max-width: 1280px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -106,13 +110,16 @@ const {
 
 	h1.hero-title {
 		margin: 0;
+		max-width: 100%;
 		font-family: var(--font-montserrat), system-ui, sans-serif;
-		font-size: clamp(3rem, 8vw, 6rem);
+		font-size: clamp(2.25rem, 8vw, 6rem);
 		font-weight: 800;
 		letter-spacing: -0.03em;
 		line-height: 1.06;
 		color: var(--color-white, #ffffff);
 		text-wrap: balance;
+		overflow-wrap: anywhere;
+		hyphens: auto;
 	}
 
 	.hero-title-accent {
