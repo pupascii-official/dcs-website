@@ -35,6 +35,10 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
       project.studentResearchers ? { label: "Student Researchers", value: project.studentResearchers } : null
     ].filter((f): f is { label: string; value: string } => f !== null);
 
+    const hasShortTitle = Boolean(project.shortTitle);
+    const headline = project.shortTitle ?? project.fullTitle;
+    const lightboxSubtitle = hasShortTitle ? project.fullTitle : project.fora;
+
     return (
       <div
         data-project-panel={project.id}
@@ -50,15 +54,15 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
 
           <h3
             class={`project-gradient-title font-['Montserrat',sans-serif] font-black tracking-tight break-words ${
-              project.useFullTitleAsHeadline
-                ? "text-xl sm:text-2xl md:text-3xl leading-tight"
-                : "text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.1] w-fit"
+              hasShortTitle
+                ? "text-3xl sm:text-4xl lg:text-[2.6rem] leading-[1.1] w-fit"
+                : "text-xl sm:text-2xl md:text-3xl leading-tight"
             }`}
           >
-            {project.useFullTitleAsHeadline ? project.fullTitle : project.name}
+            {headline}
           </h3>
 
-          {!project.useFullTitleAsHeadline && (
+          {hasShortTitle && (
             <p class="text-sm sm:text-[15px] font-bold text-neutral-900 leading-snug">
               {project.fullTitle}
             </p>
@@ -86,7 +90,7 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
             )}
           </div>
 
-          {project.url && project.url.trim().length > 0 && (
+          {project.url?.trim() && (
             <div class="pt-1.5">
               <a
                 href={project.url}
@@ -104,8 +108,8 @@ const { label, title, description, subsectionTitle, projects } = internationalDa
           <div
             data-lightbox-trigger
             data-lightbox-src={project.imagePath}
-            data-lightbox-title={project.useFullTitleAsHeadline ? project.fullTitle : project.name}
-            data-lightbox-subtitle={project.useFullTitleAsHeadline ? project.fora : project.fullTitle}
+            data-lightbox-title={headline}
+            data-lightbox-subtitle={lightboxSubtitle}
             class="w-full h-[260px] sm:h-[340px] lg:h-[380px] rounded-2xl overflow-hidden border border-(--color-maroon)/30 shadow-lg bg-neutral-900 cursor-pointer group relative"
           >
             <img
