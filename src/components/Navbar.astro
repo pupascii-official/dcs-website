@@ -62,7 +62,15 @@ const links = [
         <div class="navbar-menu">
             <ul class="nav-list">
                 {links.map((link) => {
-                    const isActive = currentPath === link.href;
+                    const normalizedPath =
+                        currentPath !== "/"
+                            ? currentPath.replace(/\/+$/, "")
+                            : "/";
+                    const isActive =
+                        link.href === "/"
+                            ? normalizedPath === "/"
+                            : normalizedPath === link.href ||
+                              normalizedPath.startsWith(`${link.href}/`);
                     return (
                         <li>
                             <a
