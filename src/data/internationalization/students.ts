@@ -1,7 +1,6 @@
 export interface StudentExchangeItem {
-  id: string;
   name: string;
-  displayNameOnPortrait: string;
+  shortName: string;
   degree: string;
   university: string;
   country: string;
@@ -16,11 +15,17 @@ export interface StudentExchangeItem {
   }[];
 }
 
+export const studentExchangeSection = {
+  label: "SECTION 05",
+  title: "Global Student Experience",
+  description:
+    "BSCS students participate in outbound academic exchange programs across partner universities in South Korea, India, and Japan, gaining cross-cultural exposure and international computing coursework."
+};
+
 export const studentExchangeData: StudentExchangeItem[] = [
   {
-    id: "zaragoza",
     name: "Marie Criz Zaragoza",
-    displayNameOnPortrait: "Marie Criz Zaragoza",
+    shortName: "Marie Criz Zaragoza",
     degree: "Bachelor of Computer Science",
     university: "Sejong University",
     country: "South Korea",
@@ -31,7 +36,7 @@ export const studentExchangeData: StudentExchangeItem[] = [
     groupPhotoPath: "/images/internationalization/zaragoza-group.png",
     sections: [
       {
-        heading: "Experience Highlights:",
+        heading: "Experience Highlights",
         points: [
           "Artificial Intelligence and Data Science coursework",
           "Software development and laboratory activities",
@@ -43,9 +48,8 @@ export const studentExchangeData: StudentExchangeItem[] = [
     ]
   },
   {
-    id: "sagun",
     name: "Eujin Rod “Seiji” Sagun",
-    displayNameOnPortrait: "Eujin Rod Sagun",
+    shortName: "Eujin Rod Sagun",
     degree: "Bachelor of Computer Science",
     university: "Woxsen University",
     country: "India",
@@ -76,9 +80,8 @@ export const studentExchangeData: StudentExchangeItem[] = [
     ]
   },
   {
-    id: "alidio",
     name: "Aisaiah Francis G. Alidio",
-    displayNameOnPortrait: "Aisaiah Francis Alidio",
+    shortName: "Aisaiah Francis Alidio",
     degree: "Bachelor of Computer Science",
     university: "Kagoshima University",
     country: "Japan",
@@ -110,7 +113,7 @@ export const studentExchangeData: StudentExchangeItem[] = [
   }
 ];
 
-export const studentExchangeMore = {
+export const upcomingExchanges = {
   heading: "Upcoming Exchange Students",
   lead: "Meet the upcoming exchange students who will represent PUP CCIS in international exchange programs:",
   list: [

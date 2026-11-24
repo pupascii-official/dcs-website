@@ -1,0 +1,161 @@
+<dialog id="area4-pdf-modal" class="pdf-modal" aria-labelledby="area4-pdf-modal-title">
+  <header class="modal-header">
+    <h3 id="area4-pdf-modal-title" class="modal-title">Document Preview</h3>
+    <button
+      type="button"
+      id="area4-pdf-close-btn"
+      class="close-btn"
+      aria-label="Close document preview"
+    >
+      ×
+    </button>
+  </header>
+
+  <div id="area4-pdf-viewer-container" class="pdf-viewer-container"></div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("area4-pdf-modal") as HTMLDialogElement | null;
+  const container = document.getElementById("area4-pdf-viewer-container");
+  const titleEl = document.getElementById("area4-pdf-modal-title");
+  const closeBtn = document.getElementById("area4-pdf-close-btn");
+
+  let activeController: AbortController | null = null;
+
+  document.addEventListener("click", async (event) => {
+    const trigger = (event.target as HTMLElement)?.closest<HTMLElement>("[data-area4-pdf-trigger]");
+    if (!trigger || !dialog || !container) return;
+
+    const pdfSrc = trigger.dataset.pdfSrc;
+    if (!pdfSrc) return;
+
+    event.preventDefault();
+
+    activeController?.abort();
+    activeController = new AbortController();
+    const { signal } = activeController;
+
+    if (titleEl) {
+      titleEl.textContent = trigger.dataset.pdfTitle || "Document Preview";
+    }
+
+    container.innerHTML = `<p class="pdf-status">Loading document...</p>`;
+    dialog.showModal();
+
+    try {
+      const [{ default: EmbedPDF }, res] = await Promise.all([
+        import("@embedpdf/viewer"),
+        fetch(pdfSrc, { signal }),
+      ]);
+
+      if (!res.ok) {
+        throw new Error(`Failed to load document (${res.status})`);
+      }
+
+      const bytes = new Uint8Array(await res.arrayBuffer());
+      if (!dialog.open || signal.aborted) return;
+
+      container.innerHTML = "";
+      EmbedPDF.init({
+        target: container,
+        src: bytes,
+        theme: { accent: "#800000" },
+        features: {
+          "documents.download": false,
+          "documents.print": false,
+        },
+        readOnly: true,
+      });
+    } catch (err) {
+      if ((err as Error)?.name === "AbortError") return;
+      container.innerHTML = `<p class="pdf-status">Unable to load document preview.</p>`;
+    }
+  });
+
+  closeBtn?.addEventListener("click", () => dialog?.close());
+
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  dialog?.addEventListener("close", () => {
+    activeController?.abort();
+    if (container) container.innerHTML = "";
+  });
+</script>
+
+<style>
+  .pdf-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(94vw, 1050px);
+    height: 88vh;
+    padding: 0;
+    border: 1.5px solid var(--color-maroon);
+    border-radius: 1.25rem;
+    background-color: var(--color-white);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+
+  .pdf-modal[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pdf-modal::backdrop {
+    background: rgba(26, 20, 20, 0.65);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 1.5rem;
+    background-color: var(--color-maroon);
+    color: var(--color-white);
+  }
+
+  .modal-title {
+    margin: 0;
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    color: var(--color-white);
+  }
+
+  .close-btn {
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: transparent;
+    color: var(--color-white);
+    font-size: 1.35rem;
+    line-height: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .pdf-viewer-container {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    display: grid;
+  }
+
+  .pdf-viewer-container :global(.pdf-status) {
+    place-self: center;
+    color: var(--color-maroon);
+    font-weight: 600;
+  }
+</style>

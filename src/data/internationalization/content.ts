@@ -1,5 +1,4 @@
 export interface PartnerItem {
-  id: string;
   name: string;
   location: string;
   imagePath: string;
@@ -11,9 +10,8 @@ export interface PartnerItem {
 export interface FeaturedProjectItem {
   id: string;
   tabLabel: string;
-  name: string;
+  shortTitle?: string;
   fullTitle: string;
-  useFullTitleAsHeadline?: boolean;
   date?: string;
   fora: string;
   location?: string;
@@ -28,10 +26,9 @@ export interface FeaturedProjectItem {
   url?: string;
 }
 
-export type ResearchCategory = "journal-book" | "conference" | "iictc-award";
+export type ResearchCategory = "journal-book" | "conference" | "joint-proposal" | "iictc-award";
 
 export interface ResearchPaperItem {
-  id: string;
   title: string;
   fora: string;
   date: string;
@@ -44,7 +41,6 @@ export interface ResearchPaperItem {
 }
 
 export interface ConferenceDelegationItem {
-  id: string;
   title: string;
   organizers: string;
   date: string;
@@ -56,8 +52,7 @@ export interface ConferenceDelegationItem {
 export const internationalData = {
   hero: {
     title: "Internationalization",
-    lead: "Showcasing PUP BSCS's international recognition, academic partnerships, research innovation, and global engagement.",
-    subtext: "Rooted in public service. Connected to the world. Explore how our computing community advances quality education across borders."
+    lead: "Showcasing PUP BSCS's international recognition, academic partnerships, research innovation, and global engagement."
   },
   section1: {
     label: "SECTION 01",
@@ -65,7 +60,18 @@ export const internationalData = {
     badge: "PICAB-CAC CERTIFIED • JULY 2026",
     headline: "PUP's First International Program Accreditation",
     programs: ["BS Computer Science", "BS Information Technology"],
-    imagePath: "/images/internationalization/PICAB.jpeg"
+    imagePath: "/images/internationalization/PICAB.jpeg",
+    picabSpotlight: {
+      kicker: "International Recognition",
+      display: "PICAB-CAC Certification",
+      imagePath: "/planning_and_qa/picab-cic.png",
+      imageAlt: "PICAB-CIC Summary of Accreditation Actions",
+      date: "July 2026",
+      paragraphs: [
+        "The Bachelor of Science in Computer Science program of CCIS earned certification from the Computing Accreditation Commission (CAC) of PICAB in July 2026.",
+        "This certification marks PUP's first international program accreditation. PICAB is a provisional signatory to the Seoul Accord, an international agreement that recognizes substantial equivalence in computing and IT degrees across member countries."
+      ]
+    }
   },
   section2: {
     label: "SECTION 02",
@@ -137,7 +143,6 @@ export const internationalData = {
     description: "Building connections across Southeast Asia through university-to-university cooperation.",
     partners: [
       {
-        id: "binus",
         name: "Bina Nusantara University",
         location: "Jakarta, Indonesia",
         imagePath: "/images/internationalization/logoBINUS.png",
@@ -151,7 +156,6 @@ export const internationalData = {
         ]
       },
       {
-        id: "pamulang",
         name: "Universitas Pamulang",
         location: "South Tangerang, Indonesia",
         imagePath: "/images/internationalization/unpam.png",
@@ -163,7 +167,6 @@ export const internationalData = {
         ]
       },
       {
-        id: "umpsa",
         name: "Universiti Malaysia Pahang Al-Sultan Abdullah",
         location: "Pahang, Malaysia",
         imagePath: "/images/internationalization/Emblem_of_Universiti_Malaysia_Pahang.png",
@@ -186,7 +189,7 @@ export const internationalData = {
       {
         id: "ifloodsense",
         tabLabel: "IFloodSense",
-        name: "IFloodSense",
+        shortTitle: "IFloodSense",
         fullTitle: "iFloodSense App: A Disaster Management Mobile Application for Real-Time, Waze-Based Hyperlocal Urban Street-Flood Mapping",
         fora: "International Matching Grant Strategic Partnership Programme on Flood Disaster Management / Joint Research Proposal (UMPSA & PUP-CCIS MOU)",
         imagePath: "/images/internationalization/Iflood-Meet-BigPicture.png",
@@ -199,7 +202,7 @@ export const internationalData = {
       {
         id: "habagatplus",
         tabLabel: "HabagatPlus",
-        name: "HabagatPlus",
+        shortTitle: "HabagatPlus",
         fullTitle: "HabagatPlus: Providing Recommendations for Localized Class Suspension in Schools During Inclement Weather Conditions Using Naive Bayes Classifier",
         date: "November 27–29, 2023",
         fora: "3rd International Conference on Humanities, Education, Sciences, Management, Engineering, and Technology (ICHESMET 2023)",
@@ -214,7 +217,7 @@ export const internationalData = {
       {
         id: "rivercast",
         tabLabel: "Rivercast",
-        name: "Rivercast",
+        shortTitle: "Rivercast",
         fullTitle: "Rivercast: Forecasting Marikina River Level Using Auto-Regressive Transformer with Kernel PCA and Euclidean Kernel",
         date: "November 27–29, 2023",
         fora: "3rd International Conference on Humanities, Education, Sciences, Management, Engineering, and Technology (ICHESMET 2023)",
@@ -228,9 +231,7 @@ export const internationalData = {
       {
         id: "predicting",
         tabLabel: "Predicting Student",
-        name: "Predicting Student",
         fullTitle: "Predicting Student Performance in Higher Education: A Naive Bayesian Algorithm Approach for Mapping Students' Academic Path Using a Rule-Based Classifier",
-        useFullTitleAsHeadline: true,
         date: "November 27–29, 2023",
         fora: "3rd International Conference on Humanities, Education, Sciences, Management, Engineering, and Technology (ICHESMET 2023)",
         location: "Krirk University, Bangkok, Thailand",
@@ -242,9 +243,7 @@ export const internationalData = {
       {
         id: "yolo",
         tabLabel: "Object Detection",
-        name: "Object Detection",
         fullTitle: "Object Detection in Computer Laboratory Setting Utilizing YOLO Model",
-        useFullTitleAsHeadline: true,
         date: "September 11–13, 2024 & June 28–30, 2025",
         fora: "5th Asia Service Sciences and Software Engineering Conference (ASSE 2024) & 15th International Workshop on Computer Science and Engineering (WCSE 2025)",
         location: "The University of Tokyo, Japan & Jeju Island, South Korea",
@@ -257,9 +256,7 @@ export const internationalData = {
       {
         id: "filipino-genz-bert",
         tabLabel: "Filipino Genz",
-        name: "Filipino Genz",
         fullTitle: "Filipino Genz Slang Sentiment Analyzer using BERT",
-        useFullTitleAsHeadline: true,
         date: "June 28–30, 2025",
         fora: "2025 15th International Workshop on Computer Science and Engineering (WCSE 2025), pp. 78–83",
         location: "Jeju Island, South Korea",
@@ -276,7 +273,6 @@ export const internationalData = {
     selectedConferenceHeading: "Selected International Conference & Journal Research",
     selectedConferenceList: [
       {
-        id: "traffic-incident",
         title: "Traffic incident prediction and classification system using naïve bayes algorithm",
         fora: "8th International Conference on Computer Science and Computational Intelligence (ICCSCI 2023) / Procedia Computer Science",
         date: "August 2–3, 2023",
@@ -287,7 +283,6 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "covid-risk-app",
         title: "Mobile Application for Risk Assessment Using Naïve Bayesian Algorithm with Distance Notification against COVID-19",
         fora: "Advancing Sustainable Science and Technology for a Resilient Future (CRC Press)",
         date: "2024",
@@ -297,7 +292,6 @@ export const internationalData = {
         categoryLabel: "Book Chapter"
       },
       {
-        id: "pup-microbank",
         title: "PUP Microbank: Microbial Collection Repository with Status Monitory and Request Assessment",
         fora: "Advancing Sustainable Science and Technology for a Resilient Future (CRC Press)",
         date: "2024",
@@ -307,7 +301,6 @@ export const internationalData = {
         categoryLabel: "Book Chapter"
       },
       {
-        id: "floodwatcher",
         title: "FloodWatcher: Forecasting Marikina River Level using Generative Pre-Trained Transformer with Kernel PCA",
         fora: "9th International Conference on Computer Science and Computational Intelligence (ICCSCI 2024) / Procedia Computer Science",
         date: "August 28–29, 2024",
@@ -318,7 +311,6 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "enhancing-student-outcomes",
         title: "Enhancing Student Outcomes: A Dual Methodology Using Naive Bayesian and Rule-Based Models",
         fora: "Technologique: A Global Journal on Technological Developments and Scientific Innovations (Vol. 2, No. 1)",
         date: "July 29, 2024",
@@ -328,7 +320,6 @@ export const internationalData = {
         categoryLabel: "Journal Article"
       },
       {
-        id: "apriori-job-forecasting",
         title: "Apriori algorithm applied in job forecasting with elective tracking",
         fora: "AIP Conference Proceedings (Vol. 2823, 020002)",
         date: "August 10, 2023",
@@ -338,7 +329,6 @@ export const internationalData = {
         categoryLabel: "Conference Proceedings"
       },
       {
-        id: "uti-cnn-svm",
         title: "Detecting Urinary Tract Infection (UTI) thru Analytes level using Convolutional Neural Network and Support Vector Machine",
         fora: "2021 9th International Conference on Information Technology: IoT and Smart City (ICIT 2021)",
         date: "December 22–25, 2021",
@@ -349,7 +339,6 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "digital-readiness",
         title: "Digital Readiness of Faculty and Students at the State University using Modified General Technology Competency and Use Model with Rule-based Algorithm: Basis for Teaching and Learning Delivery Mode Policy",
         fora: "International Journal of Computing Sciences Research (Vol. 5, No. 1)",
         date: "2021",
@@ -359,7 +348,6 @@ export const internationalData = {
         categoryLabel: "Journal Article"
       },
       {
-        id: "hydrocast",
         title: "HydroCast: Graph-Attention Transformer with Spatio-Temporal Graph Autoencoder for Multi-Horizon River Water Level Forecasting",
         fora: "11th International Conference on Big Data Analytics (ICBDA 2026)",
         date: "April 11–14, 2026",
@@ -370,7 +358,6 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "risk-statement-bert",
         title: "Risk Statement Classifier Using BERT And DistilBERT",
         fora: "15th International Workshop on Computer Science and Engineering (WCSE 2025)",
         date: "June 28–30, 2025",
@@ -381,7 +368,6 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "intelligent-credit-scoring",
         title: "Intelligent Credit Scoring: A Smart City Setting for Small and Medium Financial Institutions",
         fora: "11th International Conference on Information Technology: IoT and Smart City (ICIT 2023)",
         date: "December 14–17, 2023 (Published March 11, 2024)",
@@ -392,7 +378,6 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "classical-time-series",
         title: "Milestones and developments in classical statistical time series forecasting: a comprehensive review",
         fora: "Data Analytics and Applied Mathematics (UMPSA Research Journal)",
         date: "March 2025",
@@ -402,7 +387,6 @@ export const internationalData = {
         categoryLabel: "Journal Article"
       },
       {
-        id: "hadith-knowledge-graph",
         title: "The Development of Information Retrieval Model for Hadith Data from Knowledge Graph",
         fora: "Conference Paper (Joint research with UMPSA Malaysia)",
         date: "April 2026",
@@ -412,17 +396,15 @@ export const internationalData = {
         categoryLabel: "Conference Paper"
       },
       {
-        id: "stochastic-river-modelling",
         title: "Stochastic Modelling of River Water Level Dynamics for Probabilistic Flood-Risk Classification",
         fora: "Joint Research Proposal (UMPSA & PUP-CCIS)",
         date: "Ongoing (2026)",
         location: "Malaysia / Philippines",
         authors: "Noryanti Binti Muhammad, Dr. Aleta C. Fabregas, Arman Bin Mokhtar, Maria Leonila Amata",
-        category: "conference",
+        category: "joint-proposal",
         categoryLabel: "Joint Research Proposal"
       },
       {
-        id: "iictc-aloeha",
         title: "Aloeha: Aloe Vera Leaf Rot and Rust Classification Using Capsule Neural Networks",
         fora: "IICTC 2022",
         date: "2022",
@@ -432,7 +414,6 @@ export const internationalData = {
         categoryLabel: "IICTC 2022"
       },
       {
-        id: "iictc-urine-color",
         title: "Comparative Analysis of RGB, HSV, And L*A*B Color Spaces in Urine Color Analysis System Using Convolutional Neural Network to Detect Hydration and Dehydration Levels",
         fora: "IICTC 2022",
         date: "2022",
@@ -442,7 +423,6 @@ export const internationalData = {
         categoryLabel: "IICTC 2022"
       },
       {
-        id: "iictc-keystroke",
         title: "A Comparative Study of Support Vector Machine and Logistic Regression in Behavior-Biometrics Authentication Through Keystroke Dynamics",
         fora: "IICTC 2022",
         date: "2022",
@@ -452,7 +432,6 @@ export const internationalData = {
         categoryLabel: "IICTC 2022"
       },
       {
-        id: "iictc-npc-png",
         title: "Developing an Immersive Non-Playable Character (NPC) Interaction Through Procedural Narrative Generation (PNG)",
         fora: "IICTC 2022",
         date: "2022",
@@ -462,7 +441,6 @@ export const internationalData = {
         categoryLabel: "IICTC 2022"
       },
       {
-        id: "iictc-court-case",
         title: "Court Case Summarizer Using Latent Semantic Analysis and Part Segmentation",
         fora: "IICTC 2022",
         date: "2022",
@@ -472,7 +450,6 @@ export const internationalData = {
         categoryLabel: "IICTC 2022"
       },
       {
-        id: "iictc-camarine",
         title: "CAMARINE: An Enhanced Fish Species Recognition System Through Multi-Scale Retinex",
         fora: "IICTC 2022",
         date: "2022",
@@ -487,7 +464,6 @@ export const internationalData = {
     title: "International Conferences, Proceedings & Delegations",
     items: [
       {
-        id: "iictc-2022",
         title: "International ICT Conference (IICTC) 2022",
         organizers: "PUP & BINUS University",
         date: "August 2–5, 2022",
@@ -496,7 +472,6 @@ export const internationalData = {
         imagePath: "/images/internationalization/IICTC.png"
       },
       {
-        id: "iccsci-2023",
         title: "8th International Conference on Computer Science and Computational Intelligence (ICCSCI 2023) (Co-Hosting)",
         organizers: "BINUS University (Co-hosted by PUP)",
         date: "August 2–3, 2023",
@@ -505,7 +480,6 @@ export const internationalData = {
         imagePath: "/images/internationalization/ICCSCI.png"
       },
       {
-        id: "ichesmet-2023",
         title: "3rd International Conference on Humanities, Education, Sciences, Management, Engineering, and Technology (ICHESMET 2023)",
         organizers: "PUP Graduate School, Krirk University, UNTAG Semarang, Van Lang University, MRSP",
         date: "November 27–29, 2023",
@@ -514,7 +488,6 @@ export const internationalData = {
         imagePath: "/images/internationalization/ICHESME.png"
       },
       {
-        id: "nlpir-2023",
         title: "2023 7th International Conference on Natural Language Processing and Information Retrieval (NLPIR 2023)",
         organizers: "ACM International Conference Proceedings Series",
         date: "December 15–17, 2023",
@@ -523,7 +496,6 @@ export const internationalData = {
         imagePath: "/images/internationalization/NLPIR.png"
       },
       {
-        id: "aiccc-2024",
         title: "2024 7th Artificial Intelligence and Cloud Computing Conference (AICCC 2024)",
         organizers: "AICCC & ADIP (ACM)",
         date: "December 14–16, 2024",
@@ -532,7 +504,6 @@ export const internationalData = {
         imagePath: "/images/internationalization/AICCC.png"
       },
       {
-        id: "icoaims-2025",
         title: "5th International Conference on Applied & Industrial Mathematics and Statistics (ICoAIMS 2025)",
         organizers: "Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA) & PUP",
         date: "May 23–24, 2025",
@@ -541,7 +512,6 @@ export const internationalData = {
         imagePath: "/images/internationalization/ICOAIMS.png"
       },
       {
-        id: "wcse-2025",
         title: "2025 15th International Workshop on Computer Science and Engineering (WCSE 2025)",
         organizers: "WCSE / International Workshop on Computer Science and Engineering",
         date: "June 28–30, 2025",
@@ -582,10 +552,6 @@ export const internationalData = {
         award: "Gold Medalist",
         imagePath: "/images/internationalization/salazar-award.JPG"
       }
-    ],
-    cta: {
-      label: "View Full Narative Report ↗",
-      href: "/narrative-report"
-    }
+    ]
   }
 };
