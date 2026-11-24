@@ -6,11 +6,11 @@ import HeadlineComponent from "../components/HeadlineComponent.astro";
 import InitiativeCard from "../components/community/InitiativeCard.astro";
 import SeminarStepCard from "../components/community/SeminarStepCard.astro";
 import FeedbackCard from "../components/community/FeedbackCard.astro";
-import StatItem from "../components/community/StatItem.astro";
 import CommunitySection from "../components/community/CommunitySection.astro";
 import EmsHighlightCard from "../components/community/EmsHighlightCard.astro";
 import PhotoCard from "../components/community/PhotoCard.astro";
 import PDFModal from "../components/PDFModal.astro";
+import HeroButton from "../components/HeroButton.astro";
 import { getDocRef } from "../lib/pdfs.server";
 ---
 
@@ -18,11 +18,17 @@ import { getDocRef } from "../lib/pdfs.server";
     title="Community & Extension"
     description="Community outreach, digital literacy programs, and extension partnerships."
 >
-    <HeroSection
-        title="Community &"
-        accentTitle="Extension">
-        <p>Community outreach, digital literacy programs, and extension partnerships</p>
-        </HeroSection>
+    <HeroSection title="Community &" accentTitle="Extension">
+        <p>
+            Community outreach, digital literacy programs, and extension
+            partnerships
+        </p>
+        <HeroButton
+            label="Area 3 Narrative Report"
+            docRef={getDocRef("area3-narrative")}
+            pdfTitle="Area 3: Community Service Narrative Report"
+        />
+    </HeroSection>
 
     <CommunitySection class="md:justify-center gap-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -49,12 +55,6 @@ import { getDocRef } from "../lib/pdfs.server";
                 alt="Community training participants"
                 class="h-[300px] w-full rounded-lg object-cover"
             />
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 md:justify-items-center gap-6 rounded-lg bg-white p-7 shadow-sm">
-            <StatItem value="01" label="Community initiatives" />
-            <StatItem value="02" label="Ongoing projects" />
-            <StatItem value="03" label="Completed initiative" />
         </div>
     </CommunitySection>
 

@@ -36,6 +36,7 @@ export const DOCS: Record<string, string> = {
     "satisfaction-certification": "emo-certification.pdf",
     "extension-proposal-mse": "extension-proposal-mse.pdf",
     "ems-objectives": "extension-proposal-ems.pdf",
+    "area3-narrative": "area-3-community-service.pdf",
 };
 
 function makeHashId(seed: string): string {
