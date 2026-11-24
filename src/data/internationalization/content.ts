@@ -41,12 +41,22 @@ export interface ResearchPaperItem {
 }
 
 export interface ConferenceDelegationItem {
+  id: string;
   title: string;
   organizers: string;
   date: string;
   location: string;
   participants: string;
   imagePath: string;
+}
+
+export interface ConferenceTimelineYear {
+  year: string;
+  conferences: {
+    id: string;
+    name: string;
+    date: string;
+  }[];
 }
 
 export const internationalData = {
@@ -269,9 +279,9 @@ export const internationalData = {
       }
     ] as FeaturedProjectItem[]
   },
-  section5: {
-    selectedConferenceHeading: "Selected International Conference & Journal Research",
-    selectedConferenceList: [
+  publications: {
+    heading: "Selected International Conference & Journal Research",
+    items: [
       {
         title: "Traffic incident prediction and classification system using naïve bayes algorithm",
         fora: "8th International Conference on Computer Science and Computational Intelligence (ICCSCI 2023) / Procedia Computer Science",
@@ -464,6 +474,7 @@ export const internationalData = {
     title: "International Conferences, Proceedings & Delegations",
     items: [
       {
+        id: "iictc-2022",
         title: "International ICT Conference (IICTC) 2022",
         organizers: "PUP & BINUS University",
         date: "August 2–5, 2022",
@@ -472,6 +483,7 @@ export const internationalData = {
         imagePath: "/images/internationalization/IICTC.png"
       },
       {
+        id: "iccsci-2023",
         title: "8th International Conference on Computer Science and Computational Intelligence (ICCSCI 2023) (Co-Hosting)",
         organizers: "BINUS University (Co-hosted by PUP)",
         date: "August 2–3, 2023",
@@ -480,6 +492,7 @@ export const internationalData = {
         imagePath: "/images/internationalization/ICCSCI.png"
       },
       {
+        id: "ichesmet-2023",
         title: "3rd International Conference on Humanities, Education, Sciences, Management, Engineering, and Technology (ICHESMET 2023)",
         organizers: "PUP Graduate School, Krirk University, UNTAG Semarang, Van Lang University, MRSP",
         date: "November 27–29, 2023",
@@ -488,6 +501,7 @@ export const internationalData = {
         imagePath: "/images/internationalization/ICHESME.png"
       },
       {
+        id: "nlpir-2023",
         title: "2023 7th International Conference on Natural Language Processing and Information Retrieval (NLPIR 2023)",
         organizers: "ACM International Conference Proceedings Series",
         date: "December 15–17, 2023",
@@ -496,6 +510,7 @@ export const internationalData = {
         imagePath: "/images/internationalization/NLPIR.png"
       },
       {
+        id: "aiccc-2024",
         title: "2024 7th Artificial Intelligence and Cloud Computing Conference (AICCC 2024)",
         organizers: "AICCC & ADIP (ACM)",
         date: "December 14–16, 2024",
@@ -504,6 +519,7 @@ export const internationalData = {
         imagePath: "/images/internationalization/AICCC.png"
       },
       {
+        id: "icoaims-2025",
         title: "5th International Conference on Applied & Industrial Mathematics and Statistics (ICoAIMS 2025)",
         organizers: "Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA) & PUP",
         date: "May 23–24, 2025",
@@ -512,6 +528,7 @@ export const internationalData = {
         imagePath: "/images/internationalization/ICOAIMS.png"
       },
       {
+        id: "wcse-2025",
         title: "2025 15th International Workshop on Computer Science and Engineering (WCSE 2025)",
         organizers: "WCSE / International Workshop on Computer Science and Engineering",
         date: "June 28–30, 2025",
@@ -519,7 +536,32 @@ export const internationalData = {
         participants: "Dr. Ria A. Sagum, Mark Ciedrick A. Ramos, Diana Rose A. Certeza, Alijah Czareen A. Andres, Aaronn Daphne M. Gatchalian, Carlo G. Inovero, Michael Dela Fuente",
         imagePath: "/images/internationalization/BERT WCSE.png"
       }
-    ] as ConferenceDelegationItem[]
+    ] as ConferenceDelegationItem[],
+    timeline: [
+      {
+        year: "2022",
+        conferences: [{ id: "iictc-2022", name: "IICTC", date: "Aug 2–5, 2022" }]
+      },
+      {
+        year: "2023",
+        conferences: [
+          { id: "nlpir-2023", name: "NLPIR", date: "Dec 15–17, 2023" },
+          { id: "ichesmet-2023", name: "ICHESMET", date: "Nov 27–29, 2023" },
+          { id: "iccsci-2023", name: "ICCSCI", date: "Aug 2–3, 2023" }
+        ]
+      },
+      {
+        year: "2024",
+        conferences: [{ id: "aiccc-2024", name: "AICCC", date: "Dec 14–16, 2024" }]
+      },
+      {
+        year: "2025",
+        conferences: [
+          { id: "wcse-2025", name: "WCSE", date: "Jun 28–30, 2025" },
+          { id: "icoaims-2025", name: "ICoAIMS", date: "May 23–24, 2025" }
+        ]
+      }
+    ] as ConferenceTimelineYear[]
   },
   competitions: {
     label: "SECTION 06",

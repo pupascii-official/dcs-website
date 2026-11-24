@@ -25,11 +25,12 @@ import StackedDeck from "./StackedDeck.astro";
         photoSrc={student.groupPhotoPath}
         photoAlt={`${student.name} exchange group`}
         mobilePhotoHeight="h-52"
-        contentClass="md:w-[55%] p-5 sm:p-7"
+        contentPadding="p-5 sm:p-7"
+        desktopContentWidth="41.25cqi"
       >
         <div
           slot="collapsed"
-          class="relative w-full aspect-[3/4] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-neutral-200 hover:border-(--color-maroon) bg-(--color-dark-maroon) shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group"
+          class="relative w-full aspect-[3/4] md:aspect-auto md:h-full rounded-2xl overflow-hidden border border-neutral-200 hover:border-(--color-maroon) bg-(--color-dark-maroon) shadow-md hover:shadow-xl hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer group"
           data-deck-collapsed
           role="button"
           tabindex="0"

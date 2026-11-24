@@ -5,7 +5,8 @@ interface Props {
   photoSrc: string;
   photoAlt: string;
   mobilePhotoHeight?: string;
-  contentClass?: string;
+  contentPadding?: string;
+  desktopContentWidth?: string;
 }
 
 const {
@@ -14,7 +15,8 @@ const {
   photoSrc,
   photoAlt,
   mobilePhotoHeight = "h-48",
-  contentClass = "md:w-[60%] p-6 sm:p-8"
+  contentPadding = "p-6 sm:p-8",
+  desktopContentWidth = "45cqi"
 } = Astro.props;
 ---
 
@@ -48,7 +50,10 @@ const {
 
     <div class="hidden md:block intl-deck-fade-desktop absolute inset-0 pointer-events-none z-[1]"></div>
 
-    <div class={`relative z-10 w-full ${contentClass} md:h-full flex flex-col justify-center overflow-y-auto scrollbar-none`}>
+    <div
+      class={`intl-deck-content relative z-10 w-full ${contentPadding} md:h-full flex flex-col justify-center overflow-y-auto scrollbar-none`}
+      style={`--deck-content-w: ${desktopContentWidth};`}
+    >
       <slot />
     </div>
   </div>
