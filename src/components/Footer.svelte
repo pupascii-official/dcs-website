@@ -4,9 +4,8 @@
 
 	const portfolioLinks = [
 		{ label: "Compliance Report", href: "/compliance" },
-		{ label: "Narrative Report", href: "/narrative-report" },
-		{ label: "Curriculum", href: "/curriculum" },
-		{ label: "Faculty Directory", href: "/faculty" },
+		{ label: "Curriculum", href: "/teaching-and-learning#CurriculumMap" },
+		{ label: "Faculty Directory", href: "/teaching-and-learning/faculty" },
 	];
 
 	const pillarLinks = [
@@ -70,9 +69,16 @@
 			<section class="info_block" aria-labelledby="footer-visit">
 				<h2 id="footer-visit" class="info_label">Visit</h2>
 				<address class="info_text">
-					Room 508, South Wing<br />
-					PUP Main Building<br />
-					Anonas St., Sta. Mesa, Manila
+					<a
+						class="info_address_link"
+						href="https://maps.app.goo.gl/tCqkDHhR3MsTvvBw5"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Room 508, South Wing<br />
+						PUP Main Building<br />
+						Anonas St., Sta. Mesa, Manila
+					</a>
 				</address>
 			</section>
 
@@ -219,6 +225,16 @@
 		color: var(--footer-muted);
 	}
 
+	.info_address_link {
+		color: inherit;
+		text-decoration: none;
+		transition: color 160ms ease;
+	}
+
+	.info_address_link:hover {
+		color: var(--footer-paper);
+	}
+
 	.info_email {
 		font-family: var(--font-montserrat), system-ui, sans-serif;
 		font-size: 1.15rem;
@@ -305,16 +321,6 @@
 
 	.to_top:active {
 		transform: scale(0.97);
-	}
-
-	.site_footer :is(a, button):focus-visible {
-		outline: 2px solid var(--color-gold);
-		outline-offset: 4px;
-		border-radius: 4px;
-	}
-
-	.site_footer .to_top:focus-visible {
-		border-radius: 999px;
 	}
 
 	@media (max-width: 1024px) {

@@ -222,7 +222,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Marygin E. Sarmiento",
-        image: "/images/faculty/faculty-sarmiento.jpg",
+        image: "/images/faculty/faculty-sarmiento.png",
         imageAlt: "Marygin E. Sarmiento",
         status: "PART-TIME",
         degrees: [
