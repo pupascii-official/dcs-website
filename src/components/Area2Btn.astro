@@ -1,0 +1,56 @@
+---
+import { getDocRef } from "../lib/pdfs.server";
+import "./teaching-learning/tl-styles.css";
+
+interface Props {
+    title?: string;
+    pdfSlug?: string;
+    href?: string;
+    linkLabel: string;
+}
+
+const { title, pdfSlug, href, linkLabel } = Astro.props;
+const docRef = pdfSlug ? getDocRef(pdfSlug) : undefined;
+const pdfTitle = title || linkLabel;
+---
+
+{docRef ? (
+    <button
+        type="button"
+        class="btn-drive area2-btn"
+        data-doc-ref={docRef}
+        data-pdf-title={pdfTitle}
+    >
+        {linkLabel} <span aria-hidden="true">↗</span>
+    </button>
+) : href ? (
+    <a href={href} class="btn-drive area2-btn">
+        {linkLabel} <span aria-hidden="true">↗</span>
+    </a>
+) : (
+    <button type="button" class="btn-drive area2-btn" disabled>
+        {linkLabel} <span aria-hidden="true">↗</span>
+    </button>
+)}
+
+<style>
+    .area2-btn {
+        box-sizing: border-box;
+        display: flex;
+        width: min(100%, 1200px);
+        justify-content: center;
+        margin-inline: auto;
+        padding-inline: 16px;
+    }
+
+    button.btn-drive {
+        border: 0;
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    button.btn-drive:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+</style>
