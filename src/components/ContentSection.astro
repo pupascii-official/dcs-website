@@ -27,7 +27,11 @@ const {sectionLabel, category, description} = Astro.props;
 <style>
     .content-section {
         background-color: var(--color-bg-canvas);
-        padding: 3rem 2rem;
+        padding: 2rem 2rem;
+    }
+
+    :global(.content-section + .content-section) {
+        padding-top: 1.5rem;
     }
 
     .category {
@@ -37,6 +41,10 @@ const {sectionLabel, category, description} = Astro.props;
     .section-inner {
         max-width: 1100px;
         margin: 0 auto;
+    }
+
+    .section-body > :global(:last-child) {
+        margin-bottom: 0;
     }
 
     .header-top {
