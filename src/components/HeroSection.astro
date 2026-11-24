@@ -31,8 +31,9 @@ const {
 
 <style>
 	.hero {
+		min-height: 100svh;
 		color: var(--color-white);
-		padding: 2rem;
+		padding: 7rem 2rem 3rem;
 
 		background-color: #4a0000;
 		background-image: radial-gradient(ellipse 68% 66% at 50% 48%, rgba(128, 0, 0, 0.75) 0%, rgba(128, 0, 0, 0) 60%),
@@ -45,6 +46,9 @@ const {
 		justify-content: center;
 		align-items: center;
 		text-align: center;
+		margin-bottom: 2rem;
+
+		overflow-x: clip;
 	}
 
 	.hero-orbs {
@@ -87,7 +91,9 @@ const {
 	}
 
 	.hero-content {
-		max-width: 1100px;
+		width: 100%;
+		min-width: 0;
+		max-width: 1280px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -104,13 +110,16 @@ const {
 
 	h1.hero-title {
 		margin: 0;
+		max-width: 100%;
 		font-family: var(--font-montserrat), system-ui, sans-serif;
-		font-size: clamp(3rem, 8vw, 6rem);
+		font-size: clamp(2.25rem, 8vw, 6rem);
 		font-weight: 800;
 		letter-spacing: -0.03em;
 		line-height: 1.06;
 		color: var(--color-white, #ffffff);
 		text-wrap: balance;
+		overflow-wrap: anywhere;
+		hyphens: auto;
 	}
 
 	.hero-title-accent {

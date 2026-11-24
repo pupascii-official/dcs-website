@@ -2,18 +2,18 @@
 @import "tailwindcss" important;
 
 @theme inline {
-	--font-display: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
-	--font-heading: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
-	--font-sans: var(--font-inter), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-display: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    --font-heading: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: var(--font-inter), "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
-	--color-white: var(--color-white);
-	--color-maroon: var(--color-maroon);
-	--color-dark-maroon: var(--color-dark-maroon);
-	--color-gold: var(--color-gold);
-	--color-dark-gold: var(--color-dark-gold);
-	--color-bg-canvas: var(--color-bg-canvas);
-	--color-text-body: var(--color-text-body);
-	--color-border: var(--color-border);
+    --color-white: var(--color-white);
+    --color-maroon: var(--color-maroon);
+    --color-dark-maroon: var(--color-dark-maroon);
+    --color-gold: var(--color-gold);
+    --color-dark-gold: var(--color-dark-gold);
+    --color-bg-canvas: var(--color-bg-canvas);
+    --color-text-body: var(--color-text-body);
+    --color-border: var(--color-border);
 }
 
 /*
@@ -21,13 +21,13 @@
  * Tailwind utilities authoritative on .research-page via `important`.
  */
 .research-page {
-	font-family: var(--font-sans);
-	color: var(--color-text-body);
-	background-color: var(--color-white);
+    font-family: var(--font-sans);
+    color: var(--color-text-body);
+    background-color: var(--color-white);
 }
 
 .research-page p {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .research-page h1:not(.headline-text):not(.hero-title):not(.title),
@@ -36,98 +36,73 @@
 .research-page h4:not(.headline-text):not(.hero-title):not(.title),
 .research-page h5:not(.headline-text):not(.hero-title):not(.title),
 .research-page h6:not(.headline-text):not(.hero-title):not(.title) {
-	margin: 0;
-	color: inherit;
-	font-size: inherit;
-	line-height: inherit;
+    margin: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
 }
 
 .research-page small:not(.headline-kicker) {
-	color: inherit;
-	font-size: inherit;
-	font-weight: inherit;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
 }
 
 .research-page img {
-	border-radius: 0;
+    border-radius: 0;
 }
 
-/* Adapt shared ContentSection.astro seamlessly for the Research page (centered vertically + Navbar-safe top clearance) */
+/* Adapt shared ContentSection.astro for natural document flow on the Research page */
 .research-page .scroll-section.content-section {
-	background-color: var(--color-white);
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 0;
-}
-
-@media (max-width: 1023px) {
-	.research-page .scroll-section {
-		height: auto !important;
-		min-height: 100dvh;
-		overflow-y: visible !important;
-	}
+    background-color: var(--color-white);
+    padding: 2rem 0;
 }
 
 .research-page .scroll-section.content-section .section-inner {
-	margin: auto;
-	width: 100%;
-	max-width: 72rem;
-	padding: 0 1rem 2rem;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 72rem;
+    padding: 0 1.25rem;
 }
 
 .research-page .scroll-section.content-section .header-top {
-	border-left: 3.5px solid #780000;
-	padding-left: 1rem;
-	margin-bottom: 1.25rem;
+    border-left: 3.5px solid #780000;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .research-page .scroll-section.content-section .header-top small {
-	display: block;
-	font-family: var(--font-heading);
-	font-size: 10.5px;
-	font-weight: 700;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: #c89416;
-	line-height: 1.25;
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #c89416;
+    line-height: 1.25;
 }
 
 .research-page .scroll-section.content-section .header-top .category {
-	margin-top: 0.25rem;
-	margin-bottom: 0;
-	font-family: var(--font-display);
-	font-size: clamp(26px, 3vw, 32px);
-	font-weight: 900;
-	letter-spacing: -0.02em;
-	line-height: 1.1;
-	color: #141414;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 32px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #141414;
 }
 
 @media (min-width: 640px) {
-	.research-page .scroll-section.content-section .section-inner {
-		padding: 0 2.5rem 1.75rem;
-	}
+    .research-page .scroll-section.content-section {
+        padding: 2rem 0;
+    }
 
-	.research-page .scroll-section.content-section .header-top {
-		margin-bottom: 1.15rem;
-	}
+    .research-page .scroll-section.content-section .section-inner {
+        padding: 0 2.5rem;
+    }
 
-	.research-page .scroll-section.content-section .header-top small {
-		font-size: 11px;
-	}
-}
-
-@media (min-width: 1024px) {
-	.research-page .scroll-section {
-		height: auto !important;
-		min-height: 100dvh;
-		overflow-y: visible !important;
-		scroll-snap-stop: always;
-	}
-
-	main.scroll-container:has(.research-page) {
-		scroll-snap-type: y mandatory;
-	}
+    .research-page .scroll-section.content-section .header-top small {
+        font-size: 11px;
+    }
 }

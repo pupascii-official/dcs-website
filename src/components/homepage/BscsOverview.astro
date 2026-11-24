@@ -6,6 +6,7 @@ import {
 	peos,
 	peosIntro,
 } from '../../data/homepage/bscs';
+import ContentCard from '../ContentCard.astro';
 
 interface Props {
 	/** mission items */
@@ -59,6 +60,21 @@ const splitLead = (s: string): [string, string] => {
 			</dl>
 		</div>
 
+		<ContentCard kicker="International Recognition" display="PICAB-CAC Certification">
+            <img slot="media" src="/planning_and_qa/picab-cic.png" alt="PICAB-CIC Summary of Accreditation Actions">
+
+            <div slot="content" class="picab-cic-content">
+                <b>July 2026</b>
+
+                <p>The Bachelor of Science in Computer Science program of CCIS earned certification from the Computing
+                    Accreditation Commission (CAC) of PICAB in July 2026.</p>
+
+                <p>This certification marks PUP's first international program accreditation. PICAB is a provisional
+                    signatory to the Seoul Accord, an international agreement that recognizes substantial equivalence in
+                    computing and IT degrees across member countries.</p>
+            </div>
+        </ContentCard>
+
 		<section class="peos" aria-labelledby="peo-title">
 			<div class="peos__head">
 				<h3 id="peo-title">{peosIntro.title}</h3>
@@ -107,6 +123,9 @@ const splitLead = (s: string): [string, string] => {
 </section>
 
 <style>
+	.bscs :global(.content-card) {
+	  margin-top: 2rem;
+	}
 	.bscs {
 		--bs-maroon: var(--color-maroon, #800000);
 		--bs-maroon-deep: #4a0509;

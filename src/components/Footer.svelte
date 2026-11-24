@@ -21,13 +21,16 @@
 		const still = window.matchMedia(
 			"(prefers-reduced-motion: reduce)",
 		).matches;
-		const behavior = still ? "auto" : "smooth";
-		const scrollContainer = document.querySelector(".scroll-container");
-		if (scrollContainer) {
-			scrollContainer.scrollTo({ top: 0, behavior });
-		} else {
-			window.scrollTo({ top: 0, behavior });
+		const behavior: ScrollBehavior = still ? "auto" : "smooth";
+
+		const target = document.querySelector(".hero, main");
+		if (target) {
+			target.scrollIntoView({ behavior, block: "start" });
 		}
+
+		window.scrollTo({ top: 0, behavior });
+		document.documentElement.scrollTo({ top: 0, behavior });
+		document.body.scrollTo({ top: 0, behavior });
 	}
 </script>
 
@@ -142,7 +145,6 @@
 		color: var(--footer-paper);
 		font-family: var(--font-inter), system-ui, sans-serif;
 		overflow: hidden;
-		scroll-snap-align: end;
 	}
 
 	.footer_body {

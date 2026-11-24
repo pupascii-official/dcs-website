@@ -18,6 +18,8 @@
     --color-text-body: #1A1414;
     --color-border: #E2E2E2;
 
+    --color-muted-maroon: #80000008;
+
     --color-blue-1: #7EB2FF;
     --color-blue-2: #0066FF;
     --color-blue-3: #003E9A;
@@ -39,7 +41,7 @@ b {
 }
 
 small {
-    color: #755b00;
+    color: var(--color-dark-gold); /* Please don't change this */
     font-size: small;
     font-family: var(--font-inter), system-ui, sans-serif;
     font-weight: 600;

@@ -1,0 +1,264 @@
+---
+import "./tl-styles.css";
+---
+
+<!-- Computer Science International Students -->
+        <section class="ascii-white-sec" id="tl-international-students">
+          <div class="ascii-container">
+            <div class="intl-grid">
+              <article class="intl-item" role="button" tabindex="0">
+                <img class="intl-photo" src="/teaching-learning-assets/intl-korea-zaragoza.png"
+                  alt="Marie Criz P. Zaragoza holding the Philippine and South Korean flags for Sejong University"
+                  loading="lazy">
+                <div class="tl-award-recipient">Marie Criz P. Zaragoza</div>
+                <div class="tl-award-sub">Sejong University, Seoul, South Korea</div>
+                <div class="intl-details" hidden>
+                  <div class="tl-award-top">
+                    <span class="tl-award-pill">SOUTH KOREA • SPRING 2026</span>
+                    <span class="tl-award-date">FEB – JUL 2026</span>
+                  </div>
+                  <div class="intl-modality">Long-Term Exchange (Onsite)</div>
+                  <p class="intl-desc">
+                    Completed a six-month BSCS exchange (Feb 20 – Jul 5, 2026) taking AI, Data Science, and Computer
+                    Science coursework, alongside the Global Buddies Program and Hangul Beginner Class.
+                  </p>
+                </div>
+              </article>
+
+              <article class="intl-item" role="button" tabindex="0">
+                <img class="intl-photo" src="/teaching-learning-assets/intl-india-sagun.png"
+                  alt="Eujin Rod L. Sagun holding the Indian and Philippine flags for Woxsen University" loading="lazy">
+                <div class="tl-award-recipient">Eujin Rod L. Sagun</div>
+                <div class="tl-award-sub">Woxsen University, Hyderabad, India</div>
+                <div class="intl-details" hidden>
+                  <div class="tl-award-top">
+                    <span class="tl-award-pill">INDIA • FALL 2026</span>
+                    <span class="tl-award-date">JUL – OCT 2026</span>
+                  </div>
+                  <div class="intl-modality">Long-Term Exchange (Onsite)</div>
+                  <p class="intl-desc">
+                    Completed a four-month BSCS exchange focusing on Artificial Intelligence and Machine Learning
+                    coursework, project-based assessments, and intercultural immersion in India.
+                  </p>
+                </div>
+              </article>
+
+              <article class="intl-item" role="button" tabindex="0">
+                <img class="intl-photo" src="/teaching-learning-assets/intl-japan-alidio.png"
+                  alt="Aisaiah Francis G. Alidio holding the Japanese flag for Kagoshima University" loading="lazy">
+                <div class="tl-award-recipient">Aisaiah Francis G. Alidio</div>
+                <div class="tl-award-sub">Kagoshima University, Japan</div>
+                <div class="intl-details" hidden>
+                  <div class="tl-award-top">
+                    <span class="tl-award-pill">JAPAN • FALL 2026</span>
+                    <span class="tl-award-date">OCT 2026 – MAR 2027</span>
+                  </div>
+                <div class="intl-modality">Bilateral Exchange (Onsite)</div>
+                  <p class="intl-desc">
+                    Admitted to the Faculty of Science under the PUP–Kagoshima Bilateral Exchange Agreement with tuition
+                    fee waiver for one semester (Oct 1, 2026 – Mar 31, 2027).
+                  </p>
+                </div>
+              </article>
+
+              <article class="intl-item" role="button" tabindex="0">
+                <img class="intl-photo" src="/teaching-learning-assets/intl-p2a-salazar.png"
+                  alt="Clarisse Jem T. Salazar P2A AI Education 2026 Gold Medalist congratulatory poster"
+                  loading="lazy">
+                <div class="tl-award-recipient">Clarisse Jem T. Salazar</div>
+                <div class="tl-award-sub">Passage to ASEAN &amp; Duy Tan University (Vietnam)</div>
+                <div class="intl-details" hidden>
+                  <div class="tl-award-top">
+                    <span class="tl-award-pill">P2A ASEAN • GOLD MEDAL</span>
+                    <span class="tl-award-date">AI EDUCATION 2026</span>
+                  </div>
+                  <div class="intl-modality">Online Hybrid Mobility</div>
+                  <p class="intl-desc">
+                    Won <strong>Gold Medal</strong> in the Grand Final Round of <em>P2A AI Education 2026</em> (Team
+                    OmniFlow: <em>Ageing Population and Manpower Constraints</em>) among 12 ASEAN institutions.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        
+<!-- International Students Modal -->
+<div class="roadmap-modal-backdrop"
+  id="intlModal"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="intlModalName">
+
+  <div class="roadmap-modal-dialog intl-modal-dialog">
+    <div class="roadmap-modal-header">
+      <div class="roadmap-modal-badges">
+        <span class="tl-award-pill" id="intlModalPill"></span>
+        <span class="tl-award-date" id="intlModalDate"></span>
+      </div>
+
+      <button type="button"
+        class="roadmap-modal-close"
+        id="intlModalClose"
+        aria-label="Close details">
+        ✕
+      </button>
+    </div>
+
+    <div class="intl-modal-profile">
+      <img class="intl-modal-photo"
+        id="intlModalPhoto"
+        src=""
+        alt="">
+
+      <div class="intl-modal-meta">
+        <h3 id="intlModalName"></h3>
+        <div class="intl-modal-univ" id="intlModalUniv"></div>
+        <div class="intl-modality" id="intlModalModality"></div>
+      </div>
+    </div>
+
+    <div class="roadmap-modal-body" id="intlModalBody"></div>
+
+    <div class="roadmap-modal-footer">
+      <button type="button"
+        class="roadmap-modal-nav"
+        id="intlModalPrev">
+        ← Previous
+      </button>
+
+      <button type="button"
+        class="roadmap-modal-nav"
+        id="intlModalNext">
+        Next →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+// Pop-Up Modal Card for Computer Science International Students
+(function initInternationalStudentModal() {
+  const modal = document.getElementById('intlModal');
+  const cards = Array.from(
+    document.querySelectorAll('#tl-international-students .intl-item')
+  );
+
+  if (!modal || cards.length === 0) return;
+
+  const pillEl = document.getElementById('intlModalPill');
+  const dateEl = document.getElementById('intlModalDate');
+  const photoEl = document.getElementById('intlModalPhoto');
+  const nameEl = document.getElementById('intlModalName');
+  const univEl = document.getElementById('intlModalUniv');
+  const modalityEl = document.getElementById('intlModalModality');
+  const bodyEl = document.getElementById('intlModalBody');
+  const closeBtn = document.getElementById('intlModalClose');
+  const prevBtn = document.getElementById('intlModalPrev');
+  const nextBtn = document.getElementById('intlModalNext');
+
+  let activeIndex = -1;
+  let lastTrigger = null;
+
+  function renderStudent(index) {
+    const card = cards[index];
+    if (!card) return;
+
+    activeIndex = index;
+
+    const img = card.querySelector('.intl-photo');
+    const name =
+      card.querySelector('.tl-award-recipient')?.textContent.trim() || '';
+    const univ =
+      card.querySelector('.tl-award-sub')?.textContent.trim() || '';
+    const pill =
+      card.querySelector('.tl-award-pill')?.textContent.trim() || '';
+    const date =
+      card.querySelector('.tl-award-date')?.textContent.trim() || '';
+    const modality =
+      card.querySelector('.intl-modality')?.textContent.trim() || '';
+    const descHtml =
+      card.querySelector('.intl-desc')?.innerHTML || '';
+
+    pillEl.textContent = pill;
+    dateEl.textContent = date;
+    photoEl.src = img?.getAttribute('src') || '';
+    photoEl.alt = img?.getAttribute('alt') || name;
+    nameEl.textContent = name;
+    univEl.textContent = univ;
+    modalityEl.textContent = modality;
+    bodyEl.innerHTML = `<p>${descHtml}</p>`;
+
+    prevBtn.disabled = index <= 0;
+    nextBtn.disabled = index >= cards.length - 1;
+  }
+
+  function openModal(index, triggerEl) {
+    lastTrigger = triggerEl || null;
+    renderStudent(index);
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (modal.hidden) return;
+
+    modal.hidden = true;
+    document.body.style.overflow = '';
+
+    if (lastTrigger && typeof lastTrigger.focus === 'function') {
+      lastTrigger.focus();
+    }
+  }
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => openModal(index, card));
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openModal(index, card);
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+
+  prevBtn.addEventListener('click', () => {
+    if (activeIndex > 0) {
+      renderStudent(activeIndex - 1);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (activeIndex < cards.length - 1) {
+      renderStudent(activeIndex + 1);
+    }
+  });
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (modal.hidden) return;
+
+    if (event.key === 'Escape') {
+      closeModal();
+    } else if (event.key === 'ArrowLeft' && activeIndex > 0) {
+      renderStudent(activeIndex - 1);
+    } else if (
+      event.key === 'ArrowRight'
+      && activeIndex < cards.length - 1
+    ) {
+      renderStudent(activeIndex + 1);
+    }
+  });
+})();
+</script>

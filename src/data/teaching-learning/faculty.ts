@@ -1,0 +1,236 @@
+interface profile {
+    name: string;
+    image: string;
+    imageAlt: string;
+    status: string;
+    degrees: string[];
+    specialization: string;
+    courses: string;
+}
+
+export const FacultyProfile: profile[] = [
+    {
+        name: "Marian G. Arada",
+        image: "/images/faculty/faculty-arada.jpg",
+        imageAlt: "Marian G. Arada",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor in Computer Data Processing Management",
+            "Master in Educational Management (2005)",
+            "Master of Information Technology (2013)",
+        ],
+        specialization: "IT Service Management, Research",
+        courses: "Introduction to Computing; Technical Documentation and Presentation Skills in ICT",
+    },
+    {
+        name: "Monina D. Barretto",
+        image: "/images/faculty/faculty-barretto.jpg",
+        imageAlt: "Monina D. Barretto",
+        status: "REGULAR",
+        degrees: [
+            "B.S. in Management and Industrial Engineering (B.S. MIE)",
+            "Master of Business Administration (MBA) (2016)",
+        ],
+        specialization: "Database/SQL, Programming, Project Management",
+        courses: "Introduction to Computing; Information Management",
+    },
+    {
+        name: "Leoven R. Basista",
+        image: "/images/faculty/faculty-basista.jpg",
+        imageAlt: "Leoven R. Basista",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor of Science in Computer Engineering (2008)",
+            "Master of Science in Information Technology (2015)",
+        ],
+        specialization: "Network and Infrastructure",
+        courses: "Computer Organization & Assembly Language; Information Assurance & Security; Logic Design & Digital Computer Circuits; CS Thesis Writing 1",
+    },
+    {
+        name: "Lydinar D. Dastas",
+        image: "/images/faculty/faculty-dastas.jpg",
+        imageAlt: "Lydinar D. Dastas",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor in Business Education (1994)",
+            "Master in Business Education (2004)",
+            "Master of Science in Computer Science (2010)",
+        ],
+        specialization: "Software Development",
+        courses: "Computer Programming 1 & 2; Data Structures & Algorithms; Fundamentals of Research; Applications Dev & Emerging Tech; CS Thesis Writing 2",
+    },
+    {
+        name: "Aleta C. Fabregas",
+        image: "/images/faculty/faculty-fabregas.jpg",
+        imageAlt: "Aleta C. Fabregas",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor of Computer Data Processing Management (1986)",
+            "Master in Information Technology (2006)",
+            "Doctor in Information Technology (2017)",
+        ],
+        specialization: "Software Development, AI, Machine Learning Algorithms, Data Science",
+        courses: "Object Oriented Programming; Fundamentals of Research; Applications Dev & Emerging Tech; CS Thesis Writing 1 & 2; Intro to AI",
+    },
+    {
+        name: "Carlo G. Inovero",
+        image: "/images/faculty/faculty-inovero.jpg",
+        imageAlt: "Carlo G. Inovero",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor of Science in Computer Science (2004)",
+            "Master of Science in Information Technology (2015)",
+            "PhD in Computer Science (On-going)",
+        ],
+        specialization: "Artificial Intelligence, Data Science, ML Algorithms, Data Analytics",
+        courses: "Data Communications and Networking; Current Trends and Topics in Computing",
+    },
+    {
+        name: "Montaigne G. Molejon",
+        image: "/images/faculty/faculty-molejon.jpg",
+        imageAlt: "Montaigne G. Molejon",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor of Science in Computer Science (2011)",
+            "Master of Science in Information Technology (2019)",
+        ],
+        specialization: "Software Development, ML Algorithms, Data Science, Analysis Algorithm & Designs",
+        courses: "Automata & Language Theory; Design & Analysis of Algorithms; Principles of Programming Languages; Intro to Data Science; CS Thesis Writing 1",
+    },
+    {
+        name: "Melvin C. Roxas",
+        image: "/images/faculty/faculty-roxas.jpg",
+        imageAlt: "Melvin C. Roxas",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor in Information Technology (1999)",
+            "Master of Science in Global Information & Telecommunication Studies (2012)",
+        ],
+        specialization: "Software Development, Software Engineering",
+        courses: "Introduction to Computing; Software Engineering 1 & 2; Technical Documentation in ICT; CS Thesis Writing 1 & 2",
+    },
+    {
+        name: "Ria A. Sagum",
+        image: "/images/faculty/faculty-sagum.jpg",
+        imageAlt: "Ria A. Sagum",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor in Computer Data Processing Management (1989)",
+            "MS in Computer Science (Academic Req. Completed, 2010)",
+            "Master of Computer Science (2012)",
+        ],
+        specialization: "Artificial Intelligence, Machine Learning Algorithms, Data Science",
+        courses: "Automata & Language Theory; Design & Analysis of Algorithms; Principles of Programming Languages; Intro to AI",
+    },
+    {
+        name: "Sherilyn B. Usero",
+        image: "/images/faculty/faculty-usero.jpg",
+        imageAlt: "Sherilyn B. Usero",
+        status: "REGULAR",
+        degrees: [
+            "Bachelor of Science in Computer Science (2005)",
+            "Master of Computer Science (2012)",
+            "Master of Science in Information Technology (2018)",
+        ],
+        specialization: "Research, System Development",
+        courses: "Discrete Structures 1; Operating Systems; Fundamentals of Research; Human Computer Interaction",
+    },
+    {
+        name: "Eugene Andrew G. Bato",
+        image: "/images/faculty/faculty-bato.jpg",
+        imageAlt: "Eugene Andrew G. Bato",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master in Information Technology",
+        ],
+        specialization: "IT Service Management, System Development, Software Engineer",
+        courses: "Applications Development & Emerging Tech; Systems Integration & Architecture 1",
+    },
+    {
+        name: "Arlene B. Canlas",
+        image: "/images/faculty/faculty-canlas.png",
+        imageAlt: "Arlene B. Canlas",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Engineering",
+            "Master of Science in Information Technology",
+        ],
+        specialization: "Web Development, System Design, Capstone Research",
+        courses: "Computer Programming; Web Development; Capstone Project 1 & 2",
+    },
+    {
+        name: "Dale Anthony N. Frias",
+        image: "/images/faculty/faculty-frias.jpg",
+        imageAlt: "Dale Anthony N. Frias",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Electronics Engineering",
+            "Master of Science in Information Technology (On-Going)",
+        ],
+        specialization: "System Development, System Design",
+        courses: "Applications Dev & Emerging Tech; Systems Admin & Maintenance; Systems Integration & Architecture 1",
+    },
+    {
+        name: "Norberto R. Mendoza",
+        image: "/images/faculty/faculty-mendoza.jpg",
+        imageAlt: "Norberto R. Mendoza",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master in Information Technology (On-Going)",
+        ],
+        specialization: "Networking",
+        courses: "Data Communications and Networking; Network Administration",
+    },
+    {
+        name: "Ranil M. Montaril",
+        image: "/images/faculty/faculty-montaril.jpg",
+        imageAlt: "Ranil M. Montaril",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Electronics Engineering",
+            "Master of Science in Electronics Engineering",
+        ],
+        specialization: "Assembly Language, Programming, Robotics & Automation, AI, Intelligent Systems, SE, Test Engineering",
+        courses: "Fundamentals of Research; Modeling & Simulation; Quantitative Methods; Computational Intelligence",
+    },
+    {
+        name: "Chris Nicole F. Piamonte",
+        image: "/images/faculty/faculty-piamonte.jpg",
+        imageAlt: "Chris Nicole F. Piamonte",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master of Science in Computer Science (On-Going)",
+        ],
+        specialization: "Programming, Software Development, AI, Machine Learning, Algorithm Designs & Analysis",
+        courses: "Design and Analysis of Algorithms; Object-oriented Programming",
+    },
+    {
+        name: "Ma. Angela M. Salaya",
+        image: "/images/faculty/faculty-salaya.jpg",
+        imageAlt: "Ma. Angela M. Salaya",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor in Computer Data Processing Management (1993)",
+            "Master in Business Administration (1999)",
+            "PhD in Development Studies (On-Going)",
+        ],
+        specialization: "Programming, Project Management, Cybersecurity, Systems Analysis & Design",
+        courses: "Fundamentals of Research; Programming 3 (Structured Programming)",
+    },
+    {
+        name: "Marygin E. Sarmiento",
+        image: "/images/faculty/faculty-sarmiento.jpg",
+        imageAlt: "Marygin E. Sarmiento",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master in Information Technology",
+            "Doctor of Education",
+        ],
+        specialization: "Programming, Software Development",
+        courses: "Data Structures & Algorithms; Object Oriented Programming; Integrative Programming & Technologies 1",
+    },
+];
