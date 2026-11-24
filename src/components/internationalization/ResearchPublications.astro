@@ -1,7 +1,7 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
 
-const { selectedConferenceHeading, selectedConferenceList } = internationalData.section5;
+const { heading, items } = internationalData.publications;
 
 const filterTabs = [
   { id: "all", label: "All" },
@@ -11,25 +11,27 @@ const filterTabs = [
 ];
 
 const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider text-[10px] block";
+const metaValueClass = "text-neutral-800 font-medium mt-0.5";
+const badgeClass = "inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px]";
 ---
 
 <div class="w-full space-y-4" data-research-publications>
   <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 w-full">
-    <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon) tracking-tight">
-      {selectedConferenceHeading}
+    <h3 class="publications-heading font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold tracking-tight">
+      {heading}
     </h3>
     <div class="relative w-full lg:w-80 shrink-0">
       <input
         type="text"
         data-filter-input
         placeholder="Filter by title, author, year, venue, or award..."
-        class="w-full text-xs px-3.5 py-2 pr-8 rounded-full border border-neutral-300 focus:outline-none focus:border-(--color-maroon) bg-white shadow-2xs"
+        class="w-full text-xs px-3.5 py-2 pr-8 rounded-full border border-white/30 focus:outline-none focus:border-(--color-gold) bg-white/95 text-neutral-900 placeholder:text-neutral-500 shadow-sm"
       />
       <button
         type="button"
         data-filter-clear
         aria-label="Clear filter"
-        class="hidden absolute right-3 top-2 text-neutral-400 hover:text-neutral-700 text-xs font-bold cursor-pointer"
+        class="hidden absolute right-3 top-2 text-neutral-500 hover:text-(--color-maroon) text-xs font-bold cursor-pointer"
       >
         ✕
       </button>
@@ -43,46 +45,46 @@ const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider
         role="tab"
         aria-selected={idx === 0 ? "true" : "false"}
         data-cat-btn={tab.id}
-        class="cat-pill px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-all cursor-pointer"
+        class="cat-pill px-3.5 py-1.5 rounded-full text-[11px] font-bold font-['Montserrat',sans-serif] transition-colors duration-200 cursor-pointer"
       >
         {tab.label}
       </button>
     ))}
   </div>
 
-  <div class="w-full rounded-2xl border border-neutral-300 bg-white py-4 px-4 sm:px-6 shadow-sm">
+  <div class="w-full rounded-2xl border border-white/20 bg-white/[0.97] py-3 px-2 sm:px-3 shadow-xl">
     <div class="conference-list-scroll max-h-[420px] overflow-y-auto pr-2 divide-y divide-neutral-200">
-      {selectedConferenceList.map((paper) => {
-        const hasUrl = Boolean(paper.url && paper.url.trim().length > 0);
+      {items.map((paper) => {
+        const hasUrl = Boolean(paper.url?.trim());
         return (
           <div
             data-paper-row
             data-paper-category={paper.category}
             data-paper-search={`${paper.title} ${paper.authors} ${paper.date} ${paper.fora} ${paper.location ?? ""} ${paper.award ?? ""} ${paper.categoryLabel}`.toLowerCase()}
-            class="py-3.5 first:pt-1 last:pb-1"
+            class="py-1.5 first:pt-0 last:pb-0"
           >
             <button
               type="button"
               data-row-toggle
               aria-expanded="false"
-              class="w-full text-left flex items-start justify-between gap-3 group cursor-pointer"
+              class="w-full text-left flex items-start justify-between gap-3 px-3 py-2.5 rounded-xl hover:bg-[#7A0000]/[0.06] transition-colors duration-200 group cursor-pointer"
             >
               <div class="min-w-0 flex-1">
                 <div class="flex flex-wrap items-center gap-1.5 mb-1.5">
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-(--color-maroon) text-(--color-gold)">
+                  <span class={`${badgeClass} font-bold bg-(--color-maroon) text-(--color-gold)`}>
                     {paper.date}
                   </span>
-                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-(--color-maroon)/10 text-(--color-maroon)">
+                  <span class={`${badgeClass} font-bold bg-(--color-maroon)/10 text-(--color-maroon)`}>
                     {paper.categoryLabel}
                   </span>
                   {paper.award && (
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-(--color-gold) text-[#420000]">
+                    <span class={`${badgeClass} font-extrabold bg-(--color-gold) text-[#420000]`}>
                       {paper.award}
                     </span>
                   )}
                 </div>
 
-                <h4 class="paper-row-title font-['Montserrat',sans-serif] text-sm sm:text-[15px] font-bold group-hover:text-(--color-maroon) transition-colors leading-snug break-words">
+                <h4 class="paper-row-title font-['Montserrat',sans-serif] text-sm sm:text-[15px] font-bold leading-snug break-words">
                   {paper.title}
                 </h4>
                 <p class="text-xs font-semibold text-(--color-maroon) mt-1 leading-snug break-words">
@@ -93,62 +95,61 @@ const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider
               <span
                 data-row-chevron
                 aria-hidden="true"
-                class="shrink-0 w-7 h-7 rounded-full border border-neutral-200 group-hover:border-(--color-maroon) text-neutral-500 group-hover:text-(--color-maroon) flex items-center justify-center text-xs transition-transform duration-200 mt-0.5"
+                class="shrink-0 w-7 h-7 rounded-full border border-neutral-200 group-hover:border-(--color-maroon) group-hover:bg-white text-neutral-500 group-hover:text-(--color-maroon) flex items-center justify-center text-xs transition-[transform,color,border-color,background-color] duration-300 ease-out mt-0.5"
               >
                 ▾
               </span>
             </button>
 
-            <div
-              data-row-drawer
-              class="hidden mt-3 rounded-xl bg-neutral-50 border border-neutral-200/90 p-4 space-y-2 text-xs break-words"
-            >
-              <div>
-                <span class={metaLabelClass}>Fora / Publication</span>
-                <p class="text-neutral-800 font-medium leading-relaxed mt-0.5">{paper.fora}</p>
-              </div>
-
-              <div class="flex flex-wrap gap-x-6 gap-y-2">
-                <div>
-                  <span class={metaLabelClass}>Date</span>
-                  <p class="text-neutral-800 font-medium mt-0.5">{paper.date}</p>
-                </div>
-
-                {paper.location && (
+            <div data-row-drawer data-open="false" class="paper-drawer">
+              <div class="paper-drawer-inner px-3 pb-2">
+                <div class="mt-2 rounded-xl bg-neutral-50 border border-neutral-200/90 p-4 space-y-2 text-xs break-words">
                   <div>
-                    <span class={metaLabelClass}>Location</span>
-                    <p class="text-neutral-800 font-medium mt-0.5">{paper.location}</p>
+                    <span class={metaLabelClass}>Fora / Publication</span>
+                    <p class={`${metaValueClass} leading-relaxed`}>{paper.fora}</p>
                   </div>
-                )}
-              </div>
 
-              <div>
-                <span class={metaLabelClass}>Authors</span>
-                <p class="text-neutral-800 font-medium leading-relaxed mt-0.5">{paper.authors}</p>
-              </div>
+                  <div class="flex flex-wrap gap-x-6 gap-y-2">
+                    <div>
+                      <span class={metaLabelClass}>Date</span>
+                      <p class={metaValueClass}>{paper.date}</p>
+                    </div>
 
-              {(paper.award || hasUrl) && (
-                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-neutral-200/80">
-                  {paper.award ? (
-                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-extrabold bg-(--color-gold) text-[#420000]">
-                      {paper.award}
-                    </span>
-                  ) : (
-                    <span></span>
-                  )}
+                    {paper.location && (
+                      <div>
+                        <span class={metaLabelClass}>Location</span>
+                        <p class={metaValueClass}>{paper.location}</p>
+                      </div>
+                    )}
+                  </div>
 
-                  {hasUrl && (
-                    <a
-                      href={paper.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-(--color-maroon) text-(--color-gold) hover:bg-(--color-dark-maroon) font-['Montserrat',sans-serif] text-[11px] font-bold transition-colors shadow-2xs"
-                    >
-                      View Paper ↗
-                    </a>
+                  <div>
+                    <span class={metaLabelClass}>Authors</span>
+                    <p class={`${metaValueClass} leading-relaxed`}>{paper.authors}</p>
+                  </div>
+
+                  {(paper.award || hasUrl) && (
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-neutral-200/80">
+                      {paper.award && (
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-[11px] font-extrabold bg-(--color-gold) text-[#420000]">
+                          {paper.award}
+                        </span>
+                      )}
+
+                      {hasUrl && (
+                        <a
+                          href={paper.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="ml-auto inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-(--color-maroon) text-(--color-gold) hover:bg-(--color-dark-maroon) font-['Montserrat',sans-serif] text-[11px] font-bold transition-colors shadow-2xs"
+                        >
+                          View Paper ↗
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         );
@@ -161,33 +162,58 @@ const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider
 </div>
 
 <style>
+  .publications-heading {
+    color: #fff9ed !important;
+  }
+
   .cat-pill {
-    background-color: var(--color-white);
-    border: 1px solid #d4d4d4;
-    color: #404040;
+    background-color: rgb(255 255 255 / 10%);
+    border: 1px solid rgb(255 255 255 / 28%);
+    color: rgb(255 255 255 / 92%);
   }
 
   .cat-pill:hover {
-    border-color: var(--color-maroon);
-    color: var(--color-maroon);
+    background-color: rgb(255 255 255 / 18%);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
   }
 
   .cat-pill[aria-selected="true"] {
-    background-color: var(--color-maroon);
-    border-color: var(--color-maroon);
-    color: var(--color-gold);
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-dark-maroon);
   }
 
   .paper-row-title {
     color: var(--color-text-body) !important;
   }
 
-  .group:hover .paper-row-title {
-    color: var(--color-maroon) !important;
-  }
-
   [data-research-publications] p {
     margin-bottom: 0;
+  }
+
+  .paper-drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+      grid-template-rows 300ms ease-out,
+      opacity 260ms ease-out;
+  }
+
+  .paper-drawer[data-open="true"] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .paper-drawer-inner {
+    overflow: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .paper-drawer {
+      transition: none;
+    }
   }
 
   .conference-list-scroll {
@@ -218,6 +244,8 @@ const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider
 <script is:inline>
   (() => {
     document.querySelectorAll("[data-research-publications]").forEach((root) => {
+      if (root.dataset.pubsBound) return;
+      root.dataset.pubsBound = "1";
       const input = root.querySelector("[data-filter-input]");
       const clearBtn = root.querySelector("[data-filter-clear]");
       const catButtons = root.querySelectorAll("[data-cat-btn]");
@@ -266,8 +294,8 @@ const metaLabelClass = "font-bold text-(--color-maroon) uppercase tracking-wider
         const chevron = row.querySelector("[data-row-chevron]");
 
         toggleBtn?.addEventListener("click", () => {
-          const isOpen = !drawer?.classList.contains("hidden");
-          drawer?.classList.toggle("hidden", isOpen);
+          const isOpen = drawer?.getAttribute("data-open") === "true";
+          drawer?.setAttribute("data-open", String(!isOpen));
           toggleBtn.setAttribute("aria-expanded", String(!isOpen));
           if (chevron) chevron.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
         });

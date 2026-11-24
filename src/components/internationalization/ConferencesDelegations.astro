@@ -1,17 +1,86 @@
 ---
 import { internationalData } from "../../data/internationalization/content";
 
-const { title, items } = internationalData.conferencesDelegations;
+const { title, items, timeline } = internationalData.conferencesDelegations;
 ---
 
-<div class="conferences-root w-full space-y-6">
-  <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon) tracking-tight">
+<div class="conferences-root w-full" data-conferences-section>
+  <h3 class="font-['Montserrat',sans-serif] text-xl sm:text-2xl font-extrabold text-(--color-maroon) tracking-tight mb-6">
     {title}
   </h3>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+    <div class="md:col-span-2 bg-gradient-to-br from-[#6B0000] via-[#5A0000] to-[#3D0000] rounded-2xl p-6 text-white shadow-md flex flex-col justify-between h-full min-w-0">
+      <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+        <div>
+          <span class="font-['Montserrat',sans-serif] text-[11px] font-extrabold uppercase tracking-[0.16em] text-(--color-gold) block">
+            CONFERENCE PARTICIPATION
+          </span>
+
+          <div class="flex flex-wrap items-baseline gap-2.5 sm:gap-3 mt-2">
+            <span class="font-['Montserrat',sans-serif] text-4xl sm:text-5xl font-extrabold leading-none tracking-tight text-white">
+              {items.length}
+            </span>
+            <p class="text-xs sm:text-sm font-medium text-white/90 leading-snug">
+              international conferences from 2022 to 2025
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 sm:justify-end shrink-0">
+          <span data-conf-hint class="text-[11px] text-white/70">
+            Select a conference to filter
+          </span>
+
+          <div data-conf-filter-bar class="hidden items-center gap-2">
+            <span class="text-xs font-medium text-white/90">
+              Filtered: <strong data-conf-filter-name class="font-bold text-(--color-gold)"></strong>
+            </span>
+            <button
+              type="button"
+              data-conf-reset
+              class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition-colors cursor-pointer"
+            >
+              Show All
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-y-5 sm:gap-y-0 mt-6">
+        {timeline.map((col) => (
+          <div class="flex flex-col min-w-0">
+            <div class="flex-1 flex flex-col justify-end gap-2 px-1.5 pb-2.5 border-b border-white/25">
+              {col.conferences.map((conf) => (
+                <button
+                  type="button"
+                  data-conf-pill={conf.id}
+                  data-conf-label={conf.name}
+                  aria-pressed="false"
+                  class="conf-pill w-full rounded-lg py-2 px-2 text-center border border-white/20 bg-white/12 hover:bg-white/22 text-white transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out cursor-pointer"
+                >
+                  <span class="block font-['Montserrat',sans-serif] font-bold text-xs leading-tight">
+                    {conf.name}
+                  </span>
+                  <span class="conf-pill-date block text-[10px] font-medium text-white/80 mt-0.5 leading-tight">
+                    {conf.date}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <span class="font-['Montserrat',sans-serif] text-xs font-extrabold text-(--color-gold) text-center pt-2 tracking-wide">
+              {col.year}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+
     {items.map((event) => (
-      <article class="rounded-2xl overflow-hidden border border-(--color-maroon)/30 hover:border-(--color-maroon) bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group">
+      <article
+        data-conf-card={event.id}
+        class="rounded-2xl overflow-hidden border border-(--color-maroon)/30 hover:border-(--color-maroon) bg-white shadow-sm hover:shadow-lg hover:-translate-y-1 transition-[transform,box-shadow,border-color] duration-300 ease-out flex flex-col group"
+      >
         <div
           data-lightbox-trigger
           data-lightbox-src={event.imagePath}
@@ -66,4 +135,68 @@ const { title, items } = internationalData.conferencesDelegations;
     border-radius: 0;
     display: block;
   }
+
+  .conf-pill[aria-pressed="true"] {
+    background-color: #facc15;
+    border-color: #facc15;
+    color: #2a0404;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: scale(1.02);
+  }
+
+  .conf-pill[aria-pressed="true"] .conf-pill-date {
+    color: rgba(42, 4, 4, 0.8);
+  }
 </style>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll("[data-conferences-section]").forEach((root) => {
+      if (root.dataset.confBound) return;
+      root.dataset.confBound = "1";
+
+      const pills = root.querySelectorAll("[data-conf-pill]");
+      const cards = root.querySelectorAll("[data-conf-card]");
+      const hint = root.querySelector("[data-conf-hint]");
+      const filterBar = root.querySelector("[data-conf-filter-bar]");
+      const filterName = root.querySelector("[data-conf-filter-name]");
+      const resetBtn = root.querySelector("[data-conf-reset]");
+
+      let selectedId = null;
+
+      const updateView = () => {
+        let activeLabel = "";
+
+        pills.forEach((pill) => {
+          const isSelected = pill.getAttribute("data-conf-pill") === selectedId;
+          pill.setAttribute("aria-pressed", String(isSelected));
+          if (isSelected) activeLabel = pill.getAttribute("data-conf-label") || "";
+        });
+
+        cards.forEach((card) => {
+          const show = selectedId === null || card.getAttribute("data-conf-card") === selectedId;
+          card.classList.toggle("hidden", !show);
+        });
+
+        const hasFilter = selectedId !== null;
+        hint?.classList.toggle("hidden", hasFilter);
+        filterBar?.classList.toggle("hidden", !hasFilter);
+        filterBar?.classList.toggle("flex", hasFilter);
+        if (filterName) filterName.textContent = activeLabel;
+      };
+
+      pills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          const id = pill.getAttribute("data-conf-pill");
+          selectedId = selectedId === id ? null : id;
+          updateView();
+        });
+      });
+
+      resetBtn?.addEventListener("click", () => {
+        selectedId = null;
+        updateView();
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,60 @@
+---
+interface Props {
+  index: number;
+  collapseLabel: string;
+  photoSrc: string;
+  photoAlt: string;
+  mobilePhotoHeight?: string;
+  contentPadding?: string;
+  desktopContentWidth?: string;
+}
+
+const {
+  index,
+  collapseLabel,
+  photoSrc,
+  photoAlt,
+  mobilePhotoHeight = "h-48",
+  contentPadding = "p-6 sm:p-8",
+  desktopContentWidth = "45cqi"
+} = Astro.props;
+---
+
+<div class="intl-deck-item" data-deck-item data-index={index} data-state="idle">
+  <slot name="collapsed" />
+
+  <div
+    class="intl-deck-expanded hidden relative w-full md:h-full rounded-2xl overflow-hidden shadow-2xl border border-(--color-maroon) cursor-pointer"
+    data-deck-expanded
+    role="button"
+    tabindex="0"
+    aria-label={collapseLabel}
+  >
+    <button
+      type="button"
+      data-deck-close
+      aria-label="Collapse card"
+      class="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-black/45 hover:bg-black/70 text-white flex items-center justify-center text-xs font-bold backdrop-blur-xs transition-colors cursor-pointer"
+    >
+      ✕
+    </button>
+
+    <div class={`md:hidden relative w-full ${mobilePhotoHeight} overflow-hidden`}>
+      <img src={photoSrc} alt={photoAlt} class="intl-deck-photo" loading="lazy" />
+      <div class="intl-deck-fade-mobile absolute inset-0 pointer-events-none"></div>
+    </div>
+
+    <div class="hidden md:block absolute inset-y-0 right-0 w-3/5 h-full overflow-hidden">
+      <img src={photoSrc} alt={photoAlt} class="intl-deck-photo" loading="lazy" />
+    </div>
+
+    <div class="hidden md:block intl-deck-fade-desktop absolute inset-0 pointer-events-none z-[1]"></div>
+
+    <div
+      class={`intl-deck-content relative z-10 w-full ${contentPadding} md:h-full flex flex-col justify-center overflow-y-auto scrollbar-none`}
+      style={`--deck-content-w: ${desktopContentWidth};`}
+    >
+      <slot />
+    </div>
+  </div>
+</div>

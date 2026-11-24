@@ -14,6 +14,10 @@ import LinkCard from "../components/LinkCard.astro";
 import PillCard from '../components/PillCard.astro';
 import PDFModal from "../components/PDFModal.astro";
 
+import HeroButton from '../components/HeroButton.astro';
+import { getDocRef } from "../lib/pdfs.server"
+const manualDocRef = getDocRef("area5-narrative");
+
 const TIMELINE_ITEMS = [
     {
         number: "01",
@@ -123,8 +127,15 @@ const PDCA_STEPS = [
 
         <p>Its long-term commitment focuses on aligning academic programs, research initiatives, and institutional
             processes with University policies and international standards.</p>
-    </HeroSection>
 
+            <HeroButton
+            label="Area 5 Narrative Report"
+            docRef={manualDocRef}
+            pdfTitle="PUP Area 5 - Planning and QA Narrative Report"
+            />
+
+    </HeroSection>
+<section data-reveal>
     <ContentSection
             sectionLabel="SECTION 01"
             category="University Development Plan 2024–2028"
@@ -169,9 +180,9 @@ const PDCA_STEPS = [
                     />
             ))}
         </div>
-
     </ContentSection>
-
+</section>
+<section data-reveal>
     <ContentSection
             sectionLabel="SECTION 02"
             category="Quality Assurance Center"
@@ -213,7 +224,9 @@ const PDCA_STEPS = [
             <img slot="media" src="/planning_and_qa/qac.jpg" alt="Quality Assurance Center staff">
         </GalleryCard>
     </ContentSection>
+</section>
 
+<section data-reveal>
     <ContentSection
             sectionLabel="SECTION 03"
             category="Year-Round Institutional Planning"
@@ -244,7 +257,9 @@ const PDCA_STEPS = [
             </dl>
         </ContentCard>
     </ContentSection>
+</section>
 
+<section data-reveal>
     <ContentSection
             sectionLabel="SECTION 04"
             category="Department Level Quality Assurance"
@@ -266,7 +281,9 @@ const PDCA_STEPS = [
             ))}
         </div>
     </ContentSection>
+</section>
 
+<section data-reveal>
     <ContentSection
             sectionLabel="SECTION 05"
             category="Monitoring and Continuous Improvement"
@@ -310,7 +327,9 @@ const PDCA_STEPS = [
             </div>
         </SpotlightBanner>
     </ContentSection>
+</section>
 
+<section data-reveal>
     <ContentSection
             sectionLabel="SECTION 06"
             category="Quality Assurance Initiatives"
@@ -350,17 +369,7 @@ const PDCA_STEPS = [
             />
         </div>
     </ContentSection>
-
-    <ContentSection category="See the full Area 5 report" sectionLabel="Want to know more?">
-        <LinkCard
-                description="Read the full narrative report for Area 5, Planning and QA."
-                linkLabel="Open"
-                title="Area 5 Narrative Report"
-                pdfSlug="area5-narrative"
-        >
-        </LinkCard>
-    </ContentSection>
-
+</section>
     <PDFModal />
 </ScrollSnapLayout>
 
