@@ -11,7 +11,7 @@ interface profile {
 export const FacultyProfile: profile[] = [
     {
         name: "Marian G. Arada",
-        image: "../../../public/images/faculty/faculty-arada.jpg",
+        image: "/images/faculty/faculty-arada.jpg",
         imageAlt: "Marian G. Arada",
         status: "REGULAR",
         degrees: [
@@ -24,7 +24,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Monina D. Barretto",
-        image: "../../../public/images/faculty/faculty-barretto.jpg",
+        image: "/images/faculty/faculty-barretto.jpg",
         imageAlt: "Monina D. Barretto",
         status: "REGULAR",
         degrees: [
@@ -36,7 +36,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Leoven R. Basista",
-        image: "../../../public/images/faculty/faculty-basista.jpg",
+        image: "/images/faculty/faculty-basista.jpg",
         imageAlt: "Leoven R. Basista",
         status: "REGULAR",
         degrees: [
@@ -48,7 +48,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Lydinar D. Dastas",
-        image: "../../../public/images/faculty/faculty-dastas.jpg",
+        image: "/images/faculty/faculty-dastas.jpg",
         imageAlt: "Lydinar D. Dastas",
         status: "REGULAR",
         degrees: [
@@ -61,7 +61,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Aleta C. Fabregas",
-        image: "../../../public/images/faculty/faculty-fabregas.jpg",
+        image: "/images/faculty/faculty-fabregas.jpg",
         imageAlt: "Aleta C. Fabregas",
         status: "REGULAR",
         degrees: [
@@ -74,7 +74,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Carlo G. Inovero",
-        image: "../../../public/images/faculty/faculty-inovero.jpg",
+        image: "/images/faculty/faculty-inovero.jpg",
         imageAlt: "Carlo G. Inovero",
         status: "REGULAR",
         degrees: [
@@ -87,7 +87,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Montaigne G. Molejon",
-        image: "../../../public/images/faculty/faculty-molejon.jpg",
+        image: "/images/faculty/faculty-molejon.jpg",
         imageAlt: "Montaigne G. Molejon",
         status: "REGULAR",
         degrees: [
@@ -99,7 +99,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Melvin C. Roxas",
-        image: "../../../public/images/faculty/faculty-roxas.jpg",
+        image: "/images/faculty/faculty-roxas.jpg",
         imageAlt: "Melvin C. Roxas",
         status: "REGULAR",
         degrees: [
@@ -111,7 +111,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Ria A. Sagum",
-        image: "../../../public/images/faculty/faculty-sagum.jpg",
+        image: "/images/faculty/faculty-sagum.jpg",
         imageAlt: "Ria A. Sagum",
         status: "REGULAR",
         degrees: [
@@ -124,7 +124,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Sherilyn B. Usero",
-        image: "../../../public/images/faculty/faculty-usero.jpg",
+        image: "/images/faculty/faculty-usero.jpg",
         imageAlt: "Sherilyn B. Usero",
         status: "REGULAR",
         degrees: [
@@ -137,7 +137,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Eugene Andrew G. Bato",
-        image: "../../../public/images/faculty/faculty-bato.jpg",
+        image: "/images/faculty/faculty-bato.jpg",
         imageAlt: "Eugene Andrew G. Bato",
         status: "PART-TIME",
         degrees: [
@@ -149,7 +149,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Arlene B. Canlas",
-        image: "../../../public/images/faculty/faculty-canlas.png",
+        image: "/images/faculty/faculty-canlas.png",
         imageAlt: "Arlene B. Canlas",
         status: "PART-TIME",
         degrees: [
@@ -161,7 +161,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Dale Anthony N. Frias",
-        image: "../../../public/images/faculty/faculty-frias.jpg",
+        image: "/images/faculty/faculty-frias.jpg",
         imageAlt: "Dale Anthony N. Frias",
         status: "PART-TIME",
         degrees: [
@@ -173,7 +173,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Norberto R. Mendoza",
-        image: "../../../public/images/faculty/faculty-mendoza.jpg",
+        image: "/images/faculty/faculty-mendoza.jpg",
         imageAlt: "Norberto R. Mendoza",
         status: "PART-TIME",
         degrees: [
@@ -185,7 +185,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Ranil M. Montaril",
-        image: "../../../public/images/faculty/faculty-montaril.jpg",
+        image: "/images/faculty/faculty-montaril.jpg",
         imageAlt: "Ranil M. Montaril",
         status: "PART-TIME",
         degrees: [
@@ -197,7 +197,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Chris Nicole F. Piamonte",
-        image: "../../../public/images/faculty/faculty-piamonte.jpg",
+        image: "/images/faculty/faculty-piamonte.jpg",
         imageAlt: "Chris Nicole F. Piamonte",
         status: "PART-TIME",
         degrees: [
@@ -209,7 +209,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Ma. Angela M. Salaya",
-        image: "../../../public/images/faculty/faculty-salaya.jpg",
+        image: "/images/faculty/faculty-salaya.jpg",
         imageAlt: "Ma. Angela M. Salaya",
         status: "PART-TIME",
         degrees: [
@@ -222,7 +222,7 @@ export const FacultyProfile: profile[] = [
     },
     {
         name: "Marygin E. Sarmiento",
-        image: "../../../public/images/faculty/faculty-sarmiento.jpg",
+        image: "/images/faculty/faculty-sarmiento.jpg",
         imageAlt: "Marygin E. Sarmiento",
         status: "PART-TIME",
         degrees: [
