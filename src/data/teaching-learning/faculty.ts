@@ -303,7 +303,7 @@ export const FacultyProfile: profile[] = [
             "Master of Engineering Technology",
             "Doctor of Information Technology (Dissertation Writing)",
         ],
-        specialization: "Data Security; Cybersecurity",
+        specialization: "Data Security, Cybersecurity",
         courses: "Cybersecurity Fundamentals",
     },
 ];
