@@ -148,6 +148,18 @@ export const FacultyProfile: profile[] = [
         courses: "Applications Development & Emerging Tech; Systems Integration & Architecture 1",
     },
     {
+        name: "Renz A. Cadaoas",
+        image: "/images/faculty/faculty-cadaoas.jpg",
+        imageAlt: "Renz A. Cadaoas",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master of Science in Information Technology",
+        ],
+        specialization: "Programming; Systems Design",
+        courses: "Object-Oriented Programming",
+    },
+    {
         name: "Arlene B. Canlas",
         image: "/images/faculty/faculty-canlas.png",
         imageAlt: "Arlene B. Canlas",
@@ -160,6 +172,18 @@ export const FacultyProfile: profile[] = [
         courses: "Computer Programming; Web Development; Capstone Project 1 & 2",
     },
     {
+        name: "Edward Louis Del Valle",
+        image: "/images/faculty/faculty-del-valle.jpg",
+        imageAlt: "Edward Louis Del Valle",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Information Technology",
+            "Master in Information Technology",
+        ],
+        specialization: "IT Service Management, System Development, Software Engineer, Project Management",
+        courses: "Applications Development and Emerging Technologies",
+    },
+    {
         name: "Dale Anthony N. Frias",
         image: "/images/faculty/faculty-frias.jpg",
         imageAlt: "Dale Anthony N. Frias",
@@ -170,6 +194,18 @@ export const FacultyProfile: profile[] = [
         ],
         specialization: "System Development, System Design",
         courses: "Applications Dev & Emerging Tech; Systems Admin & Maintenance; Systems Integration & Architecture 1",
+    },
+    {
+        name: "Cecilia Marbella",
+        image: "/images/faculty/faculty-marbella.jpg",
+        imageAlt: "Cecilia Marbella",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master of Science in Information Technology",
+        ],
+        specialization: "IT Service Management, Research",
+        courses: "IT Social and Professional Issues",
     },
     {
         name: "Norberto R. Mendoza",
@@ -194,6 +230,18 @@ export const FacultyProfile: profile[] = [
         ],
         specialization: "Assembly Language, Programming, Robotics & Automation, AI, Intelligent Systems, SE, Test Engineering",
         courses: "Fundamentals of Research; Modeling & Simulation; Quantitative Methods; Computational Intelligence",
+    },
+    {
+        name: "Aldrin Obsanga",
+        image: "/images/faculty/faculty-obsanga.jpg",
+        imageAlt: "Aldrin Obsanga",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Information Technology",
+            "Master of Science in Information Technology (On-Going)",
+        ],
+        specialization: "Data Security, Data Communications, Data Analytics",
+        courses: "Data Communications and Networking",
     },
     {
         name: "Chris Nicole F. Piamonte",
@@ -232,5 +280,30 @@ export const FacultyProfile: profile[] = [
         ],
         specialization: "Programming, Software Development",
         courses: "Data Structures & Algorithms; Object Oriented Programming; Integrative Programming & Technologies 1",
+    },
+    {
+        name: "Caren Sisor",
+        image: "/images/faculty/faculty-sisor.jpg",
+        imageAlt: "Caren Sisor",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Information Technology",
+            "Master in Information Technology (On-Going Thesis Writing)",
+        ],
+        specialization: "IT Service Management, Research",
+        courses: "Introduction to Computing; Living in the IT Era; Introduction to Ethics",
+    },
+    {
+        name: "Rodel Villarez",
+        image: "/images/faculty/faculty-villarez.jpg",
+        imageAlt: "Rodel Villarez",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Electronics Engineering",
+            "Master of Engineering Technology",
+            "Doctor of Information Technology (Dissertation Writing)",
+        ],
+        specialization: "Data Security; Cybersecurity",
+        courses: "Cybersecurity Fundamentals",
     },
 ];
