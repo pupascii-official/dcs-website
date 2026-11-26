@@ -28,7 +28,7 @@ export const FacultyProfile: profile[] = [
         imageAlt: "Monina D. Barretto",
         status: "REGULAR",
         degrees: [
-            "B.S. in Management and Industrial Engineering (B.S. MIE)",
+            "Bachelor of Science in Management and Industrial Engineering (B.S. MIE)",
             "Master of Business Administration (MBA) (2016)",
         ],
         specialization: "Database/SQL, Programming, Project Management",
@@ -54,7 +54,7 @@ export const FacultyProfile: profile[] = [
         degrees: [
             "Bachelor in Business Education (1994)",
             "Master in Business Education (2004)",
-            "Master of Science in Computer Science (2010)",
+            "Master of Science in Computer Science (2019)",
         ],
         specialization: "Software Development",
         courses: "Computer Programming 1 & 2; Data Structures & Algorithms; Fundamentals of Research; Applications Dev & Emerging Tech; CS Thesis Writing 2",
@@ -69,8 +69,8 @@ export const FacultyProfile: profile[] = [
             "Master in Information Technology (2006)",
             "Doctor in Information Technology (2017)",
         ],
-        specialization: "Software Development, AI, Machine Learning Algorithms, Data Science",
-        courses: "Object Oriented Programming; Fundamentals of Research; Applications Dev & Emerging Tech; CS Thesis Writing 1 & 2; Intro to AI",
+        specialization: "Software Development, Artificial Intelligence, Machine Learning Algorithms, Data Science",
+        courses: "Object Oriented Programming; Fundamentals of Research; Applications Development and Emerging Technologies; CS Thesis Writing 1 & 2; Introduction to Artificial Intelligence",
     },
     {
         name: "Carlo G. Inovero",
@@ -80,9 +80,9 @@ export const FacultyProfile: profile[] = [
         degrees: [
             "Bachelor of Science in Computer Science (2004)",
             "Master of Science in Information Technology (2015)",
-            "PhD in Computer Science (On-going)",
+            "PhD in Computer Science (on-going)",
         ],
-        specialization: "Artificial Intelligence, Data Science, ML Algorithms, Data Analytics",
+        specialization: "Artificial Intelligence, Data Science, Machine Learning Algorithms, Data Analytics",
         courses: "Data Communications and Networking; Current Trends and Topics in Computing",
     },
     {
@@ -94,8 +94,8 @@ export const FacultyProfile: profile[] = [
             "Bachelor of Science in Computer Science (2011)",
             "Master of Science in Information Technology (2019)",
         ],
-        specialization: "Software Development, ML Algorithms, Data Science, Analysis Algorithm & Designs",
-        courses: "Automata & Language Theory; Design & Analysis of Algorithms; Principles of Programming Languages; Intro to Data Science; CS Thesis Writing 1",
+        specialization: "Software Development, Machine Learning Algorithms, Data Science, Analysis of Algorithm & Designs",
+        courses: "Automata & Language Theory; Design & Analysis of Algorithms; Principles of Programming Languages; Introduction to Data Science; CS Thesis Writing 1",
     },
     {
         name: "Melvin C. Roxas",
@@ -107,7 +107,7 @@ export const FacultyProfile: profile[] = [
             "Master of Science in Global Information & Telecommunication Studies (2012)",
         ],
         specialization: "Software Development, Software Engineering",
-        courses: "Introduction to Computing; Software Engineering 1 & 2; Technical Documentation in ICT; CS Thesis Writing 1 & 2",
+        courses: "Introduction to Computing; Software Engineering 1 & 2; Technical Documentation and Presentation Skills in ICT; CS Thesis Writing 1 & 2",
     },
     {
         name: "Ria A. Sagum",
@@ -116,11 +116,11 @@ export const FacultyProfile: profile[] = [
         status: "REGULAR",
         degrees: [
             "Bachelor in Computer Data Processing Management (1989)",
-            "MS in Computer Science (Academic Req. Completed, 2010)",
             "Master of Computer Science (2012)",
+            "Doctor in Business Administration"
         ],
         specialization: "Artificial Intelligence, Machine Learning Algorithms, Data Science",
-        courses: "Automata & Language Theory; Design & Analysis of Algorithms; Principles of Programming Languages; Intro to AI",
+        courses: "Automata & Language Theory; Design & Analysis of Algorithms; Principles of Programming Languages; Introduction to AI",
     },
     {
         name: "Sherilyn B. Usero",
@@ -129,8 +129,8 @@ export const FacultyProfile: profile[] = [
         status: "REGULAR",
         degrees: [
             "Bachelor of Science in Computer Science (2005)",
-            "Master of Computer Science (2012)",
             "Master of Science in Information Technology (2018)",
+            "Doctor of Information Technology (on going)"
         ],
         specialization: "Research, System Development",
         courses: "Discrete Structures 1; Operating Systems; Fundamentals of Research; Human Computer Interaction",
@@ -145,7 +145,19 @@ export const FacultyProfile: profile[] = [
             "Master in Information Technology",
         ],
         specialization: "IT Service Management, System Development, Software Engineer",
-        courses: "Applications Development & Emerging Tech; Systems Integration & Architecture 1",
+        courses: "Applications Development and Emerging Technologies; Systems Integration and Architecture 1",
+    },
+    {
+        name: "Renz A. Cadaoas",
+        image: "/images/faculty/faculty-cadaoas.jpg",
+        imageAlt: "Renz A. Cadaoas",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master of Science in Information Technology",
+        ],
+        specialization: "Object-Oriented Programming; Systems Design",
+        courses: "Object-Oriented Programming",
     },
     {
         name: "Arlene B. Canlas",
@@ -160,6 +172,18 @@ export const FacultyProfile: profile[] = [
         courses: "Computer Programming; Web Development; Capstone Project 1 & 2",
     },
     {
+        name: "Edward Louis Del Valle",
+        image: "/images/faculty/faculty-del-valle.jpg",
+        imageAlt: "Edward Louis Del Valle",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Information Technology",
+            "Master in Information Technology",
+        ],
+        specialization: "IT Service Management, System Development, Software Engineer, Project Management",
+        courses: "Applications Development and Emerging Technologies",
+    },
+    {
         name: "Dale Anthony N. Frias",
         image: "/images/faculty/faculty-frias.jpg",
         imageAlt: "Dale Anthony N. Frias",
@@ -169,7 +193,19 @@ export const FacultyProfile: profile[] = [
             "Master of Science in Information Technology (On-Going)",
         ],
         specialization: "System Development, System Design",
-        courses: "Applications Dev & Emerging Tech; Systems Admin & Maintenance; Systems Integration & Architecture 1",
+        courses: "Applications Development and Emerging Technologies; Systems Administration and Maintenance; Systems Integration & Architecture 1",
+    },
+    {
+        name: "Cecilia Marbella",
+        image: "/images/faculty/faculty-marbella.jpg",
+        imageAlt: "Cecilia Marbella",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Computer Science",
+            "Master of Science in Information Technology",
+        ],
+        specialization: "IT Service Management, Research",
+        courses: "IT Social and Professional Issues",
     },
     {
         name: "Norberto R. Mendoza",
@@ -192,8 +228,20 @@ export const FacultyProfile: profile[] = [
             "Bachelor of Science in Electronics Engineering",
             "Master of Science in Electronics Engineering",
         ],
-        specialization: "Assembly Language, Programming, Robotics & Automation, AI, Intelligent Systems, SE, Test Engineering",
-        courses: "Fundamentals of Research; Modeling & Simulation; Quantitative Methods; Computational Intelligence",
+        specialization: "Assembly Language, Programming, Robotics & Automation, Artificial Intelligence, Intelligent Systems, Software Engineering, Test Engineering",
+        courses: "Fundamentals of Research; Modeling and Simulation; Quantitative Methods with Modeling and Simulation; Computational Intelligence",
+    },
+    {
+        name: "Aldrin Obsanga",
+        image: "/images/faculty/faculty-obsanga.jpg",
+        imageAlt: "Aldrin Obsanga",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Information Technology",
+            "Master of Science in Information Technology (On-Going)",
+        ],
+        specialization: "Data Security, Data Communications, Data Analytics",
+        courses: "Data Communications and Networking",
     },
     {
         name: "Chris Nicole F. Piamonte",
@@ -204,7 +252,7 @@ export const FacultyProfile: profile[] = [
             "Bachelor of Science in Computer Science",
             "Master of Science in Computer Science (On-Going)",
         ],
-        specialization: "Programming, Software Development, AI, Machine Learning, Algorithm Designs & Analysis",
+        specialization: "Programming, Software Development, Artificial Intelligence, Machine Learning, Algorithm Designs & Analysis",
         courses: "Design and Analysis of Algorithms; Object-oriented Programming",
     },
     {
@@ -215,9 +263,9 @@ export const FacultyProfile: profile[] = [
         degrees: [
             "Bachelor in Computer Data Processing Management (1993)",
             "Master in Business Administration (1999)",
-            "PhD in Development Studies (On-Going)",
+            "Doctor of Philosohy in Development Studies (On-Going)",
         ],
-        specialization: "Programming, Project Management, Cybersecurity, Systems Analysis & Design",
+        specialization: "Programming, Project Management, Cybersecurity, Systems Analysis and Design",
         courses: "Fundamentals of Research; Programming 3 (Structured Programming)",
     },
     {
@@ -232,5 +280,30 @@ export const FacultyProfile: profile[] = [
         ],
         specialization: "Programming, Software Development",
         courses: "Data Structures & Algorithms; Object Oriented Programming; Integrative Programming & Technologies 1",
+    },
+    {
+        name: "Caren Sisor",
+        image: "/images/faculty/faculty-sisor.jpg",
+        imageAlt: "Caren Sisor",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Information Technology",
+            "Master in Information Technology (On-Going Thesis Writing)",
+        ],
+        specialization: "IT Service Management, Networks",
+        courses: "Introduction to Computing; Living in the IT Era; Introduction to Ethics",
+    },
+    {
+        name: "Rodel Villarez",
+        image: "/images/faculty/faculty-villarez.jpg",
+        imageAlt: "Rodel Villarez",
+        status: "PART-TIME",
+        degrees: [
+            "Bachelor of Science in Electronics Engineering",
+            "Master of Engineering Technology",
+            "Doctor of Information Technology (Dissertation Writing)",
+        ],
+        specialization: "Data Security, Cybersecurity",
+        courses: "Cybersecurity Fundamentals",
     },
 ];
